@@ -217,7 +217,7 @@ class system:
             self.envFile = '/storage/oe_environment'
             self.keyboard_layouts = False
             self.update_url_release = 'http://releases.openelec.tv'
-            self.update_url_devel = 'http://update.openelec.tv'  # "http://snapshots.openelec.tv"
+            self.update_url_devel = 'http://snapshots.openelec.tv' #'http://update.openelec.tv'
             self.temp_folder = os.environ['HOME'] + '/.xbmc/temp/'
             self.update_folder = '/storage/.update/'
             self.last_update_check = 0

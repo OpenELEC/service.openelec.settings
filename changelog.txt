@@ -1,3 +1,6 @@
+2013-03-30 v-0.1.7
+  (add) license headers
+  
 2013-03-30 v-0.1.6 
   (fix) hide ssh service if kernel parameter is set (read file)
   

@@ -2,7 +2,7 @@
 <addon id="service.openelec.settings"
        name="OpenELEC Configuration"
        version="0.1.6"
-       provider-name="lufie">
+       provider-name="OpenELEC">
    <requires>
    	<import addon="xbmc.python" version="2.0"/>
   </requires>

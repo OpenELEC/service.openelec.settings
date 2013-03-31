@@ -1,0 +1,77 @@
+<window id="5533">
+	<defaultcontrol always="true">2000</defaultcontrol>
+	<allowoverlay>no</allowoverlay>
+	<controls>
+		<control type="group">
+			<posx>440</posx>
+			<posy>260</posy>
+			<animation type="WindowOpen" reversible="false">
+				<effect type="zoom" start="80" end="100" center="640,360" easing="out" tween="back" time="300" />
+				<effect type="fade" start="0" end="100" time="300" />
+			</animation>
+			<animation type="WindowClose" reversible="false">
+				<effect type="zoom" start="100" end="80" center="640,360" easing="in" tween="back" time="300" />
+				<effect type="fade" start="100" end="0" time="300" />
+			</animation>
+			<control type="image">
+				<posx>5</posx>
+				<posy>5</posy>
+				<width>400</width>
+				<height>174</height>
+				<texture border="15">ContentPanel.png</texture>
+			</control>
+			<control type="image">
+				<posx>5</posx>
+				<posy>5</posy>
+				<width>400</width>
+				<height>174</height>
+				<texture border="15">ContentPanel.png</texture>
+			</control>
+			<control type="group">
+				<posx>17</posx>
+				<posy>16</posy>
+				<width>200</width>
+				<height>174</height>
+				<control type="label" id="1700">
+					<posx>20</posx>
+					<posy>10</posy>
+					<width>340</width>
+					<height>30</height>							
+					<font>font12</font>
+					<textcolor>white</textcolor>
+					<label></label>
+					<align>center</align>
+        	<visible>true</visible>
+				</control>				
+				<control type="label" id="1701">
+					<posx>10</posx>
+					<posy>50</posy>
+					<width>350</width>
+					<height>30</height>							
+					<font>font24_title</font>
+					<textcolor>blue</textcolor>
+					<label></label>
+					<align>center</align>
+        	<visible>true</visible>
+				</control>
+				<control type="label" id="1702">
+					<posx>10</posx>
+					<posy>90</posy>
+					<width>350</width>
+					<height>30</height>							
+					<font>font24_title</font>
+					<textcolor>blue</textcolor>
+					<label></label>
+					<align>center</align>
+        	<visible>true</visible>
+				</control>
+				<control type="progress" id="1703">
+					<posx>10</posx>
+					<posy>140</posy>
+					<width>355</width>
+					<height>10</height>
+				</control>								
+			</control>
+		</control>
+	</controls>
+</window>

@@ -1,4 +1,7 @@
-2013-03-30 v-0.1.7
+2013-04-01 v-0.1.8
+  (fix) autoupdate
+  
+2013-04-01 v-0.1.7
   (add) license headers
   (change) use hd-idle for hdd spindown
   

@@ -119,8 +119,6 @@ class system:
                         'value': '',
                         'action': 'manual_check_update',
                         'typ': 'button',
-                        'parent': {'entry': 'AutoUpdate',
-                                   'value': ['manual']},
                         'InfoText': 716,
                         }},
                     },
@@ -218,8 +216,8 @@ class system:
             self.lcd_dir = '/usr/lib/lcdproc/'
             self.envFile = '/storage/oe_environment'
             self.keyboard_layouts = False
-            self.update_url_release = 'http://releases.openelec.tv'
-            self.update_url_devel = 'http://snapshots.openelec.tv' #'http://update.openelec.tv'
+            self.update_url_release = 'http://releases.openelec.tv'            
+            self.update_url_devel = 'http://snapshots.openelec.tv'
             self.temp_folder = os.environ['HOME'] + '/.xbmc/temp/'
             self.update_folder = '/storage/.update/'
             self.last_update_check = 0
@@ -465,25 +463,6 @@ class system:
                                     ][setting]['name']),
                                     dictProperties,
                                     focusItem.getProperty('listTyp'))
-
-                if category == 'update':
-                    if hasattr(self, 'update_file'):
-                        if self.update_file != '':
-                            if self.config['update']['settings'
-                                    ]['AutoUpdate']['value'] == 'auto':
-
-                                dictProperties = {
-                                    'entry': 'do_autoupdate',
-                                    'category': 'update',
-                                    'action': 'do_autoupdate',
-                                    'value': '',
-                                    'typ': 'button',
-                                    }
-
-                                self.oe.winOeMain.addConfigItem(self.oe._(32197),
-                                        dictProperties,
-                                        focusItem.getProperty('listTyp'
-                                        ))
 
             self.oe.winOeMain.getControl(self.oe.winOeMain.guiList).selectItem(selectedPos)
 
@@ -947,6 +926,10 @@ class system:
             self.oe.dbg_log('system::check_updates', 'enter_function',
                             0)
 
+            if hasattr(self, "update_in_progress"):
+                self.oe.dbg_log('system::check_updates', 'Update in progress (exit)', 0)
+                return
+              
             value = self.oe.read_setting('system', 'AutoUpdate')
             if not value is None:
                 if self.config['update']['settings']['AutoUpdate'
@@ -961,9 +944,6 @@ class system:
                 return
 
             self.oe.dbg_log('system::check_updates', 'enter_function', 0)
-
-            self.oe.write_setting('system', 'update_file', '')
-            self.oe.write_setting('system', 'update_url', '')
 
             self.last_update_check = time.time()
 
@@ -1056,8 +1036,8 @@ class system:
                 latest_version = '.'.join(latest_version)
 
             if auto_update == True or manual_update == True:
-                if self.config['update']['settings']['AutoUpdate'
-                        ]['value'] == 'auto' or manual_update == True:
+                if self.config['update']['settings']['AutoUpdate']['value'] == 'auto' or \
+                   self.config['update']['settings']['AutoUpdate']['value'] == 'manual':
                     if self.config['update']['settings']['UpdateNotify'
                             ]['value'] == '1':
                         xbmc.executebuiltin('Notification('
@@ -1076,11 +1056,7 @@ class system:
                 ] == 'auto' or force) and auto_update == True:
 
                 self.update_file = '-'.join(line) + '.tar.bz2'
-                self.oe.write_setting('system', 'update_file',
-                        self.update_file)
-                self.oe.write_setting('system', 'update_url',
-                        self.update_url)
-
+ 
                 self.oe.dbg_log('system::check_updates',
                                 'update available ' + self.update_file,
                                 1)
@@ -1096,6 +1072,7 @@ class system:
                         self.do_autoupdate()
                 else:
 
+                    self.update_in_progress = True
                     self.do_autoupdate(None, True)
 
             self.oe.dbg_log('system::check_updates', 'exit_function', 0)
@@ -1143,11 +1120,6 @@ class system:
                                     + self.oe._(32363) + ', '
                                     + self.oe._(32367) + ')')
 
-                        self.oe.write_setting('system', 'update_file',
-                                '')
-                        self.oe.write_setting('system', 'update_url', ''
-                                )
-
                         os.remove(downloaded)
 
                         for update_file in glob.glob(self.temp_folder
@@ -1165,75 +1137,6 @@ class system:
 
             self.oe.dbg_log('system::do_autoupdate', 'ERROR: ('
                             + repr(e) + ')')
-
-    def hide_update_nofification(self):
-        try:
-
-            self.oe.dbg_log('system::hide_update_nofification',
-                            'enter_function', 0)
-
-            if hasattr(self, 'home_window'):
-
-                if hasattr(self, 'nofify_image'):
-                    self.home_window.removeControl(self.nofify_image)
-                    del self.nofify_image
-
-                if hasattr(self, 'notify_label'):
-                    self.home_window.removeControl(self.notify_label)
-                    del self.notify_label
-
-                del self.home_window
-
-            self.oe.dbg_log('system::hide_update_nofification',
-                            'exit_function', 0)
-        except Exception, e:
-
-            self.oe.dbg_log('system::show_update_nofification',
-                            'ERROR: (' + repr(e) + ')')
-
-    def show_update_nofification(self):
-        try:
-
-            self.oe.dbg_log('system::show_update_nofification',
-                            'enter_function', 0)
-
-            self.update_available = True
-
-            if not hasattr(self, 'home_window'):
-                self.home_window = xbmcgui.Window(10000)
-
-                if not hasattr(self, 'notify_image'):
-                    self.nofify_image = xbmcgui.ControlImage(
-                        500,
-                        1,
-                        270,
-                        135,
-                        aspectRatio=0,
-                        filename=self.oe.__cwd__
-                            + '/resources/skins/Default/media/OpenELEC_Logo.png'
-                            ,
-                        )
-
-                    self.home_window.addControl(self.nofify_image)
-
-                if not hasattr(self, 'notify_label'):
-                    self.notify_label = xbmcgui.ControlLabel(
-                        590,
-                        90,
-                        400,
-                        75,
-                        self.oe._(32179),
-                        font='font12',
-                        )
-
-                    self.home_window.addControl(self.notify_label)
-
-            self.oe.dbg_log('system::show_update_nofification',
-                            'exit_function', 0)
-        except Exception, e:
-
-            self.oe.dbg_log('system::show_update_nofification',
-                            'ERROR: (' + repr(e) + ')')
 
     def set_hw_clock(self):
         try:

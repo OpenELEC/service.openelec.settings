@@ -1,3 +1,6 @@
+2013-04-01 v-0.1.9
+  (change) backup / restore rebuild
+  
 2013-04-01 v-0.1.8
   (fix) autoupdate
   

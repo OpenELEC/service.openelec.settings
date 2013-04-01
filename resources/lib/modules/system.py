@@ -32,9 +32,11 @@ import threading
 import time
 import re
 import zipfile
+import tarfile
 import stat
 import mimetypes
 import httplib
+import oeWindows
 
 from xml.dom import minidom
 
@@ -161,18 +163,6 @@ class system:
                         'InfoText': 720,
                         }},
                     },
-                'support': {
-                    'order': 6,
-                    'name': 32359,
-                    'not_supported': [],
-                    'settings': {'upload': {
-                        'name': 32214,
-                        'value': '0',
-                        'action': 'upload_logfiles',
-                        'typ': 'button',
-                        'InfoText': 721,
-                        }},
-                    },
                 'backup': {
                     'order': 7,
                     'name': 32371,
@@ -230,7 +220,8 @@ class system:
 
             self.backup_dirs = ['/storage/.xbmc', '/storage/.config',
                                 '/storage/.cache']
-            self.backup_file = 'openelec_backup.zip'
+                                
+            self.backup_folder = '/storage/backup/'
             self.restore_path = '/storage/.restore/'
 
             oeMain.dbg_log('system::__init__', 'exit_function', 0)
@@ -1251,93 +1242,10 @@ class system:
             self.oe.dbg_log('system::ask_sure_reset', 'ERROR: ('
                             + repr(e) + ')', 4)
 
-    def upload_logfiles(self, listItem=None):
-        try:
-
-            self.oe.dbg_log('system::upload_logfiles', 'enter_function'
-                            , 0)
-
-            distri = self.oe.load_file('/etc/distribution')
-            arch = self.oe.load_file('/etc/arch')
-            version = self.oe.load_file('/etc/version')
-
-            info_file = open('/tmp/sysinfo', 'w')
-            info_file.write('SYSTEM\n')
-            info_file.write(distri + '\n')
-            info_file.write(arch + '\n')
-            info_file.write(version + '\n')
-            info_file.close()
-
-            xbmcKeyboard = xbmc.Keyboard('', self.oe._(32360))
-            xbmcKeyboard.doModal()
-            if xbmcKeyboard.isConfirmed():
-                if xbmcKeyboard.getText() != '':
-                    if '@' in xbmcKeyboard.getText():
-
-                        xbmc.executebuiltin('ActivateWindow(busydialog)'
-                                )
-
-                        zipName = '/tmp/' + xbmcKeyboard.getText() \
-                            + '.zip'
-
-                        zip = zipfile.ZipFile(zipName, 'w')
-
-                        zip.write('/tmp/sysinfo', 'sysinfo')
-
-                        if os.path.exists('/var/log/messages'):
-                            zip.write('/var/log/messages', 'messages')
-                        if os.path.exists('/var/log/messages.0'):
-                            zip.write('/var/log/messages.0',
-                                    'messages.0')
-                        if os.path.exists('/storage/.xbmc/temp/xbmc.log'
-                                ):
-                            zip.write('/storage/.xbmc/temp/xbmc.log',
-                                    'xbmc.log')
-                        if os.path.exists('/storage/.xbmc/temp/xbmc.old.log'
-                                ):
-                            zip.write('/storage/.xbmc/temp/xbmc.old.log'
-                                    , 'xbmc.old.log')
-
-                        os.system('lspci -v >/tmp/lspci')
-                        if os.path.exists('/tmp/lspci'):
-                            zip.write('/tmp/lspci', 'lspci')
-
-                        os.system('lsusb -v >/tmp/lsusb')
-                        if os.path.exists('/tmp/lsusb'):
-                            zip.write('/tmp/lsusb', 'lsusb')
-
-                        os.system('lsmod >/tmp/lsmod')
-                        if os.path.exists('/tmp/lsmod'):
-                            zip.write('/tmp/lsmod', 'lsmod')
-
-                        for log in glob.glob('/var/log/*.log'):
-                            zip.write(log, os.path.basename(log))
-
-                        zip.close()
-
-                        self.post_multipart('paste.fiebach.de',
-                                '/upload.php', [('', '')], [('file',
-                                open(zipName, 'rb'))])
-
-                        os.remove(zipName)
-                        os.remove('/tmp/lspci')
-                        os.remove('/tmp/lsusb')
-                        os.remove('/tmp/lsmod')
-                        os.remove('/tmp/sysinfo')
-                    else:
-
-                        dialog = xbmcgui.Dialog()
-                        dialog.ok(self.oe._(32214), self.oe._(32215))
-
-            xbmc.executebuiltin('Dialog.Close(busydialog)')
-
-            self.oe.dbg_log('system::upload_logfiles', 'exit_function',
-                            0)
-        except Exception, e:
-
-            xbmc.executebuiltin('Dialog.Close(busydialog)')
-            self.oe.dbg_log('system::upload_logfiles', 'ERROR: ('
-                            + repr(e) + ')')
+    def timestamp(self):
+        now = time.time()
+        localtime = time.localtime(now)
+        return time.strftime('%Y%m%d%H%M%S', localtime)
 
     def do_backup(self, listItem=None):
         try:
@@ -1351,25 +1259,20 @@ class system:
                 self.get_folder_size(directory)
 
             xbmcDialog = xbmcgui.Dialog()
-            returnValue = xbmcDialog.browse(
-                3,
-                self.oe._(32376),
-                'files',
-                '',
-                False,
-                False,
-                '',
-                )
 
             self.backup_dlg = xbmcgui.DialogProgress()
-            self.backup_dlg.create('OpenELEC', self.oe._(32375), ' ',
-                                   ' ')
+            self.backup_dlg.create('OpenELEC', self.oe._(32375), ' ', ' ')
+            
+            if not os.path.exists(self.backup_folder):
+                os.makedirs(self.backup_folder)
+            
+            self.backup_file = self.timestamp() + '.tar.bz2'
 
-            zip = zipfile.ZipFile(returnValue + self.backup_file, 'w')
+            tar = tarfile.open(self.backup_folder + self.backup_file, 'w:bz2')
             for directory in self.backup_dirs:
-                self.zip_add_folder(zip, directory)
+                self.tar_add_folder(tar, directory)
 
-            zip.close()
+            tar.close()
             self.backup_dlg.close()
             del self.backup_dlg
 
@@ -1385,32 +1288,39 @@ class system:
 
             self.oe.dbg_log('system::do_restore', 'enter_function', 0)
 
-            xbmcDialog = xbmcgui.Dialog()
-            restore_file = xbmcDialog.browse(
-                1,
-                self.oe._(32377),
-                'files',
-                self.backup_file,
-                False,
-                False,
-                '/',
-                )
+            backup_files = []
+            for backup_file in sorted(glob.glob(self.backup_folder + '*.tar.bz2'), key=os.path.basename):
+                backup_files.append(backup_file.split("/")[-1] + ":")
+                
+            select_window = oeWindows.selectWindow('selectWindow.xml',
+                    self.oe.__cwd__, 'Default', oeMain=self.oe)
+
+            select_window.availValues = ",".join(backup_files)
+            
+            select_window.doModal()
+            restore_file = select_window.result
+            
+            del select_window
 
             if restore_file != '':
                 if not os.path.exists(self.restore_path):
                     os.makedirs(self.restore_path)
 
+                else:
+                    os.system('rm -rf %s' % self.restore_path)
+                    os.makedirs(self.restore_path)
+                    
                 folder_stat = os.statvfs(self.restore_path)
-                file_size = os.path.getsize(restore_file)
+                file_size = os.path.getsize(self.backup_folder + restore_file)
                 free_space = folder_stat.f_bsize * folder_stat.f_bavail
 
                 if free_space > file_size * 2:
                     if os.path.exists(self.restore_path
-                            + self.backup_file):
-                        os.remove(self.restore_path + self.backup_file)
+                            + restore_file):
+                        os.remove(self.restore_path + self.restore_file)
 
-                    self.oe.copy_file(restore_file, self.restore_path
-                            + self.backup_file)
+                    self.oe.copy_file(self.backup_folder + restore_file, 
+                            self.restore_path + restore_file)
 
             self.oe.dbg_log('system::do_restore', 'exit_function', 0)
         except Exception, e:
@@ -1418,7 +1328,7 @@ class system:
             self.oe.dbg_log('system::do_restore', 'ERROR: (' + repr(e)
                             + ')')
 
-    def zip_add_folder(self, zip, folder):
+    def tar_add_folder(self, tar, folder):
         try:
             for item in os.listdir(folder):
 
@@ -1431,18 +1341,18 @@ class system:
                 itempath = os.path.join(folder, item)
                 if os.path.isfile(itempath):
                     self.done_backup_size += os.path.getsize(itempath)
-                    zip.write(itempath)
+                    tar.add(itempath)
                     if hasattr(self, 'backup_dlg'):
                         progress = round(1.0 * self.done_backup_size
                                 / self.total_backup_size * 100)
                         self.backup_dlg.update(int(progress), folder,
                                 item)
                 elif os.path.isdir(itempath):
-                    self.zip_add_folder(zip, itempath)
+                    self.tar_add_folder(tar, itempath)
         except Exception, e:
 
             self.backup_dlg.close()
-            self.oe.dbg_log('system::zip_add_folder', 'ERROR: ('
+            self.oe.dbg_log('system::tar_add_folder', 'ERROR: ('
                             + repr(e) + ')')
 
     def get_folder_size(self, folder):

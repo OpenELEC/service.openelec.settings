@@ -213,6 +213,8 @@ class system:
                     },
                 }
 
+            self.kernel_cmd = '/proc/cmdline'
+            
             self.lcd_dir = '/usr/lib/lcdproc/'
             self.envFile = '/storage/oe_environment'
             self.keyboard_layouts = False
@@ -351,11 +353,16 @@ class system:
                     value
 
             # HDD Standby
-            value = self.oe.read_setting('system', 'hdd_standby')
+            value = self.oe.read_setting('system', 'enable_hdd_standby')
             if not value is None:
-                self.config['power']['settings']['hdd_standby']['value'
+                self.config['power']['settings']['enable_hdd_standby']['value'
                         ] = value
 
+                value = self.oe.read_setting('system', 'hdd_standby')
+                if not value is None:
+                    self.config['power']['settings']['hdd_standby']['value'
+                            ] = value
+                        
             # Disable Bluetooth
             value = self.oe.read_setting('system', 'disable_bt')
             if not value is None:
@@ -749,26 +756,50 @@ class system:
                     ]['enable_hdd_standby']['value'] == '1':
 
                 value = int(self.config['power']['settings'
-                            ]['hdd_standby']['value']) * 12
+                            ]['hdd_standby']['value']) #* 12
 
+                #find system hdd
+                cmd_file = open(self.kernel_cmd, 'r')
+                cmd_args = cmd_file.read()
+                for param in cmd_args.split(' '):
+                    if param.startswith('boot='):
+                        sys_hdd = param.replace('boot=', '').split('=')[-1]                       
+                        
+                cmd_file.close()  
+                
+                blkid = self.oe.execute('blkid')
+                for volume in blkid.splitlines():
+                
+                    if ('LABEL="%s"' % sys_hdd) in volume or \
+                       ('UUID="%s"' % sys_hdd) in volume:
+                         
+                        sys_hdd_dev = volume.split(':')[0].replace('/dev/', '')                     
+                
+                parameters = []
                 for device in glob.glob('/dev/sd?'):
 
-                    self.oe.dbg_log('system::set_hdd_standby',
-                                    str(value), 1)
+                    device = device.replace('/dev/', '')
+                    
+                    if not device in sys_hdd_dev:
+                      
+                        parameters.append('-a %s' % device)
+                        
+                    else:
+                        self.oe.dbg_log('system::set_hdd_standby', 
+                                        ('Skip System Disk:%s' % device), 1)
+                                        
 
-                    parameters = ['-S ' + str(value), device]
-
-                    os.system('hdparm ' + ' '.join(parameters))
+                if len(parameters) > 0:   
+                    os.system('hd-idle -i %d %s' % (value*60, ' '.join(parameters)))
+                    self.oe.dbg_log('system::set_hdd_standby', 
+                                    ('hd-idle -i %d %s' % (value*60, ' '.join(parameters))), 1)
+                                        
             else:
 
-                for device in glob.glob('/dev/sd?'):
+                self.oe.dbg_log('system::set_hdd_standby', '0 (off)'
+                                , 1)
 
-                    self.oe.dbg_log('system::set_hdd_standby', '0 (off)'
-                                    , 1)
-
-                    parameters = ['-S 0 ', device]
-
-                    os.system('hdparm ' + ' '.join(parameters))
+                os.system('killall hd-idle')
 
             self.oe.set_busy(0)
 

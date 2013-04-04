@@ -1266,9 +1266,9 @@ class system:
             if not os.path.exists(self.backup_folder):
                 os.makedirs(self.backup_folder)
             
-            self.backup_file = self.timestamp() + '.tar.bz2'
+            self.backup_file = self.timestamp() + '.tar'
 
-            tar = tarfile.open(self.backup_folder + self.backup_file, 'w:bz2')
+            tar = tarfile.open(self.backup_folder + self.backup_file, 'w')
             for directory in self.backup_dirs:
                 self.tar_add_folder(tar, directory)
 
@@ -1289,7 +1289,7 @@ class system:
             self.oe.dbg_log('system::do_restore', 'enter_function', 0)
 
             backup_files = []
-            for backup_file in sorted(glob.glob(self.backup_folder + '*.tar.bz2'), key=os.path.basename):
+            for backup_file in sorted(glob.glob(self.backup_folder + '*.tar'), key=os.path.basename):
                 backup_files.append(backup_file.split("/")[-1] + ":")
                 
             select_window = oeWindows.selectWindow('selectWindow.xml',

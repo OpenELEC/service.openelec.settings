@@ -1336,6 +1336,10 @@ class system:
                     continue
 
                 if self.backup_dlg.iscanceled():
+                    try:
+                        os.remove(self.backup_folder + self.backup_file)
+                    except:
+                        pass
                     return 0
 
                 itempath = os.path.join(folder, item)

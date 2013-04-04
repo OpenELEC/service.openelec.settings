@@ -1,3 +1,7 @@
+2013-04-04 v-0.1.10
+  (fix) delete backup file on abort
+  (change) backup / restore write tar file. bzip is bit slow
+
 2013-04-01 v-0.1.9
   (change) backup / restore rebuild
   

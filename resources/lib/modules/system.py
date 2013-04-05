@@ -1168,6 +1168,7 @@ class system:
                 reset_file.write('reset')
                 reset_file.close()
 
+                self.oe.winOeMain.close()
                 time.sleep(1)
                 xbmc.executebuiltin('Reboot')
 
@@ -1193,6 +1194,7 @@ class system:
                 reset_file.write('reset')
                 reset_file.close()
 
+                self.oe.winOeMain.close()
                 time.sleep(1)
                 xbmc.executebuiltin('Reboot')
 
@@ -1217,23 +1219,11 @@ class system:
 
             if answer == 1:
 
-                extract_dlg = xbmcgui.DialogProgress()
-                extract_dlg.create('OpenELEC %s' % self.oe._(32323), ' '
-                                   , ' ', ' ')
-                extract_dlg.update(0)
-
-                counter = 30
-                while counter >= 0 and not extract_dlg.iscanceled():
-                    extract_dlg.update(counter * 30, self.oe._(32329)
-                            % counter)
-                    time.sleep(1)
-                    counter = counter - 1
-
-                if not extract_dlg.iscanceled():
+                if self.reboot_counter(30, self.oe._(32323)) == 1:
                     return 1
                 else:
                     return 0
-
+                  
             self.oe.dbg_log('system::reset_oeask_sure_reset',
                             'exit_function', 0)
         except Exception, e:
@@ -1247,6 +1237,30 @@ class system:
         localtime = time.localtime(now)
         return time.strftime('%Y%m%d%H%M%S', localtime)
 
+    def reboot_counter(self, seconds=10, title=' '):
+      
+        reboot_dlg = xbmcgui.DialogProgress()
+        reboot_dlg.create('OpenELEC %s' % title, ' '
+                            , ' ', ' ')
+        reboot_dlg.update(0)
+        wait_time = seconds
+        
+        while seconds >= 0 and not reboot_dlg.iscanceled():
+            
+            progress = round(1.0 * seconds
+                    / wait_time * 100)
+                 
+            reboot_dlg.update(int(progress), self.oe._(32329)
+                    % seconds)
+                    
+            time.sleep(1)
+            seconds = seconds - 1
+
+        if not reboot_dlg.iscanceled():
+            return 1
+        else:
+            return 0
+                  
     def do_backup(self, listItem=None):
         try:
 
@@ -1255,9 +1269,17 @@ class system:
             self.total_backup_size = 1
             self.done_backup_size = 1
 
-            for directory in self.backup_dirs:
-                self.get_folder_size(directory)
+            try:
+              
+              self.oe.set_busy(1)
+              
+              for directory in self.backup_dirs:
+                  self.get_folder_size(directory)
 
+              self.oe.set_busy(0)
+            except:
+              self.oe.set_busy(0)
+              
             xbmcDialog = xbmcgui.Dialog()
 
             self.backup_dlg = xbmcgui.DialogProgress()
@@ -1288,6 +1310,7 @@ class system:
 
             self.oe.dbg_log('system::do_restore', 'enter_function', 0)
 
+            copy_success = 0
             backup_files = []
             for backup_file in sorted(glob.glob(self.backup_folder + '*.tar'), key=os.path.basename):
                 backup_files.append(backup_file.split("/")[-1] + ":")
@@ -1322,12 +1345,53 @@ class system:
                     self.oe.copy_file(self.backup_folder + restore_file, 
                             self.restore_path + restore_file)
 
+                    copy_success = 1
+                    
+                else:
+                    
+                    txt = self.split_dialog_text(self.oe._(32379))  
+                    
+                    xbmcDialog = xbmcgui.Dialog()
+                    answer = xbmcDialog.ok('Restore',
+                            txt[0], txt[1], txt[2])
+                
+                if copy_success == 1:
+                  
+                    txt = self.split_dialog_text(self.oe._(32380))  
+
+                    xbmcDialog = xbmcgui.Dialog()
+                    answer = xbmcDialog.yesno('Restore',
+                            txt[0], txt[1], txt[2])
+                    
+                    if answer == 1:
+                        
+                        if self.reboot_counter(10, self.oe._(32371)) == 1:
+                            self.oe.winOeMain.close()
+                            time.sleep(1)
+                            xbmc.executebuiltin('Reboot')
+                        
+                    else:
+                        self.oe.dbg_log('system::do_restore',
+                                        'User Abort!', 0)
+                        os.system('rm -rf %s' % self.restore_path)
+                      
             self.oe.dbg_log('system::do_restore', 'exit_function', 0)
         except Exception, e:
 
             self.oe.dbg_log('system::do_restore', 'ERROR: (' + repr(e)
                             + ')')
 
+    def split_dialog_text(self, text):
+
+        ret = [''] * 3
+        txt = re.findall('.{1,60}(?:\W|$)', text)
+        
+        for x in range(0, 2):
+            if len(txt) > x:
+                ret[x] = txt[x]
+        
+        return ret
+            
     def tar_add_folder(self, tar, folder):
         try:
             for item in os.listdir(folder):
@@ -1528,8 +1592,8 @@ class updateThread(threading.Thread):
                         self.last_check = current_time
                     else:
                         self.last_check = current_time
-                        self.oe.dbg_log('system::updateThread',
-                                'XBMC is Playing !', 1)
+                        #self.oe.dbg_log('system::updateThread',
+                        #        'XBMC is Playing !', 1)
 
                 time.sleep(0.2)
 

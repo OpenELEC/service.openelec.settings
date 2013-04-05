@@ -273,5 +273,7 @@
   <string id="32376">Select a Backup destination directory</string>
   <string id="32377">Select the Backup file to restore</string>    
   <string id="32378">The information you entered is incomplete</string>          
+  <string id="32379">There is not enough free space on the system storage</string>     
+  <string id="32380">Restoring system settings requires a reboot. Are you sure you want to restore ?</string>     
 </strings>
 

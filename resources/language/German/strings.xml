@@ -265,11 +265,13 @@
   <string id="32368">Erweiterte Netzwerk Einstellungen</string>   
   <string id="32369">Vor dem Start von XBMC auf das Netzwerk warten.</string>  
   <string id="32370">Maximale wartezeit (Sek.)</string>  
-  <string id="32371">Datensicherung</string>  
+  <string id="32371">Datensicherung</string>
   <string id="32372">System und XBMC Daten sichern</string>  
   <string id="32373">Datensicherung wiederherstellen</string>  
   <string id="32375">Fortschritt der Datensicherung</string>  
   <string id="32376">Wählen Sie ein Zielverzeichniss</string>    
   <string id="32377">Wählen Sie die Sicherungsdatei</string>    
   <string id="32378">Die von Ihnen eingegebenen Angaben sind unvollständig</string>     
+  <string id="32379">Für die Wiederherstellung ist nicht ausreichend Speicherplatz auf dem Storage Laufwerk verfügbar.</string>     
+  <string id="32380">Die Wiederherstellung benötigt einen Neustart, sind Sie sicher, dass Sie die Wiederherstellung durchführen möchten.</string>      
 </strings> 

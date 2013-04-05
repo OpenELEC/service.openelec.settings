@@ -1316,11 +1316,14 @@ class system:
                             + restore_file):
                         os.remove(self.restore_path + self.restore_file)
 
-                    self.oe.copy_file(self.backup_folder + restore_file, 
-                            self.restore_path + restore_file)
+                    if self.oe.copy_file(self.backup_folder + restore_file, 
+                            self.restore_path + restore_file) != None:
 
-                    copy_success = 1
-                    
+                        copy_success = 1
+                    else:
+                      
+                        os.system('rm -rf %s' % self.restore_path)
+                        
                 else:
                     
                     txt = self.oe.split_dialog_text(self.oe._(32379))  

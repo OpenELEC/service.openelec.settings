@@ -1207,6 +1207,7 @@ class system:
             self.oe.dbg_log('system::reset_oe', 'ERROR: (' + repr(e)
                             + ')', 4)
 
+
     def ask_sure_reset(self, part):
         try:
 
@@ -1219,7 +1220,7 @@ class system:
 
             if answer == 1:
 
-                if self.reboot_counter(30, self.oe._(32323)) == 1:
+                if self.oe.reboot_counter(30, self.oe._(32323)) == 1:
                     return 1
                 else:
                     return 0
@@ -1232,34 +1233,6 @@ class system:
             self.oe.dbg_log('system::ask_sure_reset', 'ERROR: ('
                             + repr(e) + ')', 4)
 
-    def timestamp(self):
-        now = time.time()
-        localtime = time.localtime(now)
-        return time.strftime('%Y%m%d%H%M%S', localtime)
-
-    def reboot_counter(self, seconds=10, title=' '):
-      
-        reboot_dlg = xbmcgui.DialogProgress()
-        reboot_dlg.create('OpenELEC %s' % title, ' '
-                            , ' ', ' ')
-        reboot_dlg.update(0)
-        wait_time = seconds
-        
-        while seconds >= 0 and not reboot_dlg.iscanceled():
-            
-            progress = round(1.0 * seconds
-                    / wait_time * 100)
-                 
-            reboot_dlg.update(int(progress), self.oe._(32329)
-                    % seconds)
-                    
-            time.sleep(1)
-            seconds = seconds - 1
-
-        if not reboot_dlg.iscanceled():
-            return 1
-        else:
-            return 0
                   
     def do_backup(self, listItem=None):
         try:
@@ -1288,7 +1261,7 @@ class system:
             if not os.path.exists(self.backup_folder):
                 os.makedirs(self.backup_folder)
             
-            self.backup_file = self.timestamp() + '.tar'
+            self.backup_file = self.oe.timestamp() + '.tar'
 
             tar = tarfile.open(self.backup_folder + self.backup_file, 'w')
             for directory in self.backup_dirs:
@@ -1304,6 +1277,7 @@ class system:
             self.backup_dlg.close()
             self.oe.dbg_log('system::do_backup', 'ERROR: (' + repr(e)
                             + ')')
+
 
     def do_restore(self, listItem=None):
         try:
@@ -1349,7 +1323,7 @@ class system:
                     
                 else:
                     
-                    txt = self.split_dialog_text(self.oe._(32379))  
+                    txt = self.oe.split_dialog_text(self.oe._(32379))  
                     
                     xbmcDialog = xbmcgui.Dialog()
                     answer = xbmcDialog.ok('Restore',
@@ -1357,7 +1331,7 @@ class system:
                 
                 if copy_success == 1:
                   
-                    txt = self.split_dialog_text(self.oe._(32380))  
+                    txt = self.oe.split_dialog_text(self.oe._(32380))  
 
                     xbmcDialog = xbmcgui.Dialog()
                     answer = xbmcDialog.yesno('Restore',
@@ -1365,7 +1339,7 @@ class system:
                     
                     if answer == 1:
                         
-                        if self.reboot_counter(10, self.oe._(32371)) == 1:
+                        if self.oe.reboot_counter(10, self.oe._(32371)) == 1:
                             self.oe.winOeMain.close()
                             time.sleep(1)
                             xbmc.executebuiltin('Reboot')
@@ -1381,16 +1355,6 @@ class system:
             self.oe.dbg_log('system::do_restore', 'ERROR: (' + repr(e)
                             + ')')
 
-    def split_dialog_text(self, text):
-
-        ret = [''] * 3
-        txt = re.findall('.{1,60}(?:\W|$)', text)
-        
-        for x in range(0, 2):
-            if len(txt) > x:
-                ret[x] = txt[x]
-        
-        return ret
             
     def tar_add_folder(self, tar, folder):
         try:
@@ -1423,6 +1387,7 @@ class system:
             self.oe.dbg_log('system::tar_add_folder', 'ERROR: ('
                             + repr(e) + ')')
 
+
     def get_folder_size(self, folder):
 
         for item in os.listdir(folder):
@@ -1432,60 +1397,6 @@ class system:
             elif os.path.isdir(itempath):
                 self.get_folder_size(itempath)
 
-    def post_multipart(
-        self,
-        host,
-        selector,
-        fields,
-        files,
-        ):
-        try:
-
-            (content_type, body) = \
-                self._encode_multipart_formdata(fields, files)
-            h = httplib.HTTPConnection(host)
-            headers = {'User-Agent': 'python_multipart_caller',
-                       'Content-Type': content_type}
-            h.request('POST', selector, body, headers)
-            res = h.getresponse()
-            return res.read()
-        except Exception, e:
-
-            self.oe.dbg_log('system::post_multipart', 'ERROR: ('
-                            + repr(e) + ')')
-
-    def _encode_multipart_formdata(self, fields, files):
-        try:
-
-            BOUNDARY = '----------ThIs_Is_tHe_bouNdaRY_$'
-            CRLF = '\r\n'
-            L = []
-            for (key, value) in fields:
-                L.append('--' + BOUNDARY)
-                L.append('Content-Disposition: form-data; name="%s"'
-                         % key)
-                L.append('')
-                L.append(value)
-            for (key, fd) in files:
-                file_size = os.fstat(fd.fileno())[stat.ST_SIZE]
-                filename = fd.name.split('/')[-1]
-                contenttype = mimetypes.guess_type(filename)[0] \
-                    or 'application/octet-stream'
-                L.append('--%s' % BOUNDARY)
-                L.append('Content-Disposition: form-data; name="%s"; filename="%s"'
-                          % (key, filename))
-                L.append('Content-Type: %s' % contenttype)
-                fd.seek(0)
-                L.append('\r\n' + fd.read())
-            L.append('--' + BOUNDARY + '--')
-            L.append('')
-            body = CRLF.join(L)
-            content_type = 'multipart/form-data; boundary=%s' % BOUNDARY
-            return (content_type, body)
-        except Exception, e:
-
-            self.oe.dbg_log('system::_encode_multipart_formdata',
-                            'ERROR: (' + repr(e) + ')')
 
     def do_wizard(self):
         try:

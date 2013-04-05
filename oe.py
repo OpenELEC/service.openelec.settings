@@ -30,6 +30,7 @@ import xbmc
 import xbmcaddon
 import xbmcgui
 import os
+import re
 import locale
 import sys
 import urllib2
@@ -788,7 +789,48 @@ def load_modules():
 
         dbg_log('oe::MAIN(loadingModules)', 'ERROR: (' + repr(e) + ')')
 
+def timestamp():
+    now = time.time()
+    localtime = time.localtime(now)
+    return time.strftime('%Y%m%d%H%M%S', localtime)
 
+def split_dialog_text(text):
+
+    ret = [''] * 3
+    txt = re.findall('.{1,60}(?:\W|$)', text)
+    
+    for x in range(0, 2):
+        if len(txt) > x:
+            ret[x] = txt[x]
+    
+    return ret
+
+    
+def reboot_counter(seconds=10, title=' '):
+  
+    reboot_dlg = xbmcgui.DialogProgress()
+    reboot_dlg.create('OpenELEC %s' % title, ' '
+                        , ' ', ' ')
+    reboot_dlg.update(0)
+    wait_time = seconds
+    
+    while seconds >= 0 and not reboot_dlg.iscanceled():
+        
+        progress = round(1.0 * seconds
+                / wait_time * 100)
+              
+        reboot_dlg.update(int(progress), _(32329)
+                % seconds)
+                
+        time.sleep(1)
+        seconds = seconds - 1
+
+    if not reboot_dlg.iscanceled():
+        return 1
+    else:
+        return 0
+      
+        
 def exit():
 
     global WinOeSelect, winOeMain, __addon__, __cwd__, __oe__, \

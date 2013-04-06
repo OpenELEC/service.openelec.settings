@@ -72,7 +72,7 @@ class bluetooth:
                 self.bt_support = False
                 self.oe.winOeMain.getControl(1301).setLabel(self.oe._(32346))
                 self.oe.dbg_log('bluetooth::do_init',
-                                'exit_function (No Adapter Found)', 0)
+                                'exit_function (Bluetooth is disabled.)', 0)
                 return
 
             pid = self.oe.execute('pidof %s'
@@ -102,6 +102,8 @@ class bluetooth:
                                 'exit_function (No Adapter Found)', 0)
                 return
 
+            self.bt_support = True
+            
             self.oe.winOeMain.getControl(1301).setLabel(self.oe._(32339))
 
             self.discovering = False

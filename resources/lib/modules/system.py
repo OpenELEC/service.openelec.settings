@@ -492,6 +492,8 @@ class system:
             if not listItem == None:
                 self.set_value(listItem)
 
+            self.oe.dictModules['bluetooth'].exit()
+
             if self.config['power']['settings']['disable_bt']['value'] \
                 == '0' or self.config['power']['settings']['disable_bt'
                     ]['value'] == None:
@@ -499,30 +501,18 @@ class system:
                 pid = self.oe.execute('pidof %s'
                         % os.path.basename(self.bt_daemon)).split(' ')
                 if pid[0] == '':
+                      
                     self.oe.dbg_log('system::init_bluetooth',
                                     'Starting Bluetooth Daemon.', 0)
                     os.system(self.bt_daemon + ' &')
                     time.sleep(1)
-                else:
 
-                    self.oe.dbg_log('system::init_bluetooth',
-                                    'Bluetooth Daemon is always running.'
-                                    , 0)
-
-                if not hasattr(self, 'is_service'):
-                    self.oe.dictModules['bluetooth'].exit()
-                    self.oe.dictModules['bluetooth'].do_init()
             else:
 
-                if 'bluetooth' in self.oe.dictModules \
-                    and not hasattr(self, 'is_service'):
-                    self.oe.dictModules['bluetooth'].exit()
-                    self.oe.dictModules['bluetooth'].do_init()
-
-                self.oe.dbg_log('bluetooth::do_init',
-                                'exit_function (No Adapter Found)', 0)
-
                 self.stop_bluetoothd()
+                time.sleep(1)
+               
+            self.oe.dictModules['bluetooth'].do_init()
 
             self.oe.set_busy(0)
 

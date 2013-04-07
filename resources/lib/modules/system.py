@@ -248,6 +248,8 @@ class system:
             self.init_bluetooth()
             self.set_auto_update()
 
+            del self.is_service
+            
             self.oe.dbg_log('system::start_service', 'exit_function', 0)
         except Exception, e:
 
@@ -492,8 +494,6 @@ class system:
             if not listItem == None:
                 self.set_value(listItem)
 
-            self.oe.dictModules['bluetooth'].exit()
-
             if self.config['power']['settings']['disable_bt']['value'] \
                 == '0' or self.config['power']['settings']['disable_bt'
                     ]['value'] == None:
@@ -505,14 +505,10 @@ class system:
                     self.oe.dbg_log('system::init_bluetooth',
                                     'Starting Bluetooth Daemon.', 0)
                     os.system(self.bt_daemon + ' &')
-                    time.sleep(1)
 
             else:
 
-                self.stop_bluetoothd()
-                time.sleep(1)
-               
-            self.oe.dictModules['bluetooth'].do_init()
+                self.oe.dictModules['bluetooth'].stop_bluetoothd()
 
             self.oe.set_busy(0)
 

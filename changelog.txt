@@ -1,3 +1,6 @@
+2013-04-09 v-0.1.13
+  (add) begin update v2 development 
+  
 2013-04-09 v-0.1.12
   (add) loop to wait for bluez to find the bt adapter 
   

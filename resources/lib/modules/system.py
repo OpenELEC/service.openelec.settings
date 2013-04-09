@@ -208,6 +208,7 @@ class system:
             self.keyboard_layouts = False
             self.update_url_release = 'http://releases.openelec.tv'            
             self.update_url_devel = 'http://snapshots.openelec.tv'
+            self.update_url_v2 = 'http://update.openelec.tv/updates.php'
             self.temp_folder = os.environ['HOME'] + '/.xbmc/temp/'
             self.update_folder = '/storage/.update/'
             self.last_update_check = 0
@@ -223,6 +224,12 @@ class system:
             self.backup_folder = '/storage/backup/'
             self.restore_path = '/storage/.restore/'
 
+            self.distri = self.oe.load_file('/etc/distribution')
+            self.arch = self.oe.load_file('/etc/arch')
+            self.version = self.oe.load_file('/etc/version')
+            
+            self.au = None
+            
             oeMain.dbg_log('system::__init__', 'exit_function', 0)
         except Exception, e:
 
@@ -294,8 +301,6 @@ class system:
             # Keyboard Layout
             (arrLayouts, arrTypes) = self.get_keyboard_layouts()
             arrLcd = self.get_lcd_drivers()
-
-            self.arch = self.oe.load_file('/etc/arch')
 
             if not arrTypes is None:
 
@@ -769,7 +774,7 @@ class system:
 
             if not listItem == None:
                 self.set_value(listItem)
-
+                
             if not hasattr(self, 'update_thread'):
                 self.update_thread = updateThread(self.oe)
                 self.update_thread.start()
@@ -886,14 +891,12 @@ class system:
                 self.oe.dbg_log('system::check_updates', 'Update in progress (exit)', 0)
                 return
               
-            value = self.oe.read_setting('system', 'AutoUpdate')
-            if not value is None:
-                if self.config['update']['settings']['AutoUpdate'
-                        ]['value'] != value:
-                    self.last_update_check = 0
-
-                self.config['update']['settings']['AutoUpdate']['value'
-                        ] = value
+            if self.config['update']['settings']['AutoUpdate'
+                    ]['value'] != self.au:
+              
+                self.au = self.config['update']['settings'
+                    ]['AutoUpdate']['value']
+                self.last_update_check = 0
 
             if time.time() < self.last_update_check + 21600 \
                 and not force:
@@ -901,23 +904,22 @@ class system:
 
             self.oe.dbg_log('system::check_updates', 'enter_function', 0)
 
+            self.check_updates_v2()
+            
             self.last_update_check = time.time()
 
             auto_update = False
             manual_update = False
 
-            distri = self.oe.load_file('/etc/distribution')
-            arch = self.oe.load_file('/etc/arch')
-            version = self.oe.load_file('/etc/version')
             update = ''
 
-            if version.startswith('devel'):
+            if self.version.startswith('devel'):
 
-                version = version.rsplit('-', 1)
+                version = self.version.rsplit('-', 1)
                 current_version = version[len(version) - 1].replace('r'
                         , '')
 
-                release = distri + '-' + arch
+                release = self.distri + '-' + self.arch
                 self.update_url = self.update_url_devel
                 latest = self.oe.load_url(self.update_url + '/latest')
 
@@ -939,14 +941,14 @@ class system:
                     manual_update = True
             else:
 
-                version = version.rsplit('-', 1)
+                version = self.version.rsplit('-', 1)
                 current_version = version[len(version) - 1].split('.')
 
                 current_major = int(current_version[0])
                 current_minor = int(current_version[1])
                 current_patch = int(current_version[2])
 
-                release = distri + '-' + arch
+                release = self.distri + '-' + self.arch
                 self.update_url = self.update_url_release
                 latest = self.oe.load_url(self.update_url + '/latest')
 
@@ -1037,6 +1039,22 @@ class system:
             self.oe.dbg_log('system::check_updates', 'ERROR: ('
                             + repr(e) + ')')
 
+    def check_updates_v2(self, force=False):
+        try:
+
+            self.oe.dbg_log('system::check_updates_v2', 'enter_function', 0)
+         
+            sysid = os.environ['SYSTEMID']
+            
+            self.oe.load_url('%s?i=%s&d=%s&pa=%s&v=%s' % ( self.update_url_v2, sysid, self.distri, self.arch, self.version ))
+              
+            self.oe.dbg_log('system::check_updates_v2', 'exit_function', 0)
+            
+        except Exception, e:
+
+            self.oe.dbg_log('system::check_updates_v2', 'ERROR: ('
+                            + repr(e) + ')')
+            
     def do_autoupdate(self, listItem=None, silent=False):
         try:
 

@@ -1,3 +1,6 @@
+2013-04-09 v-0.1.12
+  (add) loop to wait for bluez to find the bt adapter 
+  
 2013-04-08 v-0.1.11
   (fix) bluetooth error on enable / disable
   (change) Bluetooth Agent redesign, monitor dbus always.

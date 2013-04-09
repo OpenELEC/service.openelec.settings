@@ -127,7 +127,6 @@ class bluetooth:
 
             if hasattr(self, 'dbusBluezAdapter'):
                 self.dbusBluezAdapter = None
-                del self.dbusBluezAdapter
 
             self.oe.dbg_log('bluetooth::stop_service', 'exit_function',
                             0)
@@ -136,17 +135,49 @@ class bluetooth:
             self.oe.dbg_log('bluetooth::stop_service', 'ERROR: ('
                             + repr(e) + ')')
 
+
+    def start_bluetoothd(self):
+        try:
+
+            self.oe.dbg_log('bluetooth::start_bluetoothd',
+                            'enter_function', 0)
+      
+            pid = self.oe.execute('pidof %s'
+                    % os.path.basename(self.bt_daemon)).split(' ')
+            if pid[0] == '':
+                  
+                self.oe.dbg_log('bluetooth::init_bluetooth',
+                                'Starting Bluetooth Daemon.', 0)
+                os.system(self.bt_daemon + ' &')      
+                
+            self.oe.dbg_log('bluetooth::start_bluetoothd',
+                            'exit_function', 0)
+        except Exception, e:
+
+            self.oe.dbg_log('bluetooth::start_bluetoothd', 'ERROR: ('
+                            + repr(e) + ')', 4)
+            
+            
     def stop_bluetoothd(self):
         try:
 
             self.oe.dbg_log('bluetooth::stop_bluetoothd',
                             'enter_function', 0)
 
+            if self.dbusBluezAdapter != None:
+                self.adapter_powered( \
+                  self.dbusBluezAdapter, 0)
+                self.dbusBluezAdapter = None
+                
+            if hasattr(self, 'dbusMonitor'):
+                if hasattr(self.dbusMonitor, 'btAgent'):
+                    self.dbusMonitor.initialize_agent(False)
+              
             pid = self.oe.execute('pidof %s'
                                   % os.path.basename(self.bt_daemon)).split(' '
                     )
             for p in pid:
-                os.system('kill -9 ' + p.strip().replace('\n', ''))
+                os.system('kill ' + p.strip().replace('\n', ''))
 
             self.oe.dbg_log('bluetooth::stop_bluetoothd',
                             'exit_function', 0)
@@ -233,7 +264,6 @@ class bluetooth:
 
             if hasattr(self, 'dbusBluezAdapter'):
                 self.dbusBluezAdapter = None
-                del self.dbusBluezAdapter
                 
             if hasattr(self, 'dbusMonitor'):
                 self.dbusMonitor.initialize_agent(False)
@@ -1000,7 +1030,20 @@ class monitorLoop(threading.Thread):
           
             if proxy:
                 self.bt_available = True
+                test_adapter_count = 0
                 
+                if not self.oe.read_setting('system', 'disable_bt') == '1':
+                    
+                    #wait max. 10 sec for an Adapter
+                    while self.oe.dictModules['bluetooth'].dbusBluezAdapter == None and \
+                      test_adapter_count < 10:
+                    
+                        self.oe.dictModules['bluetooth'].init_adapter()
+                        test_adapter_count = test_adapter_count + 1
+                    
+                        if self.oe.dictModules['bluetooth'].dbusBluezAdapter == None:
+                            time.sleep(1)
+                            
                 if self.oe.dictModules['bluetooth'].active:
                     self.initialize_agent()
             else:
@@ -1074,6 +1117,13 @@ class monitorLoop(threading.Thread):
                             'ERROR: (' + repr(e) + ')', 4)
 
     def InterfacesAdded(self, path, interfaces):
+
+        if self.bt_available == False:
+            return
+
+        if not path in self.oe.dictModules['bluetooth'].listItems:
+            return
+            
         self.oe.dbg_log('bluetooth::monitorLoop::InterfacesAdded',
                         'enter_function', 4)
         self.oe.dictModules['bluetooth'].menu_connections()
@@ -1081,6 +1131,13 @@ class monitorLoop(threading.Thread):
                         'exit_function', 4)
 
     def InterfacesRemoved(self, path, interfaces):
+
+        if self.bt_available == False:
+            return
+
+        if not path in self.oe.dictModules['bluetooth'].listItems:
+            return
+            
         self.oe.dbg_log('bluetooth::monitorLoop::InterfacesRemoved',
                         'enter_function', 4)
         self.oe.dictModules['bluetooth'].menu_connections()
@@ -1096,6 +1153,13 @@ class monitorLoop(threading.Thread):
         ):
         try:
 
+
+            if self.bt_available == False:
+                return
+
+            if not path in self.oe.dictModules['bluetooth'].listItems:
+                return
+              
             self.oe.dbg_log('bluetooth::monitorLoop::PropertiesChanged'
                             , 'enter_function', 4)
 

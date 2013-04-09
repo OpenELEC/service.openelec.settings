@@ -182,7 +182,7 @@ class system:
                         }},
                     },
                 'reset': {
-                    'order': 7,
+                    'order': 8,
                     'name': 32323,
                     'not_supported': [],
                     'settings': {'xbmc_reset': {
@@ -216,7 +216,6 @@ class system:
 
             self.keyboard_info = '/usr/share/X11/xkb/rules/base.xml'
             self.udev_keyboard_file = '/storage/.cache/xkb/layout'
-            self.bt_daemon = '/usr/lib/bluetooth/bluetoothd'
 
             self.backup_dirs = ['/storage/.xbmc', '/storage/.config',
                                 '/storage/.cache']
@@ -261,7 +260,9 @@ class system:
 
             self.oe.dbg_log('system::stop_service', 'enter_function', 0)
 
-            self.stop_bluetoothd()
+            if 'bluetooth' in self.oe.dictModules:
+                self.oe.dictModules['bluetooth'].stop_bluetoothd()
+            
             self.update_thread.stop()
 
             self.oe.dbg_log('system::stop_service', 'exit_function', 0)
@@ -498,17 +499,13 @@ class system:
                 == '0' or self.config['power']['settings']['disable_bt'
                     ]['value'] == None:
 
-                pid = self.oe.execute('pidof %s'
-                        % os.path.basename(self.bt_daemon)).split(' ')
-                if pid[0] == '':
-                      
-                    self.oe.dbg_log('system::init_bluetooth',
-                                    'Starting Bluetooth Daemon.', 0)
-                    os.system(self.bt_daemon + ' &')
+                if 'bluetooth' in self.oe.dictModules:
+                    self.oe.dictModules['bluetooth'].start_bluetoothd()
 
             else:
 
-                self.oe.dictModules['bluetooth'].stop_bluetoothd()
+                if 'bluetooth' in self.oe.dictModules:
+                    self.oe.dictModules['bluetooth'].stop_bluetoothd()
 
             self.oe.set_busy(0)
 
@@ -520,24 +517,6 @@ class system:
             self.oe.dbg_log('system::init_bluetooth', 'ERROR: ('
                             + repr(e) + ')', 4)
 
-    def stop_bluetoothd(self):
-        try:
-
-            self.oe.dbg_log('system::stop_bluetoothd', 'enter_function'
-                            , 0)
-
-            pid = self.oe.execute('pidof %s'
-                                  % os.path.basename(self.bt_daemon)).split(' '
-                    )
-            for p in pid:
-                os.system('kill -9 ' + p.strip().replace('\n', ''))
-
-            self.oe.dbg_log('system::stop_bluetoothd', 'exit_function',
-                            0)
-        except Exception, e:
-
-            self.oe.dbg_log('system::stop_bluetoothd', 'ERROR: ('
-                            + repr(e) + ')', 4)
 
     def set_keyboard_layout(self, listItem=None):
         try:

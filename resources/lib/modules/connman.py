@@ -1832,6 +1832,7 @@ class connman:
 
             remove = [entry for entry in self.listItems]
             for entry in remove:
+                self.listItems[entry] = None
                 del self.listItems[entry]
         except Exception, e:
 
@@ -1872,9 +1873,11 @@ class connman:
                 del self.dbusSystemBus
 
             if hasattr(self, 'dbusConnmanManager'):
+                self.dbusConnmanManager = None
                 del self.dbusConnmanManager
 
             if hasattr(self, 'dbusMonitor'):
+                self.dbusMonitor = None
                 del self.dbusMonitor
 
             self.oe.dbg_log('connman::exit', 'exit_function', 0)
@@ -2455,6 +2458,8 @@ class connman:
 
                         break
 
+            self.technologie_properties = None
+            
             self.menu_loader(None)
             self.oe.set_busy(0)
 
@@ -2523,6 +2528,7 @@ class connman:
                            ).Connect(reply_handler=self.connect_reply_handler,
                     error_handler=self.dbus_error_handler)
 
+            service_object = None
             del service_object
 
             self.oe.dbg_log('connman::connect_network', 'exit_function'
@@ -2595,7 +2601,9 @@ class connman:
             dbus.Interface(service_object, 'net.connman.Service'
                            ).Disconnect()
 
+            service_object = None
             del service_object
+            
             self.oe.set_busy(0)
 
             self.oe.dbg_log('connman::disconnect_network',
@@ -2638,6 +2646,8 @@ class connman:
                         service_path)
                 dbus.Interface(service_object, 'net.connman.Service'
                                ).Remove()
+                
+                service_object = None
                 del service_object
 
             self.oe.set_busy(0)
@@ -2660,6 +2670,10 @@ class connman:
             wifi = self.dbusSystemBus.get_object('net.connman',
                     '/net/connman/technology/wifi')
             dbus.Interface(wifi, 'net.connman.Technology').Scan()
+
+            wifi = None
+            del wifi
+            
             self.oe.set_busy(0)
             self.menu_connections(None)
 
@@ -2677,6 +2691,7 @@ class connman:
             self.oe.dbg_log('connman::add_vpn', 'enter_function', 0)
 
             self.configure_vpn = connmanVpn('__new__', self.oe)
+            self.configure_vpn = None
             del self.configure_vpn
 
             try:
@@ -3102,12 +3117,16 @@ class monitorLoop(threading.Thread):
 
                 if hasattr(self, 'wifiAgent'):
 
-          # self.dbusConnmanManager.UnregisterAgent(self.wifiAgentPath)
-
+                    self.dbusConnmanManager.UnregisterAgent(self.wifiAgentPath)
                     self.wifiAgent.remove_from_connection(self.dbusSystemBus,
                             self.wifiAgentPath)
-                    del self.wifiAgent  # = None
+                    
+                    self.wifiAgent = None
+                    del self.wifiAgent
 
+                    self.dbusConnmanManager = None
+                    del self.dbusConnmanManager
+                    
             self.oe.dbg_log('connman::agentLoop::nameOwnerChanged',
                             'exit_function', 0)
         except Exception, e:
@@ -3141,11 +3160,15 @@ class monitorLoop(threading.Thread):
 
                 if hasattr(self, 'vpnAgent'):
 
-          # self.dbusConnmanVpnManager.UnregisterAgent(self.vpnAgentPath)
-
+                    self.dbusConnmanVpnManager.UnregisterAgent(self.vpnAgentPath)
                     self.vpnAgent.remove_from_connection(self.dbusSystemBus,
                             self.vpnAgentPath)
-                    del self.vpnAgent  # = None
+                    
+                    self.vpnAgent = None
+                    del self.vpnAgent
+
+                    self.dbusConnmanVpnManager = None
+                    del self.dbusConnmanVpnManager
 
             self.oe.dbg_log('connman::agentLoop::vpnNameOwnerChanged',
                             'exit_function', 0)
@@ -3262,10 +3285,6 @@ class monitorLoop(threading.Thread):
             self.oe.dbg_log('connman::monitorLoop::updateGui',
                             'enter_function', 0)
 
-      # self.oe.dbg_log("connman::monitorLoop::updateGui", repr(self.oe.dictModules['connman'].listItems), 0)
-      # self.oe.dbg_log("connman::monitorLoop::updateGui", repr(path), 0)
-      # self.oe.dbg_log("connman::monitorLoop::updateGui" + name, repr(value), 0)
-
             if name == 'Strength':
                 value = str(int(value))
                 self.oe.dictModules['connman'
@@ -3370,9 +3389,6 @@ class wifiAgent(dbus.service.Object):
     def RequestInput(self, path, fields):
 
         try:
-
-      # self.oe.dbg_log("connman::wifiAgent::RequestInput", repr(path), 0)
-      # self.oe.dbg_log("connman::wifiAgent::RequestInput", repr(fields), 0)
 
             self.oe.dbg_log('connman::wifiAgent::RequestInput',
                             'enter_function', 0)

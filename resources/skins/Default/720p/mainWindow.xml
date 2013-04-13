@@ -248,7 +248,7 @@
 					</control>		
 					<control type="textbox">
 						<posx>20</posx>
-						<posy>217</posy>
+						<posy>200</posy>
 						<width>550</width>
 						<height>200</height>
 						<font>font10</font>
@@ -264,7 +264,7 @@
 			    </control>	
 					<control type="textbox">
 						<posx>20</posx>
-						<posy>400</posy>
+						<posy>380</posy>
 						<width>780</width>
 						<height>40</height>
 						<font>font10</font>
@@ -492,17 +492,17 @@
 						<!-- Icon ethernet -->
 						<control type="image">
 							<posx>10</posx>
-							<posy>10</posy>
+							<posy>20</posy>
 							<width>48</width>
 							<height>48</height>
-              <aspectratio>keep</aspectratio>
+                                                        <aspectratio>keep</aspectratio>
 							<visible>StringCompare(ListItem.Property(netType), ethernet)</visible> 
 							<texture>eth.png</texture>
 						</control>
 						<!-- Icon wifi -->
 						<control type="image">
 							<posx>10</posx>
-							<posy>10</posy>
+							<posy>20</posy>
 							<width>48</width>
 							<height>48</height>
 							<aspectratio>keep</aspectratio>
@@ -512,7 +512,7 @@
 						<!-- Icon vpn -->
 						<control type="image">
 							<posx>10</posx>
-							<posy>10</posy>
+							<posy>20</posy>
 							<width>48</width>
 							<height>48</height>
 							<aspectratio>keep</aspectratio>
@@ -532,8 +532,8 @@
 						</control>
 						<!-- Interface -->
 						<control type="label">
-							<posx>40</posx>
-							<posy>55</posy>
+							<posx>70</posx>
+							<posy>49</posy>
 							<width>200</width>
 							<height>20</height>									
 							<font>font12</font>
@@ -544,7 +544,7 @@
 						<!-- Connection Address -->
 						<control type="label">
 							<posx>240</posx>
-							<posy>55</posy>
+							<posy>49</posy>
 							<width>250</width>
 							<height>20</height>									
 							<font>font12</font>
@@ -555,7 +555,7 @@
 						<!-- Method -->
 						<control type="label">
 							<posx>520</posx>
-							<posy>55</posy>
+							<posy>49</posy>
 							<width>200</width>
 							<height>20</height>									
 							<font>font12</font>
@@ -575,7 +575,7 @@
 						<!-- Signal strength -->
 						<control type="progress">
 							<posx>10</posx>
-							<posy>84</posy>
+							<posy>80</posy>
 							<width>778</width>
 							<height>12</height>
 							<info>ListItem.Property(Strength)</info>
@@ -584,7 +584,7 @@
 						<!-- Signal strength value -->
 						<control type="label">
 							<posx>780</posx>
-							<posy>70</posy>
+							<posy>66</posy>
 							<width>40</width>
 							<height>40</height>
 							<font>font10</font>
@@ -596,7 +596,7 @@
 						<!-- Online Symbol (top right) -->
 						<control type="image">
 							<posx>738</posx>
-							<posy>10</posy>
+							<posy>20</posy>
 							<width>36</width>
 							<height>36</height>
 							<aspectratio>keep</aspectratio>
@@ -606,7 +606,7 @@
 						<!-- Favorite Symbol (bottom right) -->
 						<control type="image">
 							<posx>680</posx>
-							<posy>58</posy>
+							<posy>50</posy>
 							<width>20</width>
 							<height>20</height>
 							<aspectratio>keep</aspectratio>
@@ -616,7 +616,7 @@
 						<!-- Secure Symbol (bottom right) -->
 						<control type="image">
 							<posx>710</posx>
-							<posy>58</posy>
+							<posy>50</posy>
 							<width>20</width>
 							<height>20</height>
 							<aspectratio>keep</aspectratio>
@@ -648,7 +648,7 @@
 						<!-- Icon ethernet -->
 						<control type="image">
 							<posx>10</posx>
-							<posy>10</posy>
+							<posy>20</posy>
 							<width>48</width>
 							<height>48</height>
 							<aspectratio>keep</aspectratio>
@@ -658,7 +658,7 @@
 						<!-- Icon wifi -->
 						<control type="image">
 							<posx>10</posx>
-							<posy>10</posy>
+							<posy>20</posy>
 							<width>48</width>
 							<height>48</height>
 							<aspectratio>keep</aspectratio>
@@ -668,7 +668,7 @@
 						<!-- Icon vpn -->
 						<control type="image">
 							<posx>10</posx>
-							<posy>10</posy>
+							<posy>20</posy>
 							<width>48</width>
 							<height>48</height>
 							<aspectratio>keep</aspectratio>
@@ -688,8 +688,8 @@
 						</control>
 						<!-- Interface -->
 						<control type="label">
-							<posx>40</posx>
-							<posy>55</posy>
+							<posx>70</posx>
+							<posy>49</posy>
 							<width>200</width>
 							<height>20</height>									
 							<font>font12</font>
@@ -700,7 +700,7 @@
 						<!-- Connection Address -->
 						<control type="label">
 							<posx>240</posx>
-							<posy>55</posy>
+							<posy>49</posy>
 							<width>250</width>
 							<height>20</height>									
 							<font>font12</font>
@@ -711,7 +711,7 @@
 						<!-- Method -->
 						<control type="label">
 							<posx>520</posx>
-							<posy>55</posy>
+							<posy>49</posy>
 							<width>200</width>
 							<height>20</height>									
 							<font>font12</font>
@@ -731,7 +731,7 @@
 						<!-- Signal strength -->
 						<control type="progress">
 							<posx>10</posx>
-							<posy>84</posy>
+							<posy>80</posy>
 							<width>778</width>
 							<height>12</height>
 							<info>ListItem.Property(Strength)</info>
@@ -740,7 +740,7 @@
 						<!-- Signal strength value -->
 						<control type="label">
 							<posx>780</posx>
-							<posy>70</posy>
+							<posy>66</posy>
 							<width>40</width>
 							<height>40</height>
 							<font>font10</font>
@@ -752,7 +752,7 @@
 						<!-- Online Symbol (top right) -->
 						<control type="image">
 							<posx>738</posx>
-							<posy>10</posy>
+							<posy>20</posy>
 							<width>36</width>
 							<height>36</height>
 							<aspectratio>keep</aspectratio>
@@ -762,7 +762,7 @@
 						<!-- Favorite Symbol (bottom right) -->
 						<control type="image">
 							<posx>680</posx>
-							<posy>58</posy>
+							<posy>50</posy>
 							<width>20</width>
 							<height>20</height>
 							<aspectratio>keep</aspectratio>
@@ -772,7 +772,7 @@
 						<!-- Secure Symbol (bottom right) -->
 						<control type="image">
 							<posx>710</posx>
-							<posy>58</posy>
+							<posy>50</posy>
 							<width>20</width>
 							<height>20</height>
 							<aspectratio>keep</aspectratio>

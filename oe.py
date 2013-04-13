@@ -550,6 +550,10 @@ def openConfigurationWindow():
 
         for strModule in dictModules:
             dictModules[strModule].exit()
+            
+        winOeMain = None
+        del winOeMain
+        
     except Exception, e:
 
         xbmc.executebuiltin('Dialog.Close(busydialog)')

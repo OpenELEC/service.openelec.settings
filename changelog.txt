@@ -1,3 +1,7 @@
+2013-04-15 v-0.1.14
+  (add) save hostname
+  (add) help hints
+
 2013-04-09 v-0.1.13
   (add) begin update v2 development 
   

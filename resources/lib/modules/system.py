@@ -608,6 +608,11 @@ class system:
                                ]['hostname']['value'])
                 hostname.close()
 
+                hostname = open('/storage/.cache/hostname', 'w')
+                hostname.write(self.config['ident']['settings'
+                               ]['hostname']['value'])
+                hostname.close()
+
                 hosts = open('/etc/hosts', 'w')
                 user_hosts_file = os.environ['HOME'] \
                     + '/.config/hosts.conf'

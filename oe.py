@@ -248,6 +248,7 @@ def download_file(source, destination, silent=False):
                                     % (minutes, seconds))
 
                 if download_dlg.iscanceled():
+                    os.remove(destination)
                     local_file.close()
                     response.close()
                     return None

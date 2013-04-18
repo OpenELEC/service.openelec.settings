@@ -1036,7 +1036,7 @@ class monitorLoop(threading.Thread):
                     
                     #wait max. 10 sec for an Adapter
                     while self.oe.dictModules['bluetooth'].dbusBluezAdapter == None and \
-                      test_adapter_count < 10:
+                      test_adapter_count < 3:
                     
                         self.oe.dictModules['bluetooth'].init_adapter()
                         test_adapter_count = test_adapter_count + 1

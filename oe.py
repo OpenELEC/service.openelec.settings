@@ -848,9 +848,7 @@ def exit():
     del __oe__
     del _
 
-
 # fix for xml printout
-
 def fixed_writexml(
     self,
     writer,
@@ -892,4 +890,3 @@ if read_setting('openelec', 'wizard_completed') == None:
     winOeMain = oeWindows.wizard('wizard.xml', __cwd__, 'Default',
                                  oeMain=__oe__)
 
-load_modules()

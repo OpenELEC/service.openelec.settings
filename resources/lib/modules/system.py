@@ -788,9 +788,8 @@ class system:
             if not hasattr(self, 'update_thread'):
                 self.update_thread = updateThread(self.oe)
                 self.update_thread.start()
-
-            self.update_thread.last_check = 0
-            self.last_update_check = 0
+            else:
+                self.update_thread.wait_evt.set()
 
             self.oe.dbg_log('system::set_auto_update',
                             str(self.config['update']['settings'
@@ -894,23 +893,12 @@ class system:
     def check_updates_v2(self, force=False):
         try:
 
+            self.oe.dbg_log('system::check_updates_v2', 'enter_function', 0)
+         
             if hasattr(self, "update_in_progress"):
                 self.oe.dbg_log('system::check_updates_v2', 'Update in progress (exit)', 0)
                 return
               
-            if self.config['update']['settings']['AutoUpdate'
-                    ]['value'] != self.au:
-              
-                self.au = self.config['update']['settings'
-                    ]['AutoUpdate']['value']
-                self.last_update_check = 0
-
-            if time.time() < self.last_update_check + 21600 \
-                and not force:
-                return
-              
-            self.oe.dbg_log('system::check_updates_v2', 'enter_function', 0)
-         
             sysid = os.environ['SYSTEMID']
 
             update_json = self.oe.load_url('%s?i=%s&d=%s&pa=%s&v=%s&l=%s' % ( \
@@ -1364,8 +1352,9 @@ class updateThread(threading.Thread):
                            'enter_function', 0)
 
             self.oe = oeMain
-            self.last_check = time.time()
             self.stopped = False
+
+            self.wait_evt = threading.Event()
 
             threading.Thread.__init__(self)
 
@@ -1379,30 +1368,36 @@ class updateThread(threading.Thread):
                              + repr(e) + ')')
 
     def stop(self):
+        try:
+          
+            self.oe.dbg_log('system::updateThread::stop()',
+                            'enter_function', 0)
 
-        self.stopped = True
+            self.stopped = True
+            self.wait_evt.set()
+         
+            self.oe.dbg_log('system::updateThread::stop()',
+                            'exit_function', 0)    
+            
+            del self.oe
+         
+        except Exception, e:
 
+            self.oe.dbg_log('system::updateThread::stop()', 'ERROR: ('
+                             + repr(e) + ')')        
     def run(self):
         try:
 
             self.oe.dbg_log('system::updateThread::run',
                             'enter_function', 0)
+     
+            while self.stopped == False:
 
-            self.oe.dictModules['system'].check_updates_v2()
+                if not xbmc.Player(xbmc.PLAYER_CORE_AUTO).isPlaying():
+                    self.oe.dictModules['system'].check_updates_v2()
 
-            while not self.stopped and not xbmc.abortRequested:
-
-                current_time = time.time()
-                if current_time > self.last_check + 60:
-                    if not xbmc.Player(xbmc.PLAYER_CORE_AUTO).isPlaying():
-                        self.oe.dictModules['system'].check_updates_v2()
-                        self.last_check = current_time
-                    else:
-                        self.last_check = current_time
-                        #self.oe.dbg_log('system::updateThread',
-                        #        'XBMC is Playing !', 1)
-
-                time.sleep(0.2)
+                self.wait_evt.wait(21600)
+                self.wait_evt.clear()
 
             self.oe.dbg_log('system::updateThread', 'Stopped', 1)
 

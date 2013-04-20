@@ -1512,8 +1512,7 @@ class discoveryThread(threading.Thread):
                            'enter_function', 0)
 
             self.oe = oeMain
-            self.start_time = time.time()
-            self.last_run = time.time()
+            self.last_run = 0
             self.stopped = False
             self.main_menu = \
                 self.oe.winOeMain.getControl(self.oe.winOeMain.guiMenList)
@@ -1549,7 +1548,9 @@ class discoveryThread(threading.Thread):
                 if not self.main_menu.getSelectedItem().getProperty('modul'
                         ) == 'bluetooth':
                     self.stop()
-   
+
+                time.sleep(1)
+                
             self.oe.dbg_log('bluetooth::discoveryThread', 'Stopped', 1)
 
             self.oe.dbg_log('bluetooth::discoveryThread::run',

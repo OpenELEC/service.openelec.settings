@@ -26,20 +26,23 @@
 # -*- coding: utf-8 -*-
 import oe
 import xbmc
+import xbmcgui
 import time
 import threading
 import socket
 import os
-
-
-class service_thread(threading.Thread):
-
+        
+class service_thread(xbmc.Monitor, threading.Thread):
+            
     def __init__(self, oeMain):
         try:
 
             oeMain.dbg_log('_service_::__init__', 'enter_function', 0)
 
             self.oe = oeMain
+            
+            self.wait_evt = threading.Event()
+            
             self.socket_file = '/var/run/service.openelec.settings.sock'
 
             self.sock = socket.socket(socket.AF_UNIX,
@@ -53,9 +56,11 @@ class service_thread(threading.Thread):
             self.sock.listen(1)
 
             self.stopped = False
-
+            
             threading.Thread.__init__(self)
 
+            self.daemon = True
+            
             self.oe.dbg_log('_service_::__init__', 'exit_function', 0)
         except Exception, e:
 
@@ -74,7 +79,7 @@ class service_thread(threading.Thread):
             sock.send('exit')
             sock.close()
             self.sock.close()
-
+            
             self.oe.dbg_log('_service_::stop', 'enter_function', 0)
         except Exception, e:
 
@@ -106,14 +111,21 @@ class service_thread(threading.Thread):
             self.oe.dbg_log('_service_::run', 'ERROR: (' + repr(e) + ')'
                             )
 
+    def onAbortRequested(self):
+        self.wait_evt.set()
 
+    def onScreensaverActivated(self):
+        self.wait_evt.set()
+        
+oe.load_modules()
 oe.start_service()
 
 monitor = service_thread(oe.__oe__)
+
 monitor.start()
 
-while not xbmc.abortRequested:
-    time.sleep(0.2)
+while not monitor.wait_evt.wait(1) and not xbmc.abortRequested:
+    pass
 
 oe.stop_service()
 monitor.stop()

@@ -1,3 +1,6 @@
+2013-04-20 v-0.1.16
+  (change) optimize update thread
+  
 2013-04-18 v-0.1.15
   (change) new update function
   (change) wait for bt adapter loop reduced to 3

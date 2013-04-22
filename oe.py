@@ -179,10 +179,13 @@ def execute(command_line):
 def load_file(filename):
     try:
 
-        objFile = open(filename, 'r')
-        content = objFile.read()
-        objFile.close()
-
+        if os.path.isfile(filename):
+            objFile = open(filename, 'r')
+            content = objFile.read()
+            objFile.close()
+        else:
+            content = ""
+            
         return content.strip()
     except Exception, e:
 
@@ -841,7 +844,7 @@ def exit():
     global WinOeSelect, winOeMain, __addon__, __cwd__, __oe__, \
            _, dbusSystemBus, dictModules
     
-    del winOeMain
+    #del winOeMain
     del dbusSystemBus
     del dictModules
     del __addon__

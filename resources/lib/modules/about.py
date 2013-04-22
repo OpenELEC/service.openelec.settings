@@ -83,10 +83,12 @@ class about:
             distri = self.oe.load_file('/etc/distribution')
             arch = self.oe.load_file('/etc/arch')
             version = self.oe.load_file('/etc/version')
-
+            build = self.oe.load_file('/etc/build')
+            
             self.oe.winOeMain.setProperty('arch', arch)
             self.oe.winOeMain.setProperty('distri', distri)
             self.oe.winOeMain.setProperty('version', version)
+            self.oe.winOeMain.setProperty('build', build)
 
             self.oe.dbg_log('about::init_controls', 'exit_function', 0)
         except Exception, e:

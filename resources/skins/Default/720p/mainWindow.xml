@@ -191,7 +191,7 @@
 						<textcolor>white</textcolor>
 						<align>left</align>
 						<aligny>center</aligny>
-						<label>$INFO[Container(5533).Property(Distri)]</label>
+						<label>$INFO[Container(5533).Property(Distri)] ($INFO[Container(5533).Property(build)])</label>
 					</control>						
 					<control type="label">
 						<posx>20</posx>

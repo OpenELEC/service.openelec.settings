@@ -76,7 +76,6 @@ class system:
                 'keyboard': {
                     'order': 2,
                     'name': 32009,
-                    'not_supported': ['RPi.arm'],
                     'settings': {'KeyboardLayout1': {
                         'name': 32010,
                         'value': 'us',
@@ -91,6 +90,7 @@ class system:
                         'typ': 'multivalue',
                         'values': [],
                         'InfoText': 712,
+                        'not_supported': ['RPi.arm'],  
                         }, 'KeyboardType': {
                         'name': 32330,
                         'value': 'pc105',
@@ -98,6 +98,7 @@ class system:
                         'typ': 'multivalue',
                         'values': [],
                         'InfoText': 713,
+                        'not_supported': ['RPi.arm'],                        
                         }},
                     },
                 'update': {
@@ -207,6 +208,7 @@ class system:
             self.lcd_dir = '/usr/lib/lcdproc/'
             self.envFile = '/storage/oe_environment'
             self.keyboard_layouts = False
+            self.rpi_keyboard_layouts = False
             
             self.update_url_release = 'http://releases.openelec.tv'            
             self.update_url_devel = 'http://snapshots.openelec.tv'
@@ -222,6 +224,8 @@ class system:
             self.keyboard_info = '/usr/share/X11/xkb/rules/base.xml'
             self.udev_keyboard_file = '/storage/.cache/xkb/layout'
 
+            self.rpi_keyboard_info = '/usr/lib/keymaps'
+            
             self.backup_dirs = ['/storage/.xbmc', '/storage/.config',
                                 '/storage/.cache']
                                 
@@ -336,8 +340,11 @@ class system:
                     self.config['keyboard']['settings'
                             ]['KeyboardLayout2']['value'] = value
 
-                self.keyboard_layouts = True
-
+                if not arrTypes == None: 
+                    self.keyboard_layouts = True
+                else:
+                    self.rpi_keyboard_layouts = True
+                    
             # Hostname
             value = self.oe.read_setting('system', 'hostname')
             if not value is None:
@@ -418,6 +425,12 @@ class system:
 
                 for setting in sorted(self.config[category]['settings'
                         ]):
+                      
+                    if 'not_supported' in self.config[category]['settings'][setting]:
+                        if self.arch \
+                            in self.config[category]['settings'][setting]['not_supported']:
+                            continue
+                        
                     dictProperties = {
                         'entry': setting,
                         'category': category,
@@ -536,47 +549,62 @@ class system:
 
             self.oe.set_busy(1)
 
-            if self.keyboard_layouts == False:
-                self.oe.set_busy(0)
-                return
-
             if not listItem == None:
                 self.set_value(listItem)
+                  
+            if self.keyboard_layouts == True:
 
-            self.oe.dbg_log('system::set_keyboard_layout',
-                            str(self.config['keyboard']['settings'
-                            ]['KeyboardLayout1']['value']) + ','
-                            + str(self.config['keyboard']['settings'
-                            ]['KeyboardLayout2']['value']) + ' '
-                            + '-model ' + str(self.config['keyboard'
-                            ]['settings']['KeyboardType']['value']), 1)
+                self.oe.dbg_log('system::set_keyboard_layout',
+                                str(self.config['keyboard']['settings'
+                                ]['KeyboardLayout1']['value']) + ','
+                                + str(self.config['keyboard']['settings'
+                                ]['KeyboardLayout2']['value']) + ' '
+                                + '-model ' + str(self.config['keyboard'
+                                ]['settings']['KeyboardType']['value']), 1)
 
-            if not os.path.exists(os.path.dirname(self.udev_keyboard_file)):
-                os.makedirs(os.path.dirname(self.udev_keyboard_file))
+                if not os.path.exists(os.path.dirname(self.udev_keyboard_file)):
+                    os.makedirs(os.path.dirname(self.udev_keyboard_file))
 
-            config_file = open(self.udev_keyboard_file, 'w')
-            config_file.write('XKBMODEL="' + self.config['keyboard'
-                              ]['settings']['KeyboardType']['value']
-                              + '"\n')
-            config_file.write('XKBVARIANT=""\n')
-            config_file.write('XKBLAYOUT="' + self.config['keyboard'
+                config_file = open(self.udev_keyboard_file, 'w')
+                config_file.write('XKBMODEL="' + self.config['keyboard'
+                                  ]['settings']['KeyboardType']['value']
+                                  + '"\n')
+                config_file.write('XKBVARIANT=""\n')
+                config_file.write('XKBLAYOUT="' + self.config['keyboard'
+                                  ]['settings']['KeyboardLayout1']['value']
+                                  + ',' + self.config['keyboard']['settings'
+                                  ]['KeyboardLayout2']['value'] + '"\n')
+                config_file.write('XKBOPTIONS="grp:alt_shift_toggle"\n')
+                config_file.close()
+
+                parameters = ['-display ' + os.environ['DISPLAY'],
+                              '-layout ' + self.config['keyboard'
                               ]['settings']['KeyboardLayout1']['value']
                               + ',' + self.config['keyboard']['settings'
-                              ]['KeyboardLayout2']['value'] + '"\n')
-            config_file.write('XKBOPTIONS="grp:alt_shift_toggle"\n')
-            config_file.close()
+                              ]['KeyboardLayout2']['value'], '-model '
+                              + str(self.config['keyboard']['settings'
+                              ]['KeyboardType']['value']),
+                              '-option "grp:alt_shift_toggle"']
 
-            parameters = ['-display ' + os.environ['DISPLAY'],
-                          '-layout ' + self.config['keyboard'
-                          ]['settings']['KeyboardLayout1']['value']
-                          + ',' + self.config['keyboard']['settings'
-                          ]['KeyboardLayout2']['value'], '-model '
-                          + str(self.config['keyboard']['settings'
-                          ]['KeyboardType']['value']),
-                          '-option "grp:alt_shift_toggle"']
+                result = self.oe.execute('setxkbmap '
+                        + ' '.join(parameters))
 
-            result = self.oe.execute('setxkbmap '
-                    + ' '.join(parameters))
+            elif self.rpi_keyboard_layouts == True:
+                
+                self.oe.dbg_log('system::set_keyboard_layout',
+                                str(self.config['keyboard']['settings'
+                                ]['KeyboardLayout1']['value']) , 1)                
+
+                parameter = self.config['keyboard'
+                              ]['settings']['KeyboardLayout1']['value']
+
+                command = 'loadkmap < `ls -1 %s/*/%s.bmap`' % (self.rpi_keyboard_info, parameter)
+                
+                self.oe.dbg_log('system::set_keyboard_layout', command, 1)     
+                result = self.oe.execute(command)
+                
+                #result = self.oe.execute('find /usr/lib/keymaps/ | grep %s.bmap`' % parameter)
+                #os.system('loadkmap < %s' % result)
 
             self.oe.set_busy(0)
 
@@ -811,50 +839,68 @@ class system:
             arrLayouts = []
             arrTypes = []
 
-            if not os.path.exists(self.keyboard_info):
+            if os.path.exists(self.keyboard_info):
+
+                objXmlFile = open(self.keyboard_info, 'r')
+                strXmlText = objXmlFile.read()
+                objXmlFile.close()
+
+                xml_conf = minidom.parseString(strXmlText)
+
+                for xml_layout in xml_conf.getElementsByTagName('layout'):
+                    for subnode_1 in xml_layout.childNodes:
+                        if subnode_1.nodeName == 'configItem':
+                            for subnode_2 in subnode_1.childNodes:
+                                if subnode_2.nodeName == 'name':
+                                    if hasattr(subnode_2.firstChild,
+                                            'nodeValue'):
+                                        value = \
+        subnode_2.firstChild.nodeValue
+                                if subnode_2.nodeName == 'description':
+                                    if hasattr(subnode_2.firstChild,
+                                            'nodeValue'):
+                                        arrLayouts.append(value + ':'
+            + subnode_2.firstChild.nodeValue)
+
+                for xml_layout in xml_conf.getElementsByTagName('model'):
+                    for subnode_1 in xml_layout.childNodes:
+                        if subnode_1.nodeName == 'configItem':
+                            for subnode_2 in subnode_1.childNodes:
+                                if subnode_2.nodeName == 'name':
+                                    if hasattr(subnode_2.firstChild,
+                                            'nodeValue'):
+                                        value = \
+        subnode_2.firstChild.nodeValue
+                                if subnode_2.nodeName == 'description':
+                                    if hasattr(subnode_2.firstChild,
+                                            'nodeValue'):
+                                        arrTypes.append(value + ':'
+            + subnode_2.firstChild.nodeValue)
+
+                arrLayouts.sort()
+                arrTypes.sort()
+
+            elif os.path.exists(self.rpi_keyboard_info):
+              
+                #for root, subFolders, files in os.walk(self.rpi_keyboard_info):
+                #    for file in files:
+                #        if file.endswith('.bmap'):
+                #            xbmc.log(file)
+                #            arrLayouts.append(file.split('.')[0])
+                
+                for layout in glob.glob(self.rpi_keyboard_info + '/*/*.bmap'):
+                    if os.path.isfile(layout):
+                        xbmc.log(layout)
+                        arrLayouts.append(layout.split('/')[-1].split('.')[0])
+                    
+                arrLayouts.sort()
+                arrTypes = None
+            else:
+              
                 self.oe.dbg_log('system::get_keyboard_layouts',
-                                'exit_function (xml not found. RPI ?)',
+                                'exit_function (no keyboard layouts found)',
                                 0)
                 return (None, None)
-
-            objXmlFile = open(self.keyboard_info, 'r')
-            strXmlText = objXmlFile.read()
-            objXmlFile.close()
-
-            xml_conf = minidom.parseString(strXmlText)
-
-            for xml_layout in xml_conf.getElementsByTagName('layout'):
-                for subnode_1 in xml_layout.childNodes:
-                    if subnode_1.nodeName == 'configItem':
-                        for subnode_2 in subnode_1.childNodes:
-                            if subnode_2.nodeName == 'name':
-                                if hasattr(subnode_2.firstChild,
-                                        'nodeValue'):
-                                    value = \
-    subnode_2.firstChild.nodeValue
-                            if subnode_2.nodeName == 'description':
-                                if hasattr(subnode_2.firstChild,
-                                        'nodeValue'):
-                                    arrLayouts.append(value + ':'
-        + subnode_2.firstChild.nodeValue)
-
-            for xml_layout in xml_conf.getElementsByTagName('model'):
-                for subnode_1 in xml_layout.childNodes:
-                    if subnode_1.nodeName == 'configItem':
-                        for subnode_2 in subnode_1.childNodes:
-                            if subnode_2.nodeName == 'name':
-                                if hasattr(subnode_2.firstChild,
-                                        'nodeValue'):
-                                    value = \
-    subnode_2.firstChild.nodeValue
-                            if subnode_2.nodeName == 'description':
-                                if hasattr(subnode_2.firstChild,
-                                        'nodeValue'):
-                                    arrTypes.append(value + ':'
-        + subnode_2.firstChild.nodeValue)
-
-            arrLayouts.sort()
-            arrTypes.sort()
 
             self.oe.dbg_log('system::get_keyboard_layouts',
                             'exit_function', 0)
@@ -865,7 +911,7 @@ class system:
             self.oe.dbg_log('system::get_keyboard_layouts', 'ERROR: ('
                             + repr(e) + ')')
 
-    def get_lcd_drivers(self):
+    def get_lcd_drivers(self): 
         try:
 
             self.oe.dbg_log('system::get_lcd_drivers', 'enter_function'

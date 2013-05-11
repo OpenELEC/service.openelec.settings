@@ -1,5 +1,11 @@
+2013-05-10 v-0-1-18
+  (fix) run service.py async
+  (add) BT Computer Icon
+  
 2013-04-22 c-0-1-17
   (add) RPi Keyboard Layout support
+  (add) about dialog displays build info (official / inofficial)
+  (change) oe module only read file if exists
   
 2013-04-20 v-0.1.16
   (change) optimize update thread

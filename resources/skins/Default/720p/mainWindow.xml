@@ -921,6 +921,16 @@
 							<visible>StringCompare(ListItem.Property(Icon), printer)</visible> 
 							<texture>bt-printer.png</texture>
 						</control>
+                                            <!-- Computer -->
+                                                <control type="image">
+                                                        <posx>15</posx>
+                                                        <posy>12</posy>
+                                                        <width>48</width>
+                                                        <height>48</height>
+                                                        <aspectratio>keep</aspectratio>
+                                                        <visible>StringCompare(ListItem.Property(Icon), computer)</visible> 
+                                                        <texture>bt-computer.png</texture>
+                                                </control>                                                
 						<!-- Connection Name -->
 						<control type="label">
 							<posx>120</posx>
@@ -1103,7 +1113,17 @@
 							<aspectratio>keep</aspectratio>
 							<visible>StringCompare(ListItem.Property(Icon), printer)</visible> 
 							<texture>bt-printer.png</texture>
-						</control>				
+						</control>
+                                            <!-- Computer -->
+                                                <control type="image">
+                                                        <posx>15</posx>
+                                                        <posy>12</posy>
+                                                        <width>48</width>
+                                                        <height>48</height>
+                                                        <aspectratio>keep</aspectratio>
+                                                        <visible>StringCompare(ListItem.Property(Icon), computer)</visible> 
+                                                        <texture>bt-computer.png</texture>
+                                                </control>                                                
 						<!-- Connection Name -->
 						<control type="label">
 							<posx>120</posx>

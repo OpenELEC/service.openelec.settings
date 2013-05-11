@@ -32,7 +32,7 @@ import threading
 import socket
 import os
         
-class service_thread(xbmc.Monitor, threading.Thread):
+class service_thread(threading.Thread):
             
     def __init__(self, oeMain):
         try:
@@ -73,14 +73,14 @@ class service_thread(xbmc.Monitor, threading.Thread):
             self.oe.dbg_log('_service_::stop', 'enter_function', 0)
 
             self.stopped = True
-
+                
             sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
             sock.connect(self.socket_file)
             sock.send('exit')
             sock.close()
             self.sock.close()
-            
-            self.oe.dbg_log('_service_::stop', 'enter_function', 0)
+                
+            self.oe.dbg_log('_service_::stop', 'exit_function', 0)
         except Exception, e:
 
             self.oe.dbg_log('_service_::stop', 'ERROR: (' + repr(e)
@@ -93,6 +93,8 @@ class service_thread(xbmc.Monitor, threading.Thread):
 
             while self.stopped == False:
 
+                self.oe.dbg_log('_service_::run', 'WAITING:', 1)
+                
                 (conn, addr) = self.sock.accept()
                 message = conn.recv(1024)
                 self.oe.dbg_log('_service_::run', 'MESSAGE:'
@@ -100,8 +102,12 @@ class service_thread(xbmc.Monitor, threading.Thread):
                 conn.close()
 
                 if message == 'openConfigurationWindow':
-                    self.oe.openConfigurationWindow()
-
+                    if not hasattr(self.oe, "winOeMain"):
+                        threading.Thread(target=self.oe.openConfigurationWindow).start()
+                    else: 
+                        if self.oe.winOeMain.visible != True:
+                            threading.Thread(target=self.oe.openConfigurationWindow).start()
+                              
                 if message == 'exit':
                     self.stopped = True
 
@@ -111,21 +117,24 @@ class service_thread(xbmc.Monitor, threading.Thread):
             self.oe.dbg_log('_service_::run', 'ERROR: (' + repr(e) + ')'
                             )
 
-    def onAbortRequested(self):
-        self.wait_evt.set()
+    #def onAbortRequested(self):
+    #    self.wait_evt.set()
 
-    def onScreensaverActivated(self):
-        self.wait_evt.set()
+    #def onScreensaverActivated(self):
+    #    self.wait_evt.set()
         
 oe.load_modules()
 oe.start_service()
 
-monitor = service_thread(oe.__oe__)
-
+monitor = service_thread(oe.__oe__) 
 monitor.start()
 
-while not monitor.wait_evt.wait(1) and not xbmc.abortRequested:
-    pass
+while not xbmc.abortRequested:
+    time.sleep(1)
 
+if hasattr(oe, "winOeMain"):
+    if oe.winOeMain.visible == True: 
+        oe.winOeMain.close()
+    
 oe.stop_service()
 monitor.stop()

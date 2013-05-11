@@ -564,7 +564,6 @@ def openConfigurationWindow():
         dbg_log('oe::openConfigurationWindow', 'ERROR: (' + repr(e)
                 + ')')
 
-
 def load_config():
     try:
 

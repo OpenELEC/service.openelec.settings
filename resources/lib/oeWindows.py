@@ -37,6 +37,7 @@ class mainWindow(xbmcgui.WindowXMLDialog):
 
     def __init__(self, *args, **kwargs):
 
+        self.visible = False
         self.lastMenu = -1
         self.lastEntry = -1
 
@@ -66,6 +67,9 @@ class mainWindow(xbmcgui.WindowXMLDialog):
         pass
 
     def onInit(self):
+      
+        self.visible = True
+                
         try:
 
             if self.isChild:
@@ -197,6 +201,7 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                     return
 
             if actionId in self.oe.CANCEL:
+                self.visible = False
                 self.close()
 
             if focusId == self.guiList:

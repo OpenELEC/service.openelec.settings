@@ -384,10 +384,22 @@ class system:
                 self.config['update']['settings']['AutoUpdate']['value'
                         ] = value
 
-            value = self.oe.read_setting('system', 'UpdateNotify')
-            if not value is None:
-                self.config['update']['settings']['UpdateNotify'
-                        ]['value'] = value
+            # AutoUpdate = manual by environment var.
+            if 'UPDATE_SUPPORT' in os.environ:
+                if os.environ['UPDATE_SUPPORT'] == 'false':
+                    self.config['update']['settings']['AutoUpdate']['value'
+                            ] = 'manual'
+                    
+                    self.config['update']['settings']['AutoUpdate']['not_supported'
+                            ] = [self.arch]
+
+                    self.config['update']['settings']['CheckUpdate']['not_supported'
+                            ] = [self.arch]
+                    
+                value = self.oe.read_setting('system', 'UpdateNotify')
+                if not value is None:
+                    self.config['update']['settings']['UpdateNotify'
+                            ]['value'] = value
 
             # AutoUpdate File and URL
             value = self.oe.read_setting('system', 'update_file')
@@ -429,7 +441,7 @@ class system:
                     if 'not_supported' in self.config[category]['settings'][setting]:
                         if self.arch \
                             in self.config[category]['settings'][setting]['not_supported']:
-                            continue
+                           continue
                         
                     dictProperties = {
                         'entry': setting,

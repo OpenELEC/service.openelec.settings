@@ -838,7 +838,8 @@ class connmanService(object):
 
                         if self.struct[category]['type'] == 'Boolean':
 
-                            if setting['value'] == '1':
+                            if setting['value'] == '1' or setting['value'] == \
+                              dbus.Boolean(True, variant_level=1):
                                 setting['value'] = True
                             else:
                                 setting['value'] = False

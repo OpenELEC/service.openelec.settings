@@ -1,6 +1,10 @@
 2013-05-10 v-0-1-19
   (add) Set AutoUpdate to Manual if Environment "UPDATE_SUPPORT"=false
 
+2013-06-05 v-0-1-20
+  (fix) network autoconnect bugg
+  (fix) dns, ntp, domains on change network from manual to dhcp
+  
 2013-05-10 v-0-1-18
   (fix) run service.py async
   (add) BT Computer Icon

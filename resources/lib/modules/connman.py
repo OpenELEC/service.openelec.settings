@@ -873,6 +873,21 @@ class connmanService(object):
             self.oe.dbg_log('connmanService::save_network',
                             'enter_function', 0)
 
+            if 'changed' in self.struct['IPv4']['settings']['Method']:
+                if self.struct['IPv4']['settings']['Method']['value'] == 'dhcp':
+                    for setting in self.struct['Nameservers']['settings']:
+                        if not "changed" in self.struct['Nameservers']['settings'][setting]:
+                            self.struct['Nameservers']['settings'][setting]['changed'] = True
+                            self.struct['Nameservers']['settings'][setting]['value'] = ''
+                    for setting in self.struct['Timeservers']['settings']:
+                        if not "changed" in self.struct['Timeservers']['settings'][setting]:
+                            self.struct['Timeservers']['settings'][setting]['changed'] = True
+                            self.struct['Timeservers']['settings'][setting]['value'] = ''                                            
+                    for setting in self.struct['Domains']['settings']:
+                        if not "changed" in self.struct['Domains']['settings'][setting]:
+                            self.struct['Domains']['settings'][setting]['changed'] = True
+                            self.struct['Domains']['settings'][setting]['value'] = ''   
+                            
             for category in [
                 'AutoConnect',
                 'IPv4',

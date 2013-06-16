@@ -33,7 +33,23 @@
         <width>805</width>
         <height>618</height>
         <texture border="5">black-back2.png</texture>
-      </control>					
+      </control>			
+                        <control type="scrollbar" id="1099">
+                                <description>scroll bar indicator for lists</description>
+                                <posx>1067</posx>
+                                <posy>7</posy>
+                                <width>24</width>
+                                <height>627</height>
+                                <onleft>1100</onleft>
+                                <texturesliderbackground border="0,14,0,14">ScrollBarV.png</texturesliderbackground>
+                                <texturesliderbar border="0,14,0,14">ScrollBarV_bar.png</texturesliderbar>
+                                <texturesliderbarfocus border="0,14,0,14">ScrollBarV_bar_focus.png</texturesliderbarfocus>
+                                <textureslidernib>ScrollBarNib.png</textureslidernib>
+                                <textureslidernibfocus>ScrollBarNib.png</textureslidernibfocus>
+                                <orientation>vertical</orientation>
+                                <showonepage>true</showonepage>
+                                <!--<visible>StringCompare(Container(1000).ListItem.Property(listTyp), 1100)</visible> -->
+                        </control>        
 			<control type="image">
 				<posx>5</posx>
 				<posy>625</posy>
@@ -272,14 +288,15 @@
 						<align>left</align>
 						<label>$LOCALIZE[SCRIPT611]</label>
 					</control>			    
-			    <control type="image">
-				    <posx>0</posx>
-				    <posy>445</posy>
-				    <width>796</width>
-				    <height>2</height>
-				    <texture>blue_line.png</texture>
-			    </control>		    			    	    			
-			  </control>			
+		    			    	    			
+			  </control>
+                            <control type="image">
+                                    <posx>0</posx>
+                                    <posy>447</posy>
+                                    <width>797</width>
+                                    <height>2</height>
+                                    <texture>blue_line.png</texture>
+                            </control>                          
 				<!-- simple list content -->
 				<control type="list" id="1100">
 					<posx>0</posx>
@@ -288,9 +305,8 @@
 					<height>446</height>
 					<onleft>1000</onleft>
 					<onright>1500</onright>
-					<pagecontrol>-</pagecontrol>
 					<scrolltime>300</scrolltime>
-					<pagecontrol>25</pagecontrol>
+					<pagecontrol>1099</pagecontrol>
 					<visible>StringCompare(Container(1000).ListItem.Property(listTyp), 1100)</visible>    
 					<itemlayout height="40">
 						<control type="group">
@@ -466,8 +482,8 @@
 								<texture border="5">do.png</texture>
 							</control>
 						</control>						
-					</focusedlayout>     
-				</control>                          
+					</focusedlayout>                                           
+				</control>                                                 
 				<!-- Network Menu Content -->
 				<control type="list" id="1200">
 					<posx>0</posx>
@@ -476,7 +492,7 @@
 					<height>446</height>
 					<onleft>1000</onleft>
 					<onright>1500</onright>
-					<pagecontrol>-</pagecontrol>
+					<pagecontrol>1099</pagecontrol>
 					<scrolltime>300</scrolltime>
 					<visible>StringCompare(Container(1000).ListItem.Property(listTyp), 1200)</visible>    
 					<itemlayout height="100">
@@ -798,7 +814,7 @@
 					<height>446</height>
 					<onleft>1000</onleft>
 					<onright>1500</onright>
-					<pagecontrol>-</pagecontrol>
+					<pagecontrol>1099</pagecontrol>
 					<scrolltime>300</scrolltime>
 					<visible>StringCompare(Container(1000).ListItem.Property(listTyp), 1300)</visible>    
 					<itemlayout height="70">

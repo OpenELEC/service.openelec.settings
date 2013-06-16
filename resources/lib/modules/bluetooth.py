@@ -295,7 +295,7 @@ class bluetooth:
             if self.update_menu == True:
                 return
               
-            if self.oe.read_setting('system', 'disable_bt') == '1':
+            if self.oe.read_setting('services', 'disable_bt') == '1':
                 self.bt_support = False
                 self.oe.winOeMain.getControl(1301).setLabel(self.oe._(32346))
                 self.clear_list()
@@ -1032,7 +1032,7 @@ class monitorLoop(threading.Thread):
                 self.bt_available = True
                 test_adapter_count = 0
                 
-                if not self.oe.read_setting('system', 'disable_bt') == '1':
+                if not self.oe.read_setting('services', 'disable_bt') == '1':
                     
                     #wait max. 10 sec for an Adapter
                     while self.oe.dictModules['bluetooth'].dbusBluezAdapter == None and \

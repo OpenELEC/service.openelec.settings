@@ -160,6 +160,19 @@ class services:
                         'InfoText': 747,
                         }},
                     },
+                'bt': {
+                    'order': 5,
+                    'name': 32331,
+                    'not_supported': [],
+                    'settings': {'disable_bt': {
+                        'order': 1,
+                        'name': 32344,
+                        'value': '0',
+                        'action': 'init_bluetooth',
+                        'typ': 'bool',
+                        'InfoText': 720,
+                        }},
+                    },                        
                 }
 
             self.kernel_cmd = '/proc/cmdline'
@@ -223,12 +236,28 @@ class services:
             self.initialize_avahi(service=1)
             self.initialize_cron(service=1)
 
+            self.init_bluetooth()
+            
             self.oe.dbg_log('services::start_service', 'exit_function',
                             0)
         except Exception, e:
 
             self.oe.dbg_log('services::start_service', 'ERROR: (%s)'
                             % repr(e))
+
+    def stop_service(self):
+        try:
+
+            self.oe.dbg_log('service::stop_service', 'enter_function', 0)
+
+            if 'bluetooth' in self.oe.dictModules:
+                self.oe.dictModules['bluetooth'].stop_bluetoothd()
+
+            self.oe.dbg_log('service::stop_service', 'exit_function', 0)
+        except Exception, e:
+
+            self.oe.dbg_log('service::stop_service', 'ERROR: ('
+                            + repr(e) + ')')
 
     def do_init(self):
         try:
@@ -412,6 +441,13 @@ class services:
                     self.struct['syslog']['settings']['remote_syslog_ip'
                             ]['value'] = ip
 
+            value = self.oe.read_setting('services',
+                    'disable_bt')
+            if not value is None:
+                self.struct['bt']['settings']['disable_bt'
+                        ]['value'] = value
+            self.bt = True
+            
             self.oe.dbg_log('services::load_values', 'exit_function', 0)
         except Exception, e:
 
@@ -806,6 +842,36 @@ class services:
             self.oe.dbg_log('services::stop_syslog', 'ERROR: (%s)'
                             % repr(e), 4)
 
+
+    def init_bluetooth(self, listItem=None):
+        try:
+
+            self.oe.dbg_log('services::init_bluetooth', 'enter_function',
+                            0)
+
+            if not listItem == None:
+                self.set_value(listItem)
+
+            if self.struct['bt']['settings']['disable_bt']['value'] \
+                == '0' or self.struct['bt']['settings']['disable_bt'
+                    ]['value'] == None:
+
+                if 'bluetooth' in self.oe.dictModules:
+                    self.oe.dictModules['bluetooth'].start_bluetoothd()
+
+            else:
+
+                if 'bluetooth' in self.oe.dictModules:
+                    self.oe.dictModules['bluetooth'].stop_bluetoothd()
+
+            self.oe.dbg_log('services::init_bluetooth', 'exit_function',
+                            0)
+        except Exception, e:
+
+            self.oe.set_busy(0)
+            self.oe.dbg_log('services::init_bluetooth', 'ERROR: ('
+                            + repr(e) + ')', 4)
+            
     def exit(self):
         try:
 

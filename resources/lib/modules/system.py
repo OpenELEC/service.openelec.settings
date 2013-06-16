@@ -157,12 +157,6 @@ class system:
                         'parent': {'entry': 'enable_hdd_standby',
                                    'value': ['1']},
                         'InfoText': 719,
-                        }, 'disable_bt': {
-                        'name': 32344,
-                        'value': '0',
-                        'action': 'init_bluetooth',
-                        'typ': 'bool',
-                        'InfoText': 720,
                         }},
                     },
                 'backup': {
@@ -259,7 +253,6 @@ class system:
             self.set_lcd_driver()
             self.set_hdd_standby()
             self.set_hw_clock()
-            self.init_bluetooth()
             self.set_auto_update()
 
             del self.is_service
@@ -268,22 +261,6 @@ class system:
         except Exception, e:
 
             self.oe.dbg_log('system::start_service', 'ERROR: ('
-                            + repr(e) + ')')
-
-    def stop_service(self):
-        try:
-
-            self.oe.dbg_log('system::stop_service', 'enter_function', 0)
-
-            if 'bluetooth' in self.oe.dictModules:
-                self.oe.dictModules['bluetooth'].stop_bluetoothd()
-            
-            self.update_thread.stop()
-
-            self.oe.dbg_log('system::stop_service', 'exit_function', 0)
-        except Exception, e:
-
-            self.oe.dbg_log('system::stop_service', 'ERROR: ('
                             + repr(e) + ')')
 
     def do_init(self):
@@ -370,13 +347,7 @@ class system:
                 if not value is None:
                     self.config['power']['settings']['hdd_standby']['value'
                             ] = value
-                        
-            # Disable Bluetooth
-            value = self.oe.read_setting('system', 'disable_bt')
-            if not value is None:
-                self.config['power']['settings']['disable_bt']['value'
-                        ] = value
-
+                 
             # AutoUpdate
             value = self.oe.read_setting('system', 'AutoUpdate')
             if not value is None:
@@ -517,40 +488,6 @@ class system:
 
             self.oe.dbg_log('system::set_value', 'ERROR: (' + repr(e)
                             + ')')
-
-    def init_bluetooth(self, listItem=None):
-        try:
-
-            self.oe.dbg_log('system::init_bluetooth', 'enter_function',
-                            0)
-
-            self.oe.set_busy(1)
-
-            if not listItem == None:
-                self.set_value(listItem)
-
-            if self.config['power']['settings']['disable_bt']['value'] \
-                == '0' or self.config['power']['settings']['disable_bt'
-                    ]['value'] == None:
-
-                if 'bluetooth' in self.oe.dictModules:
-                    self.oe.dictModules['bluetooth'].start_bluetoothd()
-
-            else:
-
-                if 'bluetooth' in self.oe.dictModules:
-                    self.oe.dictModules['bluetooth'].stop_bluetoothd()
-
-            self.oe.set_busy(0)
-
-            self.oe.dbg_log('system::init_bluetooth', 'exit_function',
-                            0)
-        except Exception, e:
-
-            self.oe.set_busy(0)
-            self.oe.dbg_log('system::init_bluetooth', 'ERROR: ('
-                            + repr(e) + ')', 4)
-
 
     def set_keyboard_layout(self, listItem=None):
         try:

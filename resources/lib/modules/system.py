@@ -259,7 +259,6 @@ class system:
             self.set_lcd_driver()
             self.set_hdd_standby()
             self.set_hw_clock()
-            self.set_cpupower()
             self.init_bluetooth()
             self.set_auto_update()
 
@@ -1079,19 +1078,6 @@ class system:
         except Exception, e:
 
             self.oe.dbg_log('system::set_hw_clock', 'ERROR: ('
-                            + repr(e) + ')', 4)
-
-    def set_cpupower(self):
-        try:
-
-            self.oe.dbg_log('system::set_cpupower', 'enter_function', 0)
-
-            os.system('cpupower frequency-set -g ondemand')
-
-            self.oe.dbg_log('system::set_cpupower', 'exit_function', 0)
-        except Exception, e:
-
-            self.oe.dbg_log('system::set_cpupower', 'ERROR: ('
                             + repr(e) + ')', 4)
 
     def reset_xbmc(self, listItem=None):

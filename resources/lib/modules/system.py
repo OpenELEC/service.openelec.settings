@@ -66,7 +66,7 @@ class system:
                     'not_supported': [],
                     'settings': {'hostname': {
                         'name': 32190,
-                        'value': 'openelec',
+                        'value': 'OpenELEC',
                         'action': 'set_hostname',
                         'typ': 'text',
                         'validate': '^([a-zA-Z0-9](?:[a-zA-Z0-9-\.]*[a-zA-Z0-9]))$',

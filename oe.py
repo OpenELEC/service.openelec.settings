@@ -118,7 +118,7 @@ import oeWindows
 
 winOeMain = oeWindows.mainWindow('mainWindow.xml', __cwd__, 'Default', oeMain=__oe__)
 
-xbmc.log('## OpenELEC Addon ## ' + str(__addon__.getAddonInfo('version')))
+xbmc.log('## OpenELEC Addon ## ' + unicode(__addon__.getAddonInfo('version')))
 
 
 def dbg_log(source, text, level=4):
@@ -470,7 +470,7 @@ def set_busy(state):
             else:
                 __busy__ = __busy__ - 1
 
-            dbg_log('oe::set_busy', '__busy__ = ' + str(__busy__), 0)
+            dbg_log('oe::set_busy', '__busy__ = ' + unicode(__busy__), 0)
 
             if __busy__ > 0:
                 if not input_request:

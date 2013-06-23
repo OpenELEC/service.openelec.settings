@@ -123,13 +123,13 @@ class mainWindow(xbmcgui.WindowXMLDialog):
 
             for strProp in dictProperties:
                 lstItem.setProperty(strProp,
-                                    str(dictProperties[strProp]))
+                                    unicode(dictProperties[strProp]))
 
             self.getControl(self.guiMenList).addItem(lstItem)
         except Exception, e:
 
             self.oe.dbg_log('oeWindows.mainWindow::addMenuItem('
-                            + str(strName) + ')', 'ERROR: (' + repr(e)
+                            + unicode(strName) + ')', 'ERROR: (' + repr(e)
                             + ')')
 
     def addConfigItem(
@@ -145,7 +145,7 @@ class mainWindow(xbmcgui.WindowXMLDialog):
 
             for strProp in dictProperties:
                 lstItem.setProperty(strProp,
-                                    str(dictProperties[strProp]))
+                                    unicode(dictProperties[strProp]))
 
             self.getControl(int(strType)).addItem(lstItem)
 
@@ -186,7 +186,7 @@ class mainWindow(xbmcgui.WindowXMLDialog):
         except Exception, e:
 
             self.oe.dbg_log('oeWindows.mainWindow::showButton('
-                            + str(number) + ', ' + str(action) + ')',
+                            + unicode(number) + ', ' + unicode(action) + ')',
                             'ERROR: (' + repr(e) + ')')
 
     def onAction(self, action):
@@ -246,7 +246,7 @@ class mainWindow(xbmcgui.WindowXMLDialog):
         except Exception, e:
 
             self.oe.dbg_log('oeWindows.mainWindow::onAction('
-                            + str(action) + ')', 'ERROR: (' + repr(e)
+                            + unicode(action) + ')', 'ERROR: (' + repr(e)
                             + ')')
             if actionId in self.oe.CANCEL:
                 self.close()
@@ -322,7 +322,7 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                         )
                     if returnValue != '' and returnValue != '/':
                         selectedItem.setProperty('value',
-                                str(returnValue))
+                                unicode(returnValue))
                 elif strTyp == 'ip':
 
                     xbmcDialog = xbmcgui.Dialog()
@@ -347,7 +347,7 @@ class mainWindow(xbmcgui.WindowXMLDialog):
 
                     if returnValue > -1:
                         selectedItem.setProperty('value',
-                                str(returnValue))
+                                unicode(returnValue))
                 elif strTyp == 'bool':
 
                     if strValue == '0':
@@ -373,7 +373,7 @@ class mainWindow(xbmcgui.WindowXMLDialog):
         except Exception, e:
 
             self.oe.dbg_log('oeWindows.mainWindow::onClick('
-                            + str(controlID) + ')', 'ERROR: ('
+                            + unicode(controlID) + ')', 'ERROR: ('
                             + repr(e) + ')')
 
     def onFocus(self, controlID):
@@ -448,7 +448,7 @@ class mainWindow(xbmcgui.WindowXMLDialog):
         except Exception, e:
 
             self.oe.dbg_log('oeWindows.mainWindow::onFocus('
-                            + str(controlID) + ')', 'ERROR: ('
+                            + unicode(controlID) + ')', 'ERROR: ('
                             + repr(e) + ')')
 
     def emptyButtonLabels(self):
@@ -520,11 +520,11 @@ class passkeyWindow(xbmcgui.WindowXMLDialog):
         self.getControl(1700).setLabel(text)
 
     def set_requested_code(self, requested):
-        self.getControl(1701).setLabel(str(requested))
+        self.getControl(1701).setLabel(unicode(requested))
 
     def update_entered_code(self, entered):
         code = self.getControl(1702).getLabel()
-        self.getControl(1702).setLabel(code + str(entered))
+        self.getControl(1702).setLabel(code + unicode(entered))
 
     def get_entered_code(self):
         return self.getControl(1702).getLabel()
@@ -588,7 +588,7 @@ class contextWindow(xbmcgui.WindowXMLDialog):
                                  self.options):
                 listItem = \
                     xbmcgui.ListItem(label=self.options[option]['text'])
-                listItem.setProperty('id', str(option))
+                listItem.setProperty('id', unicode(option))
                 listItem.setProperty('action',
                         self.options[option]['action'])
                 self.getControl(self.listId).addItem(listItem)
@@ -887,7 +887,7 @@ class wizard(xbmcgui.WindowXMLDialog):
 
         try:
 
-            self.oe.dbg_log('wizard::onClick(' + str(controlID) + ')',
+            self.oe.dbg_log('wizard::onClick(' + unicode(controlID) + ')',
                             'enter_function', 0)
 
             for btn in self.buttons:
@@ -981,7 +981,7 @@ class wizard(xbmcgui.WindowXMLDialog):
                     self.close()
                     self.oe.start_service()
 
-            self.oe.dbg_log('wizard::onClick(' + str(controlID) + ')',
+            self.oe.dbg_log('wizard::onClick(' + unicode(controlID) + ')',
                             'exit_function', 0)
         except Exception, e:
 
@@ -1000,7 +1000,7 @@ class wizard(xbmcgui.WindowXMLDialog):
         except Exception, e:
 
             self.oe.dbg_log('oeWindows.wizard::showButton('
-                            + str(number) + ')', 'ERROR: (' + repr(e)
+                            + unicode(number) + ')', 'ERROR: (' + repr(e)
                             + ')')
 
     def addConfigItem(
@@ -1016,7 +1016,7 @@ class wizard(xbmcgui.WindowXMLDialog):
 
             for strProp in dictProperties:
                 lstItem.setProperty(strProp,
-                                    str(dictProperties[strProp]))
+                                    unicode(dictProperties[strProp]))
 
             self.getControl(int(strType)).addItem(lstItem)
 
@@ -1102,7 +1102,7 @@ class wizard(xbmcgui.WindowXMLDialog):
         except Exception, e:
 
             self.oe.dbg_log('oeWindows.wizard::set_new_language('
-                            + str(language) + ')', 'ERROR: (' + repr(e)
+                            + unicode(language) + ')', 'ERROR: (' + repr(e)
                             + ')')
 
     def get_keyboard_layout(self):

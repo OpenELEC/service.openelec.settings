@@ -481,7 +481,7 @@ class system:
                 listItem.getProperty('value')
 
             self.oe.write_setting('system', listItem.getProperty('entry'
-                                  ), str(listItem.getProperty('value')))
+                                  ), unicode(listItem.getProperty('value')))
 
             self.oe.dbg_log('system::set_value', 'exit_function', 0)
         except Exception, e:
@@ -503,11 +503,11 @@ class system:
             if self.keyboard_layouts == True:
 
                 self.oe.dbg_log('system::set_keyboard_layout',
-                                str(self.config['keyboard']['settings'
+                                unicode(self.config['keyboard']['settings'
                                 ]['KeyboardLayout1']['value']) + ','
-                                + str(self.config['keyboard']['settings'
+                                + unicode(self.config['keyboard']['settings'
                                 ]['KeyboardLayout2']['value']) + ' '
-                                + '-model ' + str(self.config['keyboard'
+                                + '-model ' + unicode(self.config['keyboard'
                                 ]['settings']['KeyboardType']['value']), 1)
 
                 if not os.path.exists(os.path.dirname(self.udev_keyboard_file)):
@@ -530,7 +530,7 @@ class system:
                               ]['settings']['KeyboardLayout1']['value']
                               + ',' + self.config['keyboard']['settings'
                               ]['KeyboardLayout2']['value'], '-model '
-                              + str(self.config['keyboard']['settings'
+                              + unicode(self.config['keyboard']['settings'
                               ]['KeyboardType']['value']),
                               '-option "grp:alt_shift_toggle"']
 
@@ -540,7 +540,7 @@ class system:
             elif self.rpi_keyboard_layouts == True:
                 
                 self.oe.dbg_log('system::set_keyboard_layout',
-                                str(self.config['keyboard']['settings'
+                                unicode(self.config['keyboard']['settings'
                                 ]['KeyboardLayout1']['value']) , 1)                
 
                 parameter = self.config['keyboard'
@@ -768,7 +768,7 @@ class system:
                 self.update_thread.wait_evt.set()
 
             self.oe.dbg_log('system::set_auto_update',
-                            str(self.config['update']['settings'
+                            unicode(self.config['update']['settings'
                             ]['AutoUpdate']['value']), 1)
 
             self.oe.dbg_log('system::set_auto_update', 'exit_function',

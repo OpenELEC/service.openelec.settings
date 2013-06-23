@@ -465,7 +465,7 @@ class services:
 
             self.oe.write_setting('services',
                                   listItem.getProperty('entry'),
-                                  str(listItem.getProperty('value')))
+                                  unicode(listItem.getProperty('value')))
 
             self.oe.dbg_log('services::set_value', 'exit_function', 0)
         except Exception, e:
@@ -744,8 +744,8 @@ class services:
                                   % os.path.basename(self.samba_smbd)).split(' '
                     )
             for p in pid:
-                self.oe.dbg_log('services::stop_samba PID', str(pid)
-                                + ' --- ' + str(p), 0)
+                self.oe.dbg_log('services::stop_samba PID', unicode(pid)
+                                + ' --- ' + unicode(p), 0)
                 os.system('kill ' + p.strip().replace('\n', ''))
 
             pid = self.oe.execute('pidof %s'
@@ -950,7 +950,7 @@ class services:
                         ] = '1'
 
             self.oe.write_setting('services', 'ssh',
-                                  str(self.struct['ssh']['settings'
+                                  unicode(self.struct['ssh']['settings'
                                   ]['ssh_autostart']['value']))
             self.struct['ssh']['settings']['ssh_autostart']['changed'
                     ] = True
@@ -983,7 +983,7 @@ class services:
                         ]['value'] = '1'
 
             self.oe.write_setting('services', 'samba',
-                                  str(self.struct['samba']['settings'
+                                  unicode(self.struct['samba']['settings'
                                   ]['samba_autostart']['value']))
             self.struct['samba']['settings']['samba_autostart'
                     ]['changed'] = True

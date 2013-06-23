@@ -283,7 +283,7 @@ class networkMount(object):
                 return 'close'
 
             if self.mount_id == 'new_mount':
-                mount_uuid = 'mount_' + str(uuid.uuid1()).replace('-',
+                mount_uuid = 'mount_' + unicode(uuid.uuid1()).replace('-',
                         '')
             else:
                 self.oe.remove_node(self.mount_id)
@@ -1954,7 +1954,7 @@ class connman:
 
             self.oe.set_busy(1)
             self.oe.dbg_log('connman::menu_connections__busy__',
-                            str(self.oe.__busy__), 0)
+                            unicode(self.oe.__busy__), 0)
 
             # type 1=int, 2=string, 3=array
             properties = {
@@ -2004,7 +2004,7 @@ class connman:
                     else:
                         if 'Security' in dbusServiceProperties:
                             apName = self.oe._(32208) + ' (' \
-                                + str(dbusServiceProperties['Security'
+                                + unicode(dbusServiceProperties['Security'
                                     ][0]) + ')'
                         else:
                             apName = ''
@@ -2031,11 +2031,11 @@ class connman:
 
                     if properties[prop]['flag'] == 1:
                         if properties[prop]['type'] == 1:
-                            result = str(int(result))
+                            result = unicode(int(result))
                         if properties[prop]['type'] == 2:
-                            result = str(result)
+                            result = unicode(result)
                         if properties[prop]['type'] == 3:
-                            result = str(len(result))
+                            result = unicode(len(result))
 
                         if rebuildList == 1:
                             dictProperties[value] = result
@@ -2097,7 +2097,7 @@ class connman:
                                 in self.struct[path]['settings'][entry]:
                                 self.struct[path]['settings'
                                         ][entry]['value'] = \
-                                    str(technologie[entry])
+                                    unicode(technologie[entry])
 
                         dictProperties = {
                             'value': self.struct[path]['settings'
@@ -2178,13 +2178,13 @@ class connman:
 
                     dictProperties = {
                         'value': self.struct['Timeservers']['settings'
-                                ][str(setting)]['value'],
+                                ][unicode(setting)]['value'],
                         'typ': self.struct['Timeservers']['settings'
-                                ][str(setting)]['type'],
-                        'entry': str(setting),
+                                ][unicode(setting)]['type'],
+                        'entry': unicode(setting),
                         'category': 'Timeservers',
                         'action': self.struct['Timeservers']['settings'
-                                ][str(setting)]['action'],
+                                ][unicode(setting)]['action'],
                         }
 
                     if 'InfoText' in self.struct['Timeservers'
@@ -2194,13 +2194,13 @@ class connman:
                                 ]['settings'][setting]['InfoText'])
 
                     if 'validate' in self.struct['Timeservers'
-                            ]['settings'][str(setting)]:
+                            ]['settings'][unicode(setting)]:
                         dictProperties['validate'] = \
                             self.struct['Timeservers']['settings'
-                                ][str(setting)]['validate']
+                                ][unicode(setting)]['validate']
 
                     self.oe.winOeMain.addConfigItem(self.oe._(self.struct['Timeservers'
-                            ]['settings'][str(setting)]['name']),
+                            ]['settings'][unicode(setting)]['name']),
                             dictProperties,
                             menuItem.getProperty('listTyp'))
 
@@ -3302,14 +3302,14 @@ class monitorLoop(threading.Thread):
                             'enter_function', 0)
 
             if name == 'Strength':
-                value = str(int(value))
+                value = unicode(int(value))
                 self.oe.dictModules['connman'
                                     ].listItems[path].setProperty(name,
                         value)
                 self.forceRender()
             elif name == 'State':
 
-                value = str(value)
+                value = unicode(value)
                 self.oe.dictModules['connman'
                                     ].listItems[path].setProperty(name,
                         value)
@@ -3317,19 +3317,19 @@ class monitorLoop(threading.Thread):
             elif name == 'IPv4':
 
                 if 'Address' in value:
-                    value = str(value['Address'])
+                    value = unicode(value['Address'])
                     self.oe.dictModules['connman'
                             ].listItems[path].setProperty('Address',
                             value)
                 if 'Method' in value:
-                    value = str(value['Method'])
+                    value = unicode(value['Method'])
                     self.oe.dictModules['connman'
                             ].listItems[path].setProperty('Address',
                             value)
                 self.forceRender()
             elif name == 'Favorite':
 
-                value = str(int(value))
+                value = unicode(int(value))
                 self.oe.dictModules['connman'
                                     ].listItems[path].setProperty(name,
                         value)

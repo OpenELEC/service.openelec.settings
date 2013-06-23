@@ -395,13 +395,13 @@ class bluetooth:
                                     + self.oe._(32335) + '[/COLOR]'
 
                         if properties[prop]['type'] == 1:
-                            value = str(int(value))
+                            value = unicode(int(value))
                         if properties[prop]['type'] == 2:
-                            value = str(value)
+                            value = unicode(value)
                         if properties[prop]['type'] == 3:
-                            value = str(len(value))
+                            value = unicode(len(value))
                         if properties[prop]['type'] == 4:
-                            value = str(int(value))
+                            value = unicode(int(value))
 
                         dictProperties[name] = value
 
@@ -856,7 +856,7 @@ class bluetooth:
             if int(self.adapter_info(self.dbusBluezAdapter, 'Powered')) \
                 != state:
                 self.oe.dbg_log('bluetooth::adapter_powered',
-                                'set state (' + str(state) + ')', 0)
+                                'set state (' + unicode(state) + ')', 0)
 
                 adapter_interface = \
                     dbus.Interface(self.dbusSystemBus.get_object('org.bluez'
@@ -1181,7 +1181,7 @@ class monitorLoop(threading.Thread):
 
                     self.oe.dictModules['bluetooth'
                             ].listItems[path].setProperty(name,
-                            str(changed[name]))
+                            unicode(changed[name]))
                     self.oe.dictModules['bluetooth'].menu_connections()
                     self.forceRender()
 
@@ -1394,7 +1394,7 @@ class bluetoothAgent(dbus.service.Object):
                 self.passkey_window.update_entered_code(entered)
 
             if len(self.passkey_window.get_entered_code()) \
-                == len(str(passkey)):
+                == len(unicode(passkey)):
                 self.close_passkey_window()
 
             self.oe.dbg_log('bluetooth::btAgent::DisplayPasskey',
@@ -1419,7 +1419,7 @@ class bluetoothAgent(dbus.service.Object):
 
             xbmcDialog = xbmcgui.Dialog()
             answer = xbmcDialog.ok('OpenELEC Bluetooth',
-                                   'DisplayPasskey', str(pincode))
+                                   'DisplayPasskey', unicode(pincode))
 
             self.oe.dbg_log('bluetooth::btAgent::DisplayPinCode',
                             'enter_function', 0)
@@ -1446,7 +1446,7 @@ class bluetoothAgent(dbus.service.Object):
 
             xbmcDialog = xbmcgui.Dialog()
             answer = xbmcDialog.yesno('OpenELEC Bluetooth',
-                    'RequestConfirmation', str(passkey))
+                    'RequestConfirmation', unicode(passkey))
 
             self.oe.dbg_log('bluetooth::btAgent::RequestConfirmation::answer='
                             , repr(answer), 0)

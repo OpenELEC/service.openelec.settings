@@ -912,30 +912,27 @@ class system:
                     if self.config['update']['settings']['UpdateNotify'
                             ]['value'] == '1':
                         xbmc.executebuiltin('Notification('
-                                + self.oe._(32363) + ', '
-                                + self.oe._(32364) + ')')
+                                + self.oe._(32363).encode('utf-8') + ', '
+                                + self.oe._(32364).encode('utf-8') + ')')
    
                     if (self.config['update']['settings']['AutoUpdate']['value'
-                        ] == 'manual' or force == True):
+                        ] == 'manual' and force == True):
                         silent = False
-                      
-                        if self.config['update']['settings']['UpdateNotify'
-                                ]['value'] != '1' and force != True:
-                          
-                            xbmcDialog = xbmcgui.Dialog()
-                            answer = xbmcDialog.yesno('OpenELEC Update',
-                                    self.oe._(32188) + ':  ' + self.version,
-                                    self.oe._(32187) + ':  ' + update_json['data']['update'].split('-')[-1].replace('.tar.bz2', ''),
-                                    self.oe._(32180))
-                            
-                            xbmcDialog = None
-                            del xbmcDialog
+                        xbmcDialog = xbmcgui.Dialog()
+                        answer = xbmcDialog.yesno('OpenELEC Update',
+                                self.oe._(32188).encode('utf-8') + ':  ' + self.version,
+                                self.oe._(32187).encode('utf-8') + ':  ' + update_json['data']['update'].split('-')[-1].replace('.tar.bz2', ''),
+                                self.oe._(32180).encode('utf-8'))
+                        
+                        xbmcDialog = None
+                        del xbmcDialog
                         
                         if answer == 1:
                             self.update_in_progress = True
                             self.do_autoupdate()
                             
-                    else:
+                    if (self.config['update']['settings']['AutoUpdate']['value'
+                        ] == 'auto' and force == False):
 
                         self.update_in_progress = True
                         self.do_autoupdate(None, True)
@@ -1078,7 +1075,7 @@ class system:
 
             xbmcDialog = xbmcgui.Dialog()
             answer = xbmcDialog.yesno(part + ' reset',
-                    self.oe._(32326), self.oe._(32328))
+                    self.oe._(32326).encode('utf-8'), self.oe._(32328).encode('utf-8'))
 
             if answer == 1:
 
@@ -1118,7 +1115,7 @@ class system:
             xbmcDialog = xbmcgui.Dialog()
 
             self.backup_dlg = xbmcgui.DialogProgress()
-            self.backup_dlg.create('OpenELEC', self.oe._(32375), ' ', ' ')
+            self.backup_dlg.create('OpenELEC', self.oe._(32375).encode('utf-8'), ' ', ' ')
             
             if not os.path.exists(self.backup_folder):
                 os.makedirs(self.backup_folder)
@@ -1188,7 +1185,7 @@ class system:
                         
                 else:
                     
-                    txt = self.oe.split_dialog_text(self.oe._(32379))  
+                    txt = self.oe.split_dialog_text(self.oe._(32379).encode('utf-8'))  
                     
                     xbmcDialog = xbmcgui.Dialog()
                     answer = xbmcDialog.ok('Restore',
@@ -1196,7 +1193,7 @@ class system:
                 
                 if copy_success == 1:
                   
-                    txt = self.oe.split_dialog_text(self.oe._(32380))  
+                    txt = self.oe.split_dialog_text(self.oe._(32380).encode('utf-8'))  
 
                     xbmcDialog = xbmcgui.Dialog()
                     answer = xbmcDialog.yesno('Restore',

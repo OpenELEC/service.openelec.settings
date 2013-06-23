@@ -250,21 +250,21 @@ class networkMount(object):
             if self.struct['mount']['settings']['mountpoint']['value'] \
                 == '':
                 dialog = xbmcgui.Dialog()
-                dialog.ok('Mount', self.oe._(32361), '',
-                          self.oe._(32352))
+                dialog.ok('Mount', self.oe._(32361).encode('utf-8'), '',
+                          self.oe._(32352).encode('utf-8'))
                 return
 
             if self.struct['mount']['settings']['server']['value'] \
                 == '':
                 dialog = xbmcgui.Dialog()
-                dialog.ok('Mount', self.oe._(32361), '',
-                          self.oe._(32353))
+                dialog.ok('Mount', self.oe._(32361).encode('utf-8'), '',
+                          self.oe._(32353).encode('utf-8'))
                 return
 
             if self.struct['mount']['settings']['share']['value'] == '':
                 dialog = xbmcgui.Dialog()
-                dialog.ok('Mount', self.oe._(32361), '',
-                          self.oe._(32354))
+                dialog.ok('Mount', self.oe._(32361).encode('utf-8'), '',
+                          self.oe._(32354).encode('utf-8'))
                 return
 
             self.oe.set_busy(1)
@@ -1602,7 +1602,7 @@ class connmanVpn(object):
 
                         dialog = xbmcgui.Dialog()
                         self.oe.set_busy(0)
-                        dialog.ok('OpenELEC VPN', self.oe._(32378))
+                        dialog.ok('OpenELEC VPN', self.oe._(32378).encode('utf-8'))
                         self.oe.dbg_log('connmanVpn::save_vpn_config',
                                 'exit_function (incomplete)', 0)
                         return
@@ -3415,7 +3415,7 @@ class wifiAgent(dbus.service.Object):
             response = {}
 
             if fields.has_key('Name'):
-                xbmcKeyboard = xbmc.Keyboard('', self.oe._(32146))
+                xbmcKeyboard = xbmc.Keyboard('', self.oe._(32146).encode('utf-8'))
                 xbmcKeyboard.doModal()
                 if xbmcKeyboard.isConfirmed():
                     if xbmcKeyboard.getText() != '':
@@ -3430,7 +3430,7 @@ class wifiAgent(dbus.service.Object):
                     return response
 
             if fields.has_key('Passphrase'):
-                xbmcKeyboard = xbmc.Keyboard('', self.oe._(32147))
+                xbmcKeyboard = xbmc.Keyboard('', self.oe._(32147).encode('utf-8'))
                 xbmcKeyboard.doModal()
                 if xbmcKeyboard.isConfirmed():
                     if xbmcKeyboard.getText() != '':
@@ -3450,7 +3450,7 @@ class wifiAgent(dbus.service.Object):
                     return response
 
             if fields.has_key('Username'):
-                xbmcKeyboard = xbmc.Keyboard('', self.oe._(32148))
+                xbmcKeyboard = xbmc.Keyboard('', self.oe._(32148).encode('utf-8'))
                 xbmcKeyboard.doModal()
                 if xbmcKeyboard.isConfirmed():
                     if xbmcKeyboard.getText() != '':
@@ -3465,7 +3465,7 @@ class wifiAgent(dbus.service.Object):
                     return response
 
             if fields.has_key('Password'):
-                xbmcKeyboard = xbmc.Keyboard('', self.oe._(32148), True)
+                xbmcKeyboard = xbmc.Keyboard('', self.oe._(32148).encode('utf-8'), True)
                 xbmcKeyboard.doModal()
                 if xbmcKeyboard.isConfirmed():
                     if xbmcKeyboard.getText() != '':

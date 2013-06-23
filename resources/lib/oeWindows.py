@@ -172,7 +172,7 @@ class mainWindow(xbmcgui.WindowXMLDialog):
             button = self.getControl(self.buttons[number]['id'])
             self.buttons[number]['modul'] = module
             self.buttons[number]['action'] = action
-            button.setLabel(self.oe._(name))
+            button.setLabel(self.oe._(name).encode('utf-8'))
 
             if onup != None:
                 button.controlUp(self.getControl(onup))
@@ -671,7 +671,7 @@ class wizard(xbmcgui.WindowXMLDialog):
             self.oe.dictModules['system'].start_service()
             self.oe.dictModules['system'].do_init()
 
-            self.getControl(self.wizWinTitle).setLabel(self.oe._(32300))
+            self.getControl(self.wizWinTitle).setLabel(self.oe._(32300).encode('utf-8'))
             self.getControl(self.buttons[3]['id']).setVisible(False)
             self.getControl(self.buttons[4]['id']).setVisible(False)
             self.getControl(self.radiobuttons[1]['id'
@@ -679,14 +679,14 @@ class wizard(xbmcgui.WindowXMLDialog):
             self.getControl(self.radiobuttons[2]['id'
                             ]).setVisible(False)
 
-            self.set_wizard_title(self.oe._(32301))
-            self.set_wizard_text(self.oe._(32302))
-            self.set_wizard_button_title(self.oe._(32307))
+            self.set_wizard_title(self.oe._(32301).encode('utf-8'))
+            self.set_wizard_text(self.oe._(32302).encode('utf-8'))
+            self.set_wizard_button_title(self.oe._(32307).encode('utf-8'))
             self.set_wizard_button_1(self.get_current_language(), self,
                     'select_language')
 
             if self.oe.dictModules['system'].keyboard_layouts == True:
-                self.set_wizard_button_2(self.oe._(32310)
+                self.set_wizard_button_2(self.oe._(32310).encode('utf-8')
                         + self.get_keyboard_layout(), self,
                         'select_keyboard')
 
@@ -1140,7 +1140,7 @@ class wizard(xbmcgui.WindowXMLDialog):
                 self.oe.write_setting('system', 'KeyboardLayout1',
                         select_window.result)
                 self.oe.dictModules['system'].set_keyboard_layout()
-                self.set_wizard_button_2(self.oe._(32310)
+                self.set_wizard_button_2(self.oe._(32310).encode('utf-8')
                         + self.get_keyboard_layout(), self,
                         'select_keyboard')
 

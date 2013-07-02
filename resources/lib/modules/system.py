@@ -972,7 +972,7 @@ class system:
                             + 'oe_update/'):
                         os.makedirs(self.temp_folder + 'oe_update/')
 
-                    extract_files = ['target/SYSTEM', 'target/KERNEL']
+                    extract_files = ['target/', 'target/']
                     if self.oe.extract_file(downloaded, extract_files,
                             self.temp_folder + 'oe_update/', silent) \
                         == 1:

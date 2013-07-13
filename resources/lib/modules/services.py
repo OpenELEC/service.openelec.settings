@@ -175,10 +175,12 @@ class services:
                     },                        
                 }
 
+            self.oe = oeMain
+
             self.kernel_cmd = '/proc/cmdline'
             
             self.samba_conf = '/var/run/smb.conf'
-            self.samba_user_conf = '/storage/.config/samba.conf'
+            self.samba_user_conf = '%s/samba.conf' % self.oe.USER_CONFIG
             self.samba_default_conf = '/etc/samba/smb.conf'
             self.samba_nmbd_pid = '/var/run/nmbd-smb.conf.pid'
             self.samba_smbd_pid = '/var/run/smbd-smb.conf.pid'
@@ -186,32 +188,32 @@ class services:
             self.samba_nmbd = '/usr/bin/nmbd'
             self.samba_smbd = '/usr/bin/smbd'
 
-            self.ssh_dir = '/storage/.cache/ssh'
-            self.ssh_rsa_key1 = '/storage/.cache/ssh/ssh_host_key'
-            self.ssh_rsa_key2 = '/storage/.cache/ssh/ssh_host_rsa_key'
-            self.ssh_dsa_key1 = '/storage/.cache/ssh/ssh_host_dsa_key'
+            self.ssh_dir = '%s/ssh' % self.oe.CONFIG_CACHE
+            self.ssh_rsa_key1 = '%s/ssh/ssh_host_key' % self.oe.CONFIG_CACHE
+            self.ssh_rsa_key2 = '%s/ssh/ssh_host_rsa_key' % self.oe.CONFIG_CACHE
+            self.ssh_dsa_key1 = '%s/ssh/ssh_host_dsa_key' % self.oe.CONFIG_CACHE
             self.ssh_keygen = 'ssh-keygen'
             self.ssh_known_hosts_t = '/etc/ssh/known_hosts'
             self.ssh_known_hosts = os.environ['HOME'] \
                 + '/.ssh/known_hosts'
             self.ssh_daemon = '/usr/sbin/sshd'
             self.ssh_pid = '/var/run/sshd.pid'
-            self.ssh_conf_dir = '/storage/.config'
+            self.ssh_conf_dir =  self.oe.USER_CONFIG
             self.ssh_conf_file = 'sshd.conf'
             self.sshd_init = '/etc/init.d/51_sshd'
 
             self.avahi_dir = '/var/run/avahi-daemon'
             self.avahi_daemon = '/usr/sbin/avahi-daemon'
 
-            self.cron_dir = '/storage/.cache/cron/crontabs'
+            self.cron_dir = '%s/cron/crontabs' % self.oe.CONFIG_CACHE
             self.cron_daemon = '/sbin/crond'
 
             self.syslog_daemon = '/sbin/syslogd'
-            self.syslog_conf_file = '/storage/.cache/syslog/remote'
+            self.syslog_conf_file = '%s/syslog/remote' % self.oe.CONFIG_CACHE
             self.syslog_pid = '/var/run/syslogd.pid'
             self.syslog_start = '/etc/init.d/08_syslogd'
 
-            self.oe = oeMain
+            #self.oe = oeMain
 
       # self.load_values()
 

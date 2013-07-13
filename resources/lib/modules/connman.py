@@ -1339,7 +1339,7 @@ class connmanVpn(object):
                     isChild=True)
             self.show_advanced_entrys = '0'
             self.oe.dictModules['connmanVpnConfig'] = self
-            self.vpn_conf_dir = '/storage/.config/vpn-config/'
+            self.vpn_conf_dir = '%s/vpn-config/' % self.oe.USER_CONFIG
             self.vpn_name = vpn
 
             self.winOeCon.show()
@@ -1831,13 +1831,14 @@ class connman:
                     }}},
                 }
 
-            self.wait_conf_file = \
-                '/storage/.cache/openelec/network_wait'
-
             self.busy = 0
             self.oe = oeMain
+            
+            self.wait_conf_file = \
+                '%s/openelec/network_wait' % self.oe.CONFIG_CACHE
+
             self.oe.dbg_log('connman::__init__', 'exit_function', 0)
-            self.vpn_conf_dir = '/storage/.config/vpn-config/'
+            self.vpn_conf_dir = '%s/vpn-config/' % self.oe.USER_CONFIG
         except Exception, e:
 
             self.oe.dbg_log('connman::__init__', 'ERROR: (' + repr(e)

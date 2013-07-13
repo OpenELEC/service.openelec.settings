@@ -56,7 +56,6 @@ conf_lock = False
 __busy__ = 0
 xbmcIsPlaying = 0
 input_request = False
-temp_dir = '/storage/.xbmc/temp/'
 
 dictModules = {}
 listObject = {
@@ -85,13 +84,6 @@ except:
     pass
 
 dbusSystemBus = dbus.SystemBus()
-
-try:
-    configFile = '/storage/.xbmc/userdata/addon_data/service.openelec.settings/oe_settings.xml'
-    if not os.path.exists('/storage/.xbmc/userdata/addon_data/service.openelec.settings'):
-        os.makedirs('/storage/.xbmc/userdata/addon_data/service.openelec.settings')
-except:
-    pass
 
 ###############################################################################
 
@@ -887,6 +879,23 @@ def fixed_writexml(
 
 
 minidom.Element.writexml = fixed_writexml
+
+XBMC_USER_HOME = os.environ.get('XBMC_USER_HOME', '/storage/.xbmc')
+CONFIG_CACHE = os.environ.get('CONFIG_CACHE', '/storage/.cache')
+USER_CONFIG = os.environ.get('USER_CONFIG', '/storage/.config')
+if os.path.exists('/etc/machine-id'):
+    SYSTEMID = load_file('/etc/machine-id')
+else:
+    SYSTEMID = os.environ.get('SYSTEMID', '')
+
+temp_dir = '%s/temp/' % XBMC_USER_HOME
+
+try:
+    configFile = '%s/userdata/addon_data/service.openelec.settings/oe_settings.xml' % XBMC_USER_HOME
+    if not os.path.exists('%s/userdata/addon_data/service.openelec.settings' % XBMC_USER_HOME):
+        os.makedirs('%s/userdata/addon_data/service.openelec.settings' % XBMC_USER_HOME)
+except:
+    pass
 
 if read_setting('openelec', 'wizard_completed') == None:
     winOeMain = oeWindows.wizard('wizard.xml', __cwd__, 'Default',

@@ -212,16 +212,16 @@ class system:
             self.temp_folder = os.environ['HOME'] + '/.xbmc/temp/'
             self.update_folder = '/storage/.update/'
             self.last_update_check = 0
-            self.xbmc_reset_file = '/storage/.cache/reset_xbmc'
-            self.oe_reset_file = '/storage/.cache/reset_oe'
+            self.xbmc_reset_file = '%s/reset_xbmc' % self.oe.CONFIG_CACHE
+            self.oe_reset_file = '%s/reset_oe' % self.oe.CONFIG_CACHE
 
             self.keyboard_info = '/usr/share/X11/xkb/rules/base.xml'
-            self.udev_keyboard_file = '/storage/.cache/xkb/layout'
+            self.udev_keyboard_file = '%s/xkb/layout' % self.oe.CONFIG_CACHE
 
             self.rpi_keyboard_info = '/usr/lib/keymaps'
             
-            self.backup_dirs = ['/storage/.xbmc', '/storage/.config',
-                                '/storage/.cache']
+            self.backup_dirs = [self.oe.XBMC_USER_HOME, self.oe.USER_CONFIG,
+                                self.oe.CONFIG_CACHE]
                                 
             self.backup_folder = '/storage/backup/'
             self.restore_path = '/storage/.restore/'
@@ -233,7 +233,7 @@ class system:
             self.cpu_lm_flag = self.oe.execute('cat /proc/cpuinfo | grep -q "flags.* lm " && echo \'1\' || echo \'0\'')
             self.au = None
             
-            oeMain.dbg_log('system::__init__', 'exit_function', 0)
+            self.oe.dbg_log('system::__init__', 'exit_function', 0)
         except Exception, e:
 
             self.oe.dbg_log('system::__init__', 'ERROR: (' + repr(e)
@@ -589,7 +589,7 @@ class system:
                                ]['hostname']['value'])
                 hostname.close()
 
-                hostname = open('/storage/.cache/hostname', 'w')
+                hostname = open('%s/hostname' % self.oe.CONFIG_CACHE, 'w')
                 hostname.write(self.config['ident']['settings'
                                ]['hostname']['value'])
                 hostname.close()
@@ -631,8 +631,8 @@ class system:
             if not listItem == None:
                 self.set_value(listItem)
 
-            if os.path.isfile('/storage/.config/LCDd.conf'):
-                lcd_config_file = '/storage/.config/LCDd.conf'
+            if os.path.isfile('%s/LCDd.conf' % self.oe.USER_CONFIG):
+                lcd_config_file = '%s/LCDd.conf' % self.oe.USER_CONFIG
             else:
                 lcd_config_file = '/etc/LCDd.conf'
 
@@ -893,7 +893,7 @@ class system:
                 self.oe.dbg_log('system::check_updates_v2', 'Update in progress (exit)', 0)
                 return
               
-            sysid = os.environ['SYSTEMID']
+            sysid = self.oe.SYSTEMID
 
             update_json = self.oe.load_url('%s?i=%s&d=%s&pa=%s&v=%s&l=%s' % ( \
               self.update_url_v2, sysid, self.distri, self.arch, self.version, self.cpu_lm_flag ))

@@ -1,4 +1,7 @@
-2013-07-13 v0.1.25
+2013-07-14 v0.1.25
+  (fix) backup. handle mountpoints under backupdirs
+  (fix) backup. do not dereference symlinks
+  (fix) backup: do not skip empty dirs
   (updated) language files from Transifex
   (change) read SYSTEMID from /etc/machine-id
   (change) replace /storage/.xbmc with oe.XBMC_USER_HOME

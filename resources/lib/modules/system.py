@@ -1233,7 +1233,7 @@ class system:
                     return 0
 
                 itempath = os.path.join(folder, item)
-                if os.path.isfile(itempath):
+                if os.path.isfile(itempath) or os.path.islink(itempath):
                     self.done_backup_size += os.path.getsize(itempath)
                     tar.add(itempath)
                     if hasattr(self, 'backup_dlg'):
@@ -1242,7 +1242,11 @@ class system:
                         self.backup_dlg.update(int(progress), folder,
                                 item)
                 elif os.path.isdir(itempath):
-                    self.tar_add_folder(tar, itempath)
+                    # empty dir, just add
+                    if os.listdir(itempath) == []:
+                        tar.add(itempath)
+                    else:
+                        self.tar_add_folder(tar, itempath)
         except Exception, e:
 
             self.backup_dlg.close()

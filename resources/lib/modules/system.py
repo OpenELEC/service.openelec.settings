@@ -921,7 +921,7 @@ class system:
                         xbmcDialog = xbmcgui.Dialog()
                         answer = xbmcDialog.yesno('OpenELEC Update',
                                 self.oe._(32188).encode('utf-8') + ':  ' + self.version,
-                                self.oe._(32187).encode('utf-8') + ':  ' + update_json['data']['update'].split('-')[-1].replace('.tar.bz2', ''),
+                                self.oe._(32187).encode('utf-8') + ':  ' + update_json['data']['update'].split('-')[-1].replace('.tar', ''),
                                 self.oe._(32180).encode('utf-8'))
                         
                         xbmcDialog = None

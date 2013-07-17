@@ -483,6 +483,11 @@ class services:
                 self.stop_samba()
                 self.oe.dbg_log('services::initialize_samba',
                                 'exit_function (samba disabled)', 0)
+                
+                self.oe.set_service_option('samba',
+                                            'SAMBA_ENABLED',
+                                            'FALSE')
+                
                 self.oe.set_busy(0)
                 return
             else:
@@ -496,6 +501,10 @@ class services:
                     self.samba_active_conf.readfp(StringIO('\n'.join(line.strip()
                             for line in open(self.samba_default_conf))))
 
+                self.oe.set_service_option('samba',
+                                            'SAMBA_ENABLED',
+                                            'TRUE')
+                
                 if self.struct['samba']['settings']['samba_secure'
                         ]['value'] == '1' and self.struct['samba'
                         ]['settings']['samba_username']['value'] != '' \
@@ -524,6 +533,10 @@ class services:
 
                     self.samba_active_conf.set('global', 'username map'
                             , self.samba_username_map)
+                    
+                    self.oe.set_service_option('samba',
+                                               'SAMBA_SECURE',
+                                               'TRUE')
                 else:
 
                     for entry in self.samba_active_conf.sections():
@@ -540,6 +553,10 @@ class services:
                         self.samba_active_conf.remove_option('global',
                                 'username map')
 
+                    self.oe.set_service_option('samba',
+                                               'SAMBA_SECURE',
+                                               'FALSE')
+                    
                 with open(self.samba_conf, 'wb') as configfile:
                     self.samba_active_conf.write(configfile)
 
@@ -581,10 +598,20 @@ class services:
                     os.remove(self.ssh_conf_dir + '/'
                               + self.ssh_conf_file)
 
+                self.oe.set_service_option('ssh',
+                                            'SSHD_START',
+                                            'false')
+                
                 self.stop_ssh()
+
                 self.oe.set_busy(0)
                 return
 
+            else:
+                self.oe.set_service_option('ssh',
+                                            'SSHD_START',
+                                            'true')
+                
             if not os.path.exists(self.ssh_conf_dir):
                 os.makedirs(self.ssh_conf_dir)
 
@@ -594,6 +621,15 @@ class services:
             if self.struct['ssh']['settings']['ssh_unsecure']['value'] \
                 == '1':
                 ssh_conf.write('SSHD_DISABLE_PW_AUTH=true\n')
+                self.oe.set_service_option('ssh',
+                                            'SSHD_DISABLE_PW_AUTH',
+                                            'true')
+                
+            else:
+                self.oe.set_service_option('ssh',
+                                            'SSHD_DISABLE_PW_AUTH',
+                                            'false')   
+                
             ssh_conf.close()
 
             self.stop_ssh()
@@ -624,10 +660,20 @@ class services:
                     ]['value'] == '0':
                 self.oe.dbg_log('services::initialize_avahi',
                                 'exit_function (avahi disabled)', 0)
+                
+                self.oe.set_service_option('avahi',
+                                            'AVAHI_ENABLED',
+                                            'false')   
+                
                 self.stop_avahi()
                 self.oe.set_busy(0)
                 return
 
+            else:
+                self.oe.set_service_option('avahi',
+                                            'AVAHI_ENABLED',
+                                            'true')   
+                
             if not os.path.exists(self.avahi_dir):
                 os.mkdir(self.avahi_dir, 0755)
 
@@ -659,10 +705,20 @@ class services:
                     ] == '0':
                 self.oe.dbg_log('services::initialize_cron',
                                 'exit_function (cron disabled)', 0)
+                
+                self.oe.set_service_option('cron',
+                                            'CRON_ENABLED',
+                                            'false')   
+                
                 self.stop_cron()
                 self.oe.set_busy(0)
                 return
 
+            else:
+                self.oe.set_service_option('cron',
+                                            'CRON_ENABLED',
+                                            'true')   
+                
             if not os.path.exists(self.cron_dir):
                 path = self.cron_dir.split('/')
                 new_folder = ''
@@ -853,8 +909,15 @@ class services:
                 if 'bluetooth' in self.oe.dictModules:
                     self.oe.dictModules['bluetooth'].start_bluetoothd()
 
+                self.oe.set_service_option('bluez',
+                                            'BLUEZ_ENABLED',
+                                            'true')   
+                
             else:
-
+                self.oe.set_service_option('bluez',
+                                            'BLUEZ_ENABLED',
+                                            'false')   
+                
                 if 'bluetooth' in self.oe.dictModules:
                     self.oe.dictModules['bluetooth'].stop_bluetoothd()
 

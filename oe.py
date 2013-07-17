@@ -167,7 +167,31 @@ def execute(command_line):
 
         dbg_log('oe::execute', 'ERROR: (' + repr(e) + ')')
 
+def set_service_option(service, option, value):
+    try:
 
+        lines = []        
+        changed = False
+        conf_file_name = '%s/service_%s.conf' % (CONFIG_CACHE, service)
+        
+        if os.path.isfile(conf_file_name):
+            with open(conf_file_name, "r") as conf_file:
+                for line in conf_file:
+                    if option in line:
+                        line = "%s=%s" % (option, value);
+                        changed = True
+                    lines.append(line.strip())
+
+        if changed == False:
+            lines.append("%s=%s" % (option, value))
+            
+        with open(conf_file_name, "w") as conf_file:
+            conf_file.write('\n'.join(lines) + '\n')
+
+    except Exception, e:
+
+        dbg_log('oe::set_service_option', 'ERROR: (' + repr(e) + ')')
+          
 def load_file(filename):
     try:
 

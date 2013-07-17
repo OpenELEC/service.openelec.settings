@@ -188,14 +188,6 @@ class services:
             self.samba_nmbd = '/usr/bin/nmbd'
             self.samba_smbd = '/usr/bin/smbd'
 
-            self.ssh_dir = '%s/ssh' % self.oe.CONFIG_CACHE
-            self.ssh_rsa_key1 = '%s/ssh/ssh_host_key' % self.oe.CONFIG_CACHE
-            self.ssh_rsa_key2 = '%s/ssh/ssh_host_rsa_key' % self.oe.CONFIG_CACHE
-            self.ssh_dsa_key1 = '%s/ssh/ssh_host_dsa_key' % self.oe.CONFIG_CACHE
-            self.ssh_keygen = 'ssh-keygen'
-            self.ssh_known_hosts_t = '/etc/ssh/known_hosts'
-            self.ssh_known_hosts = os.environ['HOME'] \
-                + '/.ssh/known_hosts'
             self.ssh_daemon = '/usr/sbin/sshd'
             self.ssh_pid = '/var/run/sshd.pid'
             self.ssh_conf_dir =  self.oe.USER_CONFIG

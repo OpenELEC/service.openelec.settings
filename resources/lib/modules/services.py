@@ -179,8 +179,6 @@ class services:
 
             self.kernel_cmd = '/proc/cmdline'
             
-            self.samba_nmbd_pid = '/var/run/nmbd-smb.conf.pid'
-            self.samba_smbd_pid = '/var/run/smbd-smb.conf.pid'
             self.samba_nmbd = '/usr/bin/nmbd'
             self.samba_smbd = '/usr/bin/smbd'
             self.samba_init = '/etc/init.d/52_samba'
@@ -749,12 +747,6 @@ class services:
                     )
             for p in pid:
                 os.system('kill ' + p.strip().replace('\n', ''))
-
-            if os.path.isfile(self.samba_nmbd_pid):
-                os.remove(self.samba_nmbd_pid)
-
-            if os.path.isfile(self.samba_smbd_pid):
-                os.remove(self.samba_smbd_pid)
 
             self.oe.dbg_log('services::stop_samba', 'exit_function', 0)
         except Exception, e:

@@ -201,7 +201,6 @@ class services:
 
             self.syslog_daemon = '/sbin/syslogd'
             self.syslog_conf_file = '%s/syslog/remote' % self.oe.CONFIG_CACHE
-            self.syslog_pid = '/var/run/syslogd.pid'
             self.syslog_start = '/etc/init.d/08_syslogd'
 
             #self.oe = oeMain
@@ -877,9 +876,6 @@ class services:
                     )
             for p in pid:
                 os.system('kill -9 ' + p.strip().replace('\n', ''))
-
-            if os.path.isfile(self.syslog_pid):
-                os.remove(self.syslog_pid)
 
             self.oe.dbg_log('services::stop_syslog', 'exit_function)',
                             0)

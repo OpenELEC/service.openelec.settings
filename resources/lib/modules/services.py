@@ -196,7 +196,7 @@ class services:
 
             self.syslog_daemon = '/sbin/syslogd'
             self.syslog_conf_file = '%s/syslog/remote' % self.oe.CONFIG_CACHE
-            self.syslog_start = '/etc/init.d/08_syslogd'
+            self.syslog_start = '/etc/init.d/05_syslogd'
 
             #self.oe = oeMain
 

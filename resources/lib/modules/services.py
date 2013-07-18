@@ -194,8 +194,8 @@ class services:
             self.ssh_conf_file = 'sshd.conf'
             self.sshd_init = '/etc/init.d/51_sshd'
 
-            self.avahi_dir = '/var/run/avahi-daemon'
             self.avahi_daemon = '/usr/sbin/avahi-daemon'
+            self.avahi_init = '/etc/init.d/53_avahi'
 
             self.cron_daemon = '/sbin/crond'
             self.crond_init = '/etc/init.d/09_crond'
@@ -674,11 +674,8 @@ class services:
                                             'AVAHI_ENABLED',
                                             'true')   
                 
-            if not os.path.exists(self.avahi_dir):
-                os.mkdir(self.avahi_dir, 0755)
-
             self.stop_avahi()
-            os.system(self.avahi_daemon + ' -D')
+            os.system('sh ' + self.avahi_init)
 
             self.oe.set_busy(0)
 

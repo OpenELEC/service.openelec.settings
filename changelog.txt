@@ -1,3 +1,10 @@
+2013-07-18 v0.1.26
+  (change) services not restarted on addon startup
+  (change) (re)start samba via initscript
+  (change) (re)start bluetooth via initscript
+  (change) (re)start crond via initscript
+  (change) (re)start avahi via initscript
+
 2013-07-14 v0.1.25
   (fix) backup. handle mountpoints under backupdirs
   (fix) backup. do not dereference symlinks

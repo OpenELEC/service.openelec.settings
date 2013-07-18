@@ -46,6 +46,7 @@ class bluetooth:
         'InfoText': 704,
         }}
     bt_daemon = '/usr/lib/bluetooth/bluetoothd'
+    bluez_init = '/etc/init.d/54_bluez'
 
 
     def __init__(self, oeMain):
@@ -148,7 +149,7 @@ class bluetooth:
                   
                 self.oe.dbg_log('bluetooth::init_bluetooth',
                                 'Starting Bluetooth Daemon.', 0)
-                os.system(self.bt_daemon + ' &')      
+                os.system('sh ' + self.bluez_init)
                 
             self.oe.dbg_log('bluetooth::start_bluetoothd',
                             'exit_function', 0)

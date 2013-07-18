@@ -1,3 +1,7 @@
+2013-07-18 v0.1.27
+  (change) move ssh config file to $CONFIG_CACHE
+  (fix) save service config files on startup
+
 2013-07-18 v0.1.26
   (change) services not restarted on addon startup
   (change) (re)start samba via initscript

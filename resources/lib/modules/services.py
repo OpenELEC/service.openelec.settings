@@ -197,8 +197,8 @@ class services:
             self.avahi_dir = '/var/run/avahi-daemon'
             self.avahi_daemon = '/usr/sbin/avahi-daemon'
 
-            self.cron_dir = '%s/cron/crontabs' % self.oe.CONFIG_CACHE
             self.cron_daemon = '/sbin/crond'
+            self.crond_init = '/etc/init.d/09_crond'
 
             self.syslog_daemon = '/sbin/syslogd'
             self.syslog_conf_file = '%s/syslog/remote' % self.oe.CONFIG_CACHE
@@ -719,17 +719,8 @@ class services:
                                             'CRON_ENABLED',
                                             'true')   
                 
-            if not os.path.exists(self.cron_dir):
-                path = self.cron_dir.split('/')
-                new_folder = ''
-
-                for folder in path:
-                    new_folder = new_folder + '/' + folder
-                    if not os.path.exists(new_folder):
-                        os.mkdir(new_folder, 0755)
-
             self.stop_cron()
-            os.system(self.cron_daemon + ' -b')
+            os.system('sh ' + self.crond_init)
 
             self.oe.set_busy(0)
 

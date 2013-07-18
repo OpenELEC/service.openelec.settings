@@ -216,6 +216,11 @@ class services:
             self.oe.dbg_log('services::start_service', 'enter_function'
                             , 0)
 
+            self.initialize_samba(service=1)
+            self.initialize_ssh(service=1)
+            self.initialize_avahi(service=1)
+            self.initialize_cron(service=1)
+
             self.init_bluetooth()
             
             self.oe.dbg_log('services::start_service', 'exit_function',
@@ -466,9 +471,10 @@ class services:
 
             if self.struct['samba']['settings']['samba_autostart'
                     ]['value'] != '1':
-                self.stop_samba()
-                self.oe.dbg_log('services::initialize_samba',
-                                'exit_function (samba disabled)', 0)
+                if not 'service' in kwargs:
+                    self.stop_samba()
+                    self.oe.dbg_log('services::initialize_samba',
+                                    'exit_function (samba disabled)', 0)
                 
                 self.oe.set_service_option('samba',
                                             'SAMBA_ENABLED',
@@ -509,10 +515,10 @@ class services:
                     self.oe.set_service_option('samba',
                                                'SAMBA_SECURE',
                                                'false')
-                    
-                self.stop_samba()
-
-                os.system('sh ' + self.samba_init)
+                 
+                if not 'service' in kwargs: 
+                    self.stop_samba()
+                    os.system('sh ' + self.samba_init)
 
                 self.oe.dbg_log('services::initialize_samba',
                                 'exit_function (samba enabled)', 0)
@@ -549,7 +555,8 @@ class services:
                                             'SSHD_START',
                                             'false')
                 
-                self.stop_ssh()
+                if not 'service' in kwargs:
+                    self.stop_ssh()
 
                 self.oe.set_busy(0)
                 return
@@ -579,8 +586,9 @@ class services:
                 
             ssh_conf.close()
 
-            self.stop_ssh()
-            os.system('sh ' + self.sshd_init)
+            if not 'service' in kwargs:
+                self.stop_ssh()
+                os.system('sh ' + self.sshd_init)
 
             self.oe.set_busy(0)
 
@@ -612,7 +620,9 @@ class services:
                                             'AVAHI_ENABLED',
                                             'false')   
                 
-                self.stop_avahi()
+                if not 'service' in kwargs:
+                    self.stop_avahi()
+                
                 self.oe.set_busy(0)
                 return
 
@@ -620,9 +630,10 @@ class services:
                 self.oe.set_service_option('avahi',
                                             'AVAHI_ENABLED',
                                             'true')   
-                
-            self.stop_avahi()
-            os.system('sh ' + self.avahi_init)
+            
+            if not 'service' in kwargs:
+                self.stop_avahi()
+                os.system('sh ' + self.avahi_init)
 
             self.oe.set_busy(0)
 
@@ -654,7 +665,9 @@ class services:
                                             'CRON_ENABLED',
                                             'false')   
                 
-                self.stop_cron()
+                if not 'service' in kwargs:
+                    self.stop_cron()
+                    
                 self.oe.set_busy(0)
                 return
 
@@ -662,9 +675,10 @@ class services:
                 self.oe.set_service_option('cron',
                                             'CRON_ENABLED',
                                             'true')   
-                
-            self.stop_cron()
-            os.system('sh ' + self.crond_init)
+            
+            if not 'service' in kwargs:
+                self.stop_cron()
+                os.system('sh ' + self.crond_init)
 
             self.oe.set_busy(0)
 

@@ -28,7 +28,7 @@ import os
 import xbmc
 import ConfigParser
 from StringIO import StringIO
-
+import subprocess
 
 class services:
 
@@ -518,7 +518,7 @@ class services:
                  
                 if not 'service' in kwargs: 
                     self.stop_samba()
-                    os.system('sh ' + self.samba_init)
+                    subprocess.Popen('sh ' + self.samba_init, shell=True, close_fds=True)
 
                 self.oe.dbg_log('services::initialize_samba',
                                 'exit_function (samba enabled)', 0)
@@ -588,7 +588,7 @@ class services:
 
             if not 'service' in kwargs:
                 self.stop_ssh()
-                os.system('sh ' + self.sshd_init)
+                subprocess.Popen('sh ' + self.sshd_init, shell=True, close_fds=True)
 
             self.oe.set_busy(0)
 
@@ -633,7 +633,7 @@ class services:
             
             if not 'service' in kwargs:
                 self.stop_avahi()
-                os.system('sh ' + self.avahi_init)
+                subprocess.Popen('sh ' + self.avahi_init, shell=True, close_fds=True)
 
             self.oe.set_busy(0)
 
@@ -678,7 +678,7 @@ class services:
             
             if not 'service' in kwargs:
                 self.stop_cron()
-                os.system('sh ' + self.crond_init)
+                subprocess.Popen('sh ' + self.crond_init, shell=True, close_fds=True)
 
             self.oe.set_busy(0)
 

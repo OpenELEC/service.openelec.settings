@@ -1,3 +1,6 @@
+2013-07-18 v0.1.28
+  (change) use subprocess.Popen() instead of os.system() to start services
+
 2013-07-18 v0.1.27
   (change) move ssh config file to $CONFIG_CACHE
   (fix) save service config files on startup

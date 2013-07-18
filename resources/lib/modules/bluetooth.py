@@ -35,6 +35,7 @@ import dbus.service
 import threading
 import gobject
 import oeWindows
+import subprocess
 
 
 class bluetooth:
@@ -149,7 +150,7 @@ class bluetooth:
                   
                 self.oe.dbg_log('bluetooth::init_bluetooth',
                                 'Starting Bluetooth Daemon.', 0)
-                os.system('sh ' + self.bluez_init)
+                subprocess.Popen('sh ' + self.bluez_init, shell=True, close_fds=True)
                 
             self.oe.dbg_log('bluetooth::start_bluetoothd',
                             'exit_function', 0)

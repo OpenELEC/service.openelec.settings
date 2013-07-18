@@ -486,7 +486,7 @@ class services:
                 
                 self.oe.set_service_option('samba',
                                             'SAMBA_ENABLED',
-                                            'FALSE')
+                                            'false')
                 
                 self.oe.set_busy(0)
                 return
@@ -503,7 +503,7 @@ class services:
 
                 self.oe.set_service_option('samba',
                                             'SAMBA_ENABLED',
-                                            'TRUE')
+                                            'true')
                 
                 if self.struct['samba']['settings']['samba_secure'
                         ]['value'] == '1' and self.struct['samba'
@@ -536,7 +536,7 @@ class services:
                     
                     self.oe.set_service_option('samba',
                                                'SAMBA_SECURE',
-                                               'TRUE')
+                                               'true')
                 else:
 
                     for entry in self.samba_active_conf.sections():
@@ -555,7 +555,7 @@ class services:
 
                     self.oe.set_service_option('samba',
                                                'SAMBA_SECURE',
-                                               'FALSE')
+                                               'false')
                     
                 with open(self.samba_conf, 'wb') as configfile:
                     self.samba_active_conf.write(configfile)

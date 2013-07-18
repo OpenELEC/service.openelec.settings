@@ -179,14 +179,11 @@ class services:
 
             self.kernel_cmd = '/proc/cmdline'
             
-            self.samba_conf = '/var/run/smb.conf'
-            self.samba_user_conf = '%s/samba.conf' % self.oe.USER_CONFIG
-            self.samba_default_conf = '/etc/samba/smb.conf'
             self.samba_nmbd_pid = '/var/run/nmbd-smb.conf.pid'
             self.samba_smbd_pid = '/var/run/smbd-smb.conf.pid'
-            self.samba_username_map = '/var/run/samba.map'
             self.samba_nmbd = '/usr/bin/nmbd'
             self.samba_smbd = '/usr/bin/smbd'
+            self.samba_init = '/etc/init.d/52_samba'
 
             self.ssh_daemon = '/usr/sbin/sshd'
             self.ssh_pid = '/var/run/sshd.pid'
@@ -492,15 +489,6 @@ class services:
                 return
             else:
 
-                self.samba_active_conf = ConfigParser.ConfigParser()
-
-                if os.path.isfile(self.samba_user_conf):
-                    self.samba_active_conf.readfp(StringIO('\n'.join(line.strip()
-                            for line in open(self.samba_user_conf))))
-                else:
-                    self.samba_active_conf.readfp(StringIO('\n'.join(line.strip()
-                            for line in open(self.samba_default_conf))))
-
                 self.oe.set_service_option('samba',
                                             'SAMBA_ENABLED',
                                             'true')
@@ -511,29 +499,6 @@ class services:
                     and self.struct['samba']['settings'
                         ]['samba_password']['value'] != '':
 
-                    os.system('echo -e "%(pw)s\n%(pw)s" | smbpasswd -s -a root >/dev/null 2>&1'
-                               % {'pw': self.struct['samba']['settings'
-                              ]['samba_password']['value']})
-
-                    samba_map = open(self.samba_username_map, 'w')
-                    samba_map.write('nobody = root\n')
-                    samba_map.write('root = %s\n' % self.struct['samba'
-                                    ]['settings']['samba_username'
-                                    ]['value'])
-                    samba_map.close()
-
-                    for entry in self.samba_active_conf.sections():
-                        if self.samba_active_conf.has_option(entry,
-                                'public') and entry.lower() != 'global':
-                            self.samba_active_conf.set(entry, 'public',
-                                    'no')
-
-                    self.samba_active_conf.set('global', 'security',
-                            'user')
-
-                    self.samba_active_conf.set('global', 'username map'
-                            , self.samba_username_map)
-                    
                     self.oe.set_service_option('samba',
                                                 'SAMBA_USERNAME',
                                                 self.struct['samba'
@@ -549,35 +514,16 @@ class services:
                     self.oe.set_service_option('samba',
                                                'SAMBA_SECURE',
                                                'true')
+
                 else:
-
-                    for entry in self.samba_active_conf.sections():
-                        if self.samba_active_conf.has_option(entry,
-                                'public') and entry.lower() != 'global':
-                            self.samba_active_conf.set(entry, 'public',
-                                    'yes')
-
-                    self.samba_active_conf.set('global', 'security',
-                            'share')
-
-                    if self.samba_active_conf.has_option('global',
-                            'username map'):
-                        self.samba_active_conf.remove_option('global',
-                                'username map')
 
                     self.oe.set_service_option('samba',
                                                'SAMBA_SECURE',
                                                'false')
                     
-                with open(self.samba_conf, 'wb') as configfile:
-                    self.samba_active_conf.write(configfile)
-
                 self.stop_samba()
 
-                os.system('%s --daemon --configfile=%s'
-                          % (self.samba_nmbd, self.samba_conf))
-                os.system('%s --daemon --configfile=%s'
-                          % (self.samba_smbd, self.samba_conf))
+                os.system('sh ' + self.samba_init)
 
                 self.oe.dbg_log('services::initialize_samba',
                                 'exit_function (samba enabled)', 0)

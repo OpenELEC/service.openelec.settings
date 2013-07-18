@@ -189,7 +189,6 @@ class services:
             self.samba_smbd = '/usr/bin/smbd'
 
             self.ssh_daemon = '/usr/sbin/sshd'
-            self.ssh_pid = '/var/run/sshd.pid'
             self.ssh_conf_dir =  self.oe.USER_CONFIG
             self.ssh_conf_file = 'sshd.conf'
             self.sshd_init = '/etc/init.d/51_sshd'
@@ -826,9 +825,6 @@ class services:
                     )
             for p in pid:
                 os.system('kill -9 ' + p.strip().replace('\n', ''))
-
-            if os.path.isfile(self.ssh_pid):
-                os.remove(self.ssh_pid)
 
             self.oe.dbg_log('services::stop_ssh', 'exit_function)', 0)
         except Exception, e:

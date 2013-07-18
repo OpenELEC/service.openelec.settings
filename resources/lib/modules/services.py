@@ -535,6 +535,18 @@ class services:
                             , self.samba_username_map)
                     
                     self.oe.set_service_option('samba',
+                                                'SAMBA_USERNAME',
+                                                self.struct['samba'
+                                                ]['settings']['samba_username'
+                                                ]['value'])
+                                            
+                    self.oe.set_service_option('samba',
+                                                'SAMBA_PASSWORD',
+                                                self.struct['samba'
+                                                ]['settings']['samba_password'
+                                                ]['value'])
+                                            
+                    self.oe.set_service_option('samba',
                                                'SAMBA_SECURE',
                                                'true')
                 else:

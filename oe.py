@@ -114,6 +114,9 @@ def _(code):
     return __addon__.getLocalizedString(code)
 
 def dbg_log(source, text, level=4):
+    if os.environ.get('DEBUG', 'no') == 'no':
+        return
+
     xbmc.log('## OpenELEC Addon ## ' + source + ' ## ' + text, level)
     xbmc.log(traceback.format_exc())
 

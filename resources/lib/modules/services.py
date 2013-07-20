@@ -198,6 +198,8 @@ class services:
             self.syslog_conf_file = '%s/syslog/remote' % self.oe.CONFIG_CACHE
             self.syslog_start = '/etc/init.d/05_syslogd'
 
+            self.bluetooth_daemon = '/usr/lib/bluetooth/bluetoothd'
+            
             #self.oe = oeMain
 
       # self.load_values()
@@ -426,12 +428,14 @@ class services:
                     self.struct['syslog']['settings']['remote_syslog_ip'
                             ]['value'] = ip
 
-            value = self.oe.read_setting('services',
-                    'disable_bt')
-            if not value is None:
-                self.struct['bt']['settings']['disable_bt'
-                        ]['value'] = value
-            self.bt = True
+            if os.path.isfile(self.bluetooth_daemon):
+                self.bt = True                
+                value = self.oe.read_setting('services',
+                        'disable_bt')
+                if not value is None:
+                    self.struct['bt']['settings']['disable_bt'
+                            ]['value'] = value
+                        
             
             self.oe.dbg_log('services::load_values', 'exit_function', 0)
         except Exception, e:

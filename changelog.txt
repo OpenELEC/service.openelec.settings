@@ -1,3 +1,7 @@
+2013-07-23 v0.1.30
+  (change) use subprocess.Popen to start LCDd
+  (fix) stop LCDd on driver change
+
 2013-07-18 v0.1.29
   (change) fix bluetooth entry in service menu
   (change) disable logging until OE DEBUG != true

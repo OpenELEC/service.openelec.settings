@@ -38,6 +38,7 @@ import mimetypes
 import httplib
 import oeWindows
 import json
+import subprocess
 
 from xml.dom import minidom
 
@@ -648,11 +649,14 @@ class system:
                               + self.config['driver']['settings']['lcd'
                               ]['value'], '-s true']
 
-                os.system('LCDd ' + ' '.join(parameters))
+                os.system('killall LCDd')
+                subprocess.Popen('LCDd ' + ' '.join(parameters), shell=True, close_fds=True)
             else:
 
                 self.oe.dbg_log('system::set_lcd_driver',
                                 'no driver selected', 1)
+
+                os.system('killall LCDd')
 
             self.oe.set_busy(0)
 

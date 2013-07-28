@@ -354,7 +354,12 @@ class system:
             if not value is None:
                 self.config['update']['settings']['AutoUpdate']['value'
                         ] = value
-
+   
+            value = self.oe.read_setting('system', 'UpdateNotify')
+            if not value is None:
+                self.config['update']['settings']['UpdateNotify'
+                        ]['value'] = value
+                
             # AutoUpdate = manual by environment var.
             if 'UPDATE_SUPPORT' in os.environ:
                 if os.environ['UPDATE_SUPPORT'] == 'false':
@@ -366,11 +371,6 @@ class system:
 
                     self.config['update']['settings']['CheckUpdate']['not_supported'
                             ] = [self.arch]
-                    
-                value = self.oe.read_setting('system', 'UpdateNotify')
-                if not value is None:
-                    self.config['update']['settings']['UpdateNotify'
-                            ]['value'] = value
 
             # AutoUpdate File and URL
             value = self.oe.read_setting('system', 'update_file')

@@ -85,25 +85,26 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                                     self.oe.dictModules[x].menu.keys()):
 
                 self.oe.dbg_log('init module', strModule, 0)
-                if hasattr(self.oe.dictModules[strModule], 'do_init'):
-                    Thread(target=self.oe.dictModules[strModule].do_init(),
-                           args=()).start()
+                if self.oe.dictModules[strModule].enabled:
+                    if hasattr(self.oe.dictModules[strModule], 'do_init'):
+                        Thread(target=self.oe.dictModules[strModule].do_init(),
+                            args=()).start()
 
-                for men in self.oe.dictModules[strModule].menu:
-                    dictProperties = {'modul': strModule,
-                            'listTyp': self.oe.listObject[self.oe.dictModules[strModule].menu[men]['listTyp'
-                            ]],
-                            'menuLoader': self.oe.dictModules[strModule].menu[men]['menuLoader'
-                            ]}
+                    for men in self.oe.dictModules[strModule].menu:
+                        dictProperties = {'modul': strModule,
+                                'listTyp': self.oe.listObject[self.oe.dictModules[strModule].menu[men]['listTyp'
+                                ]],
+                                'menuLoader': self.oe.dictModules[strModule].menu[men]['menuLoader'
+                                ]}
 
-                    if 'InfoText' \
-                        in self.oe.dictModules[strModule].menu[men]:
-                        dictProperties['InfoText'] = \
-                            self.oe._(self.oe.dictModules[strModule].menu[men]['InfoText'
-                                ])
+                        if 'InfoText' \
+                            in self.oe.dictModules[strModule].menu[men]:
+                            dictProperties['InfoText'] = \
+                                self.oe._(self.oe.dictModules[strModule].menu[men]['InfoText'
+                                    ])
 
-                    self.addMenuItem(self.oe.dictModules[strModule].menu[men]['name'
-                            ], dictProperties)
+                        self.addMenuItem(self.oe.dictModules[strModule].menu[men]['name'
+                                ], dictProperties)
 
             self.setFocusId(self.guiMenList)
             self.onFocus(self.guiMenList)
@@ -155,6 +156,76 @@ class mainWindow(xbmcgui.WindowXMLDialog):
             self.oe.dbg_log('oeWindows.mainWindow::addConfigItem('
                             + strName + ')', 'ERROR: (' + repr(e) + ')')
 
+    def build_menu(self, struct, fltr=[], optional='0'):
+        
+        try:
+
+            for category in sorted(struct, key=lambda x: struct[x]['order']):
+
+                if not 'hidden' in struct[category]:
+                        
+                    if fltr == []:
+                        self.addConfigItem(self.oe._(struct[category]['name'
+                                ]), {'typ': 'separator'}, 1100)
+
+                    else:
+                        if category not in fltr:
+                            continue
+                        
+                    for entry in sorted(struct[category]['settings'],
+                            key=lambda x: struct[category]['settings'
+                            ][x]['order']):
+
+                        setting = struct[category]['settings'][entry]
+                        
+                        if not 'hidden' in setting:
+
+                            dictProperties = {
+                                'value': setting['value'],
+                                'typ': setting['type'],
+                                'entry': entry,
+                                'category': category,
+                                'action': setting['action'],
+                                }
+
+                            if 'InfoText' in setting:
+                                dictProperties['InfoText'] = \
+                                    self.oe._(setting['InfoText'])
+
+                            if 'validate' in setting:
+                                dictProperties['validate'] = \
+                                    setting['validate']
+
+                            if 'values' in setting:
+                                dictProperties['values'] = \
+                                    ','.join(setting['values'])
+
+                            if isinstance(setting['name'], basestring):
+                                name = setting['name']
+                            else:
+                                name = self.oe._(setting['name'])
+                                
+                            if not 'parent' in setting:
+
+                                self.addConfigItem(name, 
+                                        dictProperties,
+                                        1100)
+                            else:
+
+                                if struct[category]['settings'
+                                        ][setting['parent']['entry']]['value'
+                                        ] in setting['parent']['value']:
+
+                                    if not 'optional' in setting or \
+                                        ('optional' in setting and optional != '0'):
+                                        self.addConfigItem(name,
+                                                dictProperties,
+                                                1100)
+
+        except Exception, e:
+
+            self.oe.dbg_log('oeWindows.mainWindow::build_menu', 'ERROR: (' + repr(e) + ')')
+        
     def showButton(
         self,
         number,

@@ -55,7 +55,7 @@ class services:
                             'name': 32204,
                             'value': '1',
                             'action': 'initialize_samba',
-                            'typ': 'bool',
+                            'type': 'bool',
                             'InfoText': 738,
                             },
                         'samba_secure': {
@@ -63,7 +63,7 @@ class services:
                             'name': 32202,
                             'value': '0',
                             'action': 'initialize_samba',
-                            'typ': 'bool',
+                            'type': 'bool',
                             'parent': {'entry': 'samba_autostart',
                                     'value': ['1']},
                             'InfoText': 739,
@@ -73,7 +73,7 @@ class services:
                             'name': 32106,
                             'value': 'openelec',
                             'action': 'initialize_samba',
-                            'typ': 'text',
+                            'type': 'text',
                             'parent': {'entry': 'samba_secure',
                                     'value': ['1']},
                             'InfoText': 740,
@@ -83,7 +83,7 @@ class services:
                             'name': 32107,
                             'value': 'openelec',
                             'action': 'initialize_samba',
-                            'typ': 'text',
+                            'type': 'text',
                             'parent': {'entry': 'samba_secure',
                                     'value': ['1']},
                             'InfoText': 741,
@@ -99,14 +99,14 @@ class services:
                         'name': 32205,
                         'value': '0',
                         'action': 'initialize_ssh',
-                        'typ': 'bool',
+                        'type': 'bool',
                         'InfoText': 742,
                         }, 'ssh_unsecure': {
                         'order': 2,
                         'name': 32203,
                         'value': '0',
                         'action': 'initialize_ssh',
-                        'typ': 'bool',
+                        'type': 'bool',
                         'parent': {'entry': 'ssh_autostart',
                                    'value': ['1']},
                         'InfoText': 743,
@@ -121,7 +121,7 @@ class services:
                         'name': 32206,
                         'value': '1',
                         'action': 'initialize_avahi',
-                        'typ': 'bool',
+                        'type': 'bool',
                         'InfoText': 744,
                         }},
                     },
@@ -134,7 +134,7 @@ class services:
                         'name': 32320,
                         'value': '0',
                         'action': 'initialize_cron',
-                        'typ': 'bool',
+                        'type': 'bool',
                         'InfoText': 745,
                         }},
                     },
@@ -147,14 +147,14 @@ class services:
                         'name': 32341,
                         'value': '0',
                         'action': 'initialize_syslog',
-                        'typ': 'bool',
+                        'type': 'bool',
                         'InfoText': 746,
                         }, 'remote_syslog_ip': {
                         'order': 2,
                         'name': 32342,
                         'value': '0',
                         'action': 'initialize_syslog',
-                        'typ': 'ip',
+                        'type': 'ip',
                         'parent': {'entry': 'remote_syslog_autostart',
                                    'value': ['1']},
                         'InfoText': 747,
@@ -169,12 +169,14 @@ class services:
                         'name': 32344,
                         'value': '0',
                         'action': 'init_bluetooth',
-                        'typ': 'bool',
+                        'type': 'bool',
                         'InfoText': 720,
                         }},
                     },                        
                 }
 
+            self.enabled = True
+            
             self.oe = oeMain
 
             self.kernel_cmd = '/proc/cmdline'
@@ -262,73 +264,8 @@ class services:
 
             self.oe.dbg_log('services::load_menu', 'enter_function', 0)
 
-            for category in sorted(self.struct, key=lambda x: \
-                                   self.struct[x]['order']):
-                if 'not_supported' in self.struct[category]:
-                    if self.arch \
-                        in self.struct[category]['not_supported'] \
-                        or not hasattr(self, category):
-                        continue
-
-                self.oe.winOeMain.addConfigItem(self.oe._(self.struct[category]['name'
-                        ]), {'typ': 'separator'},
-                        focusItem.getProperty('listTyp'))
-
-                for setting in sorted(self.struct[category]['settings'
-                        ], key=lambda x: \
-                        self.struct[category]['settings'][x]['order']):   
-
-                    if 'not_supported' in self.struct[category]['settings'][setting]:
-
-                        #skip setting
-                        self.oe.dbg_log('services::load_menu', 'skip setting ' + setting, 0)
-                        
-                    else:
-                      
-                        dictProperties = {
-                            'entry': setting,
-                            'category': category,
-                            'action': self.struct[category]['settings'
-                                    ][setting]['action'],
-                            'value': self.struct[category]['settings'
-                                    ][setting]['value'],
-                            'typ': self.struct[category]['settings'
-                                    ][setting]['typ'],
-                            }
-
-                        if 'InfoText' in self.struct[category]['settings'
-                                ][setting]:
-                            dictProperties['InfoText'] = \
-                                self.oe._(self.struct[category]['settings'
-                                    ][setting]['InfoText'])
-
-                        if 'values' in self.struct[category]['settings'
-                                ][setting]:
-                            if len(self.struct[category]['settings'
-                                  ][setting]['values']) > 0:
-                                dictProperties['values'] = \
-                                    ','.join(self.struct[category]['settings'
-                                        ][setting]['values'])
-
-                        if not 'parent' in self.struct[category]['settings'
-                                ][setting]:
-
-                            self.oe.winOeMain.addConfigItem(self.oe._(self.struct[category]['settings'
-                                    ][setting]['name']), dictProperties,
-                                    focusItem.getProperty('listTyp'))
-                        else:
-
-                            if self.struct[category]['settings'
-                                    ][self.struct[category]['settings'
-                                      ][setting]['parent']['entry']]['value'
-                                    ] in self.struct[category]['settings'
-                                    ][setting]['parent']['value']:
-
-                                self.oe.winOeMain.addConfigItem(self.oe._(self.struct[category]['settings'
-                                        ][setting]['name']),
-                                        dictProperties,
-                                        focusItem.getProperty('listTyp'))
-
+            self.oe.winOeMain.build_menu(self.struct)
+            
             self.oe.dbg_log('services::load_menu', 'exit_function', 0)
         except Exception, e:
 
@@ -345,8 +282,6 @@ class services:
 
             # SSH
             if os.path.isfile(self.ssh_daemon):
-                self.ssh = True
-
                 if os.path.exists(self.ssh_conf_dir + '/'
                                   + self.ssh_conf_file):
                     ssh_file = open(self.ssh_conf_dir + '/'
@@ -386,37 +321,41 @@ class services:
                     cmd_args = cmd_file.read()
                     if 'ssh' in cmd_args:
                         self.struct['ssh']['settings']['ssh_autostart'] \
-                        ['not_supported'] = True
+                        ['hidden'] = 'true'
 
                     cmd_file.close()
-                            
+            else:
+                self.struct['ssh']['hidden'] = 'true'
+                
             if os.path.isfile(self.samba_nmbd) \
                 and os.path.isfile(self.samba_smbd):
-                self.samba = True
                 for entry in self.struct['samba']['settings']:
                     value = self.oe.read_setting('services', entry)
                     if not value is None:
                         self.struct['samba']['settings'][entry]['value'
                                 ] = value
-
+            else:
+                self.struct['samba']['hidden'] = 'true'
+                
             if os.path.isfile(self.avahi_daemon):
-                self.avahi = True
                 value = self.oe.read_setting('services',
                         'avahi_autostart')
                 if not value is None:
                     self.struct['avahi']['settings']['avahi_autostart'
                             ]['value'] = value
-
+            else:
+                self.struct['avahi']['hidden'] = 'true'
+                
             if os.path.isfile(self.cron_daemon):
-                self.cron = True
                 value = self.oe.read_setting('services',
                         'cron_autostart')
                 if not value is None:
                     self.struct['cron']['settings']['cron_autostart'
                             ]['value'] = value
-
+            else:
+                self.struct['cron']['hidden'] = 'true'
+                
             if os.path.isfile(self.syslog_daemon):
-                self.syslog = True
                 value = self.oe.read_setting('services',
                         'remote_syslog_autostart')
                 ip = self.oe.read_setting('services', 'remote_syslog_ip'
@@ -427,15 +366,18 @@ class services:
                         value
                     self.struct['syslog']['settings']['remote_syslog_ip'
                             ]['value'] = ip
-
-            if os.path.isfile(self.bluetooth_daemon):
-                self.bt = True                
+            else:
+                self.struct['syslog']['hidden'] = 'true'
+                
+            if os.path.isfile(self.bluetooth_daemon):              
                 value = self.oe.read_setting('services',
                         'disable_bt')
                 if not value is None:
                     self.struct['bt']['settings']['disable_bt'
                             ]['value'] = value
-                        
+            else:
+                self.struct['bt']['hidden'] = 'true'
+                                        
             
             self.oe.dbg_log('services::load_values', 'exit_function', 0)
         except Exception, e:

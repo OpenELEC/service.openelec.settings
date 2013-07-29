@@ -371,7 +371,7 @@
 								<textcolor>FF757677</textcolor>
 								<selectedcolor>white</selectedcolor>
 								<info>ListItem.Property(value)</info>
-								<visible>!StringCompare(ListItem.Property(Typ), bool)</visible>
+								<visible>!StringCompare(ListItem.Property(Typ), bool) + !StringCompare(ListItem.Property(Typ), button)</visible>
 							</control>							
 						</control>
 						<control type="group">
@@ -442,7 +442,7 @@
 								<posy>2</posy>
 								<width>796</width>
 								<height>38</height>
-                <visible>Control.HasFocus(1100)</visible>
+                                                                <visible>Control.HasFocus(1100)</visible>
 								<texture border="5">button-focus2.png</texture>									
 							</control>							
 							<control type="label">
@@ -452,7 +452,7 @@
 								<height>20</height>									
 								<textcolor>white</textcolor>
 								<info>ListItem.Label</info>
-					      <visible>true</visible>
+                                                                <visible>true</visible>
 							</control>
 							<control type="label">
 								<align>right</align>
@@ -462,7 +462,7 @@
 								<height>20</height>								
 								<textcolor>white</textcolor>
 								<info>ListItem.Property(value)</info>
-								<visible>!StringCompare(ListItem.Property(Typ), bool)</visible>
+								<visible>!StringCompare(ListItem.Property(Typ), bool) + !StringCompare(ListItem.Property(Typ), button)</visible>
 							</control>
 						</control>
 						<control type="group">

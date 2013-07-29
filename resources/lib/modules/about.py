@@ -39,6 +39,7 @@ class about:
 
             oeMain.dbg_log('about::__init__', 'enter_function', 0)
 
+            self.enabled = True
             self.oe = oeMain
             self.controls = {}
 

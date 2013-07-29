@@ -46,6 +46,7 @@ class bluetooth:
         'listTyp': 'btlist',
         'InfoText': 704,
         }}
+    
     bt_daemon = '/usr/lib/bluetooth/bluetoothd'
     bluez_init = '/etc/init.d/54_bluez'
 
@@ -54,7 +55,8 @@ class bluetooth:
         try:
 
             oeMain.dbg_log('bluetooth::__init__', 'enter_function', 0)
-
+            
+            self.enabled = True
             self.discovery_time = 30  # Seconds
             self.listItems = {}
             self.oe = oeMain
@@ -64,6 +66,9 @@ class bluetooth:
             self.active = False
             self.dbusBluezAdapter = None
             
+            if not os.path.exists(self.bt_daemon):
+                self.enabled = False
+                
             self.oe.dbg_log('bluetooth::__init__', 'exit_function', 0)
         except Exception, e:
 

@@ -58,6 +58,7 @@ class networkMount(object):
                         'value': '',
                         'type': 'multivalue',
                         'values': ['cifs', 'nfs'],
+                        'action': 'set_value'
                         },
                     'mountpoint': {
                         'order': 2,
@@ -66,6 +67,7 @@ class networkMount(object):
                         'type': 'text',
                         'parent': {'entry': 'type', 'value': ['cifs',
                                    'nfs']},
+                        'action': 'set_value'
                         },
                     'server': {
                         'order': 3,
@@ -74,6 +76,7 @@ class networkMount(object):
                         'type': 'text',
                         'parent': {'entry': 'type', 'value': ['cifs',
                                    'nfs']},
+                        'action': 'set_value'
                         },
                     'share': {
                         'order': 4,
@@ -82,6 +85,7 @@ class networkMount(object):
                         'type': 'text',
                         'parent': {'entry': 'type', 'value': ['cifs',
                                    'nfs']},
+                        'action': 'set_value'
                         },
                     'user': {
                         'order': 5,
@@ -90,6 +94,7 @@ class networkMount(object):
                         'type': 'text',
                         'parent': {'entry': 'type', 'value': ['cifs',
                                    'nfs']},
+                        'action': 'set_value'
                         },
                     'pass': {
                         'order': 6,
@@ -98,6 +103,7 @@ class networkMount(object):
                         'type': 'text',
                         'parent': {'entry': 'type', 'value': ['cifs',
                                    'nfs']},
+                        'action': 'set_value'
                         },
                     'options': {
                         'order': 7,
@@ -106,6 +112,7 @@ class networkMount(object):
                         'type': 'text',
                         'parent': {'entry': 'type', 'value': ['cifs',
                                    'nfs']},
+                        'action': 'set_value'
                         },
                     },
                 }}
@@ -170,45 +177,9 @@ class networkMount(object):
             if self.mount_id != 'new_mount':
                 self.winOeMount.showButton(2, 32141, 'networkMount',
                         'delete_mount')
-            category = 'mount'
-            for entry in sorted(self.struct[category]['settings'],
-                                key=lambda x: \
-                                self.struct[category]['settings'
-                                ][x]['order']):
 
-                dictProperties = {
-                    'value': self.struct[category]['settings'
-                            ][entry]['value'],
-                    'typ': self.struct[category]['settings'
-                            ][entry]['type'],
-                    'entry': entry,
-                    'category': category,
-                    'action': 'set_value',
-                    }
-
-                if 'values' in self.struct[category]['settings'][entry]:
-                    dictProperties['values'] = \
-                        ','.join(self.struct[category]['settings'
-                                 ][entry]['values'])
-
-                if not 'parent' in self.struct[category]['settings'
-                        ][entry]:
-
-                    self.winOeMount.addConfigItem(self.oe._(self.struct[category]['settings'
-                            ][entry]['name']), dictProperties,
-                            self.oe.listObject['list'])
-                else:
-
-                    if self.struct[category]['settings'
-                            ][self.struct[category]['settings'
-                              ][entry]['parent']['entry']]['value'] \
-                        in self.struct[category]['settings'
-                            ][entry]['parent']['value']:
-
-                        self.winOeMount.addConfigItem(self.oe._(self.struct[category]['settings'
-                                ][entry]['name']), dictProperties,
-                                self.oe.listObject['list'])
-
+            self.winOeMount.build_menu(self.struct)
+            
             self.oe.dbg_log('networkMount::menu_loader', 'exit_function'
                             , 0)
         except Exception, e:
@@ -359,6 +330,8 @@ class networkMount(object):
                 xbmc.executebuiltin('Notification(Umount Error, '
                                     + umount + ')')
             else:
+                del self.oe.dictModules['connman'].struct['mounts'
+                                       ]['settings'][self.mount_id]
                 self.oe.remove_node(self.mount_id)
 
             self.oe.dbg_log('save_mount::delete_mount', 'exit_function'
@@ -398,6 +371,7 @@ class connmanService(object):
                         'value': '',
                         'type': 'bool',
                         'dbus': 'Boolean',
+                        'action': 'set_value'
                         }},
                     },
                 'IPv4': {
@@ -412,6 +386,7 @@ class connmanService(object):
                             'type': 'multivalue',
                             'dbus': 'String',
                             'values': ['dhcp', 'manual', 'off'],
+                            'action': 'set_value'
                             },
                         'Address': {
                             'order': 2,
@@ -421,6 +396,7 @@ class connmanService(object):
                             'dbus': 'String',
                             'parent': {'entry': 'Method',
                                     'value': ['manual']},
+                            'action': 'set_value'
                             },
                         'Netmask': {
                             'order': 3,
@@ -430,6 +406,7 @@ class connmanService(object):
                             'dbus': 'String',
                             'parent': {'entry': 'Method',
                                     'value': ['manual']},
+                            'action': 'set_value'
                             },
                         'Gateway': {
                             'order': 4,
@@ -439,6 +416,7 @@ class connmanService(object):
                             'dbus': 'String',
                             'parent': {'entry': 'Method',
                                     'value': ['manual']},
+                            'action': 'set_value'
                             },
                         },
                     },
@@ -455,6 +433,7 @@ class connmanService(object):
                             'dbus': 'String',
                             'values': ['auto', 'manual', '6to4', 'off'
                                     ],
+                            'action': 'set_value'
                             },
                         'Address': {
                             'order': 2,
@@ -464,6 +443,7 @@ class connmanService(object):
                             'dbus': 'String',
                             'parent': {'entry': 'Method',
                                     'value': ['manual']},
+                            'action': 'set_value'
                             },
                         'PrefixLength': {
                             'order': 4,
@@ -473,6 +453,7 @@ class connmanService(object):
                             'dbus': 'Byte',
                             'parent': {'entry': 'Method',
                                     'value': ['manual']},
+                            'action': 'set_value'
                             },
                         'Gateway': {
                             'order': 3,
@@ -482,6 +463,7 @@ class connmanService(object):
                             'dbus': 'String',
                             'parent': {'entry': 'Method',
                                     'value': ['manual']},
+                            'action': 'set_value'
                             },
                         'Privacy': {
                             'order': 5,
@@ -493,6 +475,7 @@ class connmanService(object):
                                     'value': ['manual']},
                             'values': ['disabled', 'enabled', 'prefered'
                                     ],
+                            'action': 'set_value'
                             },
                         },
                     },
@@ -506,18 +489,21 @@ class connmanService(object):
                         'value': '',
                         'type': 'ip',
                         'dbus': 'String',
+                        'action': 'set_value'
                         }, '1': {
                         'order': 2,
                         'name': 32121,
                         'value': '',
                         'type': 'ip',
                         'dbus': 'String',
+                        'action': 'set_value'
                         }, '2': {
                         'order': 3,
                         'name': 32122,
                         'value': '',
                         'type': 'ip',
                         'dbus': 'String',
+                        'action': 'set_value'
                         }},
                     },
                 'Timeservers': {
@@ -530,18 +516,21 @@ class connmanService(object):
                         'value': '',
                         'type': 'text',
                         'dbus': 'String',
+                        'action': 'set_value'
                         }, '1': {
                         'order': 2,
                         'name': 32125,
                         'value': '',
                         'type': 'text',
                         'dbus': 'String',
+                        'action': 'set_value'
                         }, '2': {
                         'order': 3,
                         'name': 32126,
                         'value': '',
                         'type': 'text',
                         'dbus': 'String',
+                        'action': 'set_value'
                         }},
                     },
                 'Domains': {
@@ -554,18 +543,21 @@ class connmanService(object):
                         'value': '',
                         'type': 'text',
                         'dbus': 'String',
+                        'action': 'set_value'
                         }, '1': {
                         'order': 2,
                         'name': 32129,
                         'value': '',
                         'type': 'text',
                         'dbus': 'String',
+                        'action': 'set_value'
                         }, '2': {
                         'order': 3,
                         'name': 32130,
                         'value': '',
                         'type': 'text',
                         'dbus': 'String',
+                        'action': 'set_value'
                         }},
                     },
                 }
@@ -645,16 +637,6 @@ class connmanService(object):
 
             for strEntry in sorted(self.struct, key=lambda x: \
                                    self.struct[x]['order']):
-
-                if strEntry == 'Provider':
-                    if 'Type' in self.service_properties:
-                        if not self.service_properties['Type'] == 'vpn':
-                            break
-
-                if strEntry != 'Provider':
-                    if 'Type' in self.service_properties:
-                        if self.service_properties['Type'] == 'vpn':
-                            continue
 
                 dictProperties = {
                     'modul': 'connmanNetworkConfig',
@@ -738,45 +720,9 @@ class connmanService(object):
                         self.oe.listObject['list'],
                         )
 
-            category = menuItem.getProperty('category')
-            for entry in sorted(self.struct[category]['settings'],
-                                key=lambda x: \
-                                self.struct[category]['settings'
-                                ][x]['order']):
-
-                dictProperties = {
-                    'value': self.struct[category]['settings'
-                            ][entry]['value'],
-                    'typ': self.struct[category]['settings'
-                            ][entry]['type'],
-                    'entry': entry,
-                    'category': category,
-                    'action': 'set_value',
-                    }
-
-                if 'values' in self.struct[category]['settings'][entry]:
-                    dictProperties['values'] = \
-                        ','.join(self.struct[category]['settings'
-                                 ][entry]['values'])
-
-                if not 'parent' in self.struct[category]['settings'
-                        ][entry]:
-
-                    self.winOeCon.addConfigItem(self.oe._(self.struct[category]['settings'
-                            ][entry]['name']), dictProperties,
-                            menuItem.getProperty('listTyp'))
-                else:
-
-                    if self.struct[category]['settings'
-                            ][self.struct[category]['settings'
-                              ][entry]['parent']['entry']]['value'] \
-                        in self.struct[category]['settings'
-                            ][entry]['parent']['value']:
-
-                        self.winOeCon.addConfigItem(self.oe._(self.struct[category]['settings'
-                                ][entry]['name']), dictProperties,
-                                menuItem.getProperty('listTyp'))
-
+            self.winOeCon.build_menu(self.struct, 
+                       fltr=[menuItem.getProperty('category')])
+            
             self.oe.dbg_log('connmanService::menu_loader',
                             'exit_function', 0)
         except Exception, e:
@@ -1012,7 +958,7 @@ class connmanVpn(object):
                                    'openvpn']},
                         },
                     'Domain': {
-                        'order': 27,
+                        'order': 7,
                         'name': 32134,
                         'value': 'vpn',
                         'action': 'set_value',
@@ -1037,8 +983,19 @@ class connmanVpn(object):
                         'type': 'text',
                         'parent': {'entry': 'Type', 'value': ['pptp']},
                         },
+                    
+                    'advanced': {
+                        'order': 8,
+                        'name': 'Show Advanced',
+                        'value': '0',
+                        'action': 'set_value',
+                        'type': 'bool',
+                        'parent': {'entry': 'Type', 'value': ['pptp','openvpn']},
+                        },
+                    
+                    
                     'PPTP.EchoFailure': {
-                        'order': 25,
+                        'order': 9,
                         'name': 32162,
                         'value': '0',
                         'action': 'set_value',
@@ -1047,7 +1004,7 @@ class connmanVpn(object):
                         'optional': '',
                         },
                     'PPTP.EchoInterval': {
-                        'order': 26,
+                        'order': 9,
                         'name': 32163,
                         'value': '0',
                         'action': 'set_value',
@@ -1056,7 +1013,7 @@ class connmanVpn(object):
                         'optional': '',
                         },
                     'PPTP.RefuseEAP': {
-                        'order': 13,
+                        'order': 9,
                         'name': 32151,
                         'value': '0',
                         'action': 'set_value',
@@ -1065,7 +1022,7 @@ class connmanVpn(object):
                         'optional': '',
                         },
                     'PPTP.RefusePAP': {
-                        'order': 14,
+                        'order': 9,
                         'name': 32152,
                         'value': '0',
                         'action': 'set_value',
@@ -1074,7 +1031,7 @@ class connmanVpn(object):
                         'optional': '',
                         },
                     'PPTP.RefuseCHAP': {
-                        'order': 15,
+                        'order': 9,
                         'name': 32153,
                         'value': '0',
                         'action': 'set_value',
@@ -1083,7 +1040,7 @@ class connmanVpn(object):
                         'optional': '',
                         },
                     'PPTP.RefuseMSCHAP': {
-                        'order': 16,
+                        'order': 9,
                         'name': 32154,
                         'value': '0',
                         'action': 'set_value',
@@ -1092,7 +1049,7 @@ class connmanVpn(object):
                         'optional': '',
                         },
                     'PPTP.RefuseMSCHAP2': {
-                        'order': 17,
+                        'order': 9,
                         'name': 32155,
                         'value': '0',
                         'action': 'set_value',
@@ -1101,7 +1058,7 @@ class connmanVpn(object):
                         'optional': '',
                         },
                     'PPTP.NoBSDComp': {
-                        'order': 28,
+                        'order': 9,
                         'name': 32160,
                         'value': '0',
                         'action': 'set_value',
@@ -1110,7 +1067,7 @@ class connmanVpn(object):
                         'optional': '',
                         },
                     'PPTP.NoDeflate': {
-                        'order': 27,
+                        'order': 9,
                         'name': 32164,
                         'value': '0',
                         'action': 'set_value',
@@ -1119,7 +1076,7 @@ class connmanVpn(object):
                         'optional': '',
                         },
                     'PPTP.RequirMPPE': {
-                        'order': 20,
+                        'order': 9,
                         'name': 32156,
                         'value': '0',
                         'action': 'set_value',
@@ -1128,7 +1085,7 @@ class connmanVpn(object):
                         'optional': '',
                         },
                     'PPTP.RequirMPPE40': {
-                        'order': 21,
+                        'order': 9,
                         'name': 32157,
                         'value': '0',
                         'action': 'set_value',
@@ -1137,7 +1094,7 @@ class connmanVpn(object):
                         'optional': '',
                         },
                     'PPTP.RequirMPPE128': {
-                        'order': 22,
+                        'order': 9,
                         'name': 32158,
                         'value': '0',
                         'action': 'set_value',
@@ -1146,7 +1103,7 @@ class connmanVpn(object):
                         'optional': '',
                         },
                     'PPTP.RequirMPPEStateful': {
-                        'order': 23,
+                        'order': 9,
                         'name': 32159,
                         'value': '0',
                         'action': 'set_value',
@@ -1155,7 +1112,7 @@ class connmanVpn(object):
                         'optional': '',
                         },
                     'PPTP.NoVJ': {
-                        'order': 24,
+                        'order': 9,
                         'name': 32161,
                         'value': '0',
                         'action': 'set_value',
@@ -1164,7 +1121,7 @@ class connmanVpn(object):
                         'optional': '',
                         },
                     'OpenVPN.CACert': {
-                        'order': 8,
+                        'order': 5,
                         'name': 32137,
                         'value': '',
                         'action': 'set_value',
@@ -1173,7 +1130,7 @@ class connmanVpn(object):
                                    ]},
                         },
                     'OpenVPN.Cert': {
-                        'order': 8,
+                        'order': 5,
                         'name': 32138,
                         'value': '',
                         'action': 'set_value',
@@ -1182,7 +1139,7 @@ class connmanVpn(object):
                                    ]},
                         },
                     'OpenVPN.Key': {
-                        'order': 8,
+                        'order': 5,
                         'name': 32139,
                         'value': '',
                         'action': 'set_value',
@@ -1191,7 +1148,7 @@ class connmanVpn(object):
                                    ]},
                         },
                     'OpenVPN.MTU': {
-                        'order': 11,
+                        'order': 9,
                         'name': 32165,
                         'value': '',
                         'action': 'set_value',
@@ -1201,7 +1158,7 @@ class connmanVpn(object):
                         'optional': '',
                         },
                     'OpenVPN.NSCertType': {
-                        'order': 12,
+                        'order': 9,
                         'name': 32166,
                         'value': '',
                         'action': 'set_value',
@@ -1211,7 +1168,7 @@ class connmanVpn(object):
                         'optional': '',
                         },
                     'OpenVPN.Proto': {
-                        'order': 13,
+                        'order': 9,
                         'name': 32167,
                         'value': '',
                         'action': 'set_value',
@@ -1221,7 +1178,7 @@ class connmanVpn(object):
                         'optional': '',
                         },
                     'OpenVPN.Port': {
-                        'order': 6,
+                        'order': 9,
                         'name': 32168,
                         'value': '',
                         'action': 'set_value',
@@ -1231,7 +1188,7 @@ class connmanVpn(object):
                         'optional': '',
                         },
                     'OpenVPN.AuthUserPass': {
-                        'order': 5,
+                        'order': 9,
                         'name': 32169,
                         'value': '',
                         'action': 'set_value',
@@ -1241,7 +1198,7 @@ class connmanVpn(object):
                         'optional': '',
                         },
                     'OpenVPN.AskPass': {
-                        'order': 16,
+                        'order': 9,
                         'name': 32170,
                         'value': '0',
                         'action': 'set_value',
@@ -1251,7 +1208,7 @@ class connmanVpn(object):
                         'optional': '',
                         },
                     'OpenVPN.AuthNoCache': {
-                        'order': 17,
+                        'order': 9,
                         'name': 32171,
                         'value': '0',
                         'action': 'set_value',
@@ -1261,7 +1218,7 @@ class connmanVpn(object):
                         'optional': '',
                         },
                     'OpenVPN.TLSRemote': {
-                        'order': 18,
+                        'order': 9,
                         'name': 32172,
                         'value': '0',
                         'action': 'set_value',
@@ -1271,7 +1228,7 @@ class connmanVpn(object):
                         'optional': '',
                         },
                     'OpenVPN.TLSAuth': {
-                        'order': 19,
+                        'order': 9,
                         'name': 32173,
                         'value': '0',
                         'action': 'set_value',
@@ -1281,7 +1238,7 @@ class connmanVpn(object):
                         'optional': '',
                         },
                     'OpenVPN.TLSAuthDir': {
-                        'order': 20,
+                        'order': 9,
                         'name': 32174,
                         'value': '',
                         'action': 'set_value',
@@ -1291,7 +1248,7 @@ class connmanVpn(object):
                         'optional': '',
                         },
                     'OpenVPN.Auth': {
-                        'order': 4,
+                        'order': 9,
                         'name': 32175,
                         'value': '',
                         'action': 'set_value',
@@ -1301,7 +1258,7 @@ class connmanVpn(object):
                         'optional': '',
                         },
                     'OpenVPN.CompLZO': {
-                        'order': 22,
+                        'order': 9,
                         'name': 32176,
                         'value': '0',
                         'action': 'set_value',
@@ -1311,7 +1268,7 @@ class connmanVpn(object):
                         'optional': '',
                         },
                     'OpenVPN.RemoteCertTls': {
-                        'order': 23,
+                        'order': 9,
                         'name': 32177,
                         'value': '0',
                         'action': 'set_value',
@@ -1321,7 +1278,7 @@ class connmanVpn(object):
                         'optional': '',
                         },
                     'OpenVPN.ConfigFile': {
-                        'order': 7,
+                        'order': 9,
                         'name': 32178,
                         'value': '',
                         'action': 'set_value',
@@ -1414,108 +1371,9 @@ class connmanVpn(object):
                 self.winOeCon.showButton(1, 32141, 'connmanVpnConfig',
                         'delete_vpn_config')
 
-            category = menuItem.getProperty('category')
-            for entry in sorted(self.struct[category]['settings'],
-                                key=lambda x: \
-                                self.struct[category]['settings'
-                                ][x]['order']):
-
-                if 'optional' in self.struct[category]['settings'
-                        ][entry]:
-                    continue
-
-                dictProperties = {
-                    'value': self.struct[category]['settings'
-                            ][entry]['value'],
-                    'typ': self.struct[category]['settings'
-                            ][entry]['type'],
-                    'entry': entry,
-                    'category': category,
-                    'action': 'set_value',
-                    }
-
-                if 'values' in self.struct[category]['settings'][entry]:
-                    dictProperties['values'] = \
-                        ','.join(self.struct[category]['settings'
-                                 ][entry]['values'])
-
-                if not 'parent' in self.struct[category]['settings'
-                        ][entry]:
-
-                    self.winOeCon.addConfigItem(self.oe._(self.struct[category]['settings'
-                            ][entry]['name']), dictProperties,
-                            menuItem.getProperty('listTyp'))
-                else:
-
-                    if self.struct[category]['settings'
-                            ][self.struct[category]['settings'
-                              ][entry]['parent']['entry']]['value'] \
-                        in self.struct[category]['settings'
-                            ][entry]['parent']['value']:
-
-                        self.winOeCon.addConfigItem(self.oe._(self.struct[category]['settings'
-                                ][entry]['name']), dictProperties,
-                                menuItem.getProperty('listTyp'))
-
-            if self.struct[category]['settings']['Type']['value'] != '':
-
-                self.winOeCon.addConfigItem('Advanced',
-                        {'typ': 'separator'},
-                        menuItem.getProperty('listTyp'))
-
-                dictProperties = {'value': self.show_advanced_entrys,
-                                  'typ': 'bool',
-                                  'action': 'show_advanced'}
-
-                self.winOeCon.addConfigItem('Show Advanced',
-                        dictProperties, menuItem.getProperty('listTyp'))
-
-                if self.show_advanced_entrys == '1':
-
-                    for entry in sorted(self.struct[category]['settings'
-                            ], key=lambda x: \
-                            self.struct[category]['settings'][x]['order'
-                            ]):
-
-                        if not 'optional' \
-                            in self.struct[category]['settings'][entry]:
-                            continue
-
-                        dictProperties = {
-                            'value': self.struct[category]['settings'
-                                    ][entry]['value'],
-                            'typ': self.struct[category]['settings'
-                                    ][entry]['type'],
-                            'entry': entry,
-                            'category': category,
-                            'action': 'set_value',
-                            }
-
-                        if 'values' in self.struct[category]['settings'
-                                ][entry]:
-                            dictProperties['values'] = \
-                                ','.join(self.struct[category]['settings'
-                                    ][entry]['values'])
-
-                        if not 'parent' \
-                            in self.struct[category]['settings'][entry]:
-
-                            self.winOeCon.addConfigItem(self.oe._(self.struct[category]['settings'
-                                    ][entry]['name']), dictProperties,
-                                    menuItem.getProperty('listTyp'))
-                        else:
-
-                            if self.struct[category]['settings'
-                                    ][self.struct[category]['settings'
-                                    ][entry]['parent']['entry']]['value'
-                                    ] \
-                                in self.struct[category]['settings'
-                                    ][entry]['parent']['value']:
-
-                                self.winOeCon.addConfigItem(self.oe._(self.struct[category]['settings'
-                                        ][entry]['name']),
-                                        dictProperties,
-                                        menuItem.getProperty('listTyp'))
+            self.winOeCon.build_menu(self.struct, 
+                       fltr=[menuItem.getProperty('category')],
+                       optional=self.struct['Provider']['settings']['advanced']['value'])
 
             self.oe.dbg_log('connmanVpn::menu_loader', 'exit_function',
                             0)
@@ -1693,6 +1551,7 @@ class connman:
 
             self.struct = {
                 '/net/connman/technology/wifi': {
+                    'hidden': 'true',
                     'order': 1,
                     'name': 32102,
                     'dbus': 'Dictionary',
@@ -1742,8 +1601,9 @@ class connman:
                             'InfoText': 729,
                             },
                         },
-                    },
+                    'order': 0},
                 '/net/connman/technology/ethernet': {
+                    'hidden': 'true',
                     'order': 2,
                     'name': 32103,
                     'dbus': 'Dictionary',
@@ -1755,7 +1615,8 @@ class connman:
                         'type': 'bool',
                         'dbus': 'Boolean',
                         'InfoText': 730,
-                        }},
+                        }}, 
+                    'order': 1
                     },
                 'vpn': {
                     'order': 3,
@@ -1763,11 +1624,13 @@ class connman:
                     'dbus': 'Dictionary',
                     'settings': {'add': {
                         'order': 1,
+                        'value': '',
                         'name': 32322,
                         'action': 'add_vpn',
                         'type': 'button',
                         'InfoText': 731,
                         }},
+                    'order': 2
                     },
                 'Timeservers': {
                     'order': 4,
@@ -1801,16 +1664,18 @@ class connman:
                         'validate': '^([a-zA-Z0-9](?:[a-zA-Z0-9-\.]*[a-zA-Z0-9]))$',
                         'InfoText': 734,
                         }},
+                        'order': 2
                     },
                 'mounts': {'order': 5, 'name': 32348,
                            'settings': {'add': {
                     'order': 1,
                     'name': 32349,
-                    'value': '',
+                    'value': 'new_mount',
                     'action': 'edit_mount',
                     'type': 'button',
                     'InfoText': 735,
-                    }}},
+                    }}, 'order': 3
+                    },
                 'advanced': {'order': 6, 'name': 32368,
                              'settings': {'wait_for_network': {
                     'order': 1,
@@ -1828,15 +1693,24 @@ class connman:
                     'parent': {'entry': 'wait_for_network',
                                'value': ['1']},
                     'InfoText': 737,
-                    }}},
+                    }}, 'order': 4
+                    },
                 }
 
             self.busy = 0
             self.oe = oeMain
+            self.enabled = True
+            self.connman_daemon = "/usr/sbin/connmand"
             
             self.wait_conf_file = \
                 '%s/openelec/network_wait' % self.oe.CONFIG_CACHE
 
+            self.vpn_plugins_dir = \
+                '/usr/lib/connman/plugins-vpn'
+            
+            if not os.path.exists(self.connman_daemon):
+                self.enabled = False
+                
             self.oe.dbg_log('connman::__init__', 'exit_function', 0)
             self.vpn_conf_dir = '%s/vpn-config/' % self.oe.USER_CONFIG
         except Exception, e:
@@ -1882,7 +1756,8 @@ class connman:
 
             self.oe.dbg_log('connman::exit', 'enter_function', 0)
 
-            self.dbusMonitor.exit()
+            if hasattr(self, 'dbusMonitor'):
+                self.dbusMonitor.exit()
 
             self.clear_list()
 
@@ -1908,7 +1783,10 @@ class connman:
 
             self.oe.dbg_log('connman::load_values', 'enter_function', 0)
 
-      
+            # VPN Available 
+            if not os.path.exists(self.vpn_plugins_dir):
+                self.struct['vpn']['hidden'] = 'true'
+                
             # Network Wait
             self.struct['advanced']['settings']['wait_for_network'
                     ]['value'] = '0'
@@ -2081,197 +1959,47 @@ class connman:
                                , '/'), 'net.connman.Clock')
             self.clock_properties = self.clock.GetProperties()
 
-            # Wifi and Ethernet
+            self.struct['/net/connman/technology/wifi']['hidden'] = 'true'
+            self.struct['/net/connman/technology/ethernet']['hidden'] = 'true'
+            
             for (path, technologie) in self.technologie_properties:
-
                 if path in self.struct:
-                    self.oe.winOeMain.addConfigItem(self.oe._(self.struct[path]['name'
-                            ]), {'typ': 'separator'},
-                            menuItem.getProperty('listTyp'))
-
-                if path in self.struct:
-                    for entry in sorted(self.struct[path]['settings'],
-                            key=lambda x: self.struct[path]['settings'
-                            ][x]['order']):
-                        if entry in technologie:
-                            if not 'changed' \
-                                in self.struct[path]['settings'][entry]:
-                                self.struct[path]['settings'
-                                        ][entry]['value'] = \
-                                    unicode(technologie[entry])
-
-                        dictProperties = {
-                            'value': self.struct[path]['settings'
-                                    ][entry]['value'],
-                            'typ': self.struct[path]['settings'
-                                    ][entry]['type'],
-                            'entry': entry,
-                            'category': path,
-                            'action': self.struct[path]['settings'
-                                    ][entry]['action'],
-                            }
-
-                        if 'InfoText' in self.struct[path]['settings'
-                                ][entry]:
-                            dictProperties['InfoText'] = \
-                                self.oe._(self.struct[path]['settings'
-                                    ][entry]['InfoText'])
-
-                        if 'validate' in self.struct[path]['settings'
-                                ][entry]:
-                            dictProperties['validate'] = \
-                                self.struct[path]['settings'
-                                    ][entry]['validate']
-
-                        if 'values' in self.struct[path]['settings'
-                                ][entry]:
-                            dictProperties['values'] = \
-                                ','.join(self.struct[path]['settings'
-                                    ][entry]['values'])
-
-                        if not 'parent' in self.struct[path]['settings'
-                                ][entry]:
-
-                            self.oe.winOeMain.addConfigItem(self.oe._(self.struct[path]['settings'
-                                    ][entry]['name']), dictProperties,
-                                    menuItem.getProperty('listTyp'))
-                        else:
-
-                            if self.struct[path]['settings'
-                                    ][self.struct[path]['settings'
-                                    ][entry]['parent']['entry']]['value'
-                                    ] in self.struct[path]['settings'
-                                    ][entry]['parent']['value']:
-
-                                self.oe.winOeMain.addConfigItem(self.oe._(self.struct[path]['settings'
-                                        ][entry]['name']),
-                                        dictProperties,
-                                        menuItem.getProperty('listTyp'))
-
-            # Virtual Private Network
-            self.oe.winOeMain.addConfigItem(self.oe._(self.struct['vpn'
-                    ]['name']), {'typ': 'separator'},
-                    menuItem.getProperty('listTyp'))
-
-            self.oe.winOeMain.addConfigItem(self.oe._(self.struct['vpn'
-                    ]['settings']['add']['name']), {'typ': 'button',
-                    'action': self.struct['vpn']['settings']['add'
-                    ]['action'], 'InfoText': self.oe._(self.struct['vpn'
-                    ]['settings']['add']['InfoText'])},
-                    menuItem.getProperty('listTyp'))
-
-            # Timeservers
-            self.oe.winOeMain.addConfigItem(self.oe._(self.struct['Timeservers'
-                    ]['name']), {'typ': 'separator'},
-                    menuItem.getProperty('listTyp'))
-
-            if 'Timeservers' in self.clock_properties:
-                for setting in sorted(self.struct['Timeservers'
-                        ]['settings']):
-                    if int(setting) \
-                        < len(self.clock_properties['Timeservers']):
-                        if not 'changed' in self.struct['Timeservers'
-                                ]['settings'][setting]:
-                            self.struct['Timeservers']['settings'
-                                    ][setting]['value'] = \
-                                self.clock_properties['Timeservers'
-                                    ][int(setting)]
-
-                    dictProperties = {
-                        'value': self.struct['Timeservers']['settings'
-                                ][unicode(setting)]['value'],
-                        'typ': self.struct['Timeservers']['settings'
-                                ][unicode(setting)]['type'],
-                        'entry': unicode(setting),
-                        'category': 'Timeservers',
-                        'action': self.struct['Timeservers']['settings'
-                                ][unicode(setting)]['action'],
-                        }
-
-                    if 'InfoText' in self.struct['Timeservers'
-                            ]['settings'][setting]:
-                        dictProperties['InfoText'] = \
-                            self.oe._(self.struct['Timeservers'
-                                ]['settings'][setting]['InfoText'])
-
-                    if 'validate' in self.struct['Timeservers'
-                            ]['settings'][unicode(setting)]:
-                        dictProperties['validate'] = \
-                            self.struct['Timeservers']['settings'
-                                ][unicode(setting)]['validate']
-
-                    self.oe.winOeMain.addConfigItem(self.oe._(self.struct['Timeservers'
-                            ]['settings'][unicode(setting)]['name']),
-                            dictProperties,
-                            menuItem.getProperty('listTyp'))
-
-            # Mounts
-            self.oe.winOeMain.addConfigItem(self.oe._(self.struct['mounts'
-                    ]['name']), {'typ': 'separator'},
-                    menuItem.getProperty('listTyp'))
-
-            self.oe.winOeMain.addConfigItem(self.oe._(self.struct['mounts'
-                    ]['settings']['add']['name']), {
-                'typ': self.struct['mounts']['settings']['add']['type'
-                        ],
-                'action': self.struct['mounts']['settings']['add'
-                        ]['action'],
-                'entry': 'new_mount',
-                'InfoText': self.oe._(self.struct['mounts']['settings'
-                        ]['add']['InfoText']),
-                }, menuItem.getProperty('listTyp'))
-
+                    if 'hidden' in self.struct[path]:
+                        del self.struct[path]['hidden']
+                 
+                for entry in self.struct[path]['settings']:
+                    if entry in technologie:
+                        self.struct[path]['settings'
+                                ][entry]['value'] = \
+                            unicode(technologie[entry])
+        
+            for setting in self.struct['Timeservers']['settings']:
+                if 'Timeservers' in self.clock_properties:
+                    if int(setting) < len(self.clock_properties['Timeservers']):
+                        self.struct['Timeservers']['settings'
+                                ][setting]['value'] = \
+                            self.clock_properties['Timeservers'
+                                ][int(setting)]
+                else:
+                    self.struct['Timeservers']['settings'
+                                ][setting]['value'] = ''
+            
             mount_dict = self.oe.read_node('mounts')
             if 'mounts' in mount_dict:
                 for mount in mount_dict['mounts']:
-
-                    dictProperties = {
-                        'typ': 'button',
-                        'entry': mount,
-                        'category': 'mounts',
+                    tmp_mount = {
+                        'type': 'button',
+                        'name': mount_dict['mounts'][mount]['mountpoint'],
+                        'value': mount,
                         'action': 'edit_mount',
+                        'dynamic': 'true',
+                        'order': 1
                         }
-
-                    self.oe.winOeMain.addConfigItem(mount_dict['mounts'
-                            ][mount]['mountpoint'], dictProperties,
-                            menuItem.getProperty('listTyp'))
-
-            # Network Wait
-            self.oe.winOeMain.addConfigItem(self.oe._(self.struct['advanced'
-                    ]['name']), {'typ': 'separator'},
-                    menuItem.getProperty('listTyp'))
-
-            self.oe.winOeMain.addConfigItem(self.oe._(self.struct['advanced'
-                    ]['settings']['wait_for_network']['name']), {
-                'entry': 'wait_for_network',
-                'category': 'advanced',
-                'typ': self.struct['advanced']['settings'
-                        ]['wait_for_network']['type'],
-                'action': self.struct['advanced']['settings'
-                        ]['wait_for_network']['action'],
-                'value': self.struct['advanced']['settings'
-                        ]['wait_for_network']['value'],
-                'InfoText': self.oe._(self.struct['advanced']['settings'
-                        ]['wait_for_network']['InfoText']),
-                }, menuItem.getProperty('listTyp'))
-
-            if self.struct['advanced']['settings']['wait_for_network'
-                    ]['value'] in self.struct['advanced']['settings'
-                    ]['wait_for_network_time']['parent']['value']:
-
-                self.oe.winOeMain.addConfigItem(self.oe._(self.struct['advanced'
-                        ]['settings']['wait_for_network_time']['name'
-                        ]), {
-                    'entry': 'wait_for_network_time',
-                    'category': 'advanced',
-                    'typ': self.struct['advanced']['settings'
-                            ]['wait_for_network_time']['type'],
-                    'action': self.struct['advanced']['settings'
-                            ]['wait_for_network_time']['action'],
-                    'value': self.struct['advanced']['settings'
-                            ]['wait_for_network_time']['value'],
-                    }, menuItem.getProperty('listTyp'))
-
+                    self.struct['mounts']['settings'
+                                          ][mount] = tmp_mount
+                    
+            self.oe.winOeMain.build_menu(self.struct)
+            
             self.oe.set_busy(0)
             self.oe.dbg_log('connman::menu_loader', 'exit_function', 0)
         except Exception, e:
@@ -2750,7 +2478,7 @@ class connman:
             self.oe.dbg_log('connman::add_mount', 'enter_function', 0)
 
             self.configureMount = \
-                networkMount(listItem.getProperty('entry'), self.oe)
+                networkMount(listItem.getProperty('value'), self.oe)
             del self.configureMount
 
             self.oe.dbg_log('connman::add_mount', 'enter_function', 0)

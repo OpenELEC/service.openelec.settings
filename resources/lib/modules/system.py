@@ -60,16 +60,16 @@ class system:
 
             self.oe = oeMain
 
-            self.config = {
+            self.struct = {
                 'ident': {
                     'order': 1,
                     'name': 32189,
-                    'not_supported': [],
                     'settings': {'hostname': {
+                        'order': 1,
                         'name': 32190,
                         'value': 'OpenELEC',
                         'action': 'set_hostname',
-                        'typ': 'text',
+                        'type': 'text',
                         'validate': '^([a-zA-Z0-9](?:[a-zA-Z0-9-\.]*[a-zA-Z0-9]))$',
                         'InfoText': 710,
                         }},
@@ -78,126 +78,134 @@ class system:
                     'order': 2,
                     'name': 32009,
                     'settings': {'KeyboardLayout1': {
+                        'order': 1,
                         'name': 32010,
                         'value': 'us',
                         'action': 'set_keyboard_layout',
-                        'typ': 'multivalue',
+                        'type': 'multivalue',
                         'values': [],
                         'InfoText': 711,
                         }, 'KeyboardLayout2': {
+                        'order': 2,
                         'name': 32010,
                         'value': 'us',
                         'action': 'set_keyboard_layout',
-                        'typ': 'multivalue',
+                        'type': 'multivalue',
                         'values': [],
                         'InfoText': 712,
-                        'not_supported': ['RPi.arm'],  
                         }, 'KeyboardType': {
+                        'order': 3,
                         'name': 32330,
                         'value': 'pc105',
                         'action': 'set_keyboard_layout',
-                        'typ': 'multivalue',
+                        'type': 'multivalue',
                         'values': [],
-                        'InfoText': 713,
-                        'not_supported': ['RPi.arm'],                        
+                        'InfoText': 713,                       
                         }},
                     },
                 'update': {
                     'order': 3,
                     'name': 32013,
-                    'not_supported': [],
                     'settings': {'AutoUpdate': {
                         'name': 32014,
                         'value': 'manual',
                         'action': 'set_auto_update',
-                        'typ': 'multivalue',
+                        'type': 'multivalue',
                         'values': ['manual', 'auto'],
                         'InfoText': 714,
+                        'order': 1,
                         }, 'UpdateNotify': {
                         'name': 32365,
                         'value': '1',
                         'action': 'set_value',
-                        'typ': 'bool',
+                        'type': 'bool',
                         'InfoText': 715,
+                        'order': 2,
                         }, 'CheckUpdate': {
                         'name': 32362,
                         'value': '',
                         'action': 'manual_check_update',
-                        'typ': 'button',
+                        'type': 'button',
                         'InfoText': 716,
+                        'order': 3,
                         }},
                     },
                 'driver': {
                     'order': 4,
                     'name': 32007,
-                    'not_supported': [],
                     'settings': {'lcd': {
                         'name': 32008,
                         'value': 'none',
                         'action': 'set_lcd_driver',
-                        'typ': 'multivalue',
+                        'type': 'multivalue',
                         'values': [],
                         'InfoText': 717,
+                        'order': 1,
                         }},
                     },
                 'power': {
                     'order': 5,
                     'name': 32011,
-                    'not_supported': [],
                     'settings': {'enable_hdd_standby': {
                         'name': 32347,
                         'value': '0',
                         'action': 'set_hdd_standby',
-                        'typ': 'bool',
+                        'type': 'bool',
                         'InfoText': 718,
+                        'order': 1,
                         }, 'hdd_standby': {
                         'name': 32012,
                         'value': '0',
                         'action': 'set_hdd_standby',
-                        'typ': 'num',
+                        'type': 'num',
                         'parent': {'entry': 'enable_hdd_standby',
                                    'value': ['1']},
                         'InfoText': 719,
+                        'order': 2,
                         }},
                     },
                 'backup': {
                     'order': 7,
                     'name': 32371,
-                    'not_supported': [],
                     'settings': {'backup': {
                         'name': 32372,
                         'value': '0',
                         'action': 'do_backup',
-                        'typ': 'button',
+                        'type': 'button',
                         'InfoText': 722,
+                        'order': 1,
                         }, 'restore': {
                         'name': 32373,
                         'value': '0',
                         'action': 'do_restore',
-                        'typ': 'button',
+                        'type': 'button',
                         'InfoText': 723,
+                        'order': 2,
                         }},
                     },
                 'reset': {
                     'order': 8,
                     'name': 32323,
-                    'not_supported': [],
                     'settings': {'xbmc_reset': {
                         'name': 32324,
                         'value': '0',
                         'action': 'reset_xbmc',
-                        'typ': 'button',
+                        'type': 'button',
                         'InfoText': 724,
+                        'order': 1,
                         }, 'oe_reset': {
                         'name': 32325,
                         'value': '0',
                         'action': 'reset_oe',
-                        'typ': 'button',
+                        'type': 'button',
                         'InfoText': 725,
+                        'order': 2,
                         }},
                     },
                 }
 
+            self.enabled = True
+            
             self.kernel_cmd = '/proc/cmdline'
             
             self.lcd_dir = '/usr/lib/lcdproc/'
@@ -264,6 +272,20 @@ class system:
             self.oe.dbg_log('system::start_service', 'ERROR: ('
                             + repr(e) + ')')
 
+    def stop_service(self):
+        try:
+            
+            self.oe.dbg_log('system::stop_service', 'enter_function',
+                            0)        
+            if hasattr(self, 'update_thread'):
+                self.update_thread.stop()        
+        
+            self.oe.dbg_log('system::stop_service', 'exit_function', 0)
+        except Exception, e:
+
+            self.oe.dbg_log('system::stop_service', 'ERROR: ('
+                            + repr(e) + ')')
+            
     def do_init(self):
         try:
 
@@ -290,31 +312,31 @@ class system:
 
             if not arrTypes is None:
 
-                self.config['keyboard']['settings']['KeyboardType'
+                self.struct['keyboard']['settings']['KeyboardType'
                         ]['values'] = arrTypes
 
                 value = self.oe.read_setting('system', 'KeyboardType')
                 if not value is None:
-                    self.config['keyboard']['settings']['KeyboardType'
+                    self.struct['keyboard']['settings']['KeyboardType'
                             ]['value'] = value
 
             if not arrLayouts is None:
 
-                self.config['keyboard']['settings']['KeyboardLayout1'
+                self.struct['keyboard']['settings']['KeyboardLayout1'
                         ]['values'] = arrLayouts
-                self.config['keyboard']['settings']['KeyboardLayout2'
+                self.struct['keyboard']['settings']['KeyboardLayout2'
                         ]['values'] = arrLayouts
 
                 value = self.oe.read_setting('system', 'KeyboardLayout1'
                         )
                 if not value is None:
-                    self.config['keyboard']['settings'
+                    self.struct['keyboard']['settings'
                             ]['KeyboardLayout1']['value'] = value
 
                 value = self.oe.read_setting('system', 'KeyboardLayout2'
                         )
                 if not value is None:
-                    self.config['keyboard']['settings'
+                    self.struct['keyboard']['settings'
                             ]['KeyboardLayout2']['value'] = value
 
                 if not arrTypes == None: 
@@ -322,64 +344,65 @@ class system:
                 else:
                     self.rpi_keyboard_layouts = True
                     
+            if self.arch == "RPi.arm":
+                self.struct['keyboard']['settings'][
+                    'KeyboardLayout2']['hidden'] = 'true'
+                self.struct['keyboard']['settings'][
+                    'KeyboardType']['hidden'] = 'true'
+                
             # Hostname
             value = self.oe.read_setting('system', 'hostname')
             if not value is None:
-                self.config['ident']['settings']['hostname']['value'] = \
+                self.struct['ident']['settings']['hostname']['value'] = \
                     value
 
             # LCD Driver
             if not arrLcd is None:
-                self.config['driver']['settings']['lcd']['values'] = \
+                self.struct['driver']['settings']['lcd']['values'] = \
                     arrLcd
 
             value = self.oe.read_setting('system', 'lcd')
             if not value is None:
-                self.config['driver']['settings']['lcd']['value'] = \
+                self.struct['driver']['settings']['lcd']['value'] = \
                     value
 
             # HDD Standby
             value = self.oe.read_setting('system', 'enable_hdd_standby')
             if not value is None:
-                self.config['power']['settings']['enable_hdd_standby']['value'
+                self.struct['power']['settings']['enable_hdd_standby']['value'
                         ] = value
 
                 value = self.oe.read_setting('system', 'hdd_standby')
                 if not value is None:
-                    self.config['power']['settings']['hdd_standby']['value'
+                    self.struct['power']['settings']['hdd_standby']['value'
                             ] = value
                  
             # AutoUpdate
             value = self.oe.read_setting('system', 'AutoUpdate')
             if not value is None:
-                self.config['update']['settings']['AutoUpdate']['value'
+                self.struct['update']['settings']['AutoUpdate']['value'
                         ] = value
    
             value = self.oe.read_setting('system', 'UpdateNotify')
             if not value is None:
-                self.config['update']['settings']['UpdateNotify'
+                self.struct['update']['settings']['UpdateNotify'
                         ]['value'] = value
                 
             # AutoUpdate = manual by environment var.
-            if 'UPDATE_SUPPORT' in os.environ:
-                if os.environ['UPDATE_SUPPORT'] == 'false':
-                    self.config['update']['settings']['AutoUpdate']['value'
-                            ] = 'manual'
-                    
-                    self.config['update']['settings']['AutoUpdate']['not_supported'
-                            ] = [self.arch]
+            
+            if os.environ.get('UPDATE_SUPPORT', 'true') == 'false':
+    
+                self.update_disabled = True
+                
+                self.struct['update']['hidden'] = 'true'
+                
+                self.struct['update']['settings']['AutoUpdate']['value'
+                    ] = 'manual'
 
-                    self.config['update']['settings']['CheckUpdate']['not_supported'
-                            ] = [self.arch]
+                self.struct['update']['settings']['UpdateNotify'
+                        ]['value'] = '0'
 
-            # AutoUpdate File and URL
-            value = self.oe.read_setting('system', 'update_file')
-            if value != None and value != '':
-                self.update_file = value
-            value = self.oe.read_setting('system', 'update_url')
-            if value != None and value != '':
-                self.update_url = value
-
+                xbmc.log(repr(self.struct))
             self.oe.dbg_log('system::load_values', 'exit_function', 0)
         except Exception, e:
 
@@ -392,80 +415,8 @@ class system:
 
             self.oe.dbg_log('system::load_menu', 'enter_function', 0)
 
-            selectedPos = \
-                self.oe.winOeMain.getControl(self.oe.winOeMain.guiList).getSelectedPosition()
-
-            for category in sorted(self.config, key=lambda x: \
-                                   self.config[x]['order']):
-                if 'not_supported' in self.config[category]:
-                    if self.arch \
-                        in self.config[category]['not_supported']:
-                        continue
-
-                self.oe.winOeMain.addConfigItem(self.oe._(self.config[category]['name'
-                        ]), {'typ': 'separator'},
-                        focusItem.getProperty('listTyp'))
-
-                for setting in sorted(self.config[category]['settings'
-                        ]):
-                      
-                    if 'not_supported' in self.config[category]['settings'][setting]:
-                        if self.arch \
-                            in self.config[category]['settings'][setting]['not_supported']:
-                           continue
-                        
-                    dictProperties = {
-                        'entry': setting,
-                        'category': category,
-                        'action': self.config[category]['settings'
-                                ][setting]['action'],
-                        'value': self.config[category]['settings'
-                                ][setting]['value'],
-                        'typ': self.config[category]['settings'
-                                ][setting]['typ'],
-                        }
-
-                    if 'InfoText' in self.config[category]['settings'
-                            ][setting]:
-                        dictProperties['InfoText'] = \
-                            self.oe._(self.config[category]['settings'
-                                ][setting]['InfoText'])
-
-                    if 'validate' in self.config[category]['settings'
-                            ][setting]:
-                        dictProperties['validate'] = \
-                            self.config[category]['settings'
-                                ][setting]['validate']
-
-                    if 'values' in self.config[category]['settings'
-                            ][setting]:
-                        if len(self.config[category]['settings'
-                               ][setting]['values']) > 0:
-                            dictProperties['values'] = \
-                                ','.join(self.config[category]['settings'
-                                    ][setting]['values'])
-
-                    if not 'parent' in self.config[category]['settings'
-                            ][setting]:
-
-                        self.oe.winOeMain.addConfigItem(self.oe._(self.config[category]['settings'
-                                ][setting]['name']), dictProperties,
-                                focusItem.getProperty('listTyp'))
-                    else:
-
-                        if self.config[category]['settings'
-                                ][self.config[category]['settings'
-                                  ][setting]['parent']['entry']]['value'
-                                ] in self.config[category]['settings'
-                                ][setting]['parent']['value']:
-
-                            self.oe.winOeMain.addConfigItem(self.oe._(self.config[category]['settings'
-                                    ][setting]['name']),
-                                    dictProperties,
-                                    focusItem.getProperty('listTyp'))
-
-            self.oe.winOeMain.getControl(self.oe.winOeMain.guiList).selectItem(selectedPos)
-
+            self.oe.winOeMain.build_menu(self.struct)
+            
             self.oe.dbg_log('system::load_menu', 'exit_function', 0)
         except Exception, e:
 
@@ -477,7 +428,7 @@ class system:
 
             self.oe.dbg_log('system::set_value', 'enter_function', 0)
 
-            self.config[listItem.getProperty('category')]['settings'
+            self.struct[listItem.getProperty('category')]['settings'
                     ][listItem.getProperty('entry')]['value'] = \
                 listItem.getProperty('value')
 
@@ -504,34 +455,34 @@ class system:
             if self.keyboard_layouts == True:
 
                 self.oe.dbg_log('system::set_keyboard_layout',
-                                unicode(self.config['keyboard']['settings'
+                                unicode(self.struct['keyboard']['settings'
                                 ]['KeyboardLayout1']['value']) + ','
-                                + unicode(self.config['keyboard']['settings'
+                                + unicode(self.struct['keyboard']['settings'
                                 ]['KeyboardLayout2']['value']) + ' '
-                                + '-model ' + unicode(self.config['keyboard'
+                                + '-model ' + unicode(self.struct['keyboard'
                                 ]['settings']['KeyboardType']['value']), 1)
 
                 if not os.path.exists(os.path.dirname(self.udev_keyboard_file)):
                     os.makedirs(os.path.dirname(self.udev_keyboard_file))
 
                 config_file = open(self.udev_keyboard_file, 'w')
-                config_file.write('XKBMODEL="' + self.config['keyboard'
+                config_file.write('XKBMODEL="' + self.struct['keyboard'
                                   ]['settings']['KeyboardType']['value']
                                   + '"\n')
                 config_file.write('XKBVARIANT=""\n')
-                config_file.write('XKBLAYOUT="' + self.config['keyboard'
+                config_file.write('XKBLAYOUT="' + self.struct['keyboard'
                                   ]['settings']['KeyboardLayout1']['value']
-                                  + ',' + self.config['keyboard']['settings'
+                                  + ',' + self.struct['keyboard']['settings'
                                   ]['KeyboardLayout2']['value'] + '"\n')
                 config_file.write('XKBOPTIONS="grp:alt_shift_toggle"\n')
                 config_file.close()
 
                 parameters = ['-display ' + os.environ['DISPLAY'],
-                              '-layout ' + self.config['keyboard'
+                              '-layout ' + self.struct['keyboard'
                               ]['settings']['KeyboardLayout1']['value']
-                              + ',' + self.config['keyboard']['settings'
+                              + ',' + self.struct['keyboard']['settings'
                               ]['KeyboardLayout2']['value'], '-model '
-                              + unicode(self.config['keyboard']['settings'
+                              + unicode(self.struct['keyboard']['settings'
                               ]['KeyboardType']['value']),
                               '-option "grp:alt_shift_toggle"']
 
@@ -541,10 +492,10 @@ class system:
             elif self.rpi_keyboard_layouts == True:
                 
                 self.oe.dbg_log('system::set_keyboard_layout',
-                                unicode(self.config['keyboard']['settings'
+                                unicode(self.struct['keyboard']['settings'
                                 ]['KeyboardLayout1']['value']) , 1)                
 
-                parameter = self.config['keyboard'
+                parameter = self.struct['keyboard'
                               ]['settings']['KeyboardLayout1']['value']
 
                 command = 'loadkmap < `ls -1 %s/*/%s.bmap`' % (self.rpi_keyboard_info, parameter)
@@ -577,21 +528,21 @@ class system:
             if not listItem == None:
                 self.set_value(listItem)
 
-            if not self.config['ident']['settings']['hostname']['value'
-                    ] is None and not self.config['ident']['settings'
+            if not self.struct['ident']['settings']['hostname']['value'
+                    ] is None and not self.struct['ident']['settings'
                     ]['hostname']['value'] == '':
 
                 self.oe.dbg_log('system::set_hostname',
-                                self.config['ident']['settings'
+                                self.struct['ident']['settings'
                                 ]['hostname']['value'], 1)
 
                 hostname = open('/proc/sys/kernel/hostname', 'w')
-                hostname.write(self.config['ident']['settings'
+                hostname.write(self.struct['ident']['settings'
                                ]['hostname']['value'])
                 hostname.close()
 
                 hostname = open('%s/hostname' % self.oe.CONFIG_CACHE, 'w')
-                hostname.write(self.config['ident']['settings'
+                hostname.write(self.struct['ident']['settings'
                                ]['hostname']['value'])
                 hostname.close()
 
@@ -605,7 +556,7 @@ class system:
                     user_hosts.close()
 
                 hosts.write('127.0.0.1\tlocalhost %s\n'
-                            % self.config['ident']['settings'
+                            % self.struct['ident']['settings'
                             ]['hostname']['value'])
                 hosts.close()
             else:
@@ -637,16 +588,16 @@ class system:
             else:
                 lcd_config_file = '/etc/LCDd.conf'
 
-            if not self.config['driver']['settings']['lcd']['value'] \
-                is None and not self.config['driver']['settings']['lcd'
+            if not self.struct['driver']['settings']['lcd']['value'] \
+                is None and not self.struct['driver']['settings']['lcd'
                     ]['value'] == 'none':
 
                 self.oe.dbg_log('system::set_lcd_driver',
-                                self.config['driver']['settings']['lcd'
+                                self.struct['driver']['settings']['lcd'
                                 ]['value'], 1)
 
                 parameters = ['-c ' + lcd_config_file, '-d '
-                              + self.config['driver']['settings']['lcd'
+                              + self.struct['driver']['settings']['lcd'
                               ]['value'], '-s true']
 
                 os.system('killall LCDd')
@@ -679,13 +630,13 @@ class system:
             if not listItem == None:
                 self.set_value(listItem)
 
-            if self.config['power']['settings']['hdd_standby']['value'] \
-                != None and self.config['power']['settings'
+            if self.struct['power']['settings']['hdd_standby']['value'] \
+                != None and self.struct['power']['settings'
                     ]['hdd_standby']['value'] != '0' \
-                and self.config['power']['settings'
+                and self.struct['power']['settings'
                     ]['enable_hdd_standby']['value'] == '1':
 
-                value = int(self.config['power']['settings'
+                value = int(self.struct['power']['settings'
                             ]['hdd_standby']['value']) #* 12
 
                 #find system hdd
@@ -765,15 +716,17 @@ class system:
             if not listItem == None:
                 self.set_value(listItem)
                 
-            if not hasattr(self, 'update_thread'):
-                self.update_thread = updateThread(self.oe)
-                self.update_thread.start()
-            else:
-                self.update_thread.wait_evt.set()
+            if not hasattr(self, 'update_disabled'):
 
-            self.oe.dbg_log('system::set_auto_update',
-                            unicode(self.config['update']['settings'
-                            ]['AutoUpdate']['value']), 1)
+                if not hasattr(self, 'update_thread'):
+                    self.update_thread = updateThread(self.oe)
+                    self.update_thread.start()
+                else:
+                    self.update_thread.wait_evt.set()
+
+                self.oe.dbg_log('system::set_auto_update',
+                                unicode(self.struct['update']['settings'
+                                ]['AutoUpdate']['value']), 1)
 
             self.oe.dbg_log('system::set_auto_update', 'exit_function',
                             0)
@@ -913,13 +866,13 @@ class system:
                     self.update_file = self.download_url_v2 % (update_json['data']['folder'],
                                                                update_json['data']['update'])
 
-                    if self.config['update']['settings']['UpdateNotify'
+                    if self.struct['update']['settings']['UpdateNotify'
                             ]['value'] == '1':
                         xbmc.executebuiltin('Notification('
                                 + self.oe._(32363).encode('utf-8') + ', '
                                 + self.oe._(32364).encode('utf-8') + ')')
    
-                    if (self.config['update']['settings']['AutoUpdate']['value'
+                    if (self.struct['update']['settings']['AutoUpdate']['value'
                         ] == 'manual' and force == True):
                         silent = False
                         xbmcDialog = xbmcgui.Dialog()
@@ -935,7 +888,7 @@ class system:
                             self.update_in_progress = True
                             self.do_autoupdate()
                             
-                    if (self.config['update']['settings']['AutoUpdate']['value'
+                    if (self.struct['update']['settings']['AutoUpdate']['value'
                         ] == 'auto' and force == False):
 
                         self.update_in_progress = True
@@ -966,7 +919,7 @@ class system:
 
                     self.update_file = self.update_file.split('/')[-1]
                     
-                    if self.config['update']['settings']['UpdateNotify'
+                    if self.struct['update']['settings']['UpdateNotify'
                             ]['value'] == '1':
                         xbmc.executebuiltin('Notification('
                                 + self.oe._(32363) + ', '
@@ -981,7 +934,7 @@ class system:
                             self.temp_folder + 'oe_update/', silent) \
                         == 1:
 
-                        if self.config['update']['settings'
+                        if self.struct['update']['settings'
                                 ]['UpdateNotify']['value'] == '1':
                             xbmc.executebuiltin('Notification('
                                     + self.oe._(32363) + ', '
@@ -1281,7 +1234,7 @@ class system:
             self.oe.winOeMain.set_wizard_title(self.oe._(32003))
             self.oe.winOeMain.set_wizard_text(self.oe._(32304))
             self.oe.winOeMain.set_wizard_button_title(self.oe._(32308))
-            self.oe.winOeMain.set_wizard_button_1(self.config['ident'
+            self.oe.winOeMain.set_wizard_button_1(self.struct['ident'
                     ]['settings']['hostname']['value'], self,
                     'wizard_set_hostname')
 
@@ -1297,7 +1250,7 @@ class system:
             self.oe.dbg_log('system::wizard_set_hostname',
                             'enter_function', 0)
 
-            currentHostname = self.config['ident']['settings'
+            currentHostname = self.struct['ident']['settings'
                     ]['hostname']['value']
 
             xbmcKeyboard = xbmc.Keyboard(currentHostname)
@@ -1307,7 +1260,7 @@ class system:
 
                 if xbmcKeyboard.isConfirmed():
                     result_is_valid = True
-                    validate_string = self.config['ident']['settings'
+                    validate_string = self.struct['ident']['settings'
                             ]['hostname']['validate']
                     if validate_string != '':
                         if not re.search(validate_string,
@@ -1317,13 +1270,13 @@ class system:
                     result_is_valid = True
 
             if xbmcKeyboard.isConfirmed():
-                self.config['ident']['settings']['hostname']['value'] = \
+                self.struct['ident']['settings']['hostname']['value'] = \
                     xbmcKeyboard.getText()
                 self.set_hostname()
-                self.oe.winOeMain.getControl(1401).setLabel(self.config['ident'
+                self.oe.winOeMain.getControl(1401).setLabel(self.struct['ident'
                         ]['settings']['hostname']['value'])
                 self.oe.write_setting('system', 'hostname',
-                        self.config['ident']['settings']['hostname'
+                        self.struct['ident']['settings']['hostname'
                         ]['value'])
 
             self.oe.dbg_log('system::wizard_set_hostname',

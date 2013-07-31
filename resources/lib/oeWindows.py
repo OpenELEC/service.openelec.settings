@@ -84,27 +84,30 @@ class mainWindow(xbmcgui.WindowXMLDialog):
             for strModule in sorted(self.oe.dictModules, key=lambda x: \
                                     self.oe.dictModules[x].menu.keys()):
 
+                module = self.oe.dictModules[strModule]
+                
                 self.oe.dbg_log('init module', strModule, 0)
-                if self.oe.dictModules[strModule].enabled:
-                    if hasattr(self.oe.dictModules[strModule], 'do_init'):
-                        Thread(target=self.oe.dictModules[strModule].do_init(),
+                if module.enabled:
+                    if hasattr(module, 'do_init'):
+                        Thread(target=module.do_init(),
                             args=()).start()
 
-                    for men in self.oe.dictModules[strModule].menu:
-                        dictProperties = {'modul': strModule,
-                                'listTyp': self.oe.listObject[self.oe.dictModules[strModule].menu[men]['listTyp'
-                                ]],
-                                'menuLoader': self.oe.dictModules[strModule].menu[men]['menuLoader'
-                                ]}
+                    for men in module.menu:
+                        if 'listTyp' in module.menu[men] and \
+                            'menuLoader' in module.menu[men]: 
+                            
+                            dictProperties = {'modul': strModule,
+                                    'listTyp': self.oe.listObject[module.menu[men]['listTyp']],
+                                    'menuLoader': module.menu[men]['menuLoader']}
 
-                        if 'InfoText' \
-                            in self.oe.dictModules[strModule].menu[men]:
-                            dictProperties['InfoText'] = \
-                                self.oe._(self.oe.dictModules[strModule].menu[men]['InfoText'
-                                    ])
+                            if 'InfoText' \
+                                in module.menu[men]:
+                                dictProperties['InfoText'] = \
+                                    self.oe._(module.menu[men]['InfoText'
+                                        ])
 
-                        self.addMenuItem(self.oe.dictModules[strModule].menu[men]['name'
-                                ], dictProperties)
+                            self.addMenuItem(module.menu[men]['name'
+                                    ], dictProperties)
 
             self.setFocusId(self.guiMenList)
             self.onFocus(self.guiMenList)
@@ -447,6 +450,9 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                             + unicode(controlID) + ')', 'ERROR: ('
                             + repr(e) + ')')
 
+    def onUnload(self):
+        xbmc.log("############### UNLOAD# ######################")
+        
     def onFocus(self, controlID):
 
         try:
@@ -484,10 +490,13 @@ class mainWindow(xbmcgui.WindowXMLDialog):
 
                 selectedMenuItem = \
                     self.getControl(controlID).getSelectedItem()
+                
                 self.setProperty('InfoText',
                                  selectedMenuItem.getProperty('InfoText'
                                  ))
-
+                                 
+                self.lastModul = selectedMenuItem.getProperty('Modul')
+                
                 if lastMenu != self.lastMenu:
 
                     self.lastMenu = lastMenu

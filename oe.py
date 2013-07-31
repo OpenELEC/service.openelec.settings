@@ -173,6 +173,8 @@ def execute(command_line):
 def set_service_option(service, option, value):
     try:
 
+        dbg_log('oe::set_service_option', '%s :: %s :: %s' % (service, option, value))
+        
         lines = []        
         changed = False
         conf_file_name = '%s/service_%s.conf' % (CONFIG_CACHE, service)
@@ -194,7 +196,25 @@ def set_service_option(service, option, value):
     except Exception, e:
 
         dbg_log('oe::set_service_option', 'ERROR: (' + repr(e) + ')')
-          
+     
+def get_service_option(service, option, default=None):
+    try:
+
+        lines = []        
+        conf_file_name = '%s/service_%s.conf' % (CONFIG_CACHE, service)
+        
+        if os.path.isfile(conf_file_name):
+            with open(conf_file_name, "r") as conf_file:
+                for line in conf_file:
+                    if option in line:
+                        if '=' in line:
+                            default = line.strip().split('=')[-1]
+        
+        return default
+    except Exception, e:
+
+        dbg_log('oe::get_service_option', 'ERROR: (' + repr(e) + ')')
+        
 def load_file(filename):
     try:
 
@@ -861,6 +881,9 @@ def exit():
 
     global WinOeSelect, winOeMain, __addon__, __cwd__, __oe__, \
            _, dbusSystemBus, dictModules
+    
+    #dbusSystemBus.close()
+    dbusSystemBus = None
     
     #del winOeMain
     del dbusSystemBus

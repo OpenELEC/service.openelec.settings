@@ -402,7 +402,6 @@ class system:
                 self.struct['update']['settings']['UpdateNotify'
                         ]['value'] = '0'
 
-                xbmc.log(repr(self.struct))
             self.oe.dbg_log('system::load_values', 'exit_function', 0)
         except Exception, e:
 
@@ -795,7 +794,6 @@ class system:
                 
                 for layout in glob.glob(self.rpi_keyboard_info + '/*/*.bmap'):
                     if os.path.isfile(layout):
-                        xbmc.log(layout)
                         arrLayouts.append(layout.split('/')[-1].split('.')[0])
                     
                 arrLayouts.sort()

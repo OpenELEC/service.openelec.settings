@@ -451,7 +451,7 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                             + repr(e) + ')')
 
     def onUnload(self):
-        xbmc.log("############### UNLOAD# ######################")
+        pass
         
     def onFocus(self, controlID):
 

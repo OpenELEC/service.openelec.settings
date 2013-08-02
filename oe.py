@@ -125,7 +125,7 @@ def set_language(language):
 
     global WinOeSelect, winOeMain, __addon__, __cwd__, __oe__, _
 
-    time.sleep(0.3)
+    #time.sleep(0.3)
 
     __addon__ = None
     __cwd__ = None
@@ -142,7 +142,7 @@ def set_language(language):
     __oe__ = sys.modules[globals()['__name__']]
     _ = __addon__.getLocalizedString
 
-    load_modules()
+    #load_modules()
 
     winOeMain = oeWindows.wizard('wizard.xml', __cwd__, 'Default',
                                  oeMain=__oe__)

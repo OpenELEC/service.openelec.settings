@@ -33,7 +33,6 @@ import time
 import dbus
 import dbus.service
 import threading
-import gobject
 import oeWindows
 import subprocess
 
@@ -1041,18 +1040,17 @@ class bluetooth:
                 self.oe.dbg_log('bluetooth::monitor::PropertiesChanged::path',
                                 repr(path), 0)                
                 
-                properties = ['Paired', 'Adapter', 'Connected',
-                             'Address', 'Class', 'Trusted',
-                             'Icon']
-                
-                if path in self.parent.listItems:
-                    for prop in changed:
-                        if prop in properties:
-                            self.parent.listItems[path].setProperty( \
-                                unicode(prop), unicode(changed[prop])) 
-                            self.forceRender()
-                else:
-                    if self.parent.visible:
+                if self.parent.visible:
+                    properties = ['Paired', 'Adapter', 'Connected',
+                                'Address', 'Class', 'Trusted',
+                                'Icon']
+                    if path in self.parent.listItems:
+                        for prop in changed:
+                            if prop in properties:
+                                self.parent.listItems[path].setProperty( \
+                                    unicode(prop), unicode(changed[prop])) 
+                                self.forceRender()
+                    else:
                         self.parent.menu_connections()
 
                 self.oe.dbg_log('bluetooth::monitor::PropertiesChanged'
@@ -1236,16 +1234,16 @@ class bluetoothAgent(dbus.service.Object):
             if not hasattr(self.parent, 'pinkey_window'):
                 self.parent.open_pinkey_window()
                 self.parent.pinkey_window.set_label1( \
-                    requested)
+                    passkey)
             else:
                 self.parent.pinkey_window.append_label3(entered)
 
-            if len(self.parent.pinkey_window.get_label3_len()) \
+            if self.parent.pinkey_window.get_label3_len() \
                 == len(unicode(passkey)):
                 self.parent.close_pinkey_window()
 
             self.oe.dbg_log('bluetooth::btAgent::DisplayPasskey',
-                            'enter_function', 0)
+                            'exit_function', 0)
         except Exception, e:
             self.oe.dbg_log('bluetooth::btAgent::DisplayPasskey',
                             'ERROR: (' + repr(e) + ')', 4)

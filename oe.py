@@ -114,8 +114,8 @@ def _(code):
     return __addon__.getLocalizedString(code)
 
 def dbg_log(source, text, level=4):
-    #if os.environ.get('DEBUG', 'no') == 'no':
-    #    return
+    if os.environ.get('DEBUG', 'no') == 'no':
+        return
 
     xbmc.log('## OpenELEC Addon ## ' + source + ' ## ' + text, level)
     xbmc.log(traceback.format_exc())
@@ -173,8 +173,6 @@ def execute(command_line):
 def set_service_option(service, option, value):
     try:
 
-        dbg_log('oe::set_service_option', '%s :: %s :: %s' % (service, option, value))
-        
         lines = []        
         changed = False
         conf_file_name = '%s/service_%s.conf' % (CONFIG_CACHE, service)

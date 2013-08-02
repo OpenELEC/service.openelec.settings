@@ -31,7 +31,6 @@ import dbus
 import xbmcgui
 import dbus.service
 import threading
-import gobject
 import uuid
 import os
 import ConfigParser
@@ -162,7 +161,6 @@ class networkMount(object):
 
             oeMain.dbg_log('networkMount::__init__', 'exit_function', 0)
         except Exception, e:
-
             self.oe.set_busy(0)
             self.oe.dbg_log('networkMount::__init__', 'ERROR: ('
                             + repr(e) + ')', 4)
@@ -185,7 +183,6 @@ class networkMount(object):
             self.oe.dbg_log('networkMount::menu_loader', 'exit_function'
                             , 0)
         except Exception, e:
-
             self.oe.dbg_log('networkMount::menu_loader', 'ERROR: ('
                             + repr(e) + ')', 4)
 
@@ -210,7 +207,6 @@ class networkMount(object):
             self.oe.dbg_log('networkMount::set_value', 'exit_function',
                             0)
         except Exception, e:
-
             self.oe.dbg_log('networkMount::set_value', 'ERROR: ('
                             + repr(e) + ')', 4)
 
@@ -315,7 +311,6 @@ class networkMount(object):
 
             return 'close'
         except Exception, e:
-
             self.oe.set_busy(0)
             self.oe.dbg_log('save_mount::save_mount', 'ERROR: ('
                             + repr(e) + ')', 4)
@@ -341,7 +336,6 @@ class networkMount(object):
 
             return 'close'
         except Exception, e:
-
             self.oe.dbg_log('save_mount::delete_mount', 'ERROR: ('
                             + repr(e) + ')', 4)
 
@@ -662,7 +656,6 @@ class connmanService(object):
             self.oe.dbg_log('connmanService::__init__', 'exit_function'
                             , 0)
         except Exception, e:
-
             self.oe.set_busy(0)
             self.oe.dbg_log('connmanService::__init__', 'ERROR: ('
                             + repr(e) + ')', 4)
@@ -679,7 +672,6 @@ class connmanService(object):
             self.oe.dbg_log('connmanService::cancel', 'exit_function',
                             0)
         except Exception, e:
-
             self.oe.set_busy(0)
             self.oe.dbg_log('connmanService::cancel', 'ERROR: ('
                             + repr(e) + ')', 4)
@@ -730,7 +722,6 @@ class connmanService(object):
             self.oe.dbg_log('connmanService::menu_loader',
                             'exit_function', 0)
         except Exception, e:
-
             self.oe.dbg_log('connmanService::menu_loader', 'ERROR: ('
                             + repr(e) + ')', 4)
 
@@ -750,7 +741,6 @@ class connmanService(object):
             self.oe.dbg_log('connmanService::set_value', 'exit_function'
                             , 0)
         except Exception, e:
-
             self.oe.dbg_log('connmanService::set_value', 'ERROR: ('
                             + repr(e) + ')', 4)
 
@@ -811,7 +801,6 @@ class connmanService(object):
 
             return (category + postfix, value)
         except Exception, e:
-
             self.oe.dbg_log('connmanService::dbus_config', 'ERROR: ('
                             + repr(e) + ')', 4)
 
@@ -876,7 +865,6 @@ class connmanService(object):
 
             return 'close'
         except Exception, e:
-
             self.oe.dbg_log('connmanService::delete_network', 'ERROR: ('
                              + repr(e) + ')', 4)
             return 'close'
@@ -894,7 +882,6 @@ class connmanService(object):
 
             return 'close'
         except Exception, e:
-
             self.oe.dbg_log('connmanService::connect_network',
                             'ERROR: (' + repr(e) + ')', 4)
             return 'close'
@@ -912,7 +899,6 @@ class connmanService(object):
 
             return 'close'
         except Exception, e:
-
             self.oe.dbg_log('connmanService::disconnect_network',
                             'ERROR: (' + repr(e) + ')', 4)
             return 'close'
@@ -1328,7 +1314,6 @@ class connmanVpn(object):
 
             self.oe.dbg_log('connmanVpn::__init__', 'exit_function', 0)
         except Exception, e:
-
             self.oe.dbg_log('connmanVpn::__init__', 'ERROR: ('
                             + repr(e) + ')', 4)
 
@@ -1342,7 +1327,6 @@ class connmanVpn(object):
             self.oe.set_busy(0)
             self.oe.dbg_log('connmanVpn::cancel', 'exit_function', 0)
         except Exception, e:
-
             self.oe.set_busy(0)
             self.oe.dbg_log('connmanVpn::cancel', 'ERROR: (' + repr(e)
                             + ')', 4)
@@ -1358,7 +1342,6 @@ class connmanVpn(object):
             self.oe.dbg_log('connmanVpn::show_advanced', 'exit_function'
                             , 0)
         except Exception, e:
-
             self.oe.dbg_log('connmanVpn::show_advanced', 'ERROR: ('
                             + repr(e) + ')', 4)
 
@@ -1385,7 +1368,6 @@ class connmanVpn(object):
             self.oe.dbg_log('connmanVpn::menu_loader', 'exit_function',
                             0)
         except Exception, e:
-
             self.oe.dbg_log('connmanVpn::menu_loader', 'ERROR: ('
                             + repr(e) + ')', 4)
 
@@ -1404,7 +1386,6 @@ class connmanVpn(object):
 
             self.oe.dbg_log('connmanVpn::set_value', 'exit_function', 0)
         except Exception, e:
-
             self.oe.dbg_log('connmanVpn::set_value', 'ERROR: ('
                             + repr(e) + ')', 4)
 
@@ -1440,7 +1421,6 @@ class connmanVpn(object):
             self.oe.dbg_log('connmanVpn::load_vpn_config',
                             'exit_function', 0)
         except Exception, e:
-
             self.oe.dbg_log('connmanVpn::load_vpn_config', 'ERROR: ('
                             + repr(e) + ')', 4)
 
@@ -1510,7 +1490,6 @@ class connmanVpn(object):
 
             return 'close'
         except Exception, e:
-
             self.oe.set_busy(0)
             self.oe.dbg_log('connmanVpn::save_vpn_config', 'ERROR: ('
                             + repr(e) + ')', 4)
@@ -1528,7 +1507,6 @@ class connmanVpn(object):
 
             return 'close'
         except Exception, e:
-
             self.oe.dbg_log('connmanService::delete_network', 'ERROR: ('
                              + repr(e) + ')', 4)
             return 'close'
@@ -1710,6 +1688,7 @@ class connman:
             self.oe = oeMain
             self.enabled = True
             self.connman_daemon = "/usr/sbin/connmand"
+            self.visible = False
             
             self.wait_conf_file = \
                 '%s/openelec/network_wait' % self.oe.CONFIG_CACHE
@@ -1723,7 +1702,6 @@ class connman:
             self.oe.dbg_log('connman::__init__', 'exit_function', 0)
             self.vpn_conf_dir = '%s/vpn-config/' % self.oe.USER_CONFIG
         except Exception, e:
-
             self.oe.dbg_log('connman::__init__', 'ERROR: (' + repr(e)
                             + ')', 4)
 
@@ -1735,7 +1713,6 @@ class connman:
                 self.listItems[entry] = None
                 del self.listItems[entry]
         except Exception, e:
-
             self.oe.dbg_log('connman::clear_list', 'ERROR: (' + repr(e)
                             + ')', 4)
 
@@ -1744,11 +1721,11 @@ class connman:
 
             self.oe.dbg_log('connman::do_init', 'enter_function', 0)
 
+            self.visible = True
             self.load_values()
 
             self.oe.dbg_log('connman::do_init', 'exit_function', 0)
         except Exception, e:
-
             self.oe.dbg_log('connman::do_init', 'ERROR: (' + repr(e)
                             + ')', 4)
 
@@ -1757,11 +1734,11 @@ class connman:
 
             self.oe.dbg_log('connman::exit', 'enter_function', 0)
 
+            self.visible = False
             self.clear_list()
 
             self.oe.dbg_log('connman::exit', 'exit_function', 0)
         except Exception, e:
-
             self.oe.dbg_log('connman::exit', 'ERROR: (' + repr(e) + ')'
                             , 4)
 
@@ -1801,18 +1778,10 @@ class connman:
 
             self.oe.dbg_log('connman::load_values', 'exit_function', 0)
         except Exception, e:
-
             self.oe.dbg_log('connman::load_values', 'ERROR: ('
                             + repr(e) + ')')
 
-    def menu_connections(
-        self,
-        focusItem,
-        services={},
-        removed={},
-        force=False,
-        ):
-
+    def menu_connections(self, focusItem, services={}, removed={}, force=False):
         try:
 
             self.oe.dbg_log('connman::menu_connections',
@@ -1921,7 +1890,6 @@ class connman:
             self.oe.dbg_log('connman::menu_connections', 'exit_function'
                             , 0)
         except Exception, e:
-
             self.oe.set_busy(0)
             self.oe.dbg_log('connman::menu_connections', 'ERROR: ('
                             + repr(e) + ')', 4)
@@ -1996,7 +1964,6 @@ class connman:
             self.oe.set_busy(0)
             self.oe.dbg_log('connman::menu_loader', 'exit_function', 0)
         except Exception, e:
-
             self.oe.set_busy(0)
             self.oe.dbg_log('connman::menu_loader', 'ERROR: ('
                             + repr(e) + ')', 4)
@@ -2057,7 +2024,6 @@ class connman:
             self.oe.dbg_log('connman::open_context_menu',
                             'exit_function', 0)
         except Exception, e:
-
             self.oe.dbg_log('connman::open_context_menu', 'ERROR: ('
                             + repr(e) + ')', 4)
 
@@ -2091,7 +2057,6 @@ class connman:
 
             self.oe.set_busy(0)
         except Exception, e:
-
             self.oe.set_busy(0)
             self.oe.dbg_log('connman::set_timeservers', 'ERROR: ('
                             + repr(e) + ')', 4)
@@ -2110,7 +2075,6 @@ class connman:
 
             self.oe.dbg_log('connman::set_value', 'exit_function', 0)
         except Exception, e:
-
             self.oe.dbg_log('connman::set_value', 'ERROR: (' + repr(e)
                             + ')', 4)
 
@@ -2210,7 +2174,6 @@ class connman:
             self.oe.dbg_log('connman::set_technologies', 'exit_function'
                             , 0)
         except Exception, e:
-
             self.oe.set_busy(0)
             self.oe.dbg_log('connman::set_technologies', 'ERROR: ('
                             + repr(e) + ')', 4)
@@ -2249,7 +2212,6 @@ class connman:
             self.oe.dbg_log('connman::configure_network',
                             'exit_function', 0)
         except Exception, e:
-
             self.oe.dbg_log('connman::configure_network', 'ERROR: ('
                             + repr(e) + ')', 4)
 
@@ -2278,7 +2240,6 @@ class connman:
             self.oe.dbg_log('connman::connect_network', 'exit_function'
                             , 0)
         except Exception, e:
-
             self.oe.set_busy(0)
             self.oe.dbg_log('connman::connect_network', 'ERROR: ('
                             + repr(e) + ')', 4)
@@ -2295,7 +2256,6 @@ class connman:
             self.oe.dbg_log('connman::connect_reply_handler',
                             'exit_function', 0)
         except Exception, e:
-
             self.oe.set_busy(0)
             self.oe.dbg_log('connman::connect_reply_handler', 'ERROR: ('
                              + repr(e) + ')', 4)
@@ -2322,7 +2282,6 @@ class connman:
             self.oe.dbg_log('connman::dbus_error_handler',
                             'exit_function', 0)
         except Exception, e:
-
             self.oe.set_busy(0)
             self.oe.dbg_log('connman::dbus_error_handler', 'ERROR: ('
                             + repr(e) + ')', 4)
@@ -2353,7 +2312,6 @@ class connman:
             self.oe.dbg_log('connman::disconnect_network',
                             'exit_function', 0)
         except Exception, e:
-
             self.oe.set_busy(0)
             self.oe.dbg_log('connman::disconnect_network', 'ERROR: ('
                             + repr(e) + ')', 4)
@@ -2399,7 +2357,6 @@ class connman:
             self.oe.dbg_log('connman::delete_network', 'exit_function',
                             0)
         except Exception, e:
-
             self.oe.set_busy(0)
             self.oe.dbg_log('connman::delete_network', 'ERROR: ('
                             + repr(e) + ')', 4)
@@ -2424,7 +2381,6 @@ class connman:
             self.oe.dbg_log('connman::refresh_network', 'exit_function'
                             , 0)
         except Exception, e:
-
             self.oe.set_busy(0)
             self.oe.dbg_log('connman::refresh_network', 'ERROR: ('
                             + repr(e) + ')', 4)
@@ -2440,7 +2396,6 @@ class connman:
 
             self.oe.dbg_log('connman::add_vpn', 'exit_function', 0)
         except Exception, e:
-
             self.oe.dbg_log('connman::add_vpn', 'ERROR: (' + repr(e)
                             + ')', 4)
 
@@ -2461,7 +2416,6 @@ class connman:
             self.oe.dbg_log('connman::get_service_path', 'exit_function'
                             , 0)
         except Exception, e:
-
             self.oe.dbg_log('connman::get_service_path', 'ERROR: ('
                             + repr(e) + ')', 4)
 
@@ -2476,7 +2430,6 @@ class connman:
 
             self.oe.dbg_log('connman::add_mount', 'enter_function', 0)
         except Exception, e:
-
             self.oe.dbg_log('connman::add_mount', 'ERROR: (' + repr(e)
                             + ')')
 
@@ -2497,7 +2450,6 @@ class connman:
 
             self.oe.dbg_log('connman::mount_drives', 'exit_function', 0)
         except Exception, e:
-
             self.oe.set_busy(0)
             self.oe.dbg_log('connman::mount_drives', 'ERROR: ('
                             + repr(e) + ')')
@@ -2585,7 +2537,6 @@ class connman:
 
             self.oe.dbg_log('connman::mount_drive', 'enter_function', 0)
         except Exception, e:
-
             self.oe.set_busy(0)
             self.oe.dbg_log('connman::mount_drive', 'ERROR: ('
                             + repr(e) + ')')
@@ -2617,7 +2568,6 @@ class connman:
                         
             self.oe.dbg_log('connman::stop_service', 'exit_function', 0)
         except Exception, e:
-
             self.oe.dbg_log('system::stop_service', 'ERROR: ('
                             + repr(e) + ')')
 
@@ -2652,7 +2602,6 @@ class connman:
             self.oe.dbg_log('connman::set_network_wait', 'exit_function'
                             , 0)
         except Exception, e:
-
             self.oe.dbg_log('system::set_network_wait', 'ERROR: ('
                             + repr(e) + ')')
 
@@ -2677,7 +2626,6 @@ class connman:
 
             self.oe.dbg_log('connman::do_wizard', 'exit_function', 0)
         except Exception, e:
-
             self.oe.dbg_log('connman::do_wizard', 'ERROR: (' + repr(e)
                             + ')')
 
@@ -2701,7 +2649,6 @@ class connman:
                 self.oe.dbg_log('connman::monitor::__init__',
                                 'exit_function', 0)
             except Exception, e:
-
                 self.oe.dbg_log('connman::monitor::__init__', 'ERROR: ('
                                 + repr(e) + ')')
 
@@ -2749,7 +2696,6 @@ class connman:
                 self.oe.dbg_log('connman::monitor::add_signal_receivers', 'exit_function'
                                 , 0)
             except Exception, e:
-
                 self.oe.dbg_log('connman::monitor::add_signal_receivers', 'ERROR: ('
                                 + repr(e) + ')', 4)
 
@@ -2778,7 +2724,6 @@ class connman:
                 self.oe.dbg_log('connman::monitor::remove_signal_receivers', 'exit_function'
                                 , 0)
             except Exception, e:
-
                 self.oe.dbg_log('connman::monitor::remove_signal_receivers', 'ERROR: ('
                                 + repr(e) + ')', 4)
 
@@ -2797,7 +2742,6 @@ class connman:
                 self.oe.dbg_log('connman::monitor::nameOwnerChanged',
                                 'exit_function', 0)
             except Exception, e:
-
                 self.oe.dbg_log('connman::monitor::nameOwnerChanged',
                                 'ERROR: (' + repr(e) + ')', 4)
 
@@ -2820,7 +2764,6 @@ class connman:
                 self.oe.dbg_log('connman::monitor::vpnNameOwnerChanged',
                                 'ERROR: (' + repr(e) + ')', 4)
 
-
         def initialize_agent(self):
             try:
 
@@ -2842,7 +2785,6 @@ class connman:
                                 'exit_function', 0)
                 
             except Exception, e:
-
                 self.oe.dbg_log('connman::monitor::initialize_agent',
                                 'ERROR: (' + repr(e) + ')', 4)                
                 
@@ -2874,7 +2816,6 @@ class connman:
                 self.oe.dbg_log('connman::monitor::remove_agent',
                                 'exit_function', 0)
             except Exception, e:
-
                 self.oe.dbg_log('connman::monitor::remove_agent',
                                 'ERROR: (' + repr(e) + ')', 4)
                 
@@ -2898,7 +2839,6 @@ class connman:
                 self.oe.dbg_log('connman::monitor::initialize_vpn_agent',
                                 'exit_function', 0)                
             except Exception, e:
-
                 self.oe.dbg_log('connman::monitor::initialize_vpn_agent',
                                 'ERROR: (' + repr(e) + ')', 4)                
                 
@@ -2931,93 +2871,100 @@ class connman:
                 self.oe.dbg_log('connman::monitor::remove_vpn_agent',
                                 'exit_function', 0)
             except Exception, e:
-
                 self.oe.dbg_log('connman::monitor::remove_vpn_agent',
                                 'ERROR: (' + repr(e) + ')', 4)
                 
         def managerPropertyChanged(self, name, value, path, interface):
             try:
 
-                self.oe.dbg_log('connman::monitorLoop::managerPropertyChanged'
-                                , 'enter_function', 0)
-                
-                xbmc.log('managerProperty:name:%s' % repr(name))
-                xbmc.log('managerProperty:value:%s' % repr(value))
-                xbmc.log('managerProperty:path:%s' % repr(path))
-                xbmc.log('managerProperty:interface:%s' % repr(interface))
-                
-                self.oe.dbg_log('connman::monitorLoop::managerPropertyChanged'
+                self.oe.dbg_log('connman::monitor::managerPropertyChanged'
+                                , 'enter_function', 0)                
+                self.oe.dbg_log('connman::monitor::managerPropertyChanged::name'
+                                , repr(name), 0)
+                self.oe.dbg_log('connman::monitor::managerPropertyChanged::value'
+                                , repr(value), 0)
+                self.oe.dbg_log('connman::monitor::managerPropertyChanged::path'
+                                , repr(path), 0)
+                self.oe.dbg_log('connman::monitor::managerPropertyChanged::interface'
+                                , repr(interface), 0)
+                self.oe.dbg_log('connman::monitor::managerPropertyChanged'
                                 , 'exit_function', 0)
             except Exception, e:
 
-                self.oe.dbg_log('connman::monitorLoop::managerPropertyChanged'
+                self.oe.dbg_log('connman::monitor::managerPropertyChanged'
                                 , 'ERROR: (' + repr(e) + ')', 4)
 
-        def propertyChanged(self,name,value,path):
+        def propertyChanged(self, name, value, path):
             try:
 
-                self.oe.dbg_log('connman::monitorLoop::propertyChanged',
+                self.oe.dbg_log('connman::monitor::propertyChanged',
                                 'enter_function', 0)
-
-                xbmc.log('property:name:%s' % repr(name))
-                xbmc.log('property:value:%s' % repr(value))
-                xbmc.log('property:path:%s' % repr(path))
+                self.oe.dbg_log('connman::monitor::propertyChanged::name'
+                                , repr(name), 0)
+                self.oe.dbg_log('connman::monitor::propertyChanged::value'
+                                , repr(value), 0)
+                self.oe.dbg_log('connman::monitor::propertyChanged::path'
+                                , repr(path), 0)
                 
-                self.updateGui(name, value, path)
+                if self.parent.visible:
+                    self.updateGui(name, value, path)
                 
-                self.oe.dbg_log('connman::monitorLoop::propertyChanged',
+                self.oe.dbg_log('connman::monitor::propertyChanged',
                                 'exit_function', 0)
             except Exception, e:
-
-                self.oe.dbg_log('connman::monitorLoop::propertyChanged',
+                self.oe.dbg_log('connman::monitor::propertyChanged',
                                 'ERROR: (' + repr(e) + ')', 4)
 
-        def technologyChanged(self,name,value,path):
+        def technologyChanged(self, name, value, path):
             try:
 
-                self.oe.dbg_log('connman::monitorLoop::technologyChanged',
+                self.oe.dbg_log('connman::monitor::technologyChanged',
                                 'enter_function', 0)
-                xbmc.log('technologie:name:%s' % repr(name))
-                xbmc.log('technologie:value:%s' % repr(value))
-                xbmc.log('technologie:path:%s' % repr(path))
+                self.oe.dbg_log('connman::monitor::technologyChanged::name'
+                                , repr(name), 0)
+                self.oe.dbg_log('connman::monitor::technologyChanged::value'
+                                , repr(value), 0)
+                self.oe.dbg_log('connman::monitor::technologyChanged::path'
+                                , repr(path), 0)
+
+                if self.parent.visible: 
+                    if self.parent.oe.winOeMain.lastMenu == 1:
+                        self.parent.oe.winOeMain.lastMenu = -1
+                        self.parent.oe.winOeMain.onFocus( \
+                            self.parent.oe.winOeMain.guiMenList)
+                    else:           
+                        self.updateGui(name, value, path)
                 
-                self.updateGui(name, value, path)
-                
-                self.oe.dbg_log('connman::monitorLoop::technologyChanged',
+                self.oe.dbg_log('connman::monitor::technologyChanged',
                                 'exit_function', 0)
             except Exception, e:
-
-                self.oe.dbg_log('connman::monitorLoop::technologyChanged',
+                self.oe.dbg_log('connman::monitor::technologyChanged',
                                 'ERROR: (' + repr(e) + ')', 4)
 
         def servicesChanged(self, services, removed):
             try:
 
-                self.oe.dbg_log('connman::monitorLoop::servicesChanged',
+                self.oe.dbg_log('connman::monitor::servicesChanged',
                                 'enter_function', 0)
-
-                xbmc.log('services:name:%s' % repr(services))
-                xbmc.log('services:value:%s' % repr(removed))
-
-                self.parent.menu_connections(None,
-                        services, removed, force=True)
+                self.oe.dbg_log('connman::monitor::servicesChanged::services'
+                                , repr(services), 0)
+                self.oe.dbg_log('connman::monitor::servicesChanged::removed'
+                                , repr(removed), 0)
                 
-                self.oe.dbg_log('connman::monitorLoop::servicesChanged',
+                if self.parent.visible:
+                    self.parent.menu_connections(None,
+                            services, removed, force=True)
+                
+                self.oe.dbg_log('connman::monitor::servicesChanged',
                                 'exit_function', 0)
             except Exception, e:
-
-                self.oe.dbg_log('connman::monitorLoop::servicesChanged',
+                self.oe.dbg_log('connman::monitor::servicesChanged',
                                 'ERROR: (' + repr(e) + ')', 4)
 
         def updateGui(self, name, value, path):
             try:
 
-                if not path in self.oe.dictModules['connman'].listItems \
-                    or self.oe.dictModules['connman'].listItems[path] \
-                    == None:
-                    return
-
-                self.oe.dbg_log('connman::monitorLoop::updateGui',
+                self.oe.dbg_log('connman::monitor::updateGui',
                                 'enter_function', 0)
 
                 if name == 'Strength':
@@ -3046,16 +2993,14 @@ class connman:
                     self.parent.listItems[path].setProperty(name, value)
                     self.forceRender()
 
-                self.oe.dbg_log('connman::monitorLoop::updateGui',
+                self.oe.dbg_log('connman::monitor::updateGui',
                                 'exit_function', 0)
             except KeyError:
-
-                self.oe.dbg_log('connman::monitorLoop::updateGui',
+                self.oe.dbg_log('connman::monitor::updateGui',
                                 'exit_function (KeyError)', 0)
-                self.updateList()
+                self.parent.menu_connections(None, {}, {}, force=True)
             except Exception, e:
-
-                self.oe.dbg_log('connman::monitorLoop::updateGui',
+                self.oe.dbg_log('connman::monitor::updateGui',
                                 'ERROR: (' + repr(e) + ')', 4)
 
         def forceRender(self):
@@ -3071,13 +3016,8 @@ class connman:
                 self.oe.dbg_log('connman::monitor::forceRender',
                                 'exit_function', 0)
             except Exception, e:
-
                 self.oe.dbg_log('connman::monitor::forceRender',
                                 'ERROR: (' + repr(e) + ')', 4)
-
-
-
-
 
 
 class Failed(dbus.DBusException):
@@ -3111,6 +3051,10 @@ class connmanWifiAgent(dbus.service.Object):
     @dbus.service.method('net.connman.Agent', in_signature='',
                          out_signature='')
     def Release(self):
+        self.oe.dbg_log('connman::connmanWifiAgent::Release', 'enter_function',
+                        0)
+        self.oe.dbg_log('connman::connmanWifiAgent::Release', 'exit_function',
+                        0)
         return {}
 
     @dbus.service.method('net.connman.Agent', in_signature='oa{sv}',
@@ -3119,7 +3063,7 @@ class connmanWifiAgent(dbus.service.Object):
 
         try:
 
-            self.oe.dbg_log('connman::wifiAgent::RequestInput',
+            self.oe.dbg_log('connman::connmanWifiAgent::RequestInput',
                             'enter_function', 0)
 
             self.oe.input_request = True
@@ -3194,30 +3138,29 @@ class connmanWifiAgent(dbus.service.Object):
 
             self.busy()
 
-            self.oe.dbg_log('connman::wifiAgent::RequestInput',
+            self.oe.dbg_log('connman::connmanWifiAgent::RequestInput',
                             'exit_function', 0)
 
             return response
         except Exception, e:
-
-            self.oe.dbg_log('connman::monitorLoop::RequestInput',
+            self.oe.dbg_log('connman::connmanWifiAgent::RequestInput',
                             'ERROR: (' + repr(e) + ')', 4)
 
     @dbus.service.method('net.connman.Agent', in_signature='os',
                          out_signature='')
     def RequestBrowser(self, path, url):
-        self.oe.dbg_log('connman::wifiAgent::RequestBrowser',
+        self.oe.dbg_log('connman::connmanWifiAgent::RequestBrowser',
                         'enter_function', 0)
-        self.oe.dbg_log('connman::wifiAgent::RequestBrowser',
+        self.oe.dbg_log('connman::connmanWifiAgent::RequestBrowser',
                         'exit_function', 0)
         return
 
     @dbus.service.method('net.connman.Agent', in_signature='os',
                          out_signature='')
     def ReportError(self, path, error):
-        self.oe.dbg_log('connman::wifiAgent::ReportError',
+        self.oe.dbg_log('connman::connmanWifiAgent::ReportError',
                         'enter_function', 0)
-        self.oe.dbg_log('connman::wifiAgent::ReportError',
+        self.oe.dbg_log('connman::connmanWifiAgent::ReportError',
                         'exit_function (CANCELED)', 0)
         raise Failed()
         return
@@ -3225,9 +3168,9 @@ class connmanWifiAgent(dbus.service.Object):
     @dbus.service.method('net.connman.Agent', in_signature='',
                          out_signature='')
     def Cancel(self):
-        self.oe.dbg_log('connman::wifiAgent::Cancel', 'enter_function',
+        self.oe.dbg_log('connman::connmanWifiAgent::Cancel', 'enter_function',
                         0)
-        self.oe.dbg_log('connman::wifiAgent::Cancel', 'exit_function',
+        self.oe.dbg_log('connman::connmanWifiAgent::Cancel', 'exit_function',
                         0)
         return
 
@@ -3243,9 +3186,9 @@ class connmanVpnAgent(dbus.service.Object):
     @dbus.service.method('net.connman.vpn.Agent', in_signature='',
                          out_signature='')
     def Release(self):
-        self.oe.dbg_log('connman::vpnAgent::Release', 'enter_function',
+        self.oe.dbg_log('connman::connmanVpnAgent::Release', 'enter_function',
                         0)
-        self.oe.dbg_log('connman::vpnAgent::Release',
+        self.oe.dbg_log('connman::connmanVpnAgent::Release',
                         'exit_function (CANCELED)', 0)
 
     @dbus.service.method('net.connman.vpn.Agent', in_signature='oa{sv}'
@@ -3254,7 +3197,7 @@ class connmanVpnAgent(dbus.service.Object):
 
         try:
 
-            self.oe.dbg_log('connman::vpnAgent::RequestInput',
+            self.oe.dbg_log('connman::connmanVpnAgent::RequestInput',
                             'enter_function', 0)
 
             self.oe.input_request = True
@@ -3283,28 +3226,27 @@ class connmanVpnAgent(dbus.service.Object):
                 else:
                     response[field] = fields[field]['Value']
 
-            self.oe.dbg_log('connman::vpnAgent::RequestInput',
+            self.oe.dbg_log('connman::connmanVpnAgent::RequestInput',
                             'exit_function', 0)
 
             self.busy()
             return response
         except Exception, e:
-
-            self.oe.dbg_log('connman::vpnAgent::RequestInput',
+            self.oe.dbg_log('connman::connmanVpnAgent::RequestInput',
                             'ERROR: (' + repr(e) + ')', 4)
 
     @dbus.service.method('net.connman.vpn.Agent', in_signature='os',
                          out_signature='')
     def ReportError(self, path, error):
-        self.oe.dbg_log('connman::vpnAgent::ReportError',
+        self.oe.dbg_log('connman::connmanVpnAgent::ReportError',
                         'enter_function', 0)
-        self.oe.dbg_log('connman::vpnAgent::ReportError',
+        self.oe.dbg_log('connman::connmanVpnAgent::ReportError',
                         'exit_function', 0)
         return
 
     @dbus.service.method('net.connman.vpn.Agent', in_signature='',
                          out_signature='')
     def Cancel(self):
-        self.oe.dbg_log('connman::vpnAgent::Cancel', 'enter_function',
+        self.oe.dbg_log('connman::connmanVpnAgent::Cancel', 'enter_function',
                         0)
-        self.oe.dbg_log('connman::vpnAgent::Cancel', 'exit_function', 0)
+        self.oe.dbg_log('connman::connmanVpnAgent::Cancel', 'exit_function', 0)

@@ -664,6 +664,7 @@ class services:
                                             'false')   
                 if not 'service' in kwargs:
                     if 'bluetooth' in self.oe.dictModules:
+                        self.oe.dictModules['bluetooth'].disabled = True
                         self.oe.dictModules['bluetooth'].stop_bluetoothd()
                 
             else:
@@ -674,6 +675,7 @@ class services:
 
                 if not 'service' in kwargs:                
                     if 'bluetooth' in self.oe.dictModules:
+                        self.oe.dictModules['bluetooth'].disabled = False
                         self.oe.dictModules['bluetooth'].stop_bluetoothd()
                         self.oe.dictModules['bluetooth'].start_bluetoothd()
 

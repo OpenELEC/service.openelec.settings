@@ -882,7 +882,7 @@ def exit():
     global WinOeSelect, winOeMain, __addon__, __cwd__, __oe__, \
            _, dbusSystemBus, dictModules
     
-    #dbusSystemBus.close()
+    dbusSystemBus.close()
     dbusSystemBus = None
     
     #del winOeMain

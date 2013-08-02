@@ -1815,9 +1815,6 @@ class connman:
 
         try:
 
-            if self.dbusConnmanManager == None:
-                return
-            
             self.oe.dbg_log('connman::menu_connections',
                             'enter_function', 0)
 
@@ -1837,7 +1834,11 @@ class connman:
                     'Interface']},
                 }
 
-            dbusServices = self.dbusConnmanManager.GetServices()
+            dbusConnmanManager = \
+                dbus.Interface(self.oe.dbusSystemBus.get_object('net.connman'
+                    , '/'), 'net.connman.Manager')
+                
+            dbusServices = dbusConnmanManager.GetServices()
 
             dbusConnmanManager = None
             
@@ -2768,6 +2769,12 @@ class connman:
                 self.conNameOwnerWatch = None
                 self.vpnNameOwnerWatch = None
                 
+                if hasattr(self, 'wifiAgent'):
+                    self.remove_agent()
+                    
+                if hasattr(self, 'vpnAgent'):
+                    self.remove_vpn_agent()
+                    
                 self.oe.dbg_log('connman::monitor::remove_signal_receivers', 'exit_function'
                                 , 0)
             except Exception, e:
@@ -2855,13 +2862,12 @@ class connman:
                             dbus.Interface(self.oe.dbusSystemBus.get_object('net.connman'
                                 , '/'), 'net.connman.Manager')
                         
-                        self.parent.dbusConnmanManager.UnregisterAgent( \
+                        dbusConnmanManager.UnregisterAgent( \
                             self.wifiAgentPath)
                         
-                        self.dbusConnmanManager = None                        
+                        dbusConnmanManager = None                        
                     except:
-                        self.dbusConnmanManager = None
-                        pass
+                        dbusConnmanManager = None
                     
                     self.wifiAgent = None
 
@@ -2918,7 +2924,6 @@ class connman:
                         dbusConnmanVpnManager = None
                     except:
                         dbusConnmanVpnManager = None
-                        pass
                     
                     self.vpnAgent = None
                     del self.vpnAgent

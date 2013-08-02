@@ -495,10 +495,10 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                                  selectedMenuItem.getProperty('InfoText'
                                  ))
                                  
-                self.lastModul = selectedMenuItem.getProperty('Modul')
-                
                 if lastMenu != self.lastMenu:
 
+                    self.lastModul = selectedMenuItem.getProperty('Modul')
+                
                     self.lastMenu = lastMenu
 
                     for btn in self.buttons:
@@ -590,36 +590,28 @@ class selectWindow(xbmcgui.WindowXMLDialog):
         pass
 
 
-class passkeyWindow(xbmcgui.WindowXMLDialog):
+class pinkeyWindow(xbmcgui.WindowXMLDialog):
 
-    def __init__(self, *args, **kwargs):
-        self.oe = kwargs['oeMain']
-        pass
-
-    def set_text(self, text):
+    device = ''
+    
+    def set_title(self, text):
         self.getControl(1700).setLabel(text)
 
-    def set_requested_code(self, requested):
-        self.getControl(1701).setLabel(unicode(requested))
+    def set_label1(self, text):
+        self.getControl(1701).setLabel(unicode(text))
 
-    def update_entered_code(self, entered):
-        code = self.getControl(1702).getLabel()
-        self.getControl(1702).setLabel(code + unicode(entered))
+    def set_label2(self, text):
+        self.getControl(1702).setLabel(unicode(text))
 
-    def get_entered_code(self):
-        return self.getControl(1702).getLabel()
+    def set_label3(self, text):
+        self.getControl(1703).setLabel(unicode(text))
+        
+    def append_label3(self, text):
+        label = self.getControl(1703).getLabel()
+        self.getControl(1703).setLabel(label + unicode(text))
 
-    def onInit(self):
-        pass
-
-    def onAction(self, action):
-        pass
-
-    def onClick(self, controlID):
-        pass
-
-    def onFocus(self, controlID):
-        pass
+    def get_label3_len(self):
+        return len(self.getControl(1703).getLabel())
 
 
 class contextWindow(xbmcgui.WindowXMLDialog):

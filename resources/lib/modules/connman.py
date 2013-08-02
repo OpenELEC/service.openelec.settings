@@ -2609,7 +2609,7 @@ class connman:
         try:
 
             self.oe.dbg_log('connman::do_wizard', 'enter_function', 0)
-
+            
             self.oe.winOeMain.set_wizard_title(self.oe._(32305))
             self.oe.winOeMain.set_wizard_text(self.oe._(32306))
             self.oe.winOeMain.set_wizard_button_title('')

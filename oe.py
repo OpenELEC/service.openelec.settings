@@ -527,16 +527,14 @@ def start_service():
 
         __oe__.is_service = True
 
+        for strModule in sorted(dictModules, key=lambda x: \
+                                dictModules[x].menu.keys()):
+            if hasattr(dictModules[strModule], 'start_service'):
+                dictModules[strModule].start_service()
+                
         if read_setting('openelec', 'wizard_completed') == None:
             openWizard()
-        else:
-
-            for strModule in sorted(dictModules, key=lambda x: \
-                                    dictModules[x].menu.keys()):
-                if hasattr(dictModules[strModule], 'start_service'):
-
-                    dictModules[strModule].start_service()
-
+ 
         __oe__.is_service = False
     except Exception, e:
 

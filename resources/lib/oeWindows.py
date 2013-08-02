@@ -708,6 +708,7 @@ class wizard(xbmcgui.WindowXMLDialog):
 
     def __init__(self, *args, **kwargs):
 
+        self.lastMenu = -1
         self.guiMenList = 1000
         self.guiNetList = 1200
         self.wizTextbox = 1400
@@ -740,7 +741,6 @@ class wizard(xbmcgui.WindowXMLDialog):
     def onInit(self):
         try:
 
-            self.oe.dictModules['system'].start_service()
             self.oe.dictModules['system'].do_init()
 
             self.getControl(self.wizWinTitle).setLabel(self.oe._(32300).encode('utf-8'))
@@ -1032,8 +1032,7 @@ class wizard(xbmcgui.WindowXMLDialog):
                                     'start_service'):
                                 self.oe.dictModules[strModule].is_wizard = \
                                     True
-                                self.oe.dictModules[strModule].start_service()
-
+                                
                             if hasattr(self.oe.dictModules[strModule],
                                     'do_init'):
                                 self.oe.dictModules[strModule].do_init()
@@ -1051,7 +1050,6 @@ class wizard(xbmcgui.WindowXMLDialog):
                     self.oe.write_setting('openelec', 'wizard_completed'
                             , 'True')
                     self.close()
-                    self.oe.start_service()
 
             self.oe.dbg_log('wizard::onClick(' + unicode(controlID) + ')',
                             'exit_function', 0)

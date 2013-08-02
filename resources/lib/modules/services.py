@@ -859,7 +859,7 @@ class services:
                 self.oe.winOeMain.set_wizard_radiobutton_1(self.oe._(32201),
                         self, 'wizard_set_ssh')
 
-            if hasattr(self, 'samba'):
+            if not 'hidden' in self.struct['samba']:
                 if self.struct['samba']['settings']['samba_autostart'
                         ]['value'] == '1':
                     self.oe.winOeMain.set_wizard_radiobutton_2(self.oe._(32200),

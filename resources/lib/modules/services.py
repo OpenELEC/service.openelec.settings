@@ -833,7 +833,7 @@ class services:
                 self.oe.winOeMain.set_wizard_radiobutton_1(self.oe._(32201),
                         self, 'wizard_set_ssh')
 
-            if hasattr(self, 'samba'):
+            if not 'hidden' in self.struct['samba']:
                 if self.struct['samba']['settings']['samba_autostart'
                         ]['value'] == '1':
                     self.oe.winOeMain.set_wizard_radiobutton_2(self.oe._(32200),
@@ -857,13 +857,18 @@ class services:
 
             if self.struct['ssh']['settings']['ssh_autostart']['value'] \
                 == '1':
-                self.oe.set_service_option('ssh',
-                                            'SSHD_START',
-                                            'true')
-            else:
+            
+                self.struct['ssh']['settings']['ssh_autostart']['value'
+                        ] = '0'            
                 self.oe.set_service_option('ssh',
                                             'SSHD_START',
                                             'false')
+            else:
+                self.struct['ssh']['settings']['ssh_autostart']['value'
+                        ] = '1'                
+                self.oe.set_service_option('ssh',
+                                            'SSHD_START',
+                                            'true')
 
             self.load_values()
             self.initialize_ssh()
@@ -884,13 +889,17 @@ class services:
 
             if self.struct['samba']['settings']['samba_autostart'
                     ]['value'] == '1':
-                self.oe.set_service_option('samba',
-                                            'SAMBA_ENABLED',
-                                            'true')
-            else:
+                self.struct['samba']['settings']['samba_autostart'
+                        ]['value'] = '0'                
                 self.oe.set_service_option('samba',
                                             'SAMBA_ENABLED',
                                             'false')
+            else:
+                self.struct['samba']['settings']['samba_autostart'
+                        ]['value'] = '1'                
+                self.oe.set_service_option('samba',
+                                            'SAMBA_ENABLED',
+                                            'true')
 
             self.initialize_samba()
             self.load_values()

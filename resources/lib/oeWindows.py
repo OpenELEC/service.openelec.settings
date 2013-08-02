@@ -1181,7 +1181,7 @@ class wizard(xbmcgui.WindowXMLDialog):
         try:
 
             current_layout = self.oe.dictModules['system'
-                    ].config['keyboard']['settings']['KeyboardLayout1'
+                    ].struct['keyboard']['settings']['KeyboardLayout1'
                     ]['value']
 
             return current_layout
@@ -1197,16 +1197,16 @@ class wizard(xbmcgui.WindowXMLDialog):
             select_window = selectWindow('selectWindow.xml',
                     self.oe.__cwd__, 'Default', oeMain=self.oe)
             select_window.defaultValue = self.oe.dictModules['system'
-                    ].config['keyboard']['settings']['KeyboardLayout1'
+                    ].struct['keyboard']['settings']['KeyboardLayout1'
                     ]['value']
             select_window.availValues = \
-                ','.join(self.oe.dictModules['system'].config['keyboard'
+                ','.join(self.oe.dictModules['system'].struct['keyboard'
                          ]['settings']['KeyboardLayout1']['values'])
             self.oe.set_busy(0)
             select_window.doModal()
 
             if select_window.defaultValue != select_window.result:
-                self.oe.dictModules['system'].config['keyboard'
+                self.oe.dictModules['system'].struct['keyboard'
                         ]['settings']['KeyboardLayout1']['value'] = \
                     select_window.result
                 self.oe.write_setting('system', 'KeyboardLayout1',

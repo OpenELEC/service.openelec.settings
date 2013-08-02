@@ -1,6 +1,9 @@
 2013-08-02 v0.2.0
   (change) initial release for dbus redesign
   
+2013-08-02 v0.1.32
+  (fix) wizard fail after menu redesign
+  
 2013-07-29 v0.1.31
   (change) menu loader redesign
   (fix) kill update thread on exit

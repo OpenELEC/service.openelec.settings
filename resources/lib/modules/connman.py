@@ -2993,7 +2993,7 @@ class connman:
                     self.parent.listItems[path].setProperty(name, value)
                     self.forceRender()
 
-                if self.parent.is_wizard:
+                if hasattr(self.parent, 'is_wizard'):
                     self.parent.menu_connections(None, {}, {}, force=True)
                     
                 self.oe.dbg_log('connman::monitor::updateGui',

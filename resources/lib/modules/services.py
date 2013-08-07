@@ -310,7 +310,9 @@ class services:
                 cmd_file = open(self.kernel_cmd, 'r')
                 cmd_args = cmd_file.read()
                 if 'ssh' in cmd_args:
-                    self.struct['ssh']['hidden'] = 'true'
+                    self.struct['ssh']['settings']['ssh_autostart']['value'] = '1'
+                    self.struct['ssh']['settings']['ssh_autostart'] \
+                    ['hidden'] = 'true'
 
                 cmd_file.close()
             else:

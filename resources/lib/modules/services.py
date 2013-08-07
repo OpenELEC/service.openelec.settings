@@ -223,7 +223,7 @@ class services:
             self.initialize_ssh(service=1)
             self.initialize_avahi(service=1)
             self.initialize_cron(service=1)
-            self.init_bluetooth()
+            self.init_bluetooth(service=1)
             
             self.oe.dbg_log('services::start_service', 'exit_function',
                             0)

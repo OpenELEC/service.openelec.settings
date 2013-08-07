@@ -92,6 +92,8 @@ class bluetooth:
             self.oe.dbg_log('bluetooth::start_service', 'enter_function'
                             , 0)
 
+            self.init_adapter()
+            
             self.oe.dbg_log('bluetooth::start_service', 'exit_function'
                             , 0)
         except Exception, e:
@@ -193,6 +195,41 @@ class bluetooth:
     ####################################################################
     ## Bluetooth Adapter
     ####################################################################
+    def init_adapter(self):
+        try:
+
+            self.oe.dbg_log('bluetooth::init_adapter',
+                            'enter_function', 0)
+            
+            dbusBluezManager = \
+                dbus.Interface(self.oe.dbusSystemBus.get_object('org.bluez'
+                               , '/'),
+                               'org.freedesktop.DBus.ObjectManager')
+                
+            dbusManagedObjects = \
+                dbusBluezManager.GetManagedObjects()
+
+            for (path, ifaces) in dbusManagedObjects.iteritems():
+                self.dbusBluezAdapter = ifaces.get('org.bluez.Adapter1')
+                if self.dbusBluezAdapter != None:
+                    self.dbusBluezAdapter = \
+                        dbus.Interface(self.oe.dbusSystemBus.get_object('org.bluez'
+                            , path), 'org.bluez.Adapter1')
+                    break
+
+            dbusBluezManager = None
+            dbusManagedObjects = None
+            
+            if self.dbusBluezAdapter != None:
+                self.adapter_powered( \
+                    self.dbusBluezAdapter, 1))
+
+            self.oe.dbg_log('bluetooth::init_adapter',
+                            'exit_function', 0)            
+        except Exception, e:
+            self.oe.dbg_log('bluetooth::init_adapter', 'ERROR: ('
+                            + repr(e) + ')')
+            
     def adapter_powered(self, adapter, state=1):
         try:
 
@@ -1553,9 +1590,13 @@ class obexAgent(dbus.service.Object):
             
             self.parent.download_path = path
             self.parent.download_file = properties['Name']
-            self.parent.download_type = properties['Type']
             self.parent.download_size = properties['Size'] / 1024
             
+            if 'Type' in properties:
+                self.parent.download_type = properties['Type']
+            else:
+                self.parent.download_type = None
+                
             self.oe.dbg_log('bluetooth::obexAgent::Cancel',
                             'enter_function', 0)
             

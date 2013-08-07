@@ -223,7 +223,6 @@ class services:
             self.initialize_ssh(service=1)
             self.initialize_avahi(service=1)
             self.initialize_cron(service=1)
-
             self.init_bluetooth()
             
             self.oe.dbg_log('services::start_service', 'exit_function',
@@ -311,8 +310,7 @@ class services:
                 cmd_file = open(self.kernel_cmd, 'r')
                 cmd_args = cmd_file.read()
                 if 'ssh' in cmd_args:
-                    self.struct['ssh']['settings']['ssh_autostart'] \
-                    ['hidden'] = 'true'
+                    self.struct['ssh']['hidden'] = 'true'
 
                 cmd_file.close()
             else:
@@ -609,9 +607,7 @@ class services:
                 self.set_value(kwargs['listItem'])
                 
             if self.struct['syslog']['settings'
-                    ]['syslog_remote']['value'] == '1' \
-                and self.struct['syslog']['settings']['syslog_server'
-                    ]['value'] != None:
+                    ]['syslog_remote']['value'] == '1':
 
                 if not os.path.exists(os.path.dirname(self.syslog_conf_file)):
                     os.makedirs(os.path.dirname(self.syslog_conf_file))

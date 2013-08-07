@@ -926,6 +926,7 @@ def fixed_writexml(
 
 minidom.Element.writexml = fixed_writexml
 
+DOWNLOAD_DIR = "/storage/downloads"
 XBMC_USER_HOME = os.environ.get('XBMC_USER_HOME', '/storage/.xbmc')
 CONFIG_CACHE = os.environ.get('CONFIG_CACHE', '/storage/.cache')
 USER_CONFIG = os.environ.get('USER_CONFIG', '/storage/.config')

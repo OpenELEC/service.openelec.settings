@@ -1119,3 +1119,15 @@ msgstr ""
 msgctxt "#32380"
 msgid "Restoring system settings requires a reboot. Are you sure you want to restore?"
 msgstr ""
+
+msgctxt "#32381"
+msgid "Accept incoming Bluetooth Filetransfer ?"
+msgstr ""
+
+msgctxt "#32382"
+msgid "Speed"
+msgstr ""
+
+msgctxt "#32383"
+msgid "Play Files ?"
+msgstr ""

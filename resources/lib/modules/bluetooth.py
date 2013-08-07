@@ -222,7 +222,7 @@ class bluetooth:
             
             if self.dbusBluezAdapter != None:
                 self.adapter_powered( \
-                    self.dbusBluezAdapter, 1))
+                    self.dbusBluezAdapter, 1)
 
             self.oe.dbg_log('bluetooth::init_adapter',
                             'exit_function', 0)            

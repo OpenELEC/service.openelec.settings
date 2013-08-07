@@ -53,7 +53,7 @@ class xdbus:
     def start_service(self):
         try:
             
-            self.oe.dbg_log('xdbus::start_service', 'enter_function')
+            self.oe.dbg_log('xdbus::start_service', 'enter_function', 0)
                             
             self.dbusMonitor = dbusMonitor(self.oe)
             self.dbusMonitor.start()

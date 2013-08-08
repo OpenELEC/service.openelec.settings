@@ -86,7 +86,7 @@ msgstr "Konfigurer og koble Bluetooth-enheter"
 
 msgctxt "#705"
 msgid "Useful information like version and architecture details, support and social media links, and how to make a donation to the project"
-msgstr "Nyttig informasjon som versjonsnummer og arkitekturdetaljer, support og linker til sosiale media, og hvordan donere tli prosjektet"
+msgstr "Nyttig informasjon som versjonsnummer og arkitekturdetaljer, support og linker til sosiale media, og hvordan donere til prosjektet"
 
 msgctxt "#706"
 msgid "706"

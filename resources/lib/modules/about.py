@@ -27,6 +27,8 @@
 
 class about:
 
+    ENABLED = False
+    
     menu = {'99': {
         'name': 32196,
         'menuLoader': 'menu_loader',
@@ -39,13 +41,11 @@ class about:
 
             oeMain.dbg_log('about::__init__', 'enter_function', 0)
 
-            self.enabled = True
             self.oe = oeMain
             self.controls = {}
 
             self.oe.dbg_log('about::__init__', 'exit_function', 0)
         except Exception, e:
-
             self.oe.dbg_log('about::__init__', 'ERROR: (' + repr(e)
                             + ')')
 
@@ -59,7 +59,6 @@ class about:
 
             self.oe.dbg_log('about::menu_loader', 'exit_function', 0)
         except Exception, e:
-
             self.oe.dbg_log('about::menu_loader', 'ERROR: (' + repr(e)
                             + ')', 4)
 
@@ -72,7 +71,6 @@ class about:
 
             self.oe.dbg_log('about::exit_addon', 'exit_function', 0)
         except Exception, e:
-
             self.oe.dbg_log('about::exit_addon', 'ERROR: (' + repr(e)
                             + ')')
 
@@ -81,19 +79,13 @@ class about:
 
             self.oe.dbg_log('about::init_controls', 'enter_function', 0)
 
-            distri = self.oe.load_file('/etc/distribution')
-            arch = self.oe.load_file('/etc/arch')
-            version = self.oe.load_file('/etc/version')
-            build = self.oe.load_file('/etc/build')
-            
-            self.oe.winOeMain.setProperty('arch', arch)
-            self.oe.winOeMain.setProperty('distri', distri)
-            self.oe.winOeMain.setProperty('version', version)
-            self.oe.winOeMain.setProperty('build', build)
+            self.oe.winOeMain.setProperty('arch', self.oe.ARCHITECTURE)
+            self.oe.winOeMain.setProperty('distri', self.oe.DISTRIBUTION)
+            self.oe.winOeMain.setProperty('version', self.oe.VERSION)
+            self.oe.winOeMain.setProperty('build', self.oe.BUILD)
 
             self.oe.dbg_log('about::init_controls', 'exit_function', 0)
         except Exception, e:
-
             self.oe.dbg_log('about::init_controls', 'ERROR: ('
                             + repr(e) + ')')
 
@@ -112,7 +104,6 @@ class about:
 
             self.oe.dbg_log('about::exit', 'exit_function', 0)
         except Exception, e:
-
             self.oe.dbg_log('about::exit', 'ERROR: (' + repr(e) + ')')
 
     def do_wizard(self):
@@ -125,6 +116,5 @@ class about:
 
             self.oe.dbg_log('about::do_wizard', 'exit_function', 0)
         except Exception, e:
-
             self.oe.dbg_log('about::do_wizard', 'ERROR: (' + repr(e)
                             + ')')

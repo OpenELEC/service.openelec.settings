@@ -87,7 +87,7 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                 module = self.oe.dictModules[strModule]
                 
                 self.oe.dbg_log('init module', strModule, 0)
-                if module.enabled:
+                if module.ENABLED:
                     if hasattr(module, 'do_init'):
                         Thread(target=module.do_init(),
                             args=()).start()

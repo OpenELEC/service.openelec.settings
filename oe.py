@@ -40,6 +40,7 @@ import traceback
 import subprocess
 import dbus
 import dbus.mainloop.glib
+import defaults
 
 from xml.dom import minidom
 
@@ -154,20 +155,15 @@ def set_language(language):
 
 
 def execute(command_line):
-
     try:
 
         result = ''
 
-        process = subprocess.Popen(command_line, shell=True,
-                                   stdout=subprocess.PIPE,
-                                   stderr=subprocess.STDOUT)
-        for line in process.stdout.readlines():
-            result = result + line
-
+        process = subprocess.Popen(command_line, 
+                                   shell=True, 
+                                   close_fds=True)
         return result
     except Exception, e:
-
         dbg_log('oe::execute', 'ERROR: (' + repr(e) + ')')
 
 def set_service_option(service, option, value):
@@ -821,9 +817,15 @@ def load_modules():
 
         for module_name in dict_names:
             try:
-                dictModules[module_name] = \
-                    getattr(__import__(module_name),
-                            module_name)(__oe__)
+                if not module_name in dictModules:
+                    dictModules[module_name] = \
+                        getattr(__import__(module_name),
+                                module_name)(__oe__)
+                        
+                    if hasattr(defaults, module_name):
+                        for key in getattr(defaults, module_name):
+                            setattr(dictModules[module_name], 
+                                    key, getattr(defaults, module_name)[key])
             except Exception, e:
                 dbg_log('oe::MAIN(loadingModules)(strModule)',
                         'ERROR: (' + repr(e) + ')')
@@ -926,16 +928,23 @@ def fixed_writexml(
 
 minidom.Element.writexml = fixed_writexml
 
-DOWNLOAD_DIR = "/storage/downloads"
+############################################################################################
+# Base Environment
+############################################################################################
+DISTRIBUTION   = load_file('/etc/distribution')
+ARCHITECTURE   = load_file('/etc/arch')
+VERSION        = load_file('/etc/version')    
+BUILD          = load_file('/etc/build')
+DOWNLOAD_DIR   = "/storage/downloads"
 XBMC_USER_HOME = os.environ.get('XBMC_USER_HOME', '/storage/.xbmc')
-CONFIG_CACHE = os.environ.get('CONFIG_CACHE', '/storage/.cache')
-USER_CONFIG = os.environ.get('USER_CONFIG', '/storage/.config')
+CONFIG_CACHE   = os.environ.get('CONFIG_CACHE', '/storage/.cache')
+USER_CONFIG    = os.environ.get('USER_CONFIG', '/storage/.config')
+TEMP           = '%s/temp/' % XBMC_USER_HOME
 if os.path.exists('/etc/machine-id'):
     SYSTEMID = load_file('/etc/machine-id')
 else:
     SYSTEMID = os.environ.get('SYSTEMID', '')
-
-temp_dir = '%s/temp/' % XBMC_USER_HOME
+############################################################################################
 
 try:
     configFile = '%s/userdata/addon_data/service.openelec.settings/oe_settings.xml' % XBMC_USER_HOME

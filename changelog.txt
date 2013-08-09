@@ -1,3 +1,8 @@
+2013-08-09 v0.2.2
+  (chg) some code cleanup
+  (add) make obex optional
+  (add) central default config file (defaults.py)
+  
 2013-08-07 v0.2.1
   (fix) ssh menu 
   (fix) syslog menu

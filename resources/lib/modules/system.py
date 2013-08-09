@@ -24,28 +24,36 @@
 #  OpenELEC Licensing  <license@openelec.tv>  http://www.openelec.tv
 ################################################################################
 # -*- coding: utf-8 -*-
+import os
+import re
+import glob
+import time
+import json
 import xbmc
 import xbmcgui
-import os
-import glob
-import threading
-import time
-import re
-import zipfile
 import tarfile
-import stat
-import mimetypes
-import httplib
 import oeWindows
-import json
-import subprocess
-
+import threading
 from xml.dom import minidom
-
 
 class system:
 
-    oe = None
+    ENABLED = False
+    KERNEL_CMD = None
+    LCD_DRIVER_DIR = None
+    UPDATE_REQUEST_URL = None
+    UPDATE_DOWNLOAD_URL = None
+    LOCAL_UPDATE_DIR = None
+    XBMC_RESET_FILE = None
+    OPENELEC_RESET_FILE = None
+    KEYBOARD_INFO = None
+    UDEV_KEYBOARD_INFO = None
+    RPI_KEYBOARD_INFO = None
+    BACKUP_DIRS = None
+    BACKUP_DESTINATION = None
+    RESTORE_DIR = None
+    GET_CPU_FLAG = None
+    
     menu = {'1': {
         'name': 32002,
         'menuLoader': 'load_menu',
@@ -204,44 +212,10 @@ class system:
                     },
                 }
 
-            self.enabled = True
-            
-            self.kernel_cmd = '/proc/cmdline'
-            
-            self.lcd_dir = '/usr/lib/lcdproc/'
-            self.envFile = '/storage/oe_environment'
             self.keyboard_layouts = False
             self.rpi_keyboard_layouts = False
-            
-            self.update_url_release = 'http://releases.openelec.tv'            
-            self.update_url_devel = 'http://snapshots.openelec.tv'
-            self.update_url_v2 = 'http://update.openelec.tv/updates.php'
-            self.download_url_v2 = 'http://%s.openelec.tv/%s'
-            
-            self.temp_folder = os.environ['HOME'] + '/.xbmc/temp/'
-            self.update_folder = '/storage/.update/'
-            self.last_update_check = 0
-            self.xbmc_reset_file = '%s/reset_xbmc' % self.oe.CONFIG_CACHE
-            self.oe_reset_file = '%s/reset_oe' % self.oe.CONFIG_CACHE
+            self.last_update_check = 0            
 
-            self.keyboard_info = '/usr/share/X11/xkb/rules/base.xml'
-            self.udev_keyboard_file = '%s/xkb/layout' % self.oe.CONFIG_CACHE
-
-            self.rpi_keyboard_info = '/usr/lib/keymaps'
-            
-            self.backup_dirs = [self.oe.XBMC_USER_HOME, self.oe.USER_CONFIG,
-                                self.oe.CONFIG_CACHE]
-                                
-            self.backup_folder = '/storage/backup/'
-            self.restore_path = '/storage/.restore/'
-
-            self.distri = self.oe.load_file('/etc/distribution')
-            self.arch = self.oe.load_file('/etc/arch')
-            self.version = self.oe.load_file('/etc/version')
-            
-            self.cpu_lm_flag = self.oe.execute('cat /proc/cpuinfo | grep -q "flags.* lm " && echo \'1\' || echo \'0\'')
-            self.au = None
-            
             self.oe.dbg_log('system::__init__', 'exit_function', 0)
         except Exception, e:
 
@@ -306,6 +280,9 @@ class system:
 
             self.oe.dbg_log('system::load_values', 'enter_function', 0)
 
+            #CPU x64 flag
+            self.cpu_lm_flag = self.oe.execute(self.GET_CPU_FLAG)
+
             # Keyboard Layout
             (arrLayouts, arrTypes) = self.get_keyboard_layouts()
             arrLcd = self.get_lcd_drivers()
@@ -344,7 +321,7 @@ class system:
                 else:
                     self.rpi_keyboard_layouts = True
                     
-            if self.arch == "RPi.arm":
+            if self.oe.ARCHITECTURE == "RPi.arm":
                 self.struct['keyboard']['settings'][
                     'KeyboardLayout2']['hidden'] = 'true'
                 self.struct['keyboard']['settings'][
@@ -461,10 +438,10 @@ class system:
                                 + '-model ' + unicode(self.struct['keyboard'
                                 ]['settings']['KeyboardType']['value']), 1)
 
-                if not os.path.exists(os.path.dirname(self.udev_keyboard_file)):
-                    os.makedirs(os.path.dirname(self.udev_keyboard_file))
+                if not os.path.exists(os.path.dirname(self.UDEV_KEYBOARD_INFO)):
+                    os.makedirs(os.path.dirname(self.UDEV_KEYBOARD_INFO))
 
-                config_file = open(self.udev_keyboard_file, 'w')
+                config_file = open(self.UDEV_KEYBOARD_INFO, 'w')
                 config_file.write('XKBMODEL="' + self.struct['keyboard'
                                   ]['settings']['KeyboardType']['value']
                                   + '"\n')
@@ -497,14 +474,11 @@ class system:
                 parameter = self.struct['keyboard'
                               ]['settings']['KeyboardLayout1']['value']
 
-                command = 'loadkmap < `ls -1 %s/*/%s.bmap`' % (self.rpi_keyboard_info, parameter)
+                command = 'loadkmap < `ls -1 %s/*/%s.bmap`' % (self.RPI_KEYBOARD_INFO, parameter)
                 
                 self.oe.dbg_log('system::set_keyboard_layout', command, 1)     
                 result = self.oe.execute(command)
                 
-                #result = self.oe.execute('find /usr/lib/keymaps/ | grep %s.bmap`' % parameter)
-                #os.system('loadkmap < %s' % result)
-
             self.oe.set_busy(0)
 
             self.oe.dbg_log('system::set_keyboard_layout',
@@ -599,14 +573,14 @@ class system:
                               + self.struct['driver']['settings']['lcd'
                               ]['value'], '-s true']
 
-                os.system('killall LCDd')
-                subprocess.Popen('LCDd ' + ' '.join(parameters), shell=True, close_fds=True)
+                self.oe.execute('killall LCDd')
+                self.oe.execute('LCDd ' + ' '.join(parameters))
             else:
 
                 self.oe.dbg_log('system::set_lcd_driver',
                                 'no driver selected', 1)
 
-                os.system('killall LCDd')
+                self.oe.execute('killall LCDd')
 
             self.oe.set_busy(0)
 
@@ -639,7 +613,7 @@ class system:
                             ]['hdd_standby']['value']) #* 12
 
                 #find system hdd
-                cmd_file = open(self.kernel_cmd, 'r')
+                cmd_file = open(self.KERNEL_CMD, 'r')
                 cmd_args = cmd_file.read()
                 for param in cmd_args.split(' '):
                     if param.startswith('boot='):
@@ -670,7 +644,7 @@ class system:
                                         
 
                 if len(parameters) > 0:   
-                    os.system('hd-idle -i %d %s' % (value*60, ' '.join(parameters)))
+                    self.oe.execute('hd-idle -i %d %s' % (value*60, ' '.join(parameters)))
                     self.oe.dbg_log('system::set_hdd_standby', 
                                     ('hd-idle -i %d %s' % (value*60, ' '.join(parameters))), 1)
                                         
@@ -679,7 +653,7 @@ class system:
                 self.oe.dbg_log('system::set_hdd_standby', '0 (off)'
                                 , 1)
 
-                os.system('killall hd-idle')
+                self.oe.execute('killall hd-idle')
 
             self.oe.set_busy(0)
 
@@ -743,9 +717,9 @@ class system:
             arrLayouts = []
             arrTypes = []
 
-            if os.path.exists(self.keyboard_info):
+            if os.path.exists(self.KEYBOARD_INFO):
 
-                objXmlFile = open(self.keyboard_info, 'r')
+                objXmlFile = open(self.KEYBOARD_INFO, 'r')
                 strXmlText = objXmlFile.read()
                 objXmlFile.close()
 
@@ -784,15 +758,9 @@ class system:
                 arrLayouts.sort()
                 arrTypes.sort()
 
-            elif os.path.exists(self.rpi_keyboard_info):
-              
-                #for root, subFolders, files in os.walk(self.rpi_keyboard_info):
-                #    for file in files:
-                #        if file.endswith('.bmap'):
-                #            xbmc.log(file)
-                #            arrLayouts.append(file.split('.')[0])
-                
-                for layout in glob.glob(self.rpi_keyboard_info + '/*/*.bmap'):
+            elif os.path.exists(self.RPI_KEYBOARD_INFO):
+
+                for layout in glob.glob(self.RPI_KEYBOARD_INFO + '/*/*.bmap'):
                     if os.path.isfile(layout):
                         arrLayouts.append(layout.split('/')[-1].split('.')[0])
                     
@@ -820,10 +788,10 @@ class system:
             self.oe.dbg_log('system::get_lcd_drivers', 'enter_function'
                             , 0)
 
-            if os.path.exists(self.lcd_dir):
+            if os.path.exists(self.LCD_DRIVER_DIR):
                 arrDrivers = ['none']
 
-                for driver in glob.glob(self.lcd_dir + '*'):
+                for driver in glob.glob(self.LCD_DRIVER_DIR + '*'):
                     arrDrivers.append(os.path.basename(driver).replace('.so'
                             , ''))
             else:
@@ -847,11 +815,19 @@ class system:
             if hasattr(self, "update_in_progress"):
                 self.oe.dbg_log('system::check_updates_v2', 'Update in progress (exit)', 0)
                 return
-              
-            sysid = self.oe.SYSTEMID
 
-            update_json = self.oe.load_url('%s?i=%s&d=%s&pa=%s&v=%s&l=%s' % ( \
-              self.update_url_v2, sysid, self.distri, self.arch, self.version, self.cpu_lm_flag ))
+            url = '%s?i=%s&d=%s&pa=%s&v=%s&l=%s' % (self.UPDATE_REQUEST_URL, 
+                                                    self.oe.SYSTEMID, 
+                                                    self.oe.DISTRIBUTION, 
+                                                    self.oe.ARCHITECTURE, 
+                                                    self.oe.VERSION, 
+                                                    self.cpu_lm_flag)
+            
+            self.oe.dbg_log('system::check_updates_v2', 'URL: %s' % url, 0)
+            
+            update_json = self.oe.load_url(url)
+            
+            self.oe.dbg_log('system::check_updates_v2', 'RESULT: %s' % repr(update_json), 0)
             
             if update_json != "":
                 update_json = json.loads(update_json)
@@ -861,7 +837,7 @@ class system:
                 answer = 0
                 
                 if 'update' in update_json['data'] and 'folder' in update_json['data']:
-                    self.update_file = self.download_url_v2 % (update_json['data']['folder'],
+                    self.update_file = self.UPDATE_DOWNLOAD_URL % (update_json['data']['folder'],
                                                                update_json['data']['update'])
 
                     if self.struct['update']['settings']['UpdateNotify'
@@ -875,8 +851,9 @@ class system:
                         silent = False
                         xbmcDialog = xbmcgui.Dialog()
                         answer = xbmcDialog.yesno('OpenELEC Update',
-                                self.oe._(32188).encode('utf-8') + ':  ' + self.version,
-                                self.oe._(32187).encode('utf-8') + ':  ' + update_json['data']['update'].split('-')[-1].replace('.tar', ''),
+                                self.oe._(32188).encode('utf-8') + ':  ' + self.oe.VERSION,
+                                self.oe._(32187).encode('utf-8') + ':  ' + \
+                                    update_json['data']['update'].split('-')[-1].replace('.tar', ''),
                                 self.oe._(32180).encode('utf-8'))
                         
                         xbmcDialog = None
@@ -907,11 +884,11 @@ class system:
 
             if hasattr(self, 'update_file'):
 
-                if not os.path.exists(self.update_folder):
-                    os.makedirs(self.update_folder)
+                if not os.path.exists(self.LOCAL_UPDATE_DIR):
+                    os.makedirs(self.LOCAL_UPDATE_DIR)
 
                 downloaded = self.oe.download_file(self.update_file, 
-                        self.temp_folder + self.update_file.split('/')[-1], silent)
+                        self.oe.temp_dir + '/' + self.update_file.split('/')[-1], silent)
 
                 if not downloaded is None:
 
@@ -923,13 +900,13 @@ class system:
                                 + self.oe._(32363) + ', '
                                 + self.oe._(32366) + ')')
 
-                    if not os.path.exists(self.temp_folder
-                            + 'oe_update/'):
-                        os.makedirs(self.temp_folder + 'oe_update/')
+                    if not os.path.exists(self.oe.temp_dir
+                            + '/oe_update/'):
+                        os.makedirs(self.oe.temp_dir + '/oe_update/')
 
                     extract_files = ['target/', 'target/']
                     if self.oe.extract_file(downloaded, extract_files,
-                            self.temp_folder + 'oe_update/', silent) \
+                            self.oe.temp_dir + '/oe_update/', silent) \
                         == 1:
 
                         if self.struct['update']['settings'
@@ -940,9 +917,9 @@ class system:
 
                         os.remove(downloaded)
 
-                        for update_file in glob.glob(self.temp_folder
-                                + 'oe_update/*'):
-                            os.rename(update_file, self.update_folder
+                        for update_file in glob.glob(self.oe.temp_dir
+                                + '/oe_update/*'):
+                            os.rename(update_file, self.LOCAL_UPDATE_DIR
                                     + update_file.rsplit('/')[-1])
 
                         if silent == False:
@@ -961,7 +938,7 @@ class system:
 
             self.oe.dbg_log('system::set_hw_clock', 'enter_function', 0)
 
-            os.system('/sbin/hwclock --systohc --utc')
+            self.oe.execute('/sbin/hwclock --systohc --utc')
 
             self.oe.dbg_log('system::set_hw_clock', 'exit_function', 0)
         except Exception, e:
@@ -978,7 +955,7 @@ class system:
 
                 self.oe.set_busy(1)
 
-                reset_file = open(self.xbmc_reset_file, 'w')
+                reset_file = open(self.XBMC_RESET_FILE, 'w')
                 reset_file.write('reset')
                 reset_file.close()
 
@@ -1004,7 +981,7 @@ class system:
 
                 self.oe.set_busy(1)
 
-                reset_file = open(self.oe_reset_file, 'w')
+                reset_file = open(self.OPENELEC_RESET_FILE, 'w')
                 reset_file.write('reset')
                 reset_file.close()
 
@@ -1060,7 +1037,7 @@ class system:
               
               self.oe.set_busy(1)
               
-              for directory in self.backup_dirs:
+              for directory in self.BACKUP_DIRS:
                   self.get_folder_size(directory)
 
               self.oe.set_busy(0)
@@ -1072,13 +1049,13 @@ class system:
             self.backup_dlg = xbmcgui.DialogProgress()
             self.backup_dlg.create('OpenELEC', self.oe._(32375).encode('utf-8'), ' ', ' ')
             
-            if not os.path.exists(self.backup_folder):
-                os.makedirs(self.backup_folder)
+            if not os.path.exists(self.BACKUP_DESTINATION):
+                os.makedirs(self.BACKUP_DESTINATION)
             
             self.backup_file = self.oe.timestamp() + '.tar'
 
-            tar = tarfile.open(self.backup_folder + self.backup_file, 'w')
-            for directory in self.backup_dirs:
+            tar = tarfile.open(self.BACKUP_DESTINATION + self.backup_file, 'w')
+            for directory in self.BACKUP_DIRS:
                 self.tar_add_folder(tar, directory)
 
             tar.close()
@@ -1100,7 +1077,7 @@ class system:
 
             copy_success = 0
             backup_files = []
-            for backup_file in sorted(glob.glob(self.backup_folder + '*.tar'), key=os.path.basename):
+            for backup_file in sorted(glob.glob(self.BACKUP_DESTINATION + '*.tar'), key=os.path.basename):
                 backup_files.append(backup_file.split("/")[-1] + ":")
                 
             select_window = oeWindows.selectWindow('selectWindow.xml',
@@ -1114,29 +1091,29 @@ class system:
             del select_window
 
             if restore_file != '':
-                if not os.path.exists(self.restore_path):
-                    os.makedirs(self.restore_path)
+                if not os.path.exists(self.RESTORE_DIR):
+                    os.makedirs(self.RESTORE_DIR)
 
                 else:
-                    os.system('rm -rf %s' % self.restore_path)
-                    os.makedirs(self.restore_path)
+                    self.oe.execute('rm -rf %s' % self.RESTORE_DIR)
+                    os.makedirs(self.RESTORE_DIR)
                     
-                folder_stat = os.statvfs(self.restore_path)
-                file_size = os.path.getsize(self.backup_folder + restore_file)
+                folder_stat = os.statvfs(self.RESTORE_DIR)
+                file_size = os.path.getsize(self.BACKUP_DESTINATION + restore_file)
                 free_space = folder_stat.f_bsize * folder_stat.f_bavail
 
                 if free_space > file_size * 2:
-                    if os.path.exists(self.restore_path
+                    if os.path.exists(self.RESTORE_DIR
                             + restore_file):
-                        os.remove(self.restore_path + self.restore_file)
+                        os.remove(self.RESTORE_DIR + self.restore_file)
 
-                    if self.oe.copy_file(self.backup_folder + restore_file, 
-                            self.restore_path + restore_file) != None:
+                    if self.oe.copy_file(self.BACKUP_DESTINATION + restore_file, 
+                            self.RESTORE_DIR + restore_file) != None:
 
                         copy_success = 1
                     else:
                       
-                        os.system('rm -rf %s' % self.restore_path)
+                        self.oe.execute('rm -rf %s' % self.RESTORE_DIR)
                         
                 else:
                     
@@ -1164,7 +1141,7 @@ class system:
                     else:
                         self.oe.dbg_log('system::do_restore',
                                         'User Abort!', 0)
-                        os.system('rm -rf %s' % self.restore_path)
+                        self.oe.execute('rm -rf %s' % self.RESTORE_DIR)
                       
             self.oe.dbg_log('system::do_restore', 'exit_function', 0)
         except Exception, e:
@@ -1182,7 +1159,7 @@ class system:
 
                 if self.backup_dlg.iscanceled():
                     try:
-                        os.remove(self.backup_folder + self.backup_file)
+                        os.remove(self.BACKUP_DESTINATION + self.backup_file)
                     except:
                         pass
                     return 0

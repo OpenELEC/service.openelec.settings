@@ -31,10 +31,8 @@ import xbmc
 import xbmcgui
 import time
 import dbus
-import dbus.service
 import threading
 import oeWindows
-import subprocess
 
 class bluetooth:
 
@@ -45,26 +43,20 @@ class bluetooth:
         'InfoText': 704,
         }}
     
-    bt_daemon = '/usr/lib/bluetooth/bluetoothd'
-    ob_daemon = '/usr/lib/bluetooth/obexd'
-    bluez_init = '/etc/init.d/54_bluez'
-    obex_init = '/etc/init.d/55_obexd'
-
+    ENABLED = False
+    OBEX_INIT = None
+    OBEX_DAEMON = None
+    BLUETOOTH_INIT = None
+    BLUETOOTH_DAEMON = None
+    
     def __init__(self, oeMain):
         try:
 
             oeMain.dbg_log('bluetooth::__init__', 'enter_function', 0)
             
             self.oe = oeMain
-            
-            if not os.path.exists(self.bt_daemon):
-                self.enabled = False
-            else:                
-                self.enabled = True
-            
             self.visible = False
             self.disabled = False
-            self.discovery_time = 30  # Seconds
             self.listItems = {}
             self.update_menu = False
             self.dbusBluezAdapter = None
@@ -148,14 +140,14 @@ class bluetooth:
                             'enter_function', 0)
       
             pid = self.oe.execute('pidof %s'
-                    % os.path.basename(self.bt_daemon)).split(' ')
+                    % os.path.basename(self.BLUETOOTH_DAEMON)).split(' ')
             if pid[0] == '':                  
-                subprocess.Popen('sh ' + self.bluez_init, shell=True, close_fds=True)
+                self.oe.execute('sh ' + self.BLUETOOTH_INIT)
 
             pid = self.oe.execute('pidof %s'
-                    % os.path.basename(self.ob_daemon)).split(' ')
+                    % os.path.basename(self.OBEX_DAEMON)).split(' ')
             if pid[0] == '':                  
-                subprocess.Popen('sh ' + self.obex_init, shell=True, close_fds=True)
+                self.oe.execute('sh ' + self.OBEX_INIT)
                 
             self.oe.dbg_log('bluetooth::start_bluetoothd',
                             'exit_function', 0)
@@ -174,17 +166,11 @@ class bluetooth:
                   self.dbusBluezAdapter, 0)
                 self.dbusBluezAdapter = None
 
-            pid = self.oe.execute('pidof %s'
-                                  % os.path.basename(self.bt_daemon)).split(' '
-                    )
-            for p in pid:
-                os.system('kill ' + p.strip().replace('\n', ''))
-
-            pid = self.oe.execute('pidof %s'
-                                  % os.path.basename(self.ob_daemon)).split(' '
-                    )
-            for p in pid:
-                os.system('kill ' + p.strip().replace('\n', ''))
+            self.oe.execute('killall %s'
+                                  % os.path.basename(self.BLUETOOTH_DAEMON))
+            
+            self.oe.execute('killall %s'
+                                  % os.path.basename(self.OBEX_DAEMON))
                 
             self.oe.dbg_log('bluetooth::stop_bluetoothd',
                             'exit_function', 0)

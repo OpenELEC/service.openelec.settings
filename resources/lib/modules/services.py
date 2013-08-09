@@ -26,11 +26,27 @@
 # -*- coding: utf-8 -*-
 import os
 import xbmc
-import ConfigParser
-from StringIO import StringIO
-import subprocess
 
 class services:
+
+    ENABLED = False
+
+    SAMBA_NMDB = None        
+    SAMBA_SMDB = None
+    SAMBA_INIT = None
+
+    KERNEL_CMD = None
+    SSH_DAEMON = None
+    SSH_INIT = None
+
+    AVAHI_DAEMON = None
+    AVAHI_INIT = None
+    
+    CRON_DAEMON = None
+    CRON_INIT = None
+
+    SYSLOG_DAEMON = None
+    SYSLOG_INIT = None
 
     menu = {'4': {
         'name': 32001,
@@ -164,46 +180,39 @@ class services:
                     'order': 5,
                     'name': 32331,
                     'not_supported': [],
-                    'settings': {'disabled': {
+                    'settings': {'enabled': {
                         'order': 1,
                         'name': 32344,
                         'value': None,
                         'action': 'init_bluetooth',
                         'type': 'bool',
                         'InfoText': 720,
-                        }},
+                     },
+                    'obex_enabled': {
+                        'order': 2,
+                        'name': 32384,
+                        'value': None,
+                        'action': 'init_bluetooth',
+                        'type': 'bool',
+                        'parent' : {'entry': 'enabled',
+                                    'value': ['1']},
+                        'InfoText': 751,
+                     },
+                    'obex_root': {
+                        'order': 3,
+                        'name': 32385,
+                        'value': None,
+                        'action': 'init_bluetooth',
+                        'type': 'text',
+                        'parent' : {'entry': 'obex_enabled',
+                                    'value': ['1']},
+                        'InfoText': 752,
+                     },                        
+                    }                    
                     },                        
                 }
 
-            self.enabled = True
-            
             self.oe = oeMain
-
-            self.kernel_cmd = '/proc/cmdline'
-            
-            self.samba_nmbd = '/usr/bin/nmbd'
-            self.samba_smbd = '/usr/bin/smbd'
-            self.samba_init = '/etc/init.d/52_samba'
-
-            self.ssh_daemon = '/usr/sbin/sshd'
-            self.ssh_conf_dir =  self.oe.USER_CONFIG
-            self.ssh_conf_file = 'sshd.conf'
-            self.sshd_init = '/etc/init.d/51_sshd'
-
-            self.avahi_daemon = '/usr/sbin/avahi-daemon'
-            self.avahi_init = '/etc/init.d/53_avahi'
-
-            self.cron_daemon = '/sbin/crond'
-            self.crond_init = '/etc/init.d/09_crond'
-
-            self.syslog_daemon = '/sbin/syslogd'
-            self.syslog_init = '/etc/init.d/05_syslogd'
-
-            self.bluetooth_daemon = '/usr/lib/bluetooth/bluetoothd'
-            
-            #self.oe = oeMain
-
-      # self.load_values()
 
             oeMain.dbg_log('services::__init__', 'exit_function', 0)
         except Exception, e:
@@ -236,9 +245,6 @@ class services:
         try:
 
             self.oe.dbg_log('service::stop_service', 'enter_function', 0)
-
-            #if 'bluetooth' in self.oe.dictModules:
-            #    self.oe.dictModules['bluetooth'].stop_bluetoothd()
 
             self.oe.dbg_log('service::stop_service', 'exit_function', 0)
         except Exception, e:
@@ -295,7 +301,7 @@ class services:
                             0)
 
             # read ssh settings from sshd_samba.conf
-            if os.path.isfile(self.ssh_daemon):
+            if os.path.isfile(self.SSH_DAEMON):
                 if self.oe.get_service_option('ssh', 'SSHD_START', 'true') == 'true':
                     self.struct['ssh']['settings']['ssh_autostart']['value'] = '1'
                 else:
@@ -307,7 +313,7 @@ class services:
                     self.struct['ssh']['settings']['ssh_secure']['value'] = '0'
 
                 # hide ssh settings if Kernel Parameter isset
-                cmd_file = open(self.kernel_cmd, 'r')
+                cmd_file = open(self.KERNEL_CMD, 'r')
                 cmd_args = cmd_file.read()
                 if 'ssh' in cmd_args:
                     self.struct['ssh']['settings']['ssh_autostart']['value'] = '1'
@@ -319,8 +325,8 @@ class services:
                 self.struct['ssh']['hidden'] = 'true'
                 
             # read samba settings from service_samba.conf
-            if os.path.isfile(self.samba_nmbd) \
-                and os.path.isfile(self.samba_smbd):
+            if os.path.isfile(self.SAMBA_NMDB) \
+                and os.path.isfile(self.SAMBA_SMDB):
                 if self.oe.get_service_option('samba', 'SAMBA_ENABLED', 'true') == 'true':
                     self.struct['samba']['settings']['samba_autostart']['value'] = '1'
                 else:
@@ -343,7 +349,7 @@ class services:
                 self.struct['samba']['hidden'] = 'true'
 
             # read avahi settings from service_avahi.conf
-            if os.path.isfile(self.avahi_daemon):
+            if os.path.isfile(self.AVAHI_DAEMON):
                 if self.oe.get_service_option('avahi', 'AVAHI_ENABLED', 'true') == 'true':
                     self.struct['avahi']['settings']['avahi_autostart']['value'] = '1'
                 else:
@@ -352,7 +358,7 @@ class services:
                 self.struct['avahi']['hidden'] = 'true'
 
             # read cron settings from service_cron.conf
-            if os.path.isfile(self.cron_daemon):
+            if os.path.isfile(self.CRON_DAEMON):
                 if self.oe.get_service_option('cron', 'CRON_ENABLED', 'true') == 'true':
                     self.struct['cron']['settings']['cron_autostart']['value'] = '1'
                 else:
@@ -361,7 +367,7 @@ class services:
                 self.struct['cron']['hidden'] = 'true'
                 
             # read syslog settings from service_syslog.conf    
-            if os.path.isfile(self.syslog_daemon):
+            if os.path.isfile(self.SYSLOG_DAEMON):
                 if self.oe.get_service_option('syslog', 'SYSLOG_REMOTE', 'false') == 'true':
                     self.struct['syslog']['settings']['syslog_remote']['value'] = '1'
                 else:
@@ -369,19 +375,34 @@ class services:
                     
                 tmpVal = self.oe.get_service_option('syslog', 'SYSLOG_SERVER')
                 if not tmpVal is None:
-                    self.struct['samba']['settings']['syslog_server']['value'] = tmpVal
+                    self.struct['syslog']['settings']['syslog_server']['value'] = tmpVal
                     
             else:
                 self.struct['syslog']['hidden'] = 'true'
             
             # read bluez settings from service_bluez.conf
-            if os.path.isfile(self.bluetooth_daemon):              
-                if self.oe.get_service_option('bluez', 'BLUEZ_ENABLED', 'true') == 'true':
-                    self.struct['bluez']['settings']['disabled']['value'] = '0'
+            if 'bluetooth' in self.oe.dictModules:
+                if os.path.isfile(self.oe.dictModules['bluetooth'].BLUETOOTH_DAEMON):              
+                    if self.oe.get_service_option('bluez', 'BLUEZ_ENABLED', 'true') == 'true':
+                        self.struct['bluez']['settings']['enabled']['value'] = '1'
+                    else:
+                        self.struct['bluez']['settings']['enabled']['value'] = '0'
+                        
+                    if os.path.isfile(self.oe.dictModules['bluetooth'].OBEX_DAEMON):  
+                        if self.oe.get_service_option('bluez', 'OBEXD_ENABLED', 'true') == 'true':
+                            self.struct['bluez']['settings']['obex_enabled']['value'] = '1'
+                        else:
+                            self.struct['bluez']['settings']['obex_enabled']['value'] = '0'                        
+
+                        tmpVal = self.oe.get_service_option('bluez', 'OBEXD_ROOT', self.oe.DOWNLOAD_DIR)
+                        if not tmpVal is None:
+                            self.struct['bluez']['settings']['obex_root']['value'] = tmpVal 
+                    else:
+                        self.struct['bluez']['settings']['obex_enabled']['hidden'] = True
+                        self.struct['bluez']['settings']['obex_root']['hidden'] = True
+                        
                 else:
-                    self.struct['bluez']['settings']['disabled']['value'] = '1'
-            else:
-                self.struct['bluez']['hidden'] = 'true'
+                    self.struct['bluez']['hidden'] = 'true'
                                         
             
             self.oe.dbg_log('services::load_values', 'exit_function', 0)
@@ -409,7 +430,10 @@ class services:
                                             'false')
                 
                 if not 'service' in kwargs:
-                    self.stop_samba()
+                    self.oe.execute('killall %s %s' % (
+                                             os.path.basename(self.SAMBA_SMDB),
+                                             os.path.basename(self.SAMBA_NMDB)))
+                    
                     self.oe.dbg_log('services::initialize_samba',
                                     'exit_function (samba disabled)', 0)
                 
@@ -448,8 +472,10 @@ class services:
                                                'false')
                  
                 if not 'service' in kwargs: 
-                    self.stop_samba()
-                    subprocess.Popen('sh ' + self.samba_init, shell=True, close_fds=True)
+                    self.oe.execute('killall %s %s' % (
+                                             os.path.basename(self.SAMBA_SMDB),
+                                             os.path.basename(self.SAMBA_NMDB)))
+                    self.oe.execute('sh ' + self.SAMBA_INIT)
 
             self.load_values()
             self.oe.set_busy(0)
@@ -499,12 +525,13 @@ class services:
             if self.struct['ssh']['settings']['ssh_autostart']['value'] \
                 == '0':
                 if not 'service' in kwargs:
-                    self.stop_ssh()
-
+                    self.oe.execute('killall %s' % \
+                        os.path.basename(self.SSH_DAEMON))
             else:
                 if not 'service' in kwargs:
-                    self.stop_ssh()
-                    subprocess.Popen('sh ' + self.sshd_init, shell=True, close_fds=True)
+                    self.oe.execute('killall %s' % \
+                        os.path.basename(self.SSH_DAEMON))
+                    self.oe.execute('sh ' + self.SSH_INIT)
 
             self.load_values()                          
             self.oe.set_busy(0)
@@ -535,7 +562,8 @@ class services:
                                             'false')   
                 
                 if not 'service' in kwargs:
-                    self.stop_avahi()
+                    self.oe.execute('killall -9 %s' % \
+                        os.path.basename(self.AVAHI_DAEMON))
 
             else:
                 self.oe.set_service_option('avahi',
@@ -543,8 +571,9 @@ class services:
                                             'true')   
             
                 if not 'service' in kwargs:
-                    self.stop_avahi()
-                    subprocess.Popen('sh ' + self.avahi_init, shell=True, close_fds=True)
+                    self.oe.execute('killall -9 %s' % \
+                        os.path.basename(self.AVAHI_DAEMON))
+                    self.oe.execute('sh ' + self.AVAHI_INIT)
 
             self.load_values()
             self.oe.set_busy(0)
@@ -575,7 +604,9 @@ class services:
                                             'false')   
                 
                 if not 'service' in kwargs:
-                    self.stop_cron()
+                    self.oe.execute('killall %s' % \
+                        os.path.basename(self.CRON_DAEMON))
+
 
             else:
                 self.oe.set_service_option('cron',
@@ -583,8 +614,10 @@ class services:
                                             'true')   
             
                 if not 'service' in kwargs:
-                    self.stop_cron()
-                    subprocess.Popen('sh ' + self.crond_init, shell=True, close_fds=True)
+                    self.oe.execute('killall %s' % \
+                        os.path.basename(self.CRON_DAEMON))
+
+                    self.oe.execute('sh ' + self.CRON_INIT)
 
             self.load_values()
             self.oe.set_busy(0)
@@ -611,9 +644,6 @@ class services:
             if self.struct['syslog']['settings'
                     ]['syslog_remote']['value'] == '1':
 
-                if not os.path.exists(os.path.dirname(self.syslog_conf_file)):
-                    os.makedirs(os.path.dirname(self.syslog_conf_file))
-
                 self.oe.set_service_option('syslog',
                                             'SYSLOG_REMOTE',
                                             'true')
@@ -623,15 +653,21 @@ class services:
                                             self.struct['syslog'
                                             ]['settings']['syslog_server'
                                             ]['value'])
-                
+
+                if not 'service' in kwargs:
+                    self.oe.execute('killall %s' % \
+                        os.path.basename(self.SYSLOG_DAEMON))                
             else:
 
                 self.oe.set_service_option('syslog',
                                            'SYSLOG_REMOTE',
                                            'false')
 
-            self.stop_syslog()
-            subprocess.Popen('sh ' + self.syslog_init, shell=True, close_fds=True)
+                if not 'service' in kwargs:
+                    self.oe.execute('killall %s' % \
+                        os.path.basename(self.SYSLOG_DAEMON))
+
+            self.oe.execute('sh ' + self.SYSLOG_INIT)
                     
             self.load_values()
             self.oe.set_busy(0)
@@ -655,27 +691,51 @@ class services:
             if 'listItem' in kwargs:
                 self.set_value(kwargs['listItem'])
                 
-            if self.struct['bluez']['settings']['disabled']['value'] == '1':
+            if self.struct['bluez']['settings']['obex_enabled']['value'] == '0':
+                
+                self.oe.set_service_option('bluez',
+                                            'OBEXD_ENABLED',
+                                            'false') 
+            else:
+                self.oe.set_service_option('bluez',
+                                            'OBEXD_ENABLED',
+                                            'true')
+                self.oe.set_service_option('bluez',
+                                            'OBEXD_ROOT',
+                                            self.struct['bluez']['settings'
+                                                       ]['obex_root']['value'])
+                
+            if self.struct['bluez']['settings']['enabled']['value'] == '0':
+
+                self.struct['bluez']['settings']['obex_enabled']['hidden'] = True
+                self.struct['bluez']['settings']['obex_root']['hidden'] = True
 
                 self.oe.set_service_option('bluez',
                                             'BLUEZ_ENABLED',
                                             'false')   
-                if not 'service' in kwargs:
-                    if 'bluetooth' in self.oe.dictModules:
-                        self.oe.dictModules['bluetooth'].disabled = True
-                        self.oe.dictModules['bluetooth'].stop_bluetoothd()
+                
+                self.oe.dictModules['bluetooth'].disabled = True
                 
             else:
 
+                if 'hidden' in self.struct['bluez']['settings']['obex_enabled']:
+                    del self.struct['bluez']['settings']['obex_enabled']['hidden']
+                
+                if 'hidden' in self.struct['bluez']['settings']['obex_root']:
+                    del self.struct['bluez']['settings']['obex_root']['hidden']
+                    
                 self.oe.set_service_option('bluez',
                                             'BLUEZ_ENABLED',
                                             'true')                   
 
-                if not 'service' in kwargs:                
-                    if 'bluetooth' in self.oe.dictModules:
-                        self.oe.dictModules['bluetooth'].disabled = False
-                        self.oe.dictModules['bluetooth'].stop_bluetoothd()
-                        self.oe.dictModules['bluetooth'].start_bluetoothd()
+                self.oe.dictModules['bluetooth'].disabled = False
+                
+            if not 'service' in kwargs:                
+                xbmc.log("NOSERVICE")
+                if 'bluetooth' in self.oe.dictModules:
+                    xbmc.log("BTMODULEEEEEEEEE")
+                    self.oe.dictModules['bluetooth'].stop_bluetoothd()
+                    self.oe.dictModules['bluetooth'].start_bluetoothd()
 
 
             self.load_values()
@@ -688,101 +748,6 @@ class services:
             self.oe.set_busy(0)
             self.oe.dbg_log('services::init_bluetooth', 'ERROR: ('
                             + repr(e) + ')', 4)
-
-    def stop_samba(self):
-        try:
-
-            self.oe.dbg_log('services::stop_samba', 'enter_function', 0)
-
-            pid = self.oe.execute('pidof %s'
-                                  % os.path.basename(self.samba_smbd)).split(' '
-                    )
-            for p in pid:
-                self.oe.dbg_log('services::stop_samba PID', unicode(pid)
-                                + ' --- ' + unicode(p), 0)
-                os.system('kill ' + p.strip().replace('\n', ''))
-
-            pid = self.oe.execute('pidof %s'
-                                  % os.path.basename(self.samba_nmbd)).split(' '
-                    )
-            for p in pid:
-                os.system('kill ' + p.strip().replace('\n', ''))
-
-            self.oe.dbg_log('services::stop_samba', 'exit_function', 0)
-        except Exception, e:
-
-            self.oe.dbg_log('services::stop_samba', 'ERROR: (%s)'
-                            % repr(e), 4)
-
-    def stop_ssh(self):
-        try:
-
-            self.oe.dbg_log('services::stop_ssh', 'enter_function', 0)
-
-            pid = self.oe.execute('pidof %s'
-                                  % os.path.basename(self.ssh_daemon)).split(' '
-                    )
-            for p in pid:
-                os.system('kill -9 ' + p.strip().replace('\n', ''))
-
-            self.oe.dbg_log('services::stop_ssh', 'exit_function)', 0)
-        except Exception, e:
-
-            self.oe.dbg_log('services::stop_ssh', 'ERROR: (%s)'
-                            % repr(e), 4)
-
-    def stop_avahi(self):
-        try:
-
-            self.oe.dbg_log('services::stop_avahi', 'enter_function', 0)
-
-            pid = self.oe.execute('pidof %s'
-                                  % os.path.basename(self.avahi_daemon)).split(' '
-                    )
-            for p in pid:
-                os.system('kill -9 ' + p.strip().replace('\n', ''))
-
-            self.oe.dbg_log('services::stop_avahi', 'exit_function)', 0)
-        except Exception, e:
-
-            self.oe.dbg_log('services::stop_ssh', 'ERROR: (%s)'
-                            % repr(e), 4)
-
-    def stop_cron(self):
-        try:
-
-            self.oe.dbg_log('services::stop_cron', 'enter_function', 0)
-
-            pid = self.oe.execute('pidof %s'
-                                  % os.path.basename(self.cron_daemon)).split(' '
-                    )
-            for p in pid:
-                os.system('kill -9 ' + p.strip().replace('\n', ''))
-
-            self.oe.dbg_log('services::stop_cron', 'exit_function)', 0)
-        except Exception, e:
-
-            self.oe.dbg_log('services::stop_cron', 'ERROR: (%s)'
-                            % repr(e), 4)
-
-    def stop_syslog(self):
-        try:
-
-            self.oe.dbg_log('services::stop_syslog', 'enter_function',
-                            0)
-
-            pid = self.oe.execute('pidof %s'
-                                  % os.path.basename(self.syslog_daemon)).split(' '
-                    )
-            for p in pid:
-                os.system('kill -9 ' + p.strip().replace('\n', ''))
-
-            self.oe.dbg_log('services::stop_syslog', 'exit_function)',
-                            0)
-        except Exception, e:
-
-            self.oe.dbg_log('services::stop_syslog', 'ERROR: (%s)'
-                            % repr(e), 4)
             
     def exit(self):
         try:

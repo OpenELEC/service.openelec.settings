@@ -24,15 +24,14 @@
 #  OpenELEC Licensing  <license@openelec.tv>  http://www.openelec.tv
 ################################################################################
 # -*- coding: utf-8 -*-
+import os
 import xbmc
-import oeWindows
 import time
 import dbus
-import xbmcgui
-import dbus.service
-import threading
 import uuid
-import os
+import xbmcgui
+import threading
+import oeWindows
 import ConfigParser
 
 ####################################################################
@@ -1289,7 +1288,7 @@ class connmanVpn(object):
                     isChild=True)
             self.show_advanced_entrys = '0'
             self.oe.dictModules['connmanVpnConfig'] = self
-            self.vpn_conf_dir = '%s/vpn-config/' % self.oe.USER_CONFIG
+            self.VPN_CONF_DIR = '%s/vpn-config/' % self.oe.USER_CONFIG
             self.vpn_name = vpn
 
             self.winOeCon.show()
@@ -1399,7 +1398,7 @@ class connmanVpn(object):
             self.vpn_conf = ConfigParser.RawConfigParser()
             self.vpn_conf.optionxform = str
 
-            vpn_file_name = '%s%s.config' % (self.vpn_conf_dir,
+            vpn_file_name = '%s%s.config' % (self.VPN_CONF_DIR,
                     vpn_name)
             if os.path.exists(vpn_file_name):
                 self.vpn_conf.readfp(open(vpn_file_name))
@@ -1472,12 +1471,12 @@ class connmanVpn(object):
                             self.struct['Provider']['settings'
                             ][entry]['value'])
 
-            if os.path.exists('%s%s.config' % (self.vpn_conf_dir,
+            if os.path.exists('%s%s.config' % (self.VPN_CONF_DIR,
                               self.vpn_name)):
-                os.remove('%s%s.config' % (self.vpn_conf_dir,
+                os.remove('%s%s.config' % (self.VPN_CONF_DIR,
                           self.vpn_name))
 
-            vpn_file_name = '%s%s.config' % (self.vpn_conf_dir,
+            vpn_file_name = '%s%s.config' % (self.VPN_CONF_DIR,
                     self.struct['Provider']['settings']['Name']['value'
                     ])
             with open(vpn_file_name, 'wb') as configfile:
@@ -1516,7 +1515,12 @@ class connmanVpn(object):
 ####################################################################
 class connman:
 
-    oe = None
+    ENABLED = False
+    VPN_CONF_DIR = None
+    CONNMAN_DAEMON = None
+    WAIT_CONF_FILE = None
+    VPN_PLUGINS_DIR = None
+                
     menu = {'2': {
         'name': 32100,
         'menuLoader': 'menu_connections',
@@ -1686,21 +1690,10 @@ class connman:
 
             self.busy = 0
             self.oe = oeMain
-            self.enabled = True
-            self.connman_daemon = "/usr/sbin/connmand"
             self.visible = False
-            
-            self.wait_conf_file = \
-                '%s/openelec/network_wait' % self.oe.CONFIG_CACHE
 
-            self.vpn_plugins_dir = \
-                '/usr/lib/connman/plugins-vpn'
-            
-            if not os.path.exists(self.connman_daemon):
-                self.enabled = False
-                
             self.oe.dbg_log('connman::__init__', 'exit_function', 0)
-            self.vpn_conf_dir = '%s/vpn-config/' % self.oe.USER_CONFIG
+
         except Exception, e:
             self.oe.dbg_log('connman::__init__', 'ERROR: (' + repr(e)
                             + ')', 4)
@@ -1748,7 +1741,7 @@ class connman:
             self.oe.dbg_log('connman::load_values', 'enter_function', 0)
 
             # VPN Available 
-            if not os.path.exists(self.vpn_plugins_dir):
+            if not os.path.exists(self.VPN_PLUGINS_DIR):
                 self.struct['vpn']['hidden'] = 'true'
                 
             # Network Wait
@@ -1757,8 +1750,8 @@ class connman:
             self.struct['advanced']['settings']['wait_for_network_time'
                     ]['value'] = '10'
 
-            if os.path.exists(self.wait_conf_file):
-                wait_file = open(self.wait_conf_file, 'r')
+            if os.path.exists(self.WAIT_CONF_FILE):
+                wait_file = open(self.WAIT_CONF_FILE, 'r')
                 for line in wait_file:
                     if 'WAIT_NETWORK=' in line:
                         if line.split('=')[-1].lower().strip() \
@@ -2337,9 +2330,9 @@ class connman:
                 if listItem.getProperty('State') in ['ready', 'online']:
                     self.disconnect_network(listItem)
 
-                if os.path.exists('%s%s.config' % (self.vpn_conf_dir,
+                if os.path.exists('%s%s.config' % (self.VPN_CONF_DIR,
                                   listItem.getLabel())):
-                    os.remove('%s%s.config' % (self.vpn_conf_dir,
+                    os.remove('%s%s.config' % (self.VPN_CONF_DIR,
                               listItem.getLabel()))
             else:
 
@@ -2583,16 +2576,16 @@ class connman:
             if self.struct['advanced']['settings']['wait_for_network'
                     ]['value'] == '0':
 
-                if os.path.exists(self.wait_conf_file):
-                    os.remove(self.wait_conf_file)
+                if os.path.exists(self.WAIT_CONF_FILE):
+                    os.remove(self.WAIT_CONF_FILE)
 
                 return
             else:
 
-                if not os.path.exists(os.path.dirname(self.wait_conf_file)):
-                    os.makedirs(os.path.dirname(self.wait_conf_file))
+                if not os.path.exists(os.path.dirname(self.WAIT_CONF_FILE)):
+                    os.makedirs(os.path.dirname(self.WAIT_CONF_FILE))
 
-                wait_conf = open(self.wait_conf_file, 'w')
+                wait_conf = open(self.WAIT_CONF_FILE, 'w')
                 wait_conf.write('WAIT_NETWORK=true\n')
                 wait_conf.write('WAIT_NETWORK_TIME=%s\n'
                                 % self.struct['advanced']['settings'

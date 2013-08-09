@@ -25,16 +25,17 @@
 #  OpenELEC Licensing  <license@openelec.tv>  http://www.openelec.tv
 ################################################################################
 # -*- coding: utf-8 -*-
-import threading
-import gobject
-import dbus
-import dbus.service
 import xbmc
+import dbus
+import gobject
+import threading
+import dbus.service
 
 class xdbus:
 
+    ENABLED = False
+    
     menu = {'99': {}}
-    enabled = True
     
     def __init__(self, oeMain):
         try:
@@ -137,9 +138,10 @@ class dbusMonitor(threading.Thread):
                         
                 module = self.oe.dictModules[strModule]
                 
+                xbmc.log("MODULE: %s -> %s" % (strModule, str(module.ENABLED)))
                 if hasattr(module, 'monitor') and \
-                    module.enabled == True:
-                
+                    module.ENABLED:
+                    xbmc.log("MOEP")
                     monitor = \
                         module.monitor(self.oe, module)
                     monitor.add_signal_receivers()

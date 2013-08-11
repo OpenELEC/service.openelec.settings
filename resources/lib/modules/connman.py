@@ -245,8 +245,8 @@ class networkMount(object):
                 umount = ''
 
             if 'busy' in umount:
-                xbmc.executebuiltin('Notification(Umount Error, '
-                                    + umount + ')')
+                self.oe.notify('Umount Error', umount)
+
                 self.oe.set_busy(0)
                 return 'close'
 
@@ -323,8 +323,8 @@ class networkMount(object):
             umount = self.oe.execute('umount /media/'
                     + self.current_mountpoint)
             if 'busy' in umount:
-                xbmc.executebuiltin('Notification(Umount Error, '
-                                    + umount + ')')
+                self.oe.notify('Umount Error', umount)
+
             else:
                 del self.oe.dictModules['connman'].struct['mounts'
                                        ]['settings'][self.mount_id]
@@ -2263,15 +2263,14 @@ class connman:
             self.oe.set_busy(0)
 
             err_name = error.get_dbus_name()
-
             if 'InProgress' in err_name:
                 self.disconnect_network()
                 self.connect_network()
             else:
-                xbmc.executebuiltin('Notification(Network Error, '
-                                    + err_name.split('.')[-1] + ')')
+                err_message = error.get_dbus_message()
+                self.oe.notify('Network Error', err_message)
                 self.oe.dbg_log('connman::dbus_error_handler',
-                                'ERROR: (' + err_name + ')', 4)
+                                'ERROR: (' + err_message + ')', 4)
 
             self.oe.dbg_log('connman::dbus_error_handler',
                             'exit_function', 0)

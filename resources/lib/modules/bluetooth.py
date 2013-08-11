@@ -593,15 +593,16 @@ class bluetooth:
 
             self.oe.set_busy(0)
 
-            err_name = error.get_dbus_name()
-            xbmc.executebuiltin('Notification(Bluetooth Error, '
-                                + err_name.split('.')[-1] + ')')
+            err_message = error.get_dbus_message()
+            self.oe.notify('Bluetooth error', 
+                           err_message.split('.')[-1],
+                           'bt')
             
             if hasattr(self, 'pinkey_window'):
                 self.close_pinkey_window()
                     
             self.oe.dbg_log('bluetooth::dbus_error_handler', 'ERROR: ('
-                            + err_name + ')', 4)
+                            + err_message + ')', 4)
 
             self.oe.dbg_log('bluetooth::dbus_error_handler',
                             'exit_function', 0)

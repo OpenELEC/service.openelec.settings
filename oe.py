@@ -50,6 +50,7 @@ __scriptid__ = 'service.openelec.settings'
 __addon__ = xbmcaddon.Addon(id=__scriptid__)
 __cwd__ = __addon__.getAddonInfo('path')
 __oe__ = sys.modules[globals()['__name__']]
+__media__ = '%s/resources/skins/default/media/' % __cwd__
 
 is_service = False
 conf_lock = False
@@ -151,7 +152,19 @@ def set_language(language):
     winOeMain = None
     del winOeMain
 
+def notify(title, message, icon='icon'):
+    try:
+       
+        dbg_log('oe::notify', 'enter_function', 0)
 
+        msg = 'Notification(%s, %s, 5000, %s%s.png)' \
+                                % (title, message[0:64], __media__, icon)
+        xbmc.executebuiltin(msg)
+                            
+        dbg_log('oe::notify', 'exit_function', 0)
+    except Exception, e:
+        dbg_log('oe::notify', 'ERROR: (' + repr(e) + ')')
+      
 def execute(command_line, get_result=0):
     try:
 

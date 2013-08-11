@@ -1,3 +1,7 @@
+2013-08-11 v0.2.4
+  (chg) notification redesign
+  (add) notification Icon
+  
 2013-08-11 v0.2.3
   (fix) samba menu entry
   (fix) ssh default value

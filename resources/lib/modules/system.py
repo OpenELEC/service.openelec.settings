@@ -844,9 +844,8 @@ class system:
 
                     if self.struct['update']['settings']['UpdateNotify'
                             ]['value'] == '1':
-                        xbmc.executebuiltin('Notification('
-                                + self.oe._(32363).encode('utf-8') + ', '
-                                + self.oe._(32364).encode('utf-8') + ')')
+                        self.oe.notify(self.oe._(32363).encode('utf-8'), 
+                                       self.oe._(32364).encode('utf-8'))
    
                     if (self.struct['update']['settings']['AutoUpdate']['value'
                         ] == 'manual' and force == True):
@@ -898,9 +897,8 @@ class system:
                     
                     if self.struct['update']['settings']['UpdateNotify'
                             ]['value'] == '1':
-                        xbmc.executebuiltin('Notification('
-                                + self.oe._(32363) + ', '
-                                + self.oe._(32366) + ')')
+                        self.oe.notify(self.oe._(32363),
+                                       self.oe._(32366))
 
                     if not os.path.exists(self.oe.temp_dir
                             + '/oe_update/'):
@@ -913,9 +911,8 @@ class system:
 
                         if self.struct['update']['settings'
                                 ]['UpdateNotify']['value'] == '1':
-                            xbmc.executebuiltin('Notification('
-                                    + self.oe._(32363) + ', '
-                                    + self.oe._(32367) + ')')
+                            self.oe.notify(self.oe._(32363),
+                                           self.oe._(32367))
 
                         os.remove(downloaded)
 

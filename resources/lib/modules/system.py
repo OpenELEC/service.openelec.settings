@@ -889,7 +889,7 @@ class system:
                     os.makedirs(self.LOCAL_UPDATE_DIR)
 
                 downloaded = self.oe.download_file(self.update_file, 
-                        self.oe.temp_dir + '/' + self.update_file.split('/')[-1], silent)
+                        self.oe.TEMP + self.update_file.split('/')[-1], silent)
 
                 if not downloaded is None:
 
@@ -900,13 +900,13 @@ class system:
                         self.oe.notify(self.oe._(32363),
                                        self.oe._(32366))
 
-                    if not os.path.exists(self.oe.temp_dir
-                            + '/oe_update/'):
-                        os.makedirs(self.oe.temp_dir + '/oe_update/')
+                    if not os.path.exists(self.oe.TEMP
+                            + 'oe_update/'):
+                        os.makedirs(self.oe.TEMP + 'oe_update/')
 
                     extract_files = ['target/', 'target/']
                     if self.oe.extract_file(downloaded, extract_files,
-                            self.oe.temp_dir + '/oe_update/', silent) \
+                            self.oe.TEMP + 'oe_update/', silent) \
                         == 1:
 
                         if self.struct['update']['settings'
@@ -916,8 +916,8 @@ class system:
 
                         os.remove(downloaded)
 
-                        for update_file in glob.glob(self.oe.temp_dir
-                                + '/oe_update/*'):
+                        for update_file in glob.glob(self.oe.TEMP
+                                + 'oe_update/*'):
                             os.rename(update_file, self.LOCAL_UPDATE_DIR
                                     + update_file.rsplit('/')[-1])
 

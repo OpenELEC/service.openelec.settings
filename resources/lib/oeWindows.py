@@ -382,6 +382,7 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                     if xbmcKeyboard.isConfirmed():
                         selectedItem.setProperty('value',
                                 xbmcKeyboard.getText())
+                        
                 elif strTyp == 'file':
 
                     xbmcDialog = xbmcgui.Dialog()
@@ -397,6 +398,23 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                     if returnValue != '' and returnValue != '/':
                         selectedItem.setProperty('value',
                                 unicode(returnValue))
+
+                elif strTyp == 'folder':
+
+                    xbmcDialog = xbmcgui.Dialog()
+                    returnValue = xbmcDialog.browse(
+                        0,
+                        'OpenELEC.tv',
+                        'files',
+                        '',
+                        False,
+                        False,
+                        '/storage',
+                        )
+                    if returnValue != '' and returnValue != '/':
+                        selectedItem.setProperty('value',
+                                unicode(returnValue))
+                        
                 elif strTyp == 'ip':
 
                     xbmcDialog = xbmcgui.Dialog()

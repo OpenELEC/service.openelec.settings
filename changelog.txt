@@ -1,3 +1,11 @@
+2013-08-11 v0.2.3
+  (fix) samba menu entry
+  (fix) ssh default value
+  (fix) discovery error on exit
+  (add) some values added to defaults.py
+  (add) folder select option
+  (fix) obex_root default value added
+  
 2013-08-09 v0.2.2
   (chg) some code cleanup
   (add) make obex optional

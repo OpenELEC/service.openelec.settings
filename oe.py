@@ -143,8 +143,6 @@ def set_language(language):
     __oe__ = sys.modules[globals()['__name__']]
     _ = __addon__.getLocalizedString
 
-    #load_modules()
-
     winOeMain = oeWindows.wizard('wizard.xml', __cwd__, 'Default',
                                  oeMain=__oe__)
 
@@ -154,18 +152,48 @@ def set_language(language):
     del winOeMain
 
 
-def execute(command_line):
+def execute(command_line, get_result=0):
     try:
 
-        result = ''
+        dbg_log('oe::execute', 'enter_function', 0)
 
-        process = subprocess.Popen(command_line, 
-                                   shell=True, 
-                                   close_fds=True)
-        return result
+        dbg_log('oe::execute::command', command_line, 0)
+
+        if get_result == 0:
+            process = subprocess.Popen(command_line, 
+                                    shell=True, 
+                                    close_fds=True)
+            
+            return process.pid
+        else:
+            result = ''
+            process = subprocess.Popen(command_line, 
+                                    shell=True, 
+                                    close_fds=True,
+                                    stdout=subprocess.PIPE,
+                                    stderr=subprocess.STDOUT)
+            for line in process.stdout.readlines():
+                result = result + line
+            
+            return result
+        
+        dbg_log('oe::execute', 'exit_function', 0)
     except Exception, e:
         dbg_log('oe::execute', 'ERROR: (' + repr(e) + ')')
 
+def enable_service(service):
+    try:
+        
+        if os.path.exists('%s/services/%s' % (CONFIG_CACHE, service)):
+            pass
+            
+        if os.path.exists('%s/services/%s.disabled' % (CONFIG_CACHE, service)):
+            pass
+
+        service_file = '%s/services/%s' % (CONFIG_CACHE, service)
+    except Exception, e:
+        dbg_log('oe::set_service_cmd', 'ERROR: (' + repr(e) + ')')
+     
 def set_service_option(service, option, value):
     try:
 
@@ -188,7 +216,6 @@ def set_service_option(service, option, value):
             conf_file.write('\n'.join(lines) + '\n')
 
     except Exception, e:
-
         dbg_log('oe::set_service_option', 'ERROR: (' + repr(e) + ')')
      
 def get_service_option(service, option, default=None):
@@ -950,6 +977,9 @@ try:
     configFile = '%s/userdata/addon_data/service.openelec.settings/oe_settings.xml' % XBMC_USER_HOME
     if not os.path.exists('%s/userdata/addon_data/service.openelec.settings' % XBMC_USER_HOME):
         os.makedirs('%s/userdata/addon_data/service.openelec.settings' % XBMC_USER_HOME)
+    if not os.path.exists('%s/services' % CONFIG_CACHE):
+        os.makedirs('%s/services' % CONFIG_CACHE)
+
 except:
     pass
 

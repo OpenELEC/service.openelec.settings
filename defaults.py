@@ -54,6 +54,7 @@ bluetooth = \
         'OBEX_DAEMON'      : '/usr/lib/bluetooth/obexd',
         'BLUETOOTH_INIT'   : '/etc/init.d/54_bluez',
         'OBEX_INIT'        : '/etc/init.d/55_obexd',       
+        'OBEX_ROOT'        : '/storage/downloads',
         'ENABLED'          : lambda:(True if os.path.exists(connman['BLUETOOTH_DAEMON']) else False),
     }
 
@@ -97,6 +98,9 @@ system = \
     {
         'ENABLED'             : True,
         'KERNEL_CMD'          : '/proc/cmdline',
+        
+      #CLOCK
+        'SET_CLOCK_CMD'       : '/sbin/hwclock --systohc --utc',
         
       #LCD
         'LCD_DRIVER_DIR'      : '/usr/lib/lcdproc/',

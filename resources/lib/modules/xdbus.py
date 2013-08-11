@@ -25,7 +25,6 @@
 #  OpenELEC Licensing  <license@openelec.tv>  http://www.openelec.tv
 ################################################################################
 # -*- coding: utf-8 -*-
-import xbmc
 import dbus
 import gobject
 import threading
@@ -138,10 +137,8 @@ class dbusMonitor(threading.Thread):
                         
                 module = self.oe.dictModules[strModule]
                 
-                xbmc.log("MODULE: %s -> %s" % (strModule, str(module.ENABLED)))
                 if hasattr(module, 'monitor') and \
                     module.ENABLED:
-                    xbmc.log("MOEP")
                     monitor = \
                         module.monitor(self.oe, module)
                     monitor.add_signal_receivers()

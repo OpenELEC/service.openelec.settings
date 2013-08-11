@@ -44,6 +44,7 @@ class bluetooth:
         }}
     
     ENABLED = False
+    OBEX_ROOT = None
     OBEX_INIT = None
     OBEX_DAEMON = None
     BLUETOOTH_INIT = None
@@ -272,7 +273,8 @@ class bluetooth:
             self.oe.set_busy(1)
 
             self.dbusBluezAdapter.StartDiscovery()
-
+            self.discovering = True
+            
             self.oe.set_busy(0)
 
             self.oe.dbg_log('bluetooth::start_discovery',
@@ -291,8 +293,10 @@ class bluetooth:
 
             self.oe.set_busy(1)
 
-            if self.dbusBluezAdapter != None:
+            if hasattr(self, 'discovering'):
+                del self.discovering
                 self.dbusBluezAdapter.StopDiscovery()
+                
 
             self.oe.set_busy(0)
             
@@ -756,7 +760,7 @@ class bluetooth:
                         for dictProperty in dictProperties:
                             self.listItems[dbusDevice].setProperty(dictProperty,
                                     dictProperties[dictProperty])
-
+    
             self.update_menu = False
 
             self.oe.dbg_log('bluetooth::menu_connections',
@@ -928,11 +932,13 @@ class bluetooth:
                     signal_receiver.remove()
                     signal_receiver = None
                 
+                #Remove will cause xbmc freeze
+                #bluez bug ? 
                 #self.ObexNameOwnerWatch.cancel()
                 #self.ObexNameOwnerWatch = None
                 
-                #self.NameOwnerWatch.cancel()
-                #self.NameOwnerWatch = None
+                self.NameOwnerWatch.cancel()
+                self.NameOwnerWatch = None
 
                 if hasattr(self, 'obAgent'):
                     self.remove_obex_agent()

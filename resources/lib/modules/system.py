@@ -53,6 +53,7 @@ class system:
     BACKUP_DESTINATION = None
     RESTORE_DIR = None
     GET_CPU_FLAG = None
+    SET_CLOCK_CMD = None
     
     menu = {'1': {
         'name': 32002,
@@ -621,10 +622,11 @@ class system:
                         
                 cmd_file.close()  
                 
-                blkid = self.oe.execute('blkid')
+                blkid = self.oe.execute('blkid', 1)
                 for volume in blkid.splitlines():
                 
                     if ('LABEL="%s"' % sys_hdd) in volume or \
+                       ('LABEL=%s' % sys_hdd) in volume or \
                        ('UUID="%s"' % sys_hdd) in volume:
                          
                         sys_hdd_dev = volume.split(':')[0].replace('/dev/', '')                     
@@ -938,7 +940,7 @@ class system:
 
             self.oe.dbg_log('system::set_hw_clock', 'enter_function', 0)
 
-            self.oe.execute('/sbin/hwclock --systohc --utc')
+            self.oe.execute(self.SET_CLOCK_CMD)
 
             self.oe.dbg_log('system::set_hw_clock', 'exit_function', 0)
         except Exception, e:

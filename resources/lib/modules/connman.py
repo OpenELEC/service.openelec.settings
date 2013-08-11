@@ -2131,7 +2131,8 @@ class connman:
                                             dbus.Boolean(False,
                                             variant_level=1))
                         else:
-
+                            xbmc.log("####" + repr(technologie['Powered']))
+                            
                             if technologie['Powered'] != False:
                                 self.Technology.SetProperty('Powered',
                                         dbus.Boolean(False, variant_level=1))

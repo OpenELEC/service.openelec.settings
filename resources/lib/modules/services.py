@@ -25,7 +25,6 @@
 ################################################################################
 # -*- coding: utf-8 -*-
 import os
-import xbmc
 
 class services:
 
@@ -203,7 +202,7 @@ class services:
                         'name': 32385,
                         'value': None,
                         'action': 'init_bluetooth',
-                        'type': 'text',
+                        'type': 'folder',
                         'parent' : {'entry': 'obex_enabled',
                                     'value': ['1']},
                         'InfoText': 752,
@@ -223,11 +222,11 @@ class services:
     def start_service(self):
         try:
 
-            self.load_values()
-
             self.oe.dbg_log('services::start_service', 'enter_function'
                             , 0)
 
+            self.load_values()
+            
             self.initialize_samba(service=1)
             self.initialize_ssh(service=1)
             self.initialize_avahi(service=1)
@@ -302,7 +301,7 @@ class services:
 
             # read ssh settings from sshd_samba.conf
             if os.path.isfile(self.SSH_DAEMON):
-                if self.oe.get_service_option('ssh', 'SSHD_START', 'true') == 'true':
+                if self.oe.get_service_option('ssh', 'SSHD_START', 'false') == 'true':
                     self.struct['ssh']['settings']['ssh_autostart']['value'] = '1'
                 else:
                     self.struct['ssh']['settings']['ssh_autostart']['value'] = '0'
@@ -332,7 +331,7 @@ class services:
                 else:
                     self.struct['samba']['settings']['samba_autostart']['value'] = '0'
 
-                if self.oe.get_service_option('samba', 'SAMBA_SECURE', 'true') == 'true':
+                if self.oe.get_service_option('samba', 'SAMBA_SECURE', 'false') == 'true':
                     self.struct['samba']['settings']['samba_secure']['value'] = '1'
                 else:
                     self.struct['samba']['settings']['samba_secure']['value'] = '0'
@@ -394,7 +393,8 @@ class services:
                         else:
                             self.struct['bluez']['settings']['obex_enabled']['value'] = '0'                        
 
-                        tmpVal = self.oe.get_service_option('bluez', 'OBEXD_ROOT', self.oe.DOWNLOAD_DIR)
+                        tmpVal = self.oe.get_service_option('bluez', 'OBEXD_ROOT', 
+                                                            self.oe.dictModules['bluetooth'].OBEX_ROOT)
                         if not tmpVal is None:
                             self.struct['bluez']['settings']['obex_root']['value'] = tmpVal 
                     else:
@@ -424,7 +424,10 @@ class services:
                 
             if self.struct['samba']['settings']['samba_autostart'
                     ]['value'] != '1':
-                
+
+                self.struct['samba']['settings']['samba_username']['hidden'] = True
+                self.struct['samba']['settings']['samba_password']['hidden'] = True
+                    
                 self.oe.set_service_option('samba',
                                             'SAMBA_ENABLED',
                                             'false')
@@ -439,6 +442,12 @@ class services:
                 
             else:
 
+                if 'hidden' in self.struct['samba']['settings']['samba_username']:
+                    del self.struct['samba']['settings']['samba_username']['hidden']
+                
+                if 'hidden' in self.struct['samba']['settings']['samba_password']:
+                    del self.struct['samba']['settings']['samba_password']['hidden']
+                    
                 self.oe.set_service_option('samba',
                                             'SAMBA_ENABLED',
                                             'true')
@@ -466,7 +475,7 @@ class services:
                                                'true')
 
                 else:
-
+                                                                        
                     self.oe.set_service_option('samba',
                                                'SAMBA_SECURE',
                                                'false')
@@ -731,9 +740,7 @@ class services:
                 self.oe.dictModules['bluetooth'].disabled = False
                 
             if not 'service' in kwargs:                
-                xbmc.log("NOSERVICE")
                 if 'bluetooth' in self.oe.dictModules:
-                    xbmc.log("BTMODULEEEEEEEEE")
                     self.oe.dictModules['bluetooth'].stop_bluetoothd()
                     self.oe.dictModules['bluetooth'].start_bluetoothd()
 

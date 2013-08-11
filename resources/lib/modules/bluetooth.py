@@ -140,15 +140,8 @@ class bluetooth:
             self.oe.dbg_log('bluetooth::start_bluetoothd',
                             'enter_function', 0)
       
-            pid = self.oe.execute('pidof %s'
-                    % os.path.basename(self.BLUETOOTH_DAEMON)).split(' ')
-            if pid[0] == '':                  
-                self.oe.execute('sh ' + self.BLUETOOTH_INIT)
-
-            pid = self.oe.execute('pidof %s'
-                    % os.path.basename(self.OBEX_DAEMON)).split(' ')
-            if pid[0] == '':                  
-                self.oe.execute('sh ' + self.OBEX_INIT)
+            self.oe.execute('sh ' + self.BLUETOOTH_INIT)
+            self.oe.execute('sh ' + self.OBEX_INIT)
                 
             self.oe.dbg_log('bluetooth::start_bluetoothd',
                             'exit_function', 0)

@@ -240,7 +240,7 @@ class networkMount(object):
             if self.current_mountpoint != None \
                 and os.path.exists('/media/' + self.current_mountpoint):
                 umount = self.oe.execute('umount /media/'
-                        + self.current_mountpoint)
+                        + self.current_mountpoint, 1)
             else:
                 umount = ''
 
@@ -321,7 +321,7 @@ class networkMount(object):
                             , 0)
 
             umount = self.oe.execute('umount /media/'
-                    + self.current_mountpoint)
+                    + self.current_mountpoint, 1)
             if 'busy' in umount:
                 self.oe.notify('Umount Error', umount)
 
@@ -2194,13 +2194,6 @@ class connman:
                         self.oe)
                 del self.configure_vpn
 
-                pid = self.oe.execute('pidof %s' % 'connman-vpnd'
-                        ).split(' ')
-                if len(pid) > 0:
-                    os.system('connman-vpnd -n &')
-
-                time.sleep(1)
-
             self.menu_connections(None)
 
             self.oe.dbg_log('connman::configure_network',
@@ -2470,7 +2463,7 @@ class connman:
 
                 self.oe.dbg_log('connman::umount_drive',
                                 self.oe.execute('umount '
-                                + mount_info['mountpoint']), 0)
+                                + mount_info['mountpoint'], 1), 0)
 
                 mount_command = 'mount -t cifs //' + mount_info['server'
                         ] + '/' + mount_info['share'] + ' ' \
@@ -2490,7 +2483,7 @@ class connman:
                 mount_command = mount_command + '"'
 
                 self.oe.dbg_log('connman::mount_drive',
-                                self.oe.execute(mount_command), 0)
+                                self.oe.execute(mount_command, 1), 0)
 
             if mount_info['type'] == 'nfs':
 
@@ -2524,7 +2517,7 @@ class connman:
                 mount_command = mount_command + '"'
 
                 self.oe.dbg_log('connman::mount_drive',
-                                self.oe.execute(mount_command), 0)
+                                self.oe.execute(mount_command, 1), 0)
 
             self.oe.set_busy(0)
 

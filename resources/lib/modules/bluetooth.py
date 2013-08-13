@@ -49,6 +49,7 @@ class bluetooth:
     OBEX_DAEMON = None
     BLUETOOTH_INIT = None
     BLUETOOTH_DAEMON = None
+    D_OBEXD_ROOT = None
     
     def __init__(self, oeMain):
         try:
@@ -85,7 +86,8 @@ class bluetooth:
             self.oe.dbg_log('bluetooth::start_service', 'enter_function'
                             , 0)
 
-            self.init_adapter()
+            if 'org.bluez' in self.oe.dbusSystemBus.list_names():
+                self.init_adapter()
             
             self.oe.dbg_log('bluetooth::start_service', 'exit_function'
                             , 0)
@@ -139,7 +141,7 @@ class bluetooth:
 
             self.oe.dbg_log('bluetooth::start_bluetoothd',
                             'enter_function', 0)
-      
+
             self.oe.execute('sh ' + self.BLUETOOTH_INIT)
             self.oe.execute('sh ' + self.OBEX_INIT)
                 
@@ -161,10 +163,10 @@ class bluetooth:
                 self.dbusBluezAdapter = None
 
             self.oe.execute('killall %s'
-                                  % os.path.basename(self.BLUETOOTH_DAEMON))
+                                % os.path.basename(self.BLUETOOTH_DAEMON))
             
             self.oe.execute('killall %s'
-                                  % os.path.basename(self.OBEX_DAEMON))
+                                % os.path.basename(self.OBEX_DAEMON))
                 
             self.oe.dbg_log('bluetooth::stop_bluetoothd',
                             'exit_function', 0)
@@ -180,7 +182,7 @@ class bluetooth:
 
             self.oe.dbg_log('bluetooth::init_adapter',
                             'enter_function', 0)
-            
+                        
             dbusBluezManager = \
                 dbus.Interface(self.oe.dbusSystemBus.get_object('org.bluez'
                                , '/'),

@@ -212,8 +212,9 @@ def set_service_option(service, option, value):
 
         lines = []        
         changed = False
+
         conf_file_name = '%s/service_%s.conf' % (CONFIG_CACHE, service)
-        
+                        
         if os.path.isfile(conf_file_name):
             with open(conf_file_name, "r") as conf_file:
                 for line in conf_file:
@@ -235,9 +236,17 @@ def get_service_option(service, option, default=None):
     try:
 
         lines = []        
-        conf_file_name = '%s/service_%s.conf' % (CONFIG_CACHE, service)
+        conf_file_name = ''
         
-        if os.path.isfile(conf_file_name):
+        if not SYSTEMD:
+            conf_file_name = '%s/service_%s.conf' % (CONFIG_CACHE, service)
+        else:
+            if os.path.exists('%s/services/%s.conf' % (CONFIG_CACHE, service)):
+                conf_file_name = '%s/services/%s.conf' % (CONFIG_CACHE, service)
+            if os.path.exists('%s/services/%s.disabled' % (CONFIG_CACHE, service)):
+                conf_file_name = '%s/services/%s.disabled' % (CONFIG_CACHE, service)
+                
+        if os.path.exists(conf_file_name):
             with open(conf_file_name, "r") as conf_file:
                 for line in conf_file:
                     if option in line:
@@ -246,9 +255,85 @@ def get_service_option(service, option, default=None):
         
         return default
     except Exception, e:
-
         dbg_log('oe::get_service_option', 'ERROR: (' + repr(e) + ')')
         
+def get_service_state(service):
+    try:
+
+        if os.path.exists('%s/services/%s.conf' % (CONFIG_CACHE, service)):
+            return '1'
+        else:
+            return '0'
+                   
+    except Exception, e:
+        dbg_log('oe::get_service_state', 'ERROR: (' + repr(e) + ')')
+        
+def set_service(service, options, state):
+    try:
+
+        dbg_log('oe::set_service', 'enter_function')
+
+        config = {}        
+        changed = False
+
+        #Service Enabled
+        if state == 1:
+            #Is Service alwys enabled ? 
+            if get_service_state(service) == '1':
+                cfn = '%s/services/%s.conf' % (CONFIG_CACHE, service)
+                cfo = cfn            
+            else:
+                cfn = '%s/services/%s.conf' % (CONFIG_CACHE, service)
+                cfo = '%s/services/%s.disabled' % (CONFIG_CACHE, service)
+            
+            #Read current configuration
+            if os.path.exists(cfo):  
+                with open(cfo, "r") as cf:
+                    for line in cf:
+                        if '=' in line:
+                            oopt = line.split("=", 1)                         
+                            config[oopt[0]] = oopt[1].strip()
+
+                #Test for changes
+                for conf in config:
+                    if not conf in options:
+                        changed = True
+                        break
+                    else:
+                        if not config[conf] == options[conf]:
+                            changed = True
+                            break
+                for opt in options:
+                    if not opt in config:
+                        changed = True
+                        break
+                    else:
+                        if not options[opt] == config[opt]:
+                            changed = True
+                            break                            
+            else:
+                changed = True
+                            
+            if changed == True:
+                if os.path.exists(cfo) and not cfo == cfn:
+                    os.remove(cfo)
+                with open(cfn, "w") as cf:
+                    for option in options:
+                        cf.write('%s=%s\n' % (option, options[option]))                
+            else:
+                os.rename(cfo, cfn)
+
+        #Service Disabled
+        else:
+            cfo = '%s/services/%s.conf' % (CONFIG_CACHE, service)
+            cfn = '%s/services/%s.disabled' % (CONFIG_CACHE, service)
+            if os.path.exists(cfo):     
+                os.rename(cfo, cfn)
+                
+        dbg_log('oe::set_service', 'exit_function')
+    except Exception, e:
+        dbg_log('oe::set_service_option', 'ERROR: (' + repr(e) + ')')
+
 def load_file(filename):
     try:
 
@@ -358,8 +443,6 @@ def extract_file(
     silent=False,
     ):
     try:
-
-        global temp_dir
 
         if tarfile.is_tarfile(filename):
 
@@ -757,14 +840,14 @@ def remove_node(node_name):
         dbg_log('oe::remove_node', 'ERROR: (' + repr(e) + ')')
 
 
-def read_setting(module, setting):
+def read_setting(module, setting, default=None):
     try:
 
         xml_conf = load_config()
 
         xml_settings = xml_conf.getElementsByTagName('settings')
 
-        value = None
+        value = default
 
         for xml_setting in xml_settings:
             for xml_modul in xml_setting.getElementsByTagName(module):
@@ -780,12 +863,7 @@ def read_setting(module, setting):
         dbg_log('oe::read_setting', 'ERROR: (' + repr(e) + ')')
 
 
-def write_setting(
-    module,
-    setting,
-    value,
-    main_node='settings',
-    ):
+def write_setting(module, setting, value, main_node='settings'):
     try:
 
         xml_conf = load_config()
@@ -980,10 +1058,16 @@ XBMC_USER_HOME = os.environ.get('XBMC_USER_HOME', '/storage/.xbmc')
 CONFIG_CACHE   = os.environ.get('CONFIG_CACHE', '/storage/.cache')
 USER_CONFIG    = os.environ.get('USER_CONFIG', '/storage/.config')
 TEMP           = '%s/temp/' % XBMC_USER_HOME
+
 if os.path.exists('/etc/machine-id'):
     SYSTEMID = load_file('/etc/machine-id')
 else:
     SYSTEMID = os.environ.get('SYSTEMID', '')
+    
+if os.path.exists('/lib/systemd/systemd'):
+    SYSTEMD = True
+else:
+    SYSTEMD = False
 ############################################################################################
 
 try:

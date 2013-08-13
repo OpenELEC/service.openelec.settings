@@ -282,7 +282,7 @@ class system:
             self.oe.dbg_log('system::load_values', 'enter_function', 0)
 
             #CPU x64 flag
-            self.cpu_lm_flag = self.oe.execute(self.GET_CPU_FLAG)
+            self.cpu_lm_flag = self.oe.execute(self.GET_CPU_FLAG, 1)
 
             # Keyboard Layout
             (arrLayouts, arrTypes) = self.get_keyboard_layouts()
@@ -463,7 +463,7 @@ class system:
                               ]['KeyboardType']['value']),
                               '-option "grp:alt_shift_toggle"']
 
-                result = self.oe.execute('setxkbmap '
+                self.oe.execute('setxkbmap '
                         + ' '.join(parameters))
 
             elif self.rpi_keyboard_layouts == True:
@@ -478,16 +478,14 @@ class system:
                 command = 'loadkmap < `ls -1 %s/*/%s.bmap`' % (self.RPI_KEYBOARD_INFO, parameter)
                 
                 self.oe.dbg_log('system::set_keyboard_layout', command, 1)     
-                result = self.oe.execute(command)
+                self.oe.execute(command)
                 
             self.oe.set_busy(0)
 
             self.oe.dbg_log('system::set_keyboard_layout',
                             'exit_function', 0)
 
-            return result
         except Exception, e:
-
             self.oe.set_busy(0)
             self.oe.dbg_log('system::set_keyboard_layout', 'ERROR: ('
                             + repr(e) + ')')
@@ -574,14 +572,16 @@ class system:
                               + self.struct['driver']['settings']['lcd'
                               ]['value'], '-s true']
 
-                self.oe.execute('killall LCDd')
-                self.oe.execute('LCDd ' + ' '.join(parameters))
+                if not self.oe.SYSTEMD:
+                    self.oe.execute('killall LCDd')
+                    self.oe.execute('LCDd ' + ' '.join(parameters))
             else:
 
                 self.oe.dbg_log('system::set_lcd_driver',
                                 'no driver selected', 1)
-
-                self.oe.execute('killall LCDd')
+                
+                if not self.oe.SYSTEMD:
+                    self.oe.execute('killall LCDd')
 
             self.oe.set_busy(0)
 

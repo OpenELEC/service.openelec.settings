@@ -442,11 +442,19 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                                 unicode(returnValue))
                 elif strTyp == 'bool':
 
+                    strValue = strValue.lower()
+                    
                     if strValue == '0':
                         selectedItem.setProperty('value', '1')
-                    else:
+                    elif strValue == '1':
                         selectedItem.setProperty('value', '0')
-
+                    elif strValue == 'true':
+                        selectedItem.setProperty('value', 'false')
+                    elif strValue == 'false':
+                        selectedItem.setProperty('value', 'true')
+                    else:
+                        selectedItem.setProperty('value', '1')
+                        
                 if selectedItem.getProperty('action') != '':
                     if hasattr(self.oe.dictModules[selectedMenuItem.getProperty('modul'
                                )], selectedItem.getProperty('action')):

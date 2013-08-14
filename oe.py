@@ -323,9 +323,7 @@ def set_service(service, options, state):
             else:
                 os.rename(cfo, cfn)
                 #Write new Timestamp for systemd
-                #open(cfn, 'a').close()
-                #os.utime(cfn, None)
-                execute('touch "%s"' % cfn)
+                os.utime(cfn, None)
                 
         #Service Disabled
         else:
@@ -334,9 +332,7 @@ def set_service(service, options, state):
             if os.path.exists(cfo):     
                 os.rename(cfo, cfn)
                 #Write new Timestamp for systemd
-                #open(cfn, 'a').close()
-                #os.utime(cfn, None)
-                execute('touch "%s"' % cfn)
+                os.utime(cfn, None)
                 
         dbg_log('oe::set_service', 'exit_function')
     except Exception, e:

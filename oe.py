@@ -286,44 +286,12 @@ def set_service(service, options, state):
                 cfn = '%s/services/%s.conf' % (CONFIG_CACHE, service)
                 cfo = '%s/services/%s.disabled' % (CONFIG_CACHE, service)
             
-            #Read current configuration
-            if os.path.exists(cfo):  
-                with open(cfo, "r") as cf:
-                    for line in cf:
-                        if '=' in line:
-                            oopt = line.split("=", 1)                         
-                            config[oopt[0]] = oopt[1].strip()
-
-                #Test for changes
-                for conf in config:
-                    if not conf in options:
-                        changed = True
-                        break
-                    else:
-                        if not config[conf] == options[conf]:
-                            changed = True
-                            break
-                for opt in options:
-                    if not opt in config:
-                        changed = True
-                        break
-                    else:
-                        if not options[opt] == config[opt]:
-                            changed = True
-                            break                            
-            else:
-                changed = True
-                            
-            if changed == True:
-                if os.path.exists(cfo) and not cfo == cfn:
-                    os.remove(cfo)
-                with open(cfn, "w") as cf:
-                    for option in options:
-                        cf.write('%s=%s\n' % (option, options[option]))                
-            else:
-                os.rename(cfo, cfn)
-                #Write new Timestamp for systemd
-                os.utime(cfn, None)
+            if os.path.exists(cfo) and not cfo == cfn:
+                os.remove(cfo)
+                
+            with open(cfn, "w") as cf:
+                for option in options:
+                    cf.write('%s=%s\n' % (option, options[option]))  
                 
         #Service Disabled
         else:
@@ -331,8 +299,6 @@ def set_service(service, options, state):
             cfn = '%s/services/%s.disabled' % (CONFIG_CACHE, service)
             if os.path.exists(cfo):     
                 os.rename(cfo, cfn)
-                #Write new Timestamp for systemd
-                os.utime(cfn, None)
                 
         dbg_log('oe::set_service', 'exit_function')
     except Exception, e:

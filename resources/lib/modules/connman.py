@@ -2579,8 +2579,8 @@ class connman:
                     os.makedirs(os.path.dirname(self.WAIT_CONF_FILE))
 
                 wait_conf = open(self.WAIT_CONF_FILE, 'w')
-                wait_conf.write('WAIT_NETWORK=true\n')
-                wait_conf.write('WAIT_NETWORK_TIME=%s\n'
+                wait_conf.write('WAIT_NETWORK="true"\n')
+                wait_conf.write('WAIT_NETWORK_TIME="%s"\n'
                                 % self.struct['advanced']['settings'
                                 ]['wait_for_network_time']['value'])
                 wait_conf.close()

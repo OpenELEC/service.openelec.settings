@@ -144,11 +144,11 @@ xdbus = \
 
 _services = \
     {
-        "sshd"      : ["sshd.service"],
-        "avahi"     : ["avahi-daemon.service"],
-        "samba"     : ["nmbd.service", "smbd.service"],
-        "bluetooth" : ["bluetooth.service"],
-        "obexd"     : ["obex.service"],
-        "syslog"    : ["syslog.service"],
-        "cron"      : ["cron.service"],
+        "sshd"   : ["sshd.service"],
+        "avahi"  : ["avahi-daemon.service"],
+        "samba"  : ["nmbd.service", "smbd.service"],
+        "bluez"  : ["bluetooth.service"],
+        "obexd"  : ["obex.service"],
+        "syslog" : ["syslog.service"],
+        "cron"   : ["cron.service"],
     }

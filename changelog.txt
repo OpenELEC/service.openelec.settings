@@ -1,3 +1,6 @@
+2013-08-18 v0.2.7
+  (fix) default obexd toot dir
+
 2013-08-12 v0.2.6
   (fix) cpu flag x64
   (fix) some minor execute return values

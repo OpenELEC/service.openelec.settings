@@ -213,7 +213,7 @@ def set_service_option(service, option, value):
         lines = []        
         changed = False
 
-        conf_file_name = '%s/service_%s.conf' % (CONFIG_CACHE, service)
+        conf_file_name = '%s/services/%s.conf' % (CONFIG_CACHE, service)
                         
         if os.path.isfile(conf_file_name):
             with open(conf_file_name, "r") as conf_file:
@@ -239,7 +239,7 @@ def get_service_option(service, option, default=None):
         conf_file_name = ''
         
         if not SYSTEMD:
-            conf_file_name = '%s/service_%s.conf' % (CONFIG_CACHE, service)
+            conf_file_name = '%s/services/%s.conf' % (CONFIG_CACHE, service)
         else:
             if os.path.exists('%s/services/%s.conf' % (CONFIG_CACHE, service)):
                 conf_file_name = '%s/services/%s.conf' % (CONFIG_CACHE, service)

@@ -405,7 +405,7 @@ class services:
                                 self.struct['bluez']['settings']['obex_enabled']['value'] = '0'                        
 
                             tmpVal = self.oe.get_service_option('bluez', 'OBEXD_ROOT', 
-                                                                self.oe.dictModules['bluetooth'].OBEX_ROOT)
+                                                                self.oe.dictModules['bluetooth'].D_OBEXD_ROOT)
                             if not tmpVal is None:
                                 self.struct['bluez']['settings']['obex_root']['value'] = tmpVal 
                         else:

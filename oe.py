@@ -299,6 +299,10 @@ def set_service(service, options, state):
             cfn = '%s/services/%s.disabled' % (CONFIG_CACHE, service)
             if os.path.exists(cfo):     
                 os.rename(cfo, cfn)
+
+        if service in defaults._services:
+            for svc in defaults._services[service]:
+                execute("systemctl restart %s" % svc)
                 
         dbg_log('oe::set_service', 'exit_function')
     except Exception, e:

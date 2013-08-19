@@ -399,12 +399,12 @@ class services:
                             self.struct['bluez']['settings']['enabled']['value'] = '0'
                             
                         if os.path.isfile(self.oe.dictModules['bluetooth'].OBEX_DAEMON):  
-                            if self.oe.get_service_option('bluez', 'OBEXD_ENABLED', 'true') == 'true':
+                            if self.oe.get_service_option('obexd', 'OBEXD_ENABLED', 'true') == 'true':
                                 self.struct['bluez']['settings']['obex_enabled']['value'] = '1'
                             else:
                                 self.struct['bluez']['settings']['obex_enabled']['value'] = '0'                        
 
-                            tmpVal = self.oe.get_service_option('bluez', 'OBEXD_ROOT', 
+                            tmpVal = self.oe.get_service_option('obexd', 'OBEXD_ROOT', 
                                                                 self.oe.dictModules['bluetooth'].D_OBEXD_ROOT)
                             if not tmpVal is None:
                                 self.struct['bluez']['settings']['obex_root']['value'] = tmpVal 
@@ -946,14 +946,14 @@ class services:
             if not self.oe.SYSTEMD: 
                 if self.struct['bluez']['settings']['obex_enabled']['value'] == '0':
                     
-                    self.oe.set_service_option('bluez',
+                    self.oe.set_service_option('obexd',
                                                 'OBEXD_ENABLED',
                                                 'false') 
                 else:
-                    self.oe.set_service_option('bluez',
+                    self.oe.set_service_option('obexd',
                                                 'OBEXD_ENABLED',
                                                 'true')
-                    self.oe.set_service_option('bluez',
+                    self.oe.set_service_option('obexd',
                                                 'OBEXD_ROOT',
                                                 self.struct['bluez']['settings'
                                                         ]['obex_root']['value'])

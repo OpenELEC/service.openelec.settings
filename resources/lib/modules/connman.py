@@ -1715,7 +1715,6 @@ class connman:
             self.oe.dbg_log('connman::do_init', 'enter_function', 0)
 
             self.visible = True
-            self.load_values()
 
             self.oe.dbg_log('connman::do_init', 'exit_function', 0)
         except Exception, e:
@@ -2533,6 +2532,7 @@ class connman:
             self.oe.dbg_log('connman::start_service', 'enter_function',
                             0)
 
+            self.load_values()
             self.mount_drives()
 
             self.oe.dbg_log('connman::start_service', 'exit_function',

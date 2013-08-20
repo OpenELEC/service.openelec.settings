@@ -1,3 +1,7 @@
+2013-08-20 v0.2.9
+  (fix) wait for execute to close
+  (fix) dont restart services (SYSTEMD) on startup
+  
 2013-08-19 v0.2.8
   (change) move service configs to .cache/settings/*.conf
 

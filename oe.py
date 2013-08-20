@@ -116,8 +116,8 @@ def _(code):
     return __addon__.getLocalizedString(code)
 
 def dbg_log(source, text, level=4):
-    if os.environ.get('DEBUG', 'no') == 'no':
-        return
+    #if os.environ.get('DEBUG', 'no') == 'no':
+    #    return
 
     xbmc.log('## OpenELEC Addon ## ' + source + ' ## ' + text, level)
     xbmc.log(traceback.format_exc())
@@ -177,7 +177,8 @@ def execute(command_line, get_result=0):
                                     shell=True, 
                                     close_fds=True)
             
-            return process.pid
+            process.wait()
+
         else:
             result = ''
             process = subprocess.Popen(command_line, 
@@ -185,6 +186,9 @@ def execute(command_line, get_result=0):
                                     close_fds=True,
                                     stdout=subprocess.PIPE,
                                     stderr=subprocess.STDOUT)
+            
+            process.wait()
+            
             for line in process.stdout.readlines():
                 result = result + line
             
@@ -300,9 +304,10 @@ def set_service(service, options, state):
             if os.path.exists(cfo):     
                 os.rename(cfo, cfn)
 
-        if service in defaults._services:
-            for svc in defaults._services[service]:
-                execute("systemctl restart %s" % svc)
+        if not __oe__.is_service: 
+            if service in defaults._services:
+                for svc in defaults._services[service]:
+                    execute("systemctl restart %s" % svc)
                 
         dbg_log('oe::set_service', 'exit_function')
     except Exception, e:

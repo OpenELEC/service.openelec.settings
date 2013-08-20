@@ -469,16 +469,17 @@ class services:
                 else:
                     self.struct['cron']['hidden'] = 'true'
                     
-                #SYSLOG  
-                if os.path.isfile(self.SYSLOG_DAEMON): 
-                    self.struct['syslog']['settings']['syslog_remote']['value'] = \
-                        self.oe.get_service_option('syslogd', 'SYSLOG_REMOTE', 
-                        self.D_SYSLOG_REMOTE).replace('true','1').replace('false','0').replace('"', '')
-                    self.struct['syslog']['settings']['syslog_server']['value'] = \
-                        self.oe.get_service_option('syslogd', 'SYSLOG_SERVER', 
-                        self.D_SYSLOG_SERVER).replace('"', '')
-                else:
-                    self.struct['syslog']['hidden'] = 'true'
+                #SYSLOG
+                self.struct['syslog']['hidden'] = 'true'
+                #if os.path.isfile(self.SYSLOG_DAEMON): 
+                #    self.struct['syslog']['settings']['syslog_remote']['value'] = \
+                #        self.oe.get_service_option('syslogd', 'SYSLOG_REMOTE', 
+                #        self.D_SYSLOG_REMOTE).replace('true','1').replace('false','0').replace('"', '')
+                #    self.struct['syslog']['settings']['syslog_server']['value'] = \
+                #        self.oe.get_service_option('syslogd', 'SYSLOG_SERVER', 
+                #        self.D_SYSLOG_SERVER).replace('"', '')
+                #else:
+                #    self.struct['syslog']['hidden'] = 'true'
                     
                 #BLUEZ / OBEX
                 if 'bluetooth' in self.oe.dictModules:

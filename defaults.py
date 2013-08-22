@@ -150,5 +150,5 @@ _services = \
         "bluez"  : ["bluetooth.service"],
         "obexd"  : ["obex.service"],
         "syslog" : ["syslog.service"],
-        "cron"   : ["cron.service"],
+        "crond"  : ["cron.service"],
     }

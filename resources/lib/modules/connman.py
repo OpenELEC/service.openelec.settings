@@ -757,7 +757,10 @@ class connmanService(object):
                                    variant_level=1)
                 postfix = '.Configuration'
 
-            for entry in self.struct[category]['settings']:
+            #for entry in self.struct[category]['settings']:
+            for entry in sorted(self.struct[category]['settings'],
+                    key=lambda x: self.struct[category
+                    ]['settings'][x]['order']):
 
                 setting = self.struct[category]['settings'][entry]
 

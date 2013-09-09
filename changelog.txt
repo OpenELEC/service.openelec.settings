@@ -1,3 +1,6 @@
+2013-09-09 v0.2.12
+  (fix) do not check for update if /storage/.update/SYSTEM exists
+
 2013-09-07 v0.2.11
   (fix) dns/ntp sort order on save
 

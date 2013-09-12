@@ -278,7 +278,7 @@ msgctxt "#752"
 msgid "Here you can set the folder location where OBEX file transfer should store incoming files"
 msgstr ""
 
-#empty strings from id 751 to 31999
+#empty strings from id 753 to 31999
 
 msgctxt "#32000"
 msgid "Network"

@@ -1660,14 +1660,18 @@ class connman:
                         }},
                         'order': 2
                     },
-                'mounts': {'order': 5, 'name': 32348,
-                           'settings': {'add': {
-                    'order': 1,
-                    'name': 32349,
-                    'value': 'new_mount',
-                    'action': 'edit_mount',
-                    'type': 'button',
-                    'InfoText': 735,
+                'mounts': {
+                    'hidden': 'true',
+                    'order': 5, 
+                    'name': 32348,
+                    'settings': {
+                        'add': {
+                            'order': 1,
+                            'name': 32349,
+                            'value': 'new_mount',
+                            'action': 'edit_mount',
+                            'type': 'button',
+                            'InfoText': 735,
                     }}, 'order': 3
                     },
                 'advanced': {'order': 6, 'name': 32368,
@@ -1940,19 +1944,19 @@ class connman:
                     self.struct['Timeservers']['settings'
                                 ][setting]['value'] = ''
             
-            mount_dict = self.oe.read_node('mounts')
-            if 'mounts' in mount_dict:
-                for mount in mount_dict['mounts']:
-                    tmp_mount = {
-                        'type': 'button',
-                        'name': mount_dict['mounts'][mount]['mountpoint'],
-                        'value': mount,
-                        'action': 'edit_mount',
-                        'dynamic': 'true',
-                        'order': 1
-                        }
-                    self.struct['mounts']['settings'
-                                          ][mount] = tmp_mount
+            #mount_dict = self.oe.read_node('mounts')
+            #if 'mounts' in mount_dict:
+            #    for mount in mount_dict['mounts']:
+            #        tmp_mount = {
+            #            'type': 'button',
+            #            'name': mount_dict['mounts'][mount]['mountpoint'],
+            #            'value': mount,
+            #            'action': 'edit_mount',
+            #            'dynamic': 'true',
+            #            'order': 1
+            #            }
+            #        self.struct['mounts']['settings'
+            #                              ][mount] = tmp_mount
                     
             self.oe.winOeMain.build_menu(self.struct)
             

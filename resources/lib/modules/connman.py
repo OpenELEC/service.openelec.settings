@@ -2540,7 +2540,7 @@ class connman:
                             0)
 
             self.load_values()
-            self.mount_drives()
+            #self.mount_drives()
 
             self.oe.dbg_log('connman::start_service', 'exit_function',
                             0)

@@ -625,6 +625,11 @@ class system:
                         
                 cmd_file.close()  
                 
+                if ('/dev/') in sys_hdd:
+                    sys_hdd_dev = sys_hdd.replace('/dev/', '')
+                else:
+                    sys_hdd_dev = ""
+
                 blkid = self.oe.execute('blkid', 1)
                 for volume in blkid.splitlines():
                 

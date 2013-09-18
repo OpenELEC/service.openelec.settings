@@ -366,7 +366,7 @@ class system:
                 self.struct['update']['settings']['UpdateNotify'
                         ]['value'] = value
             
-            if os.path.isfile("%s/SYSTEM" % LOCAL_UPDATE_DIR):
+            if os.path.isfile("%s/SYSTEM" % self.LOCAL_UPDATE_DIR):
                 self.update_in_progress = True
                 
             # AutoUpdate = manual by environment var.

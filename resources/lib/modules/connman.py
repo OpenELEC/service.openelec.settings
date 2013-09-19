@@ -1760,7 +1760,7 @@ class connman:
                 wait_file = open(self.WAIT_CONF_FILE, 'r')
                 for line in wait_file:
                     if 'WAIT_NETWORK=' in line:
-                        if line.split('=')[-1].lower().strip() \
+                        if line.split('=')[-1].lower().strip().replace("\"","") \
                             == 'true':
                             self.struct['advanced']['settings'
                                     ]['wait_for_network']['value'] = '1'
@@ -1771,7 +1771,7 @@ class connman:
                     if 'WAIT_NETWORK_TIME=' in line:
                         self.struct['advanced']['settings'
                                 ]['wait_for_network_time']['value'] = \
-                            line.split('=')[-1].lower().strip()
+                            line.split('=')[-1].lower().strip().replace("\"","")
 
                 wait_file.close()
 

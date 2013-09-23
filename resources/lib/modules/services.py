@@ -49,11 +49,6 @@ class services:
     CRON_DAEMON = None
     CRON_INIT = None
     
-    SYSLOG_DAEMON = None
-    SYSLOG_INIT = None
-    D_SYSLOG_REMOTE = None
-    D_SYSLOG_SERVER = None
-    
     menu = {'4': {
         'name': 32001,
         'menuLoader': 'load_menu',
@@ -160,30 +155,8 @@ class services:
                         'InfoText': 745,
                         }},
                     },
-                'syslog': {
-                    'order': 4,
-                    'name': 32340,
-                    'not_supported': [],
-                    'settings': {'syslog_remote': {
-                        'order': 1,
-                        'name': 32341,
-                        'value': None,
-                        'action': 'initialize_syslog',
-                        'type': 'bool',
-                        'InfoText': 746,
-                        }, 'syslog_server': {
-                        'order': 2,
-                        'name': 32342,
-                        'value': None,
-                        'action': 'initialize_syslog',
-                        'type': 'ip',
-                        'parent': {'entry': 'syslog_remote',
-                                   'value': ['1']},
-                        'InfoText': 747,
-                        }},
-                    },
                 'bluez': {
-                    'order': 5,
+                    'order': 4,
                     'name': 32331,
                     'not_supported': [],
                     'settings': {'enabled': {
@@ -355,18 +328,6 @@ class services:
                     self.oe.get_service_state('crond')
             else:
                 self.struct['cron']['hidden'] = 'true'
-                
-            #SYSLOG
-            self.struct['syslog']['hidden'] = 'true'
-            #if os.path.isfile(self.SYSLOG_DAEMON): 
-            #    self.struct['syslog']['settings']['syslog_remote']['value'] = \
-            #        self.oe.get_service_option('syslogd', 'SYSLOG_REMOTE', 
-            #        self.D_SYSLOG_REMOTE).replace('true','1').replace('false','0').replace('"', '')
-            #    self.struct['syslog']['settings']['syslog_server']['value'] = \
-            #        self.oe.get_service_option('syslogd', 'SYSLOG_SERVER', 
-            #        self.D_SYSLOG_SERVER).replace('"', '')
-            #else:
-            #    self.struct['syslog']['hidden'] = 'true'
                 
             #BLUEZ / OBEX
             if 'bluetooth' in self.oe.dictModules:
@@ -549,47 +510,6 @@ class services:
             self.oe.set_busy(0)
             self.oe.dbg_log('services::initialize_cron', 'ERROR: (%s)'
                             % repr(e), 4)
-
-    def initialize_syslog(self, **kwargs):
-        try:
-
-            self.oe.dbg_log('services::initialize_syslog',
-                            'enter_function', 0)
-
-            self.oe.set_busy(1)
-
-            if 'listItem' in kwargs:
-                self.set_value(kwargs['listItem'])
-                
-            state = 1
-            options = {}
-                
-            if self.struct['syslog']['settings']['syslog_remote']['value'] == '1':
-                if self.struct['syslog']['settings'] \
-                              ['syslog_server']['value'] == '1': 
-                    val = 'true'
-                else:
-                    val = 'false'
-                    
-                options['SYSLOG_REMOTE'] = '"%s"' % val 
-                
-                options['SYSLOG_SERVER'] = '"%s"' % self.struct['syslog'
-                                            ]['settings']['syslog_server'
-                                            ]['value']                    
-            else:
-                state = 0
-            
-            self.oe.set_service('syslogd', options, state)
-
-            self.oe.set_busy(0)
-
-            self.oe.dbg_log('services::initialize_syslog',
-                            'exit_function', 0)
-        except Exception, e:
-
-            self.oe.set_busy(0)
-            self.oe.dbg_log('services::initialize_syslog', 'ERROR: (%s)'
-                             % repr(e), 4)
 
     def init_bluetooth(self, **kwargs):
         try:

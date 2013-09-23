@@ -91,13 +91,6 @@ services = \
         "CRON_DAEMON"           : "/sbin/crond",
         "CRON_INIT"             : "/etc/init.d/09_crond",
         
-      #SYSLOG
-        "SYSLOG_DAEMON"         : "/sbin/syslogd",
-        "SYSLOG_INIT"           : "/etc/init.d/05_syslogd",  
-
-      #DEFAULT_VALUES        
-        "D_SYSLOG_REMOTE"       : "0",
-        "D_SYSLOG_SERVER"       : "",        
     }
     
 system = \
@@ -149,6 +142,5 @@ _services = \
         "samba"  : ["nmbd.service", "smbd.service"],
         "bluez"  : ["bluetooth.service"],
         "obexd"  : ["obex.service"],
-        "syslog" : ["syslog.service"],
         "crond"  : ["cron.service"],
     }

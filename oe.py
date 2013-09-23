@@ -241,14 +241,11 @@ def get_service_option(service, option, default=None):
 
         lines = []        
         conf_file_name = ''
-        
-        if not SYSTEMD:
+
+        if os.path.exists('%s/services/%s.conf' % (CONFIG_CACHE, service)):
             conf_file_name = '%s/services/%s.conf' % (CONFIG_CACHE, service)
-        else:
-            if os.path.exists('%s/services/%s.conf' % (CONFIG_CACHE, service)):
-                conf_file_name = '%s/services/%s.conf' % (CONFIG_CACHE, service)
-            if os.path.exists('%s/services/%s.disabled' % (CONFIG_CACHE, service)):
-                conf_file_name = '%s/services/%s.disabled' % (CONFIG_CACHE, service)
+        if os.path.exists('%s/services/%s.disabled' % (CONFIG_CACHE, service)):
+            conf_file_name = '%s/services/%s.disabled' % (CONFIG_CACHE, service)
                 
         if os.path.exists(conf_file_name):
             with open(conf_file_name, "r") as conf_file:
@@ -1043,10 +1040,6 @@ if os.path.exists('/etc/machine-id'):
 else:
     SYSTEMID = os.environ.get('SYSTEMID', '')
     
-if os.path.exists('/lib/systemd/systemd'):
-    SYSTEMD = True
-else:
-    SYSTEMD = False
 ############################################################################################
 
 try:

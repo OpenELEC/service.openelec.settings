@@ -306,200 +306,86 @@ class services:
             self.oe.dbg_log('services::load_values', 'enter_function',
                             0)
 
-            ####################################################################################
-            ####################################################################################
-            #NON SYSTEMD CONFIGURATION
-            if not self.oe.SYSTEMD:
-                # read ssh settings from sshd_samba.conf
-                if os.path.isfile(self.SSH_DAEMON):
-                    if self.oe.get_service_option('ssh', 'SSHD_START', 'false') == 'true':
-                        self.struct['ssh']['settings']['ssh_autostart']['value'] = '1'
-                    else:
-                        self.struct['ssh']['settings']['ssh_autostart']['value'] = '0'
-
-                    if self.oe.get_service_option('ssh', 'SSHD_DISABLE_PW_AUTH', 'false') == 'true':
-                        self.struct['ssh']['settings']['ssh_secure']['value'] = '1'
-                    else:
-                        self.struct['ssh']['settings']['ssh_secure']['value'] = '0'
-
-                    # hide ssh settings if Kernel Parameter isset
-                    cmd_file = open(self.KERNEL_CMD, 'r')
-                    cmd_args = cmd_file.read()
-                    if 'ssh' in cmd_args:
-                        self.struct['ssh']['settings']['ssh_autostart']['value'] = '1'
-                        self.struct['ssh']['settings']['ssh_autostart'] \
-                        ['hidden'] = 'true'
-
-                    cmd_file.close()
-                else:
-                    self.struct['ssh']['hidden'] = 'true'
-                    
-                # read samba settings from service_samba.conf
-                if os.path.isfile(self.SAMBA_NMDB) \
-                    and os.path.isfile(self.SAMBA_SMDB):
-                    if self.oe.get_service_option('samba', 'SAMBA_ENABLED', 'true') == 'true':
-                        self.struct['samba']['settings']['samba_autostart']['value'] = '1'
-                    else:
-                        self.struct['samba']['settings']['samba_autostart']['value'] = '0'
-
-                    if self.oe.get_service_option('samba', 'SAMBA_SECURE', 'false') == 'true':
-                        self.struct['samba']['settings']['samba_secure']['value'] = '1'
-                    else:
-                        self.struct['samba']['settings']['samba_secure']['value'] = '0'
-
-                    tmpVal = self.oe.get_service_option('samba', 'SAMBA_USERNAME', 'openelec')
-                    if not tmpVal is None:
-                        self.struct['samba']['settings']['samba_username']['value'] = tmpVal
-                    
-                    tmpVal = self.oe.get_service_option('samba', 'SAMBA_PASSWORD', 'openelec')
-                    if not tmpVal is None:
-                        self.struct['samba']['settings']['samba_password']['value'] = tmpVal
-
-                else:
-                    self.struct['samba']['hidden'] = 'true'
-
-                # read avahi settings from service_avahi.conf
-                if os.path.isfile(self.AVAHI_DAEMON):
-                    if self.oe.get_service_option('avahi', 'AVAHI_ENABLED', 'true') == 'true':
-                        self.struct['avahi']['settings']['avahi_autostart']['value'] = '1'
-                    else:
-                        self.struct['avahi']['settings']['avahi_autostart']['value'] = '0'
-                else:
-                    self.struct['avahi']['hidden'] = 'true'
-
-                # read cron settings from service_cron.conf
-                if os.path.isfile(self.CRON_DAEMON):
-                    if self.oe.get_service_option('cron', 'CRON_ENABLED', 'true') == 'true':
-                        self.struct['cron']['settings']['cron_autostart']['value'] = '1'
-                    else:
-                        self.struct['cron']['settings']['cron_autostart']['value'] = '0'
-                else:
-                    self.struct['cron']['hidden'] = 'true'
-                    
-                # read syslog settings from service_syslog.conf    
-                if os.path.isfile(self.SYSLOG_DAEMON):
-                    if self.oe.get_service_option('syslog', 'SYSLOG_REMOTE', 'false') == 'true':
-                        self.struct['syslog']['settings']['syslog_remote']['value'] = '1'
-                    else:
-                        self.struct['syslog']['settings']['syslog_remote']['value'] = '0'
-                        
-                    tmpVal = self.oe.get_service_option('syslog', 'SYSLOG_SERVER')
-                    if not tmpVal is None:
-                        self.struct['syslog']['settings']['syslog_server']['value'] = tmpVal
-                        
-                else:
-                    self.struct['syslog']['hidden'] = 'true'
-                
-                # read bluez settings from service_bluez.conf
-                if 'bluetooth' in self.oe.dictModules:
-                    if os.path.isfile(self.oe.dictModules['bluetooth'].BLUETOOTH_DAEMON):              
-                        if self.oe.get_service_option('bluez', 'BLUEZ_ENABLED', 'true') == 'true':
-                            self.struct['bluez']['settings']['enabled']['value'] = '1'
-                        else:
-                            self.struct['bluez']['settings']['enabled']['value'] = '0'
-                            
-                        if os.path.isfile(self.oe.dictModules['bluetooth'].OBEX_DAEMON):  
-                            if self.oe.get_service_option('obexd', 'OBEXD_ENABLED', 'true') == 'true':
-                                self.struct['bluez']['settings']['obex_enabled']['value'] = '1'
-                            else:
-                                self.struct['bluez']['settings']['obex_enabled']['value'] = '0'                        
-
-                            tmpVal = self.oe.get_service_option('obexd', 'OBEXD_ROOT', 
-                                                                self.oe.dictModules['bluetooth'].D_OBEXD_ROOT)
-                            if not tmpVal is None:
-                                self.struct['bluez']['settings']['obex_root']['value'] = tmpVal 
-                        else:
-                            self.struct['bluez']['settings']['obex_enabled']['hidden'] = True
-                            self.struct['bluez']['settings']['obex_root']['hidden'] = True
-                            
-                    else:
-                        self.struct['bluez']['hidden'] = 'true'
-            
-            ####################################################################################
-            ####################################################################################
-            #SYSTEMD CONFIGURATION
+            #SAMBA
+            if os.path.isfile(self.SAMBA_NMDB) \
+                and os.path.isfile(self.SAMBA_SMDB):
+                self.struct['samba']['settings']['samba_autostart']['value'] = \
+                    self.oe.get_service_state('samba')
+                self.struct['samba']['settings']['samba_secure']['value'] = \
+                    self.oe.get_service_option('samba', 'SAMBA_SECURE', 
+                    self.D_SAMBA_SECURE).replace('true','1').replace('false','0').replace('"', '')
+                self.struct['samba']['settings']['samba_username']['value'] = \
+                    self.oe.get_service_option('samba', 'SAMBA_USERNAME', 
+                    self.D_SAMBA_USERNAME).replace('"', '')
+                self.struct['samba']['settings']['samba_password']['value'] = \
+                    self.oe.get_service_option('samba', 'SAMBA_PASSWORD', 
+                    self.D_SAMBA_PASSWORD).replace('"', '')
             else:
-                #SAMBA
-                if os.path.isfile(self.SAMBA_NMDB) \
-                    and os.path.isfile(self.SAMBA_SMDB):
-                    self.struct['samba']['settings']['samba_autostart']['value'] = \
-                        self.oe.get_service_state('samba')
-                    self.struct['samba']['settings']['samba_secure']['value'] = \
-                        self.oe.get_service_option('samba', 'SAMBA_SECURE', 
-                        self.D_SAMBA_SECURE).replace('true','1').replace('false','0').replace('"', '')
-                    self.struct['samba']['settings']['samba_username']['value'] = \
-                        self.oe.get_service_option('samba', 'SAMBA_USERNAME', 
-                        self.D_SAMBA_USERNAME).replace('"', '')
-                    self.struct['samba']['settings']['samba_password']['value'] = \
-                        self.oe.get_service_option('samba', 'SAMBA_PASSWORD', 
-                        self.D_SAMBA_PASSWORD).replace('"', '')
-                else:
-                    self.struct['samba']['hidden'] = 'true'
+                self.struct['samba']['hidden'] = 'true'
 
-                #SSH
-                if os.path.isfile(self.SSH_DAEMON):
-                    self.struct['ssh']['settings']['ssh_autostart']['value'] = \
-                        self.oe.get_service_state('sshd')
-                    self.struct['ssh']['settings']['ssh_secure']['value'] = \
-                        self.oe.get_service_option('sshd', 'SSHD_DISABLE_PW_AUTH',
-                        self.D_SSH_DISABLE_PW_AUTH).replace('true','1').replace('false','0').replace('"', '')
+            #SSH
+            if os.path.isfile(self.SSH_DAEMON):
+                self.struct['ssh']['settings']['ssh_autostart']['value'] = \
+                    self.oe.get_service_state('sshd')
+                self.struct['ssh']['settings']['ssh_secure']['value'] = \
+                    self.oe.get_service_option('sshd', 'SSHD_DISABLE_PW_AUTH',
+                    self.D_SSH_DISABLE_PW_AUTH).replace('true','1').replace('false','0').replace('"', '')
 
-                    # hide ssh settings if Kernel Parameter isset
-                    cmd_file = open(self.KERNEL_CMD, 'r')
-                    cmd_args = cmd_file.read()
-                    if 'ssh' in cmd_args:
-                        self.struct['ssh']['settings']['ssh_autostart']['value'] = '1'
-                        self.struct['ssh']['settings']['ssh_autostart'] \
-                        ['hidden'] = 'true'
-                    cmd_file.close()
-                else:
-                    self.struct['ssh']['hidden'] = 'true'
+                # hide ssh settings if Kernel Parameter isset
+                cmd_file = open(self.KERNEL_CMD, 'r')
+                cmd_args = cmd_file.read()
+                if 'ssh' in cmd_args:
+                    self.struct['ssh']['settings']['ssh_autostart']['value'] = '1'
+                    self.struct['ssh']['settings']['ssh_autostart'] \
+                    ['hidden'] = 'true'
+                cmd_file.close()
+            else:
+                self.struct['ssh']['hidden'] = 'true'
                                         
-                #AVAHI
-                if os.path.isfile(self.AVAHI_DAEMON):
-                    self.struct['avahi']['settings']['avahi_autostart']['value'] = \
-                        self.oe.get_service_state('avahi')
-                else:
-                    self.struct['avahi']['hidden'] = 'true'
+            #AVAHI
+            if os.path.isfile(self.AVAHI_DAEMON):
+                self.struct['avahi']['settings']['avahi_autostart']['value'] = \
+                    self.oe.get_service_state('avahi')
+            else:
+                self.struct['avahi']['hidden'] = 'true'
 
-                #CRON
-                if os.path.isfile(self.CRON_DAEMON):
-                    self.struct['cron']['settings']['cron_autostart']['value'] = \
-                        self.oe.get_service_state('crond')
-                else:
-                    self.struct['cron']['hidden'] = 'true'
-                    
-                #SYSLOG
-                self.struct['syslog']['hidden'] = 'true'
-                #if os.path.isfile(self.SYSLOG_DAEMON): 
-                #    self.struct['syslog']['settings']['syslog_remote']['value'] = \
-                #        self.oe.get_service_option('syslogd', 'SYSLOG_REMOTE', 
-                #        self.D_SYSLOG_REMOTE).replace('true','1').replace('false','0').replace('"', '')
-                #    self.struct['syslog']['settings']['syslog_server']['value'] = \
-                #        self.oe.get_service_option('syslogd', 'SYSLOG_SERVER', 
-                #        self.D_SYSLOG_SERVER).replace('"', '')
-                #else:
-                #    self.struct['syslog']['hidden'] = 'true'
-                    
-                #BLUEZ / OBEX
-                if 'bluetooth' in self.oe.dictModules:
-                    if os.path.isfile(self.oe.dictModules['bluetooth'].BLUETOOTH_DAEMON):              
-                        self.struct['bluez']['settings']['enabled']['value'] = \
-                            self.oe.get_service_state('bluez')
+            #CRON
+            if os.path.isfile(self.CRON_DAEMON):
+                self.struct['cron']['settings']['cron_autostart']['value'] = \
+                    self.oe.get_service_state('crond')
+            else:
+                self.struct['cron']['hidden'] = 'true'
+                
+            #SYSLOG
+            self.struct['syslog']['hidden'] = 'true'
+            #if os.path.isfile(self.SYSLOG_DAEMON): 
+            #    self.struct['syslog']['settings']['syslog_remote']['value'] = \
+            #        self.oe.get_service_option('syslogd', 'SYSLOG_REMOTE', 
+            #        self.D_SYSLOG_REMOTE).replace('true','1').replace('false','0').replace('"', '')
+            #    self.struct['syslog']['settings']['syslog_server']['value'] = \
+            #        self.oe.get_service_option('syslogd', 'SYSLOG_SERVER', 
+            #        self.D_SYSLOG_SERVER).replace('"', '')
+            #else:
+            #    self.struct['syslog']['hidden'] = 'true'
+                
+            #BLUEZ / OBEX
+            if 'bluetooth' in self.oe.dictModules:
+                if os.path.isfile(self.oe.dictModules['bluetooth'].BLUETOOTH_DAEMON):              
+                    self.struct['bluez']['settings']['enabled']['value'] = \
+                        self.oe.get_service_state('bluez')
 
-                        if os.path.isfile(self.oe.dictModules['bluetooth'].OBEX_DAEMON):  
-                            self.struct['bluez']['settings']['obex_enabled']['value'] = \
-                                self.oe.get_service_state('obexd')
-                            self.struct['bluez']['settings']['obex_root']['value'] = \
-                                self.oe.get_service_option('obexd', 'OBEXD_ROOT', 
-                                self.oe.dictModules['bluetooth'].D_OBEXD_ROOT).replace('"', '')
-                        else:
-                            self.struct['bluez']['settings']['obex_enabled']['hidden'] = True
-                            self.struct['bluez']['settings']['obex_root']['hidden'] = True
-                            
+                    if os.path.isfile(self.oe.dictModules['bluetooth'].OBEX_DAEMON):  
+                        self.struct['bluez']['settings']['obex_enabled']['value'] = \
+                            self.oe.get_service_state('obexd')
+                        self.struct['bluez']['settings']['obex_root']['value'] = \
+                            self.oe.get_service_option('obexd', 'OBEXD_ROOT', 
+                            self.oe.dictModules['bluetooth'].D_OBEXD_ROOT).replace('"', '')
                     else:
-                        self.struct['bluez']['hidden'] = 'true'
-            
+                        self.struct['bluez']['settings']['obex_enabled']['hidden'] = True
+                        self.struct['bluez']['settings']['obex_root']['hidden'] = True
+                        
+                else:
+                    self.struct['bluez']['hidden'] = 'true'
             
             self.oe.dbg_log('services::load_values', 'exit_function', 0)
         except Exception, e:
@@ -518,115 +404,42 @@ class services:
             if 'listItem' in kwargs:
                 self.set_value(kwargs['listItem'])
 
-            ####################################################################################
-            ####################################################################################    
-            if not self.oe.SYSTEMD:    
-                if self.struct['samba']['settings']['samba_autostart'
-                        ]['value'] != '1':
-
-                    self.struct['samba']['settings']['samba_username']['hidden'] = True
-                    self.struct['samba']['settings']['samba_password']['hidden'] = True
-                        
-                    self.oe.set_service_option('samba',
-                                                'SAMBA_ENABLED',
-                                                'false')
+            options = {}
+            state = 1
+                
+            if self.struct['samba']['settings']['samba_autostart'
+                    ]['value'] == '1':
+            
+                if 'hidden' in self.struct['samba']['settings']['samba_username']:
+                    del self.struct['samba']['settings']['samba_username']['hidden']
                     
-                    if not 'service' in kwargs and not self.oe.SYSTEMD:
-                        self.oe.execute('killall %s %s' % (
-                                                os.path.basename(self.SAMBA_SMDB),
-                                                os.path.basename(self.SAMBA_NMDB)))
-                        
-                        self.oe.dbg_log('services::initialize_samba',
-                                        'exit_function (samba disabled)', 0)
-                    
+                if 'hidden' in self.struct['samba']['settings']['samba_password']:
+                    del self.struct['samba']['settings']['samba_password']['hidden']
+                                                
+                if self.struct['samba']['settings'] \
+                                ['samba_secure']['value'] == '1':
+                    val = 'true'
                 else:
-
-                    if 'hidden' in self.struct['samba']['settings']['samba_username']:
-                        del self.struct['samba']['settings']['samba_username']['hidden']
+                    val = 'false'
                     
-                    if 'hidden' in self.struct['samba']['settings']['samba_password']:
-                        del self.struct['samba']['settings']['samba_password']['hidden']
-                        
-                    self.oe.set_service_option('samba',
-                                                'SAMBA_ENABLED',
-                                                'true')
-                    
-                    if self.struct['samba']['settings']['samba_secure'
-                            ]['value'] == '1' and self.struct['samba'
-                            ]['settings']['samba_username']['value'] != '' \
-                        and self.struct['samba']['settings'
-                            ]['samba_password']['value'] != '':
-
-                        self.oe.set_service_option('samba',
-                                                    'SAMBA_USERNAME',
-                                                    self.struct['samba'
-                                                    ]['settings']['samba_username'
-                                                    ]['value'])
+                options['SAMBA_SECURE']   = '"%s"' % val
+                                            
+                options['SAMBA_USERNAME'] = '"%s"' % self.struct['samba'
+                                            ]['settings']['samba_username'
+                                            ]['value']
+                                        
+                options['SAMBA_PASSWORD'] = '"%s"' % self.struct['samba'
+                                            ]['settings']['samba_password'
+                                            ]['value']
                                                 
-                        self.oe.set_service_option('samba',
-                                                    'SAMBA_PASSWORD',
-                                                    self.struct['samba'
-                                                    ]['settings']['samba_password'
-                                                    ]['value'])
-                                                
-                        self.oe.set_service_option('samba',
-                                                'SAMBA_SECURE',
-                                                'true')
-
-                    else:
-                                                                            
-                        self.oe.set_service_option('samba',
-                                                'SAMBA_SECURE',
-                                                'false')
-                    
-                    if not 'service' in kwargs and not self.oe.SYSTEMD: 
-                        self.oe.execute('killall %s %s' % (
-                                                os.path.basename(self.SAMBA_SMDB),
-                                                os.path.basename(self.SAMBA_NMDB)))
-                        self.oe.execute('sh ' + self.SAMBA_INIT)
-
-                self.load_values()
-            ####################################################################################
-            ####################################################################################
-            #SYSTEMD
             else:
                 
-                options = {}
-                state = 1
-                
-                if self.struct['samba']['settings']['samba_autostart'
-                        ]['value'] == '1':
-                
-                    if 'hidden' in self.struct['samba']['settings']['samba_username']:
-                        del self.struct['samba']['settings']['samba_username']['hidden']
-                    
-                    if 'hidden' in self.struct['samba']['settings']['samba_password']:
-                        del self.struct['samba']['settings']['samba_password']['hidden']
-                                                    
-                    if self.struct['samba']['settings'] \
-                                    ['samba_secure']['value'] == '1':
-                        val = 'true'
-                    else:
-                        val = 'false'
-                        
-                    options['SAMBA_SECURE']   = '"%s"' % val
-                                                
-                    options['SAMBA_USERNAME'] = '"%s"' % self.struct['samba'
-                                                ]['settings']['samba_username'
-                                                ]['value']
-                                            
-                    options['SAMBA_PASSWORD'] = '"%s"' % self.struct['samba'
-                                                ]['settings']['samba_password'
-                                                ]['value']
-                                                    
-                else:
-                    
-                    state = 0
-                    self.struct['samba']['settings']['samba_username']['hidden'] = True
-                    self.struct['samba']['settings']['samba_password']['hidden'] = True
-            
-                self.oe.set_service('samba', options, state)
-                    
+                state = 0
+                self.struct['samba']['settings']['samba_username']['hidden'] = True
+                self.struct['samba']['settings']['samba_password']['hidden'] = True
+        
+            self.oe.set_service('samba', options, state)
+
             self.oe.set_busy(0)
 
             self.oe.dbg_log('services::initialize_samba',
@@ -648,72 +461,26 @@ class services:
             if 'listItem' in kwargs:
                 self.set_value(kwargs['listItem'])
                 
-            ####################################################################################
-            ####################################################################################    
-            if not self.oe.SYSTEMD:                   
-                if self.struct['ssh']['settings']['ssh_autostart']['value'] \
-                    == '1':
-                    self.oe.set_service_option('ssh',
-                                                'SSHD_START',
-                                                'true')
-
-                else:
-                    self.oe.set_service_option('ssh',
-                                                'SSHD_START',
-                                                'false')
-                    
-                if self.struct['ssh']['settings']['ssh_secure']['value'] \
-                    == '1':
-                    self.oe.set_service_option('ssh',
-                                                'SSHD_DISABLE_PW_AUTH',
-                                                'true')
-                    
-                else:
-                    self.oe.set_service_option('ssh',
-                                                'SSHD_DISABLE_PW_AUTH',
-                                                'false')
-
-                #Initialize sshd
-                if self.struct['ssh']['settings']['ssh_autostart']['value'] \
-                    == '0':
-                    if not 'service' in kwargs and not self.oe.SYSTEMD:
-                        self.oe.execute('killall %s' % \
-                            os.path.basename(self.SSH_DAEMON))
-                else:
-                    if not 'service' in kwargs and not self.oe.SYSTEMD:
-                        self.oe.execute('killall %s' % \
-                            os.path.basename(self.SSH_DAEMON))
-                        self.oe.execute('sh ' + self.SSH_INIT)
-
-                self.load_values()                          
-            ####################################################################################
-            ####################################################################################
-            #SYSTEMD
-            else:
-                
-                state = 1
-                options = {}
-                
-                if self.struct['ssh']['settings']['ssh_autostart']['value'] \
-                    == '1':
-
-                    if self.struct['ssh']['settings'] \
-                                    ['ssh_secure']['value'] == '1':
-                        val = 'true'
-                        options['SSH_ARGS'] = '"%s"' % \
-                            self.OPT_SSH_NOPASSWD
-                            
-                    else:
-                        val = 'false'
-                        options['SSH_ARGS'] = '""'                        
+            state = 1
+            options = {}
+            
+            if self.struct['ssh']['settings']['ssh_autostart']['value'] == '1':
+                if self.struct['ssh']['settings'] \
+                                ['ssh_secure']['value'] == '1':
+                    val = 'true'
+                    options['SSH_ARGS'] = '"%s"' % \
+                        self.OPT_SSH_NOPASSWD
                         
-                    options['SSHD_DISABLE_PW_AUTH'] = '"%s"' % val
-                    
                 else:
+                    val = 'false'
+                    options['SSH_ARGS'] = '""'                        
                     
-                    state = 0
+                options['SSHD_DISABLE_PW_AUTH'] = '"%s"' % val
                 
-                self.oe.set_service('sshd', options, state)
+            else:
+                state = 0
+            
+            self.oe.set_service('sshd', options, state)
                 
             self.oe.set_busy(0)
             
@@ -736,45 +503,13 @@ class services:
             if 'listItem' in kwargs:
                 self.set_value(kwargs['listItem'])
 
-            ####################################################################################
-            ####################################################################################    
-            if not self.oe.SYSTEMD:                  
-                if self.struct['avahi']['settings']['avahi_autostart'
-                        ]['value'] == '0':
-                    self.oe.set_service_option('avahi',
-                                                'AVAHI_ENABLED',
-                                                'false')   
-                    
-                    if not 'service' in kwargs and not self.oe.SYSTEMD:
-                        self.oe.execute('killall -9 %s' % \
-                            os.path.basename(self.AVAHI_DAEMON))
+            state = 1
+            options = {}
 
-                else:
-                    self.oe.set_service_option('avahi',
-                                                'AVAHI_ENABLED',
-                                                'true')   
-                
-                    if not 'service' in kwargs and not self.oe.SYSTEMD:
-                        self.oe.execute('killall -9 %s' % \
-                            os.path.basename(self.AVAHI_DAEMON))
-                        self.oe.execute('sh ' + self.AVAHI_INIT)
+            if self.struct['avahi']['settings']['avahi_autostart']['value'] != '1':
+                state = 0
 
-                self.load_values()
-            
-            ####################################################################################
-            ####################################################################################
-            #SYSTEMD
-            else:
-                
-                state = 1
-                options = {}
-                
-                if self.struct['avahi']['settings']['avahi_autostart']['value'] \
-                    != '1':
-                
-                    state = 0
-                
-                self.oe.set_service('avahi', options, state)   
+            self.oe.set_service('avahi', options, state)   
                 
             self.oe.set_busy(0)
             
@@ -797,47 +532,13 @@ class services:
             if 'listItem' in kwargs:
                 self.set_value(kwargs['listItem'])
                 
-            ####################################################################################
-            ####################################################################################    
-            if not self.oe.SYSTEMD:                  
-                if self.struct['cron']['settings']['cron_autostart']['value'
-                        ] == '0':                
-                    self.oe.set_service_option('cron',
-                                                'CRON_ENABLED',
-                                                'false')   
-                    
-                    if not 'service' in kwargs and not self.oe.SYSTEMD:
-                        self.oe.execute('killall %s' % \
-                            os.path.basename(self.CRON_DAEMON))
-
-
-                else:
-                    self.oe.set_service_option('cron',
-                                                'CRON_ENABLED',
-                                                'true')   
+            state = 1
+            options = {}
                 
-                    if not 'service' in kwargs and not self.oe.SYSTEMD:
-                        self.oe.execute('killall %s' % \
-                            os.path.basename(self.CRON_DAEMON))
+            if self.struct['cron']['settings']['cron_autostart']['value'] != '1':
+                state = 0
 
-                        self.oe.execute('sh ' + self.CRON_INIT)
-
-                self.load_values()
-
-            ####################################################################################
-            ####################################################################################
-            #SYSTEMD
-            else:
-                
-                state = 1
-                options = {}
-                
-                if self.struct['cron']['settings']['cron_autostart']['value'] \
-                    != '1':
-                
-                    state = 0
-                
-                self.oe.set_service('crond', options, state)   
+            self.oe.set_service('crond', options, state)   
 
             self.oe.set_busy(0)
 
@@ -860,66 +561,25 @@ class services:
             if 'listItem' in kwargs:
                 self.set_value(kwargs['listItem'])
                 
-            ####################################################################################
-            ####################################################################################    
-            if not self.oe.SYSTEMD: 
-                if self.struct['syslog']['settings'
-                        ]['syslog_remote']['value'] == '1':
-
-                    self.oe.set_service_option('syslog',
-                                                'SYSLOG_REMOTE',
-                                                'true')
-                    
-                    self.oe.set_service_option('syslog',
-                                                'SYSLOG_SERVER',
-                                                self.struct['syslog'
-                                                ]['settings']['syslog_server'
-                                                ]['value'])
-
-                    if not 'service' in kwargs:
-                        self.oe.execute('killall %s' % \
-                            os.path.basename(self.SYSLOG_DAEMON))                
+            state = 1
+            options = {}
+                
+            if self.struct['syslog']['settings']['syslog_remote']['value'] == '1':
+                if self.struct['syslog']['settings'] \
+                              ['syslog_server']['value'] == '1': 
+                    val = 'true'
                 else:
-
-                    self.oe.set_service_option('syslog',
-                                            'SYSLOG_REMOTE',
-                                            'false')
-
-                    if not 'service' in kwargs:
-                        self.oe.execute('killall %s' % \
-                            os.path.basename(self.SYSLOG_DAEMON))
-
-                self.oe.execute('sh ' + self.SYSLOG_INIT)
-                        
-                self.load_values()
-
-            ####################################################################################
-            ####################################################################################
-            #SYSTEMD
+                    val = 'false'
+                    
+                options['SYSLOG_REMOTE'] = '"%s"' % val 
+                
+                options['SYSLOG_SERVER'] = '"%s"' % self.struct['syslog'
+                                            ]['settings']['syslog_server'
+                                            ]['value']                    
             else:
-
-                state = 1
-                options = {}
-                
-                if self.struct['syslog']['settings']['syslog_remote']['value'] \
-                    == '1':
-                
-                    if self.struct['syslog']['settings'] \
-                                  ['syslog_server']['value'] == '1': 
-                        val = 'true'
-                    else:
-                        val = 'false'
-                        
-                    options['SYSLOG_REMOTE'] = '"%s"' % val 
-                    
-                    options['SYSLOG_SERVER'] = '"%s"' % self.struct['syslog'
-                                                ]['settings']['syslog_server'
-                                                ]['value']                    
-                else:
-                    
-                    state = 0
-                
-                self.oe.set_service('syslogd', options, state)
+                state = 0
+            
+            self.oe.set_service('syslogd', options, state)
 
             self.oe.set_busy(0)
 
@@ -942,79 +602,24 @@ class services:
             if 'listItem' in kwargs:
                 self.set_value(kwargs['listItem'])
                 
-            ####################################################################################
-            ####################################################################################    
-            if not self.oe.SYSTEMD: 
-                if self.struct['bluez']['settings']['obex_enabled']['value'] == '0':
-                    
-                    self.oe.set_service_option('obexd',
-                                                'OBEXD_ENABLED',
-                                                'false') 
-                else:
-                    self.oe.set_service_option('obexd',
-                                                'OBEXD_ENABLED',
-                                                'true')
-                    self.oe.set_service_option('obexd',
-                                                'OBEXD_ROOT',
-                                                self.struct['bluez']['settings'
-                                                        ]['obex_root']['value'])
-                    
-                if self.struct['bluez']['settings']['enabled']['value'] == '0':
+            state = 1
+            options = {}
+                            
+            if self.struct['bluez']['settings']['enabled']['value'] != '1':
+                
+                state = 0
+                self.struct['bluez']['settings']['obex_enabled']['hidden'] = True
+                self.struct['bluez']['settings']['obex_root']['hidden'] = True
 
-                    self.struct['bluez']['settings']['obex_enabled']['hidden'] = True
-                    self.struct['bluez']['settings']['obex_root']['hidden'] = True
-
-                    self.oe.set_service_option('bluez',
-                                                'BLUEZ_ENABLED',
-                                                'false')   
-                    
-                    self.oe.dictModules['bluetooth'].disabled = True
-                    
-                else:
-
-                    if 'hidden' in self.struct['bluez']['settings']['obex_enabled']:
-                        del self.struct['bluez']['settings']['obex_enabled']['hidden']
-                    
-                    if 'hidden' in self.struct['bluez']['settings']['obex_root']:
-                        del self.struct['bluez']['settings']['obex_root']['hidden']
-                        
-                    self.oe.set_service_option('bluez',
-                                                'BLUEZ_ENABLED',
-                                                'true')                   
-
-                    self.oe.dictModules['bluetooth'].disabled = False
-                    
-                if not 'service' in kwargs:                
-                    if 'bluetooth' in self.oe.dictModules:
-                        self.oe.dictModules['bluetooth'].stop_bluetoothd()
-                        self.oe.dictModules['bluetooth'].start_bluetoothd()
-
-
-                self.load_values()
-
-            ####################################################################################
-            ####################################################################################
-            #SYSTEMD
             else:
-
-                state = 1
-                options = {}
-                                
-                if self.struct['bluez']['settings']['enabled']['value'] != '1':
+                 
+                if 'hidden' in self.struct['bluez']['settings']['obex_enabled']:
+                    del self.struct['bluez']['settings']['obex_enabled']['hidden']
+                
+                if 'hidden' in self.struct['bluez']['settings']['obex_root']:
+                    del self.struct['bluez']['settings']['obex_root']['hidden']
                     
-                    state = 0
-                    self.struct['bluez']['settings']['obex_enabled']['hidden'] = True
-                    self.struct['bluez']['settings']['obex_root']['hidden'] = True
-
-                else:
-                    
-                    if 'hidden' in self.struct['bluez']['settings']['obex_enabled']:
-                        del self.struct['bluez']['settings']['obex_enabled']['hidden']
-                    
-                    if 'hidden' in self.struct['bluez']['settings']['obex_root']:
-                        del self.struct['bluez']['settings']['obex_root']['hidden']
-                        
-                self.oe.set_service('bluez', options, state)
+            self.oe.set_service('bluez', options, state)
                 
             self.oe.set_busy(0)
             
@@ -1037,32 +642,21 @@ class services:
             if 'listItem' in kwargs:
                 self.set_value(kwargs['listItem'])
                 
-            ####################################################################################
-            ####################################################################################    
-            if not self.oe.SYSTEMD: 
-                if 'listItem' in kwargs:
-                    self.init_bluetooth(listItem=kwargs['listItem'])
-
-            ####################################################################################
-            ####################################################################################
-            #SYSTEMD
+            state = 1
+            options = {}
+                            
+            if self.struct['bluez']['settings']['obex_enabled']['value'] \
+                == '1':
+            
+                options['OBEXD_ROOT'] = '"%s"' % self.struct['bluez'
+                                         ]['settings']['obex_root'
+                                         ]['value']
+                                         
             else:
-
-                state = 1
-                options = {}
-                                
-                if self.struct['bluez']['settings']['obex_enabled']['value'] \
-                    == '1':
                 
-                    options['OBEXD_ROOT'] = '"%s"' % self.struct['bluez'
-                                             ]['settings']['obex_root'
-                                             ]['value']
-                                             
-                else:
-                    
-                    state = 0
+                state = 0
 
-                self.oe.set_service('obexd', options, state)
+            self.oe.set_service('obexd', options, state)
                    
             self.oe.set_busy(0)
             

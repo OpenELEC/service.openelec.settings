@@ -575,16 +575,14 @@ class system:
                               + self.struct['driver']['settings']['lcd'
                               ]['value'], '-s true']
 
-                if not self.oe.SYSTEMD:
-                    self.oe.execute('killall LCDd')
-                    self.oe.execute('LCDd ' + ' '.join(parameters))
+                self.oe.execute('killall LCDd')
+                self.oe.execute('LCDd ' + ' '.join(parameters))
             else:
 
                 self.oe.dbg_log('system::set_lcd_driver',
                                 'no driver selected', 1)
                 
-                if not self.oe.SYSTEMD:
-                    self.oe.execute('killall LCDd')
+                self.oe.execute('killall LCDd')
 
             self.oe.set_busy(0)
 

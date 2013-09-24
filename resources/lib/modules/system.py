@@ -371,7 +371,7 @@ class system:
                 
             # AutoUpdate = manual by environment var.
             
-            if os.environ.get('UPDATE_SUPPORT', 'true') == 'false':
+            if os.path.exists('/dev/.update_disabled'):
     
                 self.update_disabled = True
                 

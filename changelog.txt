@@ -1,3 +1,6 @@
+2013-09-25 v0.2.16
+  (add) disable update on netboot
+
 2013-09-19 v0.2.15
   (fix) network wait values not corectly loaded in HUI
 

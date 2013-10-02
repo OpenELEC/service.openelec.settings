@@ -693,15 +693,9 @@ class services:
                     ]['value'] == '1':
                 self.struct['samba']['settings']['samba_autostart'
                         ]['value'] = '0'                
-                self.oe.set_service_option('samba',
-                                            'SAMBA_ENABLED',
-                                            'false')
             else:
                 self.struct['samba']['settings']['samba_autostart'
                         ]['value'] = '1'                
-                self.oe.set_service_option('samba',
-                                            'SAMBA_ENABLED',
-                                            'true')
 
             self.initialize_samba()
             self.load_values()

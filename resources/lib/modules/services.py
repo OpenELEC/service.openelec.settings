@@ -662,18 +662,12 @@ class services:
             
                 self.struct['ssh']['settings']['ssh_autostart']['value'
                         ] = '0'            
-                self.oe.set_service_option('ssh',
-                                            'SSHD_START',
-                                            'false')
             else:
                 self.struct['ssh']['settings']['ssh_autostart']['value'
                         ] = '1'                
-                self.oe.set_service_option('ssh',
-                                            'SSHD_START',
-                                            'true')
 
-            self.load_values()
             self.initialize_ssh()
+            self.load_values()
             self.set_wizard_buttons()
 
             self.oe.dbg_log('services::wizard_set_ssh', 'exit_function'

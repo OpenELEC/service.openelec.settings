@@ -666,6 +666,13 @@ class services:
                 self.struct['ssh']['settings']['ssh_autostart']['value'
                         ] = '1'                
 
+            # ssh button does nothing if Kernel Parameter isset
+            cmd_file = open(self.KERNEL_CMD, 'r')
+            cmd_args = cmd_file.read()
+            if 'ssh' in cmd_args:
+                self.oe.notify('ssh', 'ssh enabled as boot parameter. can not disable')
+            cmd_file.close()
+
             self.initialize_ssh()
             self.load_values()
             self.set_wizard_buttons()

@@ -278,6 +278,14 @@ msgctxt "#752"
 msgid "Here you can set the folder location where OBEX file transfer should store incoming files"
 msgstr ""
 
+msgctxt "#753"
+msgid "Configure the 1st keyboard software Variant"
+msgstr ""
+
+msgctxt "#754"
+msgid "Configure the 2nd keyboard software Variant"
+msgstr ""
+
 #empty strings from id 753 to 31999
 
 msgctxt "#32000"
@@ -1146,4 +1154,12 @@ msgstr ""
 
 msgctxt "#32385"
 msgid "OBEX Upload Folder"
+msgstr ""
+
+msgctxt "#32386"
+msgid "Keyboard Layout Variant #1"
+msgstr ""
+
+msgctxt "#32387"
+msgid "Keyboard Layout Variant #2"
 msgstr ""

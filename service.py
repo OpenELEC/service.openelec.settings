@@ -31,7 +31,8 @@ import time
 import threading
 import socket
 import os
-        
+import xbmcaddon
+
 class service_thread(threading.Thread):
             
     def __init__(self, oeMain):
@@ -90,7 +91,7 @@ class service_thread(threading.Thread):
         try:
 
             self.oe.dbg_log('_service_::run', 'enter_function', 0)
-
+            
             while self.stopped == False:
 
                 self.oe.dbg_log('_service_::run', 'WAITING:', 1)
@@ -117,12 +118,22 @@ class service_thread(threading.Thread):
             self.oe.dbg_log('_service_::run', 'ERROR: (' + repr(e) + ')'
                             )
 
-    #def onAbortRequested(self):
-    #    self.wait_evt.set()
+class cxbmcm(xbmc.Monitor):
+    
+    def __init__( self, *args, **kwargs ):
+        xbmc.Monitor.__init__(self)   
 
-    #def onScreensaverActivated(self):
-    #    self.wait_evt.set()
-        
+    def onScreensaverActivated(self):
+        oe.__oe__.dbg_log('c_xbmcm::onScreensaverActivated', 'enter_function', 0)
+        if 'bluetooth' in oe.__oe__.dictModules:
+            oe.__oe__.dictModules['bluetooth'].standby_devices()
+        oe.__oe__.dbg_log('c_xbmcm::onScreensaverActivated', 'exit_function', 0)
+            
+    def onAbortRequested(self):
+        pass
+
+xbmcm = cxbmcm()
+
 oe.load_modules()
 oe.start_service()
 
@@ -130,7 +141,7 @@ monitor = service_thread(oe.__oe__)
 monitor.start()
 
 while not xbmc.abortRequested:
-    time.sleep(1)
+    xbmc.sleep(100)
 
 if hasattr(oe, "winOeMain"):
     if oe.winOeMain.visible == True: 

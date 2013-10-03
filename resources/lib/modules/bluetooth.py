@@ -388,6 +388,53 @@ class bluetooth:
             self.oe.dbg_log('bluetooth::trust_connect_device',
                             'ERROR: (' + repr(e) + ')', 4)
 
+    def enable_device_standby(self, listItem=None):
+        try:
+
+            self.oe.dbg_log('bluetooth::enable_device_standby',
+                            'exit_function', 0)
+
+            devices = self.oe.read_setting('bluetooth', 
+                                           'standby')
+            
+            if devices == None:
+                devices = []
+                    
+            if not listItem.getProperty('entry') in devices:
+                devices.append(listItem.getProperty('entry'))
+                
+            self.oe.write_setting('bluetooth', 'standby', 
+                                  ','.join(devices))
+            
+            self.oe.dbg_log('bluetooth::enable_device_standby',
+                            'exit_function', 0)
+        except Exception, e:
+            self.oe.dbg_log('bluetooth::enable_device_standby',
+                            'ERROR: (' + repr(e) + ')', 4)
+            
+    def disable_device_standby(self, listItem=None):
+        try:
+
+            self.oe.dbg_log('bluetooth::disable_device_standby',
+                            'exit_function', 0)
+
+            devices = self.oe.read_setting('bluetooth', 
+                                           'standby')
+            
+            if not devices == None:
+                devices = devices.split(',')
+                if listItem.getProperty('entry') in devices:
+                    devices.remove(listItem.getProperty('entry'))
+                
+            self.oe.write_setting('bluetooth', 'standby', 
+                                  ','.join(devices))            
+
+            self.oe.dbg_log('bluetooth::disable_device_standby',
+                            'exit_function', 0)
+        except Exception, e:
+            self.oe.dbg_log('bluetooth::disable_device_standby',
+                            'ERROR: (' + repr(e) + ')', 4)
+            
     def pair_device(self, path):
         try:
 
@@ -503,8 +550,6 @@ class bluetooth:
             self.oe.dbg_log('bluetooth::disconnect_device',
                             'enter_function', 0)
 
-            self.oe.set_busy(1)
-
             if listItem is None:
                 listItem = \
                     self.oe.winOeMain.getControl(self.oe.listObject['btlist'
@@ -523,7 +568,6 @@ class bluetooth:
             self.oe.dbg_log('bluetooth::disconnect_device',
                             'exit_function', 0)
         except Exception, e:
-            self.oe.set_busy(0)
             self.oe.dbg_log('bluetooth::disconnect_device', 'ERROR: ('
                             + repr(e) + ')', 4)
 
@@ -532,8 +576,6 @@ class bluetooth:
 
             self.oe.dbg_log('bluetooth::disconnect_reply_handler',
                             'enter_function', 0)
-
-            self.oe.set_busy(0)
 
             self.menu_connections()
 
@@ -565,7 +607,7 @@ class bluetooth:
 
             path = listItem.getProperty('entry')
             self.dbusBluezAdapter.RemoveDevice(path)
-
+            self.disable_device_standby(listItem)
             self.menu_connections(None)
 
             self.oe.dbg_log('bluetooth::remove_device', 'exit_function'
@@ -627,6 +669,12 @@ class bluetooth:
     def menu_connections(self, focusItem=None):
         try:
 
+            if not hasattr(self.oe, 'winOeMain'):
+                return 0
+            
+            if not self.oe.winOeMain.visible:
+                return 0
+            
             self.oe.dbg_log('bluetooth::menu_connections',
                             'enter_function', 0)
 
@@ -782,6 +830,22 @@ class bluetooth:
             if listItem.getProperty('Connected') == '1':
                 values[1] = {'text': self.oe._(32143),
                              'action': 'disconnect_device'}
+                
+                devices = self.oe.read_setting('bluetooth', 
+                                            'standby')
+                
+                if not devices == None:
+                    devices = devices.split(',')
+                else:
+                    devices = []
+                
+                if listItem.getProperty('entry') in devices:                    
+                    values[5] = {'text': self.oe._(32389),
+                                'action': 'disable_device_standby'}                
+                else:
+                    values[5] = {'text': self.oe._(32388),
+                                'action': 'enable_device_standby'}                
+                    
             else:
                 values[1] = {'text': self.oe._(32144),
                              'action': 'init_device'}
@@ -851,6 +915,30 @@ class bluetooth:
                             0)                
         except Exception, e:
             self.oe.dbg_log('bluetooth::open_pinkey_window', 'ERROR: ('
+                            + repr(e) + ')', 4)
+
+    def standby_devices(self):
+        try:
+            
+            self.oe.dbg_log('bluetooth::standby_devices', 'enter_function',
+                            0)
+            
+            devices = self.oe.read_setting('bluetooth', 
+                                'standby')
+            
+            if not devices == None:
+                devices = devices.split(',')
+                if len(devices) > 0:
+                    lstItem = xbmcgui.ListItem()
+                    for device in devices:
+                        lstItem.setProperty('entry', device)
+                        self.disconnect_device(lstItem)
+                    lstItem = None
+
+            self.oe.dbg_log('bluetooth::standby_devices', 'exit_function',
+                            0)                
+        except Exception, e:
+            self.oe.dbg_log('bluetooth::standby_devices', 'ERROR: ('
                             + repr(e) + ')', 4)
             
     ####################################################################

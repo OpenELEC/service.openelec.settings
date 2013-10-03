@@ -1163,3 +1163,11 @@ msgstr ""
 msgctxt "#32387"
 msgid "Keyboard Layout Variant #2"
 msgstr ""
+
+msgctxt "#32388"
+msgid "Enable Standby"
+msgstr ""
+
+msgctxt "#32389"
+msgid "Disable Standby"
+msgstr ""

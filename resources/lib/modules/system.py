@@ -803,7 +803,7 @@ class system:
                                           + subnode_2.firstChild.nodeValue)
                                         
                         if subnode_1.nodeName == 'variantList':
-                            arrVariants[value] = []
+                            arrVariants[value] = ['']
                             for subnode_vl in subnode_1.childNodes:
                                 if subnode_vl.nodeName == 'variant':
                                     for subnode_v in subnode_vl.childNodes:

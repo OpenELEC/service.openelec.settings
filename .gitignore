@@ -1,3 +1,6 @@
 # pyo files
 *.pyo
 
+# backup files
+*.orig
+

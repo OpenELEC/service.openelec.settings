@@ -512,7 +512,11 @@ class system:
                               '-layout ' + self.struct['keyboard'
                               ]['settings']['KeyboardLayout1']['value']
                               + ',' + self.struct['keyboard']['settings'
-                              ]['KeyboardLayout2']['value'], '-model '
+                              ]['KeyboardLayout2']['value'], 
+                              '-variant ' + self.struct['keyboard'
+                              ]['settings']['KeyboardVariant1']['value']
+                              + ',' + self.struct['keyboard']['settings'
+                              ]['KeyboardVariant2']['value'], '-model '
                               + unicode(self.struct['keyboard']['settings'
                               ]['KeyboardType']['value']),
                               '-option "grp:alt_shift_toggle"']
@@ -803,7 +807,7 @@ class system:
                                           + subnode_2.firstChild.nodeValue)
                                         
                         if subnode_1.nodeName == 'variantList':
-                            arrVariants[value] = ['']
+                            arrVariants[value] = [":"]
                             for subnode_vl in subnode_1.childNodes:
                                 if subnode_vl.nodeName == 'variant':
                                     for subnode_v in subnode_vl.childNodes:

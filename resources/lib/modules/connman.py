@@ -1811,7 +1811,7 @@ class connman:
             dbusConnmanManager = None
             
             rebuildList = 0
-            if len(dbusServices) != len(self.listItems):
+            if len(dbusServices) != len(self.listItems) or force:
                 rebuildList = 1
                 self.oe.winOeMain.getControl(int(self.oe.listObject['netlist'
                         ])).reset()

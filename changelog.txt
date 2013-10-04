@@ -1,6 +1,7 @@
 2013-10-02 v0.2.17 
   (add) keyboard layout variants
   (add) Bluetooth Standby Support
+  (fix) netlist refresh
   
 2013-09-25 v0.2.16
   (add) disable update on netboot

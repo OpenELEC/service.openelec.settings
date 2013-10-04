@@ -24,9 +24,20 @@
 #  OpenELEC Licensing  <license@openelec.tv>  http://www.openelec.tv
 ################################################################################
 # -*- coding: utf-8 -*-
+import xbmc
 import socket
+import xbmcaddon
 
-sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
-sock.connect('/var/run/service.openelec.settings.sock')
-sock.send('openConfigurationWindow')
-sock.close()
+__scriptid__ = 'service.openelec.settings'
+__addon__ = xbmcaddon.Addon(id=__scriptid__)
+__cwd__ = __addon__.getAddonInfo('path')
+__media__ = '%s/resources/skins/default/media/' % __cwd__
+_ = __addon__.getLocalizedString
+ 
+try:
+    sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+    sock.connect('/var/run/service.openelec.settings.sock')
+    sock.send('openConfigurationWindow')
+    sock.close()
+except Exception, e:
+    xbmc.executebuiltin("Notification('OpenELEC', '%s', 5000, %sicon.png)" % (_(32390), __media__))

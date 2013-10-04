@@ -1380,8 +1380,6 @@ class updateThread(threading.Thread):
             self.oe.dbg_log('system::updateThread::stop()',
                             'exit_function', 0)    
             
-            del self.oe
-         
         except Exception, e:
 
             self.oe.dbg_log('system::updateThread::stop()', 'ERROR: ('

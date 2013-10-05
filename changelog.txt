@@ -1,3 +1,8 @@
+2013-10-05 v0.3.3
+  (fix) bluetooth standby
+  (change) do not spindown /storage
+  (change) hide unavailable vpn plugins
+
 2013-10-04 v0.3.2
   (fix) netlist refresh
 

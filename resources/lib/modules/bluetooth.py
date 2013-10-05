@@ -923,17 +923,18 @@ class bluetooth:
             self.oe.dbg_log('bluetooth::standby_devices', 'enter_function',
                             0)
             
-            devices = self.oe.read_setting('bluetooth', 
-                                'standby')
-            
-            if not devices == None:
-                devices = devices.split(',')
-                if len(devices) > 0:
-                    lstItem = xbmcgui.ListItem()
-                    for device in devices:
-                        lstItem.setProperty('entry', device)
-                        self.disconnect_device(lstItem)
-                    lstItem = None
+            if self.dbusBluezAdapter != None:
+                devices = self.oe.read_setting('bluetooth', 
+                                    'standby')
+               
+                if not devices == None:
+                    devices = devices.split(',')
+                    if len(devices) > 0:
+                        lstItem = xbmcgui.ListItem()
+                        for device in devices:
+                            lstItem.setProperty('entry', device)
+                            self.disconnect_device(lstItem)
+                        lstItem = None
 
             self.oe.dbg_log('bluetooth::standby_devices', 'exit_function',
                             0)                

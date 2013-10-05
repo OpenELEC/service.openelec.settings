@@ -669,12 +669,14 @@ class system:
                 value = int(self.struct['power']['settings'
                             ]['hdd_standby']['value']) #* 12
 
-                #find system hdd
+                #find system and storage hdd
                 cmd_file = open(self.KERNEL_CMD, 'r')
                 cmd_args = cmd_file.read()
                 for param in cmd_args.split(' '):
                     if param.startswith('boot='):
                         sys_hdd = param.replace('boot=', '').split('=')[-1]                       
+                    if param.startswith('disk='):
+                        stor_hdd = param.replace('boot=', '').split('=')[-1]                       
                         
                 cmd_file.close()  
                 
@@ -682,6 +684,11 @@ class system:
                     sys_hdd_dev = sys_hdd.replace('/dev/', '')
                 else:
                     sys_hdd_dev = ""
+
+                if ('/dev/') in stor_hdd:
+                    stor_hdd_dev = stor_hdd.replace('/dev/', '')
+                else:
+                    stor_hdd_dev = ""
 
                 blkid = self.oe.execute('blkid', 1)
                 for volume in blkid.splitlines():
@@ -691,13 +698,19 @@ class system:
                        ('UUID="%s"' % sys_hdd) in volume:
                          
                         sys_hdd_dev = volume.split(':')[0].replace('/dev/', '')                     
+
+                    if ('LABEL="%s"' % stor_hdd) in volume or \
+                       ('LABEL=%s' % stor_hdd) in volume or \
+                       ('UUID="%s"' % stor_hdd) in volume:
+                         
+                        stor_hdd_dev = volume.split(':')[0].replace('/dev/', '')                     
                 
                 parameters = []
                 for device in glob.glob('/dev/sd?'):
 
                     device = device.replace('/dev/', '')
                     
-                    if not device in sys_hdd_dev:
+                    if not device in sys_hdd_dev and not device in stor_hdd_dev:
                       
                         parameters.append('-a %s' % device)
                         

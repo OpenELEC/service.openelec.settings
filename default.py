@@ -40,4 +40,4 @@ try:
     sock.send('openConfigurationWindow')
     sock.close()
 except Exception, e:
-    xbmc.executebuiltin("Notification('OpenELEC', '%s', 5000, %sicon.png)" % (_(32390), __media__))
+    xbmc.executebuiltin('Notification("OpenELEC", "%s", 5000, "%sicon.png")' % (_(32390), __media__))

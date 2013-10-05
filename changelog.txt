@@ -1,3 +1,8 @@
+2013-10-05 v0.2.18
+  (fix) bluetooth standby
+  (change) do not spindown /storage
+  (change) hide unavailable vpn plugins
+
 2013-10-02 v0.2.17 
   (add) keyboard layout variants
   (add) Bluetooth Standby Support

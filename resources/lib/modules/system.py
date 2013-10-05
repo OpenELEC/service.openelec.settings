@@ -676,7 +676,7 @@ class system:
                     if param.startswith('boot='):
                         sys_hdd = param.replace('boot=', '').split('=')[-1]                       
                     if param.startswith('disk='):
-                        stor_hdd = param.replace('boot=', '').split('=')[-1]                       
+                        stor_hdd = param.replace('disk=', '').split('=')[-1]                       
                         
                 cmd_file.close()  
                 

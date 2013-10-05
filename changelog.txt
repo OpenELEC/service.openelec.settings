@@ -1,4 +1,4 @@
-2013-10-05 v0.3.3
+2013-10-05 v0.3.4
   (fix) bluetooth standby
   (change) do not spindown /storage
   (change) hide unavailable vpn plugins

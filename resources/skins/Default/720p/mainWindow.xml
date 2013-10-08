@@ -190,7 +190,7 @@
                 <width>740</width>
                 <height>30</height>
                 <font>font16caps</font>
-                <label>$LOCALIZE[SCRIPT600]</label>
+                <label>$ADDON[service.openelec.settings 600]</label>
                 <align>left</align>
                 <aligny>center</aligny>
                 <textcolor>white</textcolor>
@@ -231,7 +231,7 @@
                         <textcolor>blue</textcolor>
                         <align>left</align>
                         <aligny>center</aligny>
-                        <label>$LOCALIZE[SCRIPT606]</label>
+                        <label>$ADDON[service.openelec.settings 606]</label>
                     </control>	
                     <control type="label">
                         <posx>140</posx>
@@ -253,7 +253,7 @@
                         <textcolor>blue</textcolor>
                         <align>left</align>
                         <aligny>center</aligny>
-                        <label>$LOCALIZE[SCRIPT607]</label>
+                        <label>$ADDON[service.openelec.settings 607]</label>
                     </control>	
                     <control type="label">
                         <posx>140</posx>
@@ -275,7 +275,7 @@
                         <textcolor>blue</textcolor>
                         <align>left</align>
                         <aligny>center</aligny>
-                        <label>$LOCALIZE[SCRIPT608]</label>
+                        <label>$ADDON[service.openelec.settings 608]</label>
                     </control>
                     <control type="label">
                         <posx>140</posx>
@@ -295,7 +295,7 @@
                         <height>100</height>
                         <font>font10</font>
                         <textcolor>white</textcolor>
-                        <label>$LOCALIZE[SCRIPT609]</label>
+                        <label>$ADDON[service.openelec.settings 609]</label>
                     </control>		
                     <control type="textbox">
                         <posx>20</posx>
@@ -304,7 +304,7 @@
                         <height>200</height>
                         <font>font10</font>
                         <textcolor>white</textcolor>
-                        <label>$LOCALIZE[SCRIPT610]</label>
+                        <label>$ADDON[service.openelec.settings 610]</label>
                     </control>
                     <control type="image">
                         <posx>20</posx>
@@ -321,7 +321,7 @@
                         <font>font10</font>
                         <textcolor>white</textcolor>
                         <align>left</align>
-                        <label>$LOCALIZE[SCRIPT611]</label>
+                        <label>$ADDON[service.openelec.settings 611]</label>
                     </control>
                 </control>
                 <control type="image">
@@ -588,7 +588,7 @@
                             <height>20</height>
                             <font>font12</font>
                             <textcolor>blue</textcolor>
-                            <label>$LOCALIZE[SCRIPT601]: [COLOR=white]$INFO[ListItem.Property(Interface)][/COLOR]</label>
+                            <label>$ADDON[service.openelec.settings 601]: [COLOR=white]$INFO[ListItem.Property(Interface)][/COLOR]</label>
                             <visible>!IsEmpty(ListItem.Property(Interface))</visible>
                         </control>
                         <!-- Connection Address -->
@@ -599,7 +599,7 @@
                             <height>20</height>
                             <font>font12</font>
                             <textcolor>blue</textcolor>
-                            <label>$LOCALIZE[SCRIPT602]: [COLOR=white]$INFO[ListItem.Property(Address)][/COLOR]</label>
+                            <label>$ADDON[service.openelec.settings 602]: [COLOR=white]$INFO[ListItem.Property(Address)][/COLOR]</label>
                             <visible>StringCompare(ListItem.Property(State), online) | StringCompare(ListItem.Property(State), ready)</visible>
                         </control>
                         <!-- Method -->
@@ -610,7 +610,7 @@
                             <height>20</height>
                             <font>font12</font>
                             <textcolor>blue</textcolor>
-                            <label>$LOCALIZE[SCRIPT603]: [COLOR=white]$INFO[ListItem.Property(Method)][/COLOR]</label>
+                            <label>$ADDON[service.openelec.settings 603]: [COLOR=white]$INFO[ListItem.Property(Method)][/COLOR]</label>
                         </control>
                         <!-- State -->
                         <control type="label">
@@ -620,7 +620,7 @@
                             <height>20</height>
                             <font>font12</font>
                             <textcolor>blue</textcolor>
-                            <label>$LOCALIZE[SCRIPT604]: [COLOR=white]$INFO[ListItem.Property(State)][/COLOR]</label>
+                            <label>$ADDON[service.openelec.settings 604]: [COLOR=white]$INFO[ListItem.Property(State)][/COLOR]</label>
                         </control>
                         <!-- Signal strength -->
                         <control type="progress">
@@ -744,7 +744,7 @@
                             <height>20</height>
                             <font>font12</font>
                             <textcolor>blue</textcolor>
-                            <label>$LOCALIZE[SCRIPT601]: [COLOR=white]$INFO[ListItem.Property(Interface)][/COLOR]</label>
+                            <label>$ADDON[service.openelec.settings 601]: [COLOR=white]$INFO[ListItem.Property(Interface)][/COLOR]</label>
                             <visible>!IsEmpty(ListItem.Property(Interface))</visible>
                         </control>
                         <!-- Connection Address -->
@@ -756,7 +756,7 @@
                             <font>font12</font>
                             <textcolor>blue</textcolor>
                             <visible>StringCompare(ListItem.Property(State), online) | StringCompare(ListItem.Property(State), ready)</visible>
-                            <label>$LOCALIZE[SCRIPT602]: [COLOR=white]$INFO[ListItem.Property(Address)][/COLOR]</label>
+                            <label>$ADDON[service.openelec.settings 602]: [COLOR=white]$INFO[ListItem.Property(Address)][/COLOR]</label>
                         </control>
                         <!-- Method -->
                         <control type="label">
@@ -766,7 +766,7 @@
                             <height>20</height>
                             <font>font12</font>
                             <textcolor>blue</textcolor>
-                            <label>$LOCALIZE[SCRIPT603]: [COLOR=white]$INFO[ListItem.Property(Method)][/COLOR]</label>
+                            <label>$ADDON[service.openelec.settings 603]: [COLOR=white]$INFO[ListItem.Property(Method)][/COLOR]</label>
                         </control>
                         <!-- State -->
                         <control type="label">
@@ -776,7 +776,7 @@
                             <height>20</height>
                             <font>font12</font>
                             <textcolor>blue</textcolor>
-                            <label>$LOCALIZE[SCRIPT604]: [COLOR=white]$INFO[ListItem.Property(State)][/COLOR]</label>
+                            <label>$ADDON[service.openelec.settings 604]: [COLOR=white]$INFO[ListItem.Property(State)][/COLOR]</label>
                         </control>
                         <!-- Signal strength -->
                         <control type="progress">
@@ -1001,7 +1001,7 @@
                             <height>20</height>
                             <font>font12</font>
                             <textcolor>blue</textcolor>
-                            <label>$LOCALIZE[SCRIPT605]: [COLOR=white]$INFO[ListItem.Property(Address)][/COLOR]</label>
+                            <label>$ADDON[service.openelec.settings 605]: [COLOR=white]$INFO[ListItem.Property(Address)][/COLOR]</label>
                         </control>
                         <!-- Connected State -->
                         <control type="label">
@@ -1194,7 +1194,7 @@
                             <height>20</height>
                             <font>font12</font>
                             <textcolor>blue</textcolor>
-                            <label>$LOCALIZE[SCRIPT605]: [COLOR=white]$INFO[ListItem.Property(Address)][/COLOR]</label>
+                            <label>$ADDON[service.openelec.settings 605]: [COLOR=white]$INFO[ListItem.Property(Address)][/COLOR]</label>
                         </control>
                         <!-- Connected State -->
                         <control type="label">

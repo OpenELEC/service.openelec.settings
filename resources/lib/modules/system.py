@@ -34,6 +34,8 @@ import xbmcgui
 import tarfile
 import oeWindows
 import threading
+import subprocess
+
 from xml.dom import minidom
 
 class system:
@@ -1016,6 +1018,8 @@ class system:
                                 + 'oe_update/*'):
                             os.rename(update_file, self.LOCAL_UPDATE_DIR
                                     + update_file.rsplit('/')[-1])
+
+                        subprocess.call('sync', shell=True, stdin=None, stdout=None, stderr=None)
 
                         if silent == False:
                             self.oe.winOeMain.close()

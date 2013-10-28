@@ -163,6 +163,8 @@ class mainWindow(xbmcgui.WindowXMLDialog):
         
         try:
 
+            self.getControl(1100).reset()
+            
             for category in sorted(struct, key=lambda x: struct[x]['order']):
 
                 if not 'hidden' in struct[category]:
@@ -534,7 +536,7 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                     strMenuLoader = \
                         selectedMenuItem.getProperty('menuLoader')
 
-                    self.getControl(self.guiList).reset()
+                    #self.getControl(self.guiList).reset()
 
                     if int(selectedMenuItem.getProperty('listTyp')) \
                         == self.guiOther:

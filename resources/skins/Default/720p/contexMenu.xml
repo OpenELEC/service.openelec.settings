@@ -1,10 +1,10 @@
 <window id="5537">
     <defaultcontrol>4323</defaultcontrol>
     <coordinates>
-        <posx>590</posx>
-        <posy>220</posy>
-        <posx>0</posx>
-        <posy>0</posy>
+        <left>590</left>
+        <top>220</top>
+        <left>0</left>
+        <top>0</top>
     </coordinates>
     <controls>
         <control type="group" id="1998">
@@ -18,33 +18,33 @@
             </animation>    
             <control type="image" id="1999">
                 <description>background image</description>
-                <posx>0</posx>
-                <posy>0</posy>
+                <left>0</left>
+                <top>0</top>
                 <width>340</width>
                 <height>400</height>
                 <texture border="20">DialogBack.png</texture>
             </control>
             <control type="list" id="4323">
-                <posx>18</posx>
-                <posy>18</posy>
+                <left>18</left>
+                <top>18</top>
                 <width>320</width>
                 <height>380</height>
                 <pagecontrol>-</pagecontrol>
                 <scrolltime>300</scrolltime>
                 <visible>true</visible>    
                 <itemlayout height="40">
-                    <posx>0</posx>
-                    <posy>0</posy>
+                    <left>0</left>
+                    <top>0</top>
                     <control type="image">
-                        <posx>0</posx>
-                        <posy>0</posy>
+                        <left>0</left>
+                        <top>0</top>
                         <width>304</width>
                         <height>38</height>
                         <texture border="5">button-nofocus.png</texture>
                     </control>
                     <control type="label">
-                        <posx>155</posx>
-                        <posy>0</posy>
+                        <left>155</left>
+                        <top>0</top>
                         <width>704</width>
                         <height>38</height>
                         <align>center</align>
@@ -54,25 +54,25 @@
                     </control>				
                 </itemlayout>
                 <focusedlayout height="40">
-                    <posx>0</posx>
-                    <posy>0</posy>
+                    <left>0</left>
+                    <top>0</top>
                     <control type="image">
-                        <posx>0</posx>
-                        <posy>0</posy>
+                        <left>0</left>
+                        <top>0</top>
                         <width>304</width>
                         <height>38</height>
                         <texture border="5">button-nofocus.png</texture>
                     </control>	
                     <control type="image">
-                        <posx>0</posx>
-                        <posy>0</posy>
+                        <left>0</left>
+                        <top>0</top>
                         <width>304</width>
                         <height>38</height>
                         <texture border="5">button-focus2.png</texture>
                     </control>	
                     <control type="label">
-                        <posx>155</posx>
-                        <posy>0</posy>
+                        <left>155</left>
+                        <top>0</top>
                         <width>704</width>
                         <height>38</height>
                         <align>center</align>

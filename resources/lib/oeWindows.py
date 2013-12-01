@@ -1055,11 +1055,6 @@ class wizard(xbmcgui.WindowXMLDialog):
                                 'wizard_completed') == None \
                             and strModule not in self.wizards:
                             self.last_wizard = strModule
-
-                            if hasattr(self.oe.dictModules[strModule],
-                                    'start_service'):
-                                self.oe.dictModules[strModule].is_wizard = \
-                                    True
                                 
                             if hasattr(self.oe.dictModules[strModule],
                                     'do_init'):

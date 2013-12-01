@@ -92,6 +92,9 @@ class service_thread(threading.Thread):
 
             self.oe.dbg_log('_service_::run', 'enter_function', 0)
             
+            if self.oe.read_setting('openelec', 'wizard_completed') == None:
+                threading.Thread(target=self.oe.openWizard).start()
+        
             while self.stopped == False:
 
                 self.oe.dbg_log('_service_::run', 'WAITING:', 1)
@@ -134,7 +137,7 @@ class cxbmcm(xbmc.Monitor):
 
 xbmcm = cxbmcm()
 
-oe.load_modules()
+oe.load_modules()    
 oe.start_service()
 
 monitor = service_thread(oe.__oe__) 

@@ -626,11 +626,7 @@ def start_service():
                                 dictModules[x].menu.keys()):
             if hasattr(dictModules[strModule], 'start_service'):
                 dictModules[strModule].start_service()
-                
-        if read_setting('openelec', 'wizard_completed') == None:
-            __oe__.is_service = False
-            openWizard()
- 
+
         __oe__.is_service = False
     except Exception, e:
 
@@ -1052,8 +1048,3 @@ try:
 
 except:
     pass
-
-if read_setting('openelec', 'wizard_completed') == None:
-    winOeMain = oeWindows.wizard('wizard.xml', __cwd__, 'Default',
-                                 oeMain=__oe__)
-

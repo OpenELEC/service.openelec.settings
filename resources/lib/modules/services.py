@@ -36,6 +36,7 @@ class services:
     D_SAMBA_SECURE = None
     D_SAMBA_USERNAME = None
     D_SAMBA_PASSWORD = None
+    D_SAMBA_AUTOSHARE = None
     
     KERNEL_CMD = None
     SSH_DAEMON = None
@@ -104,6 +105,16 @@ class services:
                             'parent': {'entry': 'samba_secure',
                                     'value': ['1']},
                             'InfoText': 741,
+                            },
+                        'samba_autoshare': {
+                            'order': 5,
+                            'name': 32216,
+                            'value': None,
+                            'action': 'initialize_samba',
+                            'type': 'bool',
+                            'parent': {'entry': 'samba_autostart',
+                                    'value': ['1']},
+                            'InfoText': 755,
                             },
                         },
                     },
@@ -293,6 +304,9 @@ class services:
                 self.struct['samba']['settings']['samba_password']['value'] = \
                     self.oe.get_service_option('samba', 'SAMBA_PASSWORD', 
                     self.D_SAMBA_PASSWORD).replace('"', '')
+                self.struct['samba']['settings']['samba_autoshare']['value'] = \
+                    self.oe.get_service_option('samba', 'SAMBA_AUTOSHARE', 
+                    self.D_SAMBA_AUTOSHARE).replace('true','1').replace('false','0').replace('"', '')
             else:
                 self.struct['samba']['hidden'] = 'true'
 
@@ -379,11 +393,19 @@ class services:
                                                 
                 if self.struct['samba']['settings'] \
                                 ['samba_secure']['value'] == '1':
-                    val = 'true'
+                    val_secure = 'true'
                 else:
-                    val = 'false'
+                    val_secure = 'false'
+
+                if self.struct['samba']['settings'] \
+                                ['samba_autoshare']['value'] == '1':
+                    val_autoshare = 'true'
+                else:
+                    val_autoshare = 'false'
                     
-                options['SAMBA_SECURE']   = '"%s"' % val
+                options['SAMBA_SECURE']   = '"%s"' % val_secure
+
+                options['SAMBA_AUTOSHARE']   = '"%s"' % val_autoshare
                                             
                 options['SAMBA_USERNAME'] = '"%s"' % self.struct['samba'
                                             ]['settings']['samba_username'

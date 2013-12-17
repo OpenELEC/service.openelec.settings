@@ -75,6 +75,7 @@ services = \
         "D_SAMBA_SECURE"        : "0",
         "D_SAMBA_USERNAME"      : "openelec",
         "D_SAMBA_PASSWORD"      : "openelec",
+        "D_SAMBA_AUTOSHARE"     : "1",
     
       #SSH
         "SSH_DAEMON"            : "/usr/sbin/sshd",

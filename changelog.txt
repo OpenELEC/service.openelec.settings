@@ -1,3 +1,6 @@
+2013-12-26 v0.3.9
+  (updated) language files from Transifex
+
 2013-12-17 v0.3.8
   (add) samba: autoshare external drives
 

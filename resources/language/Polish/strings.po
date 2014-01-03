@@ -53,8 +53,8 @@ msgid "Architecture: "
 msgstr "Architektura: "
 
 msgctxt "#609"
-msgid "Open Embedded Linux Entertainment Center (OpenELEC) is a minimal Linux distribution purpose built for XBMC media center. OpenELEC is designed to boot fast with an installation process simple enough for anyone to convert a bare HTPC into a fully configuredd media machine in under 15 minutes."
-msgstr "Open Embedded Linux Entertainment Center, (w skrócie OpenELEC), to mała dystrybucja Linuksa, która pozwala zmienić komputer w kompletne centrum rozrywki multimedialnej. Sercem OpenELEC jest XBMC Media Center - jedna z najdłużej rozwijanych platform multimedialnych. OpenELEC został zaprojektowany tak, by uruchamiał się możliwie szybko oraz był łatwy w instalacji w niecałe 15 minut."
+msgid "Open Embedded Linux Entertainment Center (OpenELEC) is a minimal Linux distribution purpose built for XBMC media center. OpenELEC is designed to boot fast with an installation process simple enough for anyone to convert a bare HTPC into a fully configured media machine in under 15 minutes."
+msgstr "Open Embedded Linux Entertainment Center (OpenELEC) to minimalna dystrybucja Linuxa stworzona specjalnie dla centrum multimediów XBMC. OpenELEC został zaprojektowany tak, aby szybko się uruchamiać, a proces instalacji był tak prosty, aby zamienić komputer w pełni skonfigurowaną maszynę multimedialną w mniej niż 15 minut."
 
 msgctxt "#610"
 msgid "[B]Support:[/B][CR]Web: http://openelec.tv[CR]Forum: http://openelec.tv/forum[CR]Wiki: http://wiki.openelec.tv[CR][CR][B]Social Media:[/B][CR]IRC: #openelec on freenode.net (web-based chat is also available from the website)[CR]Twitter: https://twitter.com/openelec[CR]Facebook: http://www.facebook.com/OpenELEC[CR]Google+: https://plus.google.com/+openelec"
@@ -74,19 +74,19 @@ msgstr "Konfiguracja opcji sieciowych, lokalizacji sieciowej, NTP i sieci VPN "
 
 msgctxt "#702"
 msgid "Manage the Ethernet, Wireless and VPN connections available to the system"
-msgstr "Zarządzanie, dostępnymi w systemie, sieciami przewodowymi oraz bezprzewodowymi i połączeniami VPN "
+msgstr "Zarządzanie dostępnymi sieciami przewodowymi i bezprzewodowymi oraz  połączeniami VPN "
 
 msgctxt "#703"
 msgid "Configure system services like Samba, SSH, Cron, Avahi and Syslog"
-msgstr "Konfiguracja usług systemowych, takich jak Samba, SSH, Cron, Avahi i Syslog "
+msgstr "Konfiguracja usług systemowych takich jak: Samba, SSH, Cron, Avahi i Syslog "
 
 msgctxt "#704"
 msgid "Configure and pair Bluetooth devices"
-msgstr "Konfiguracja urządzenia Bluetooth "
+msgstr "Konfiguracja i parowanie urządzeń Bluetooth "
 
 msgctxt "#705"
 msgid "Useful information like version and architecture details, support and social media links, and how to make a donation to the project"
-msgstr "Przydatne informacje, takie jak architektura i wersja systemu, wsparcie techniczne i media społeczne  jak równiez wskazówki przy dokonywaniu wpłat na rzecz projektu"
+msgstr "Przydatne informacje, takie jak architektura i wersja systemu, wsparcie techniczne, media społeczne jak równiez wskazówki przy dokonywaniu wpłat na rzecz projektu"
 
 msgctxt "#706"
 msgid "706"
@@ -161,12 +161,12 @@ msgid "Restore a tar archive backup previously created using the backup option a
 msgstr "Przywracanie kopii zapasowej z archiwum .tar, poprzednio utworzonej za pomocą opcji tworzenia kopii zapasowej "
 
 msgctxt "#724"
-msgid "Permanently reset OpenELEC OS configuration to defaults (XBMC is not touched)"
-msgstr "Przywracanie ustawień fabrycznych OpenELEC'a (nie zmienia ustawień XBMC) "
+msgid "[COLOR FF00FF00]SOFT RESET[/COLOR]\nPermanently reset OpenELEC OS configuration to defaults (resets also XBMC to default including your library. your media - music/videos/etc are not touched)"
+msgstr "[COLOR FF00FF00]MIĘKKI RESET[/COLOR]⏎\nPrzywracanie domyślnej konfiguracji systemu OpenELEC (przywraca domyślną konfigurację XBMC włączając w to bibliotekę, przy czym twoje media pozostaną nietknięte)"
 
 msgctxt "#725"
-msgid "Permanently reset OpenELEC OS and XBMC configuration to defaults"
-msgstr "Przywracanie ustawień fabrycznych systemu OpenELEC oraz XBMC "
+msgid "[COLOR FFFF0000]HARD RESET[/COLOR]\nPermanently reset OpenELEC OS and XBMC configuration to defaults (everything in your storage partition will be deleted)"
+msgstr "[COLOR FFFF0000]TWARDY RESET[/COLOR]⏎\nPrzywracanie domyślnej konfiguracji systemu OpenELEC i XBMC\n(zawartość partycji Storage zostanie usunięta)"
 
 msgctxt "#726"
 msgid "Enable or disable support for Wireless (WLAN) networks"
@@ -174,7 +174,7 @@ msgstr "Włącz lub wyłącz obsługę bezprzewodowych sieci (WLAN) "
 
 msgctxt "#727"
 msgid "Enable a 'tethered' Wireless Access Point. This requires your wireless card (and driver) to support bridging and access point mode. Not all cards are capable."
-msgstr "Włącz usługę \"Tethering \" punktu dostępu bezprzewodowego. Wymagana jest odpowiednia karta bezprzewodowa (i sterowniki) do wsparcia pomostowego oraz odpowiedni tryb pracy punktu dostępu. Nie wszystkie karty sieciowe są wspierane."
+msgstr "Włącz usługę Tethering punktu dostępu bezprzewodowego. Wymagana jest odpowiednia karta bezprzewodowa (i sterowniki) do wsparcia pomostowego oraz odpowiedni tryb pracy punktu dostępu. Nie wszystkie karty sieciowe są wspierane."
 
 msgctxt "#728"
 msgid "Configure the Access Point SSID"
@@ -268,6 +268,22 @@ msgctxt "#750"
 msgid "750"
 msgstr "750 "
 
+msgctxt "#751"
+msgid "With OBEX filetransfer you can send files, for example movies or pictures over bluetooth to OpenELEC."
+msgstr "OBEX jest używany do przesyłu danych takich jak filmy i zdjęcia za pośrednictwem bluetooth do systemu OpenELEC."
+
+msgctxt "#752"
+msgid "Here you can set the folder location where OBEX file transfer should store incoming files"
+msgstr "Tutaj możesz ustawić lokalizację folderu, w którym OBEX powinien przechowywać przychodzące pliki"
+
+msgctxt "#753"
+msgid "Configure the 1st keyboard software Variant"
+msgstr "Konfiguruj 1-szy wariant układu klawiatury"
+
+msgctxt "#754"
+msgid "Configure the 2nd keyboard software Variant"
+msgstr "Konfiguruj 2-gi wariant układu klawiatury"
+
 msgctxt "#32000"
 msgid "Network"
 msgstr "Sieć"
@@ -326,7 +342,7 @@ msgstr "Aktualizacja"
 
 msgctxt "#32014"
 msgid "Automatic Updates"
-msgstr "Aktualizacja automatyczna  "
+msgstr "Aktualizacja systemu  "
 
 msgctxt "#32100"
 msgid "Connections"
@@ -362,7 +378,7 @@ msgstr "Hasło"
 
 msgctxt "#32108"
 msgid "Enable 'tethered' Wireless Access Point"
-msgstr "Włącz punkt dostępu 'Tethering'"
+msgstr "Włącz punkt dostępu Tethering"
 
 msgctxt "#32109"
 msgid "Connect Automatically"
@@ -802,7 +818,7 @@ msgstr "Witaj "
 
 msgctxt "#32302"
 msgid "This wizard will guide you through the process of setting up your new [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] installation - setting your location, timezone and connecting you to the internet.[CR][CR]These settings can be changed later by navigating to Programs > [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] Settings.[CR][CR]To begin your [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] experience, select your regional settings and your keyboard layout, then click Next."
-msgstr "Kreator instalacji poprowadzi Cię przez proces instalacji i konfiguracji [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] - utworzenie strefy czasowej, ustawienie lokalizacji oraz podłączenie do internetu.[CR][CR]Ustawienia te można później zmienić, przechodząc do Programy > Ustawienia [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR].[CR][CR] Aby rozpocząć przygodę z [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] określ ustawienia regionalne i układ klawiatury, a następnie kliknij przycisk Dalej."
+msgstr "Kreator instalacji poprowadzi Cię przez proces instalacji i konfiguracji [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] - określenie strefy czasowej, ustawienie lokalizacji oraz połączenie do internetu.[CR][CR]Ustawienia te można później zmienić, przechodząc do Programy > Ustawienia [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR].[CR][CR] Aby rozpocząć przygodę z [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] określ ustawienia regionalne i układ klawiatury, a następnie kliknij przycisk Dalej."
 
 msgctxt "#32303"
 msgid "Next"
@@ -842,7 +858,7 @@ msgstr "Udostępnianie i dostęp zdalny "
 
 msgctxt "#32312"
 msgid "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] also supports SSH for remote access. This is for advanced users who wish to interact with [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]'s underlying operating system. The default user is [COLOR blue]root[/COLOR] and the default password is [COLOR blue]openelec.[/COLOR]"
-msgstr "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] obsługuje protokół zdalnego dostępu SSH. Usługa skierowana jest do zaawansowanych użytkowników, którzy chcą mieć większą kontrolę i więcej zabawy z [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]. Domyślny użytkownik to [COLOR blue]root[/COLOR] a domyślne hasło to [COLOR blue]openelec.[/COLOR]"
+msgstr "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] obsługuje protokół zdalnego dostępu SSH. Usługa skierowana jest do zaawansowanych użytkowników, którzy chcą mieć większą kontrolę nad [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]. Domyślny użytkownik to [COLOR blue]root[/COLOR] a domyślne hasło to [COLOR blue]openelec[/COLOR]."
 
 msgctxt "#32313"
 msgid "In order to share your files between your computers [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] has incorporated a samba server. This samba server can be integrated into your local network by accessing it in a familiar way with Finder or Windows Explorer."
@@ -890,7 +906,7 @@ msgstr "Przywróć domyślne "
 
 msgctxt "#32324"
 msgid "Reset System Settings to defaults"
-msgstr "Przywracanie ustawień domyślnych systemu "
+msgstr "Przywróć domyślne ustawienia systemu "
 
 msgctxt "#32325"
 msgid "Reset OpenELEC to defaults"
@@ -946,7 +962,7 @@ msgstr "Nie znaleziono adaptera Bluetooth. "
 
 msgctxt "#32339"
 msgid "No Bluetooth device found. Please put your Bluetooth device into discovery mode[CR]and start the scan"
-msgstr "Nie znaleziono urządzenia Bluetooth. Proszę włącz urządzenie Bluetooth w trybie wykrywania [CR] i rozpocznij ponownie skanowanie"
+msgstr "Nie znaleziono urządzenia Bluetooth. Proszę włącz urządzenie Bluetooth w trybie wykrywania[CR]i rozpocznij ponownie skanowanie"
 
 msgctxt "#32340"
 msgid "Syslog"
@@ -963,6 +979,10 @@ msgstr "Adres IP serwera Syslog "
 msgctxt "#32343"
 msgid "Enter the following Key on your Device."
 msgstr "Wprowadź następujące znaki."
+
+msgctxt "#32344"
+msgid "Enable Bluetooth"
+msgstr "Włącz Bluetooth "
 
 msgctxt "#32345"
 msgid "Bluetooth daemon is not running!"
@@ -1102,4 +1122,44 @@ msgstr "Nie ma wystarczająco dużo wolnego miejsca aby kontynuować!"
 
 msgctxt "#32380"
 msgid "Restoring system settings requires a reboot. Are you sure you want to restore?"
-msgstr "Przywracanie ustawień systemu wymaga ponownego uruchomienia systemu. Czy na pewno chcesz przywrócić?  "
+msgstr "Przywracanie ustawień systemu wymaga ponownego uruchomienia. Czy na pewno chcesz przywrócić?  "
+
+msgctxt "#32381"
+msgid "Accept incoming Bluetooth Filetransfer ?"
+msgstr "Akceptować przychodzące transfery Bluetooth? "
+
+msgctxt "#32382"
+msgid "Speed"
+msgstr "Szybkość"
+
+msgctxt "#32383"
+msgid "Play Files ?"
+msgstr "Odtwarzać pliki?"
+
+msgctxt "#32384"
+msgid "OBEX Enabled"
+msgstr "Włącz OBEX "
+
+msgctxt "#32385"
+msgid "OBEX Upload Folder"
+msgstr "Folder plików OBEX "
+
+msgctxt "#32386"
+msgid "Keyboard Layout Variant #1"
+msgstr "Układ klawiatury - wariant #1"
+
+msgctxt "#32387"
+msgid "Keyboard Layout Variant #2"
+msgstr "Układ klawiatury - wariant #2"
+
+msgctxt "#32388"
+msgid "Enable Standby"
+msgstr "Włącz tryb czuwania"
+
+msgctxt "#32389"
+msgid "Disable Standby"
+msgstr "Wyłącz tryb czuwania"
+
+msgctxt "#32390"
+msgid "Settings addon is not yet ready, please try again later."
+msgstr "Dodatek Ustawienia nie jest jeszcze gotowy, spróbuj ponownie później."

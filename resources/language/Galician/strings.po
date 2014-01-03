@@ -84,6 +84,10 @@ msgctxt "#709"
 msgid "709"
 msgstr "709"
 
+msgctxt "#713"
+msgid "Configure the physical keyboard type"
+msgstr "Configurar o tipo físico do teclado"
+
 msgctxt "#721"
 msgid "721"
 msgstr "721"
@@ -139,6 +143,14 @@ msgstr "749"
 msgctxt "#750"
 msgid "750"
 msgstr "750"
+
+msgctxt "#753"
+msgid "Configure the 1st keyboard software Variant"
+msgstr "Configurar o software da 1ª Variante do teclado"
+
+msgctxt "#754"
+msgid "Configure the 2nd keyboard software Variant"
+msgstr "Configurar o software da 2ª Variante do teclado"
 
 msgctxt "#32000"
 msgid "Network"
@@ -324,13 +336,29 @@ msgctxt "#32133"
 msgid "VPN Server"
 msgstr "Servidor VPN"
 
+msgctxt "#32134"
+msgid "VPN DNS Domain"
+msgstr "Dominio DNS VPN"
+
+msgctxt "#32135"
+msgid "VPN Cookie"
+msgstr "Cookie VPN"
+
 msgctxt "#32136"
 msgid "Server Certificate"
 msgstr "Certificado de Servidor"
 
+msgctxt "#32137"
+msgid "Certificate Autority Certificate"
+msgstr "Certificado da Autoridade de Certificación"
+
 msgctxt "#32138"
 msgid "Certificate"
 msgstr "Certificado"
+
+msgctxt "#32139"
+msgid "Key"
+msgstr "Chave"
 
 msgctxt "#32140"
 msgid "Save"
@@ -612,6 +640,10 @@ msgctxt "#32303"
 msgid "Next"
 msgstr "Seguinte"
 
+msgctxt "#32305"
+msgid "Networking"
+msgstr "Rede"
+
 msgctxt "#32307"
 msgid "Select your Regional Settings:"
 msgstr "Escolla a súa Configuración Rexional:"
@@ -712,6 +744,14 @@ msgctxt "#32335"
 msgid "No"
 msgstr "Non"
 
+msgctxt "#32336"
+msgid "Start Discovery"
+msgstr "Iniciar Descubrimento"
+
+msgctxt "#32337"
+msgid "Stop Discovery"
+msgstr "Deter Descubrimento"
+
 msgctxt "#32338"
 msgid "No Bluetooth adapter found."
 msgstr "Non se atopou un adaptador Bluetooth."
@@ -736,6 +776,10 @@ msgctxt "#32343"
 msgid "Enter the following Key on your Device."
 msgstr "Introduza a seguinte chave no seu dispositivo."
 
+msgctxt "#32344"
+msgid "Enable Bluetooth"
+msgstr "Activar Bluetooth"
+
 msgctxt "#32345"
 msgid "Bluetooth daemon is not running!"
 msgstr "O daemon do Bluetooth non está en execución!"
@@ -743,6 +787,10 @@ msgstr "O daemon do Bluetooth non está en execución!"
 msgctxt "#32346"
 msgid "Bluetooth is disabled"
 msgstr "O Bluetooth está desactivado"
+
+msgctxt "#32347"
+msgid "Enable hard drive sleep when idle"
+msgstr "Poñer en repouso o disco duro cando haxa inactividade"
 
 msgctxt "#32348"
 msgid "Network Mounts"
@@ -871,3 +919,39 @@ msgstr "Non hai espazo libre abondo para continuar!"
 msgctxt "#32380"
 msgid "Restoring system settings requires a reboot. Are you sure you want to restore?"
 msgstr "Cómpre reiniciar o sistema ao resturar a configuración. Ten a certeza de querer restaurala?"
+
+msgctxt "#32381"
+msgid "Accept incoming Bluetooth Filetransfer ?"
+msgstr "Aceptar Transferencias Entrantes de Bluetooth?"
+
+msgctxt "#32382"
+msgid "Speed"
+msgstr "Velocidade"
+
+msgctxt "#32383"
+msgid "Play Files ?"
+msgstr "Reproducir Ficheiros?"
+
+msgctxt "#32384"
+msgid "OBEX Enabled"
+msgstr "Activar OBEX"
+
+msgctxt "#32385"
+msgid "OBEX Upload Folder"
+msgstr "Cartafol de Subida de OBEX"
+
+msgctxt "#32386"
+msgid "Keyboard Layout Variant #1"
+msgstr "Disposición do Teclado Variante #1"
+
+msgctxt "#32387"
+msgid "Keyboard Layout Variant #2"
+msgstr "Disposición do Teclado Variante #2"
+
+msgctxt "#32388"
+msgid "Enable Standby"
+msgstr "Activar Modo en Espera"
+
+msgctxt "#32389"
+msgid "Disable Standby"
+msgstr "Desactivar Modo en Espera"

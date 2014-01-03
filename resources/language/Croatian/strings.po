@@ -53,7 +53,7 @@ msgid "Architecture: "
 msgstr "Arhitektura:"
 
 msgctxt "#609"
-msgid "Open Embedded Linux Entertainment Center (OpenELEC) is a minimal Linux distribution purpose built for XBMC media center. OpenELEC is designed to boot fast with an installation process simple enough for anyone to convert a bare HTPC into a fully configuredd media machine in under 15 minutes."
+msgid "Open Embedded Linux Entertainment Center (OpenELEC) is a minimal Linux distribution purpose built for XBMC media center. OpenELEC is designed to boot fast with an installation process simple enough for anyone to convert a bare HTPC into a fully configured media machine in under 15 minutes."
 msgstr "Open Embedded Linux Entertainment Center (OpenELEC) je minimalna Linux distribucija namijenjena XBMC medija centru. OpenELEC je dizajniran za brzo podizanje sa procesom instalacije, jednostavno dovoljno za svakoga da pretvori prosječan HTPC u potpuno podešeni medijski stroj za samo 15 minuta."
 
 msgctxt "#610"
@@ -161,12 +161,12 @@ msgid "Restore a tar archive backup previously created using the backup option a
 msgstr "Vrati tar archivu sigurnosne kopije prije stvorene koristeći mogućnost sigurnosnog kopiranja iznad"
 
 msgctxt "#724"
-msgid "Permanently reset OpenELEC OS configuration to defaults (XBMC is not touched)"
-msgstr "Trajno vratite OpenELEC OS podešavanja na zadano (XBMC nije zahvaćen)"
+msgid "[COLOR FF00FF00]SOFT RESET[/COLOR]\nPermanently reset OpenELEC OS configuration to defaults (resets also XBMC to default including your library. your media - music/videos/etc are not touched)"
+msgstr "[COLOR FF00FF00]SOFT RESET[/COLOR]\nTrajno vrati OpenELEC OS postavke na zadano (isto tako vrati XBMC postavke uključujući vašu zbirku. Vaše medijske datoteke - glazba/video/itd. nisu uključene)"
 
 msgctxt "#725"
-msgid "Permanently reset OpenELEC OS and XBMC configuration to defaults"
-msgstr "Trajno vratite OpenELEC OS i XBMC podešavanja na zadano"
+msgid "[COLOR FFFF0000]HARD RESET[/COLOR]\nPermanently reset OpenELEC OS and XBMC configuration to defaults (everything in your storage partition will be deleted)"
+msgstr "[COLOR FFFF0000]HARD RESET[/COLOR]\nTrajno vrati OpenELEC OS i XBMC postavke na zadano (sve na vašoj particiji pohrane biti će obrisano)"
 
 msgctxt "#726"
 msgid "Enable or disable support for Wireless (WLAN) networks"
@@ -267,6 +267,22 @@ msgstr "749"
 msgctxt "#750"
 msgid "750"
 msgstr "750"
+
+msgctxt "#751"
+msgid "With OBEX filetransfer you can send files, for example movies or pictures over bluetooth to OpenELEC."
+msgstr "Sa OBEX prijenosom datoteka možete slati datotke, npr. filmove ili slike putem Bluetootha na OpenELEC."
+
+msgctxt "#752"
+msgid "Here you can set the folder location where OBEX file transfer should store incoming files"
+msgstr "Ovdje možete postaviti lokaciju mape gdje će OBEX prijenos datoteka spremati poslane datoteke"
+
+msgctxt "#753"
+msgid "Configure the 1st keyboard software Variant"
+msgstr "Podesite 1. softverski raspored tipkovnice"
+
+msgctxt "#754"
+msgid "Configure the 2nd keyboard software Variant"
+msgstr "Podesite 2. softverski raspored tipkovnice"
 
 msgctxt "#32000"
 msgid "Network"
@@ -394,7 +410,7 @@ msgstr "Maska podmreže"
 
 msgctxt "#32116"
 msgid "Default Gateway"
-msgstr "Zadani Gateway"
+msgstr "Zadani pristupnik"
 
 msgctxt "#32117"
 msgid "Prefix Length"
@@ -800,6 +816,10 @@ msgctxt "#32301"
 msgid "Welcome"
 msgstr "Dobrodošli"
 
+msgctxt "#32302"
+msgid "This wizard will guide you through the process of setting up your new [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] installation - setting your location, timezone and connecting you to the internet.[CR][CR]These settings can be changed later by navigating to Programs > [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] Settings.[CR][CR]To begin your [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] experience, select your regional settings and your keyboard layout, then click Next."
+msgstr "Ovaj čarobnjak će vas voditi kroz proces postavljanja vaše nove [COLOR FF757677]Otvori[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] instalacije - postavite vašu lokaciju, vremensku zonu i povežite se na Internet.[CR][CR]Ove postavke se mogu promijeniti kasnije navigacijom u Programi > [COLOR FF757677]Otvori[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] Postavke.[CR][CR]Za početak vašeg [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] iskustva, odaberite vaše regionalne postavke i raspored tipkovnice, zatim kliknite Slijedeće."
+
 msgctxt "#32303"
 msgid "Next"
 msgstr "Slijedeće"
@@ -960,6 +980,10 @@ msgctxt "#32343"
 msgid "Enter the following Key on your Device."
 msgstr "Upišite sljedeći ključ na vašem uređaju."
 
+msgctxt "#32344"
+msgid "Enable Bluetooth"
+msgstr "Onemogući Bluetooth"
+
 msgctxt "#32345"
 msgid "Bluetooth daemon is not running!"
 msgstr "Bluetooth daemon nije pokrenut!"
@@ -1099,3 +1123,43 @@ msgstr "Nema dovoljno slobodnog prostora za nastavak!"
 msgctxt "#32380"
 msgid "Restoring system settings requires a reboot. Are you sure you want to restore?"
 msgstr "Vraćanje postavki sustava zahtijeva ponovno pokretanje. Sigurno želite nastaviti?"
+
+msgctxt "#32381"
+msgid "Accept incoming Bluetooth Filetransfer ?"
+msgstr "Prihvati dolazeći prijenos datoteka sa Bluetootha?"
+
+msgctxt "#32382"
+msgid "Speed"
+msgstr "Brzina"
+
+msgctxt "#32383"
+msgid "Play Files ?"
+msgstr "Reproduciraj datoteke?"
+
+msgctxt "#32384"
+msgid "OBEX Enabled"
+msgstr "OBEX Omogućen"
+
+msgctxt "#32385"
+msgid "OBEX Upload Folder"
+msgstr "OBEX mapa slanja"
+
+msgctxt "#32386"
+msgid "Keyboard Layout Variant #1"
+msgstr "1. raspored tipkovnice"
+
+msgctxt "#32387"
+msgid "Keyboard Layout Variant #2"
+msgstr "2. raspored tipkovnice"
+
+msgctxt "#32388"
+msgid "Enable Standby"
+msgstr "Omogući mirovanje"
+
+msgctxt "#32389"
+msgid "Disable Standby"
+msgstr "Onemogući mirovanje"
+
+msgctxt "#32390"
+msgid "Settings addon is not yet ready, please try again later."
+msgstr "Dodatak postavki još nije spreman, pokušajte ponovno kasnije."

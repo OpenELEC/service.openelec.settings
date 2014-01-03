@@ -53,8 +53,8 @@ msgid "Architecture: "
 msgstr "Arquitectura:"
 
 msgctxt "#609"
-msgid "Open Embedded Linux Entertainment Center (OpenELEC) is a minimal Linux distribution purpose built for XBMC media center. OpenELEC is designed to boot fast with an installation process simple enough for anyone to convert a bare HTPC into a fully configuredd media machine in under 15 minutes."
-msgstr "OpenELEC (Open Embedded Linux Entertainment Center; Centro de Entretenimiento basado en linux y abierto) es una distribución mínima de Linux construida especialmente para XBMC. OpenELEC está diseñado para un arranque rápido e incluye un proceso de instalación sencillo que permite que cualquiera pueda convertir un equipo HTPC vacio en un sistema multimedia completamente configurado en menos de 15 minutos."
+msgid "Open Embedded Linux Entertainment Center (OpenELEC) is a minimal Linux distribution purpose built for XBMC media center. OpenELEC is designed to boot fast with an installation process simple enough for anyone to convert a bare HTPC into a fully configured media machine in under 15 minutes."
+msgstr "OpenELEC (Open Embedded Linux Entertainment Center; Centro de Entretenimiento Embebebido basado en Linux Abierto) es una distribución mínima de Linux compilada especialmente para XBMC. OpenELEC está diseñado para un arranque rápido e incluye un proceso de instalación sencillo que permite que cualquiera pueda convertir un equipo HTPC vacio en un sistema multimedia completamente configurado en menos de 15 minutos."
 
 msgctxt "#610"
 msgid "[B]Support:[/B][CR]Web: http://openelec.tv[CR]Forum: http://openelec.tv/forum[CR]Wiki: http://wiki.openelec.tv[CR][CR][B]Social Media:[/B][CR]IRC: #openelec on freenode.net (web-based chat is also available from the website)[CR]Twitter: https://twitter.com/openelec[CR]Facebook: http://www.facebook.com/OpenELEC[CR]Google+: https://plus.google.com/+openelec"
@@ -161,12 +161,12 @@ msgid "Restore a tar archive backup previously created using the backup option a
 msgstr "Restaurar un archivo tar creado previamente utilizando la opción de resguardo más arriba"
 
 msgctxt "#724"
-msgid "Permanently reset OpenELEC OS configuration to defaults (XBMC is not touched)"
-msgstr "Restaurar permanentemente la configuración del SO OpenELEC a sus valores por defecto (no afecta a XBMC)"
+msgid "[COLOR FF00FF00]SOFT RESET[/COLOR]\nPermanently reset OpenELEC OS configuration to defaults (resets also XBMC to default including your library. your media - music/videos/etc are not touched)"
+msgstr "[COLOR FF00FF00]SOFT RESET[/COLOR]\nAplica la configuración original de OpenELEC (también restaura la configuración de XBMC, incluida tu colección, pero sin afectar a tus ficheros de música/vídeos/etc)"
 
 msgctxt "#725"
-msgid "Permanently reset OpenELEC OS and XBMC configuration to defaults"
-msgstr "Restaurar permanentemente la configuración del SO OpenELEC y de XBMC  a sus valores por defecto"
+msgid "[COLOR FFFF0000]HARD RESET[/COLOR]\nPermanently reset OpenELEC OS and XBMC configuration to defaults (everything in your storage partition will be deleted)"
+msgstr "[COLOR FFFF0000]HARD RESET[/COLOR]\nAplica la configuración original de OpenELEC y de XBMC (ATENCIÓN: se eliminará todo el contenido de la carpeta de almacenamiento y perderás todos tus ficheros - música/vídeos/etc)"
 
 msgctxt "#726"
 msgid "Enable or disable support for Wireless (WLAN) networks"
@@ -267,6 +267,22 @@ msgstr "749"
 msgctxt "#750"
 msgid "750"
 msgstr "750"
+
+msgctxt "#751"
+msgid "With OBEX filetransfer you can send files, for example movies or pictures over bluetooth to OpenELEC."
+msgstr "Con la transferencia de archivos OBEX puedes enviar archivos, por ejemplo videos o fotos, por Bluetooth a OpenELEC."
+
+msgctxt "#752"
+msgid "Here you can set the folder location where OBEX file transfer should store incoming files"
+msgstr "Aquí puedes establecer la carpeta donde almacenar los archivos recibidos mediante la transferencia de archivos OBEX"
+
+msgctxt "#753"
+msgid "Configure the 1st keyboard software Variant"
+msgstr "Configurar la variante #1 de distribución de teclado"
+
+msgctxt "#754"
+msgid "Configure the 2nd keyboard software Variant"
+msgstr "Configurar la variante #2 de distribución de teclado"
 
 msgctxt "#32000"
 msgid "Network"
@@ -964,6 +980,10 @@ msgctxt "#32343"
 msgid "Enter the following Key on your Device."
 msgstr "Introduce la siguiente clave en tu dispositivo"
 
+msgctxt "#32344"
+msgid "Enable Bluetooth"
+msgstr "Habilitar Bluetooth"
+
 msgctxt "#32345"
 msgid "Bluetooth daemon is not running!"
 msgstr "Modulo Bluetooth no activo"
@@ -1103,3 +1123,43 @@ msgstr "No hay suficiente espacio disponible para continuar!"
 msgctxt "#32380"
 msgid "Restoring system settings requires a reboot. Are you sure you want to restore?"
 msgstr "Restaurar los ajustes del sistema requiere reiniciar. ¿Estás seguro de que quieres restaurarlos?"
+
+msgctxt "#32381"
+msgid "Accept incoming Bluetooth Filetransfer ?"
+msgstr "¿ Aceptar transferencia de archivo entrante por Bluetooth ?"
+
+msgctxt "#32382"
+msgid "Speed"
+msgstr "Velocidad"
+
+msgctxt "#32383"
+msgid "Play Files ?"
+msgstr "¿ Reproducir archivos ?"
+
+msgctxt "#32384"
+msgid "OBEX Enabled"
+msgstr "OBEX Habilitado"
+
+msgctxt "#32385"
+msgid "OBEX Upload Folder"
+msgstr "Carpeta entrante OBEX"
+
+msgctxt "#32386"
+msgid "Keyboard Layout Variant #1"
+msgstr "Variante #1 de distribución de teclado"
+
+msgctxt "#32387"
+msgid "Keyboard Layout Variant #2"
+msgstr "Variante #2 de distribución de teclado"
+
+msgctxt "#32388"
+msgid "Enable Standby"
+msgstr "Activar suspensión"
+
+msgctxt "#32389"
+msgid "Disable Standby"
+msgstr "Desactivar suspensión"
+
+msgctxt "#32390"
+msgid "Settings addon is not yet ready, please try again later."
+msgstr "El addon de configuración aún no está listo, por favor, inténtalo de nuevo más tarde."

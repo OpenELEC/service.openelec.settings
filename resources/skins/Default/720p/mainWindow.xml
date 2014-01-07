@@ -181,7 +181,7 @@
                 <width>804</width>
                 <height>70</height>
                 <aspectratio>stretch</aspectratio>
-                <texture>GlassTitleBar.png</texture>
+                <texture>dialogheader.png</texture>
             </control>
             <control type="label">
                 <description>header label</description>

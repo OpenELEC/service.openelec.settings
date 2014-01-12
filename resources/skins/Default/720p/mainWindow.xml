@@ -20,26 +20,26 @@
                 <height>630</height>
                 <texture border="15">ContentPanel.png</texture>
             </control>
-            <control type="image">
+            <!--<control type="image">
                 <left>5</left>
                 <top>5</top>
                 <width>1090</width>
                 <height>630</height>
                 <texture border="15">ContentPanel.png</texture>
-            </control>	
+                </control>-->	
             <control type="image">
                 <left>268</left>
                 <top>10</top>
-                <width>805</width>
+                <width>795</width>
                 <height>618</height>
                 <texture border="5">black-back2.png</texture>
             </control>			
             <control type="scrollbar" id="1097">
                 <description>scroll bar indicator for lists</description>
-                <left>1067</left>
-                <top>7</top>
+                <left>1062</left>
+                <top>62</top>
                 <width>24</width>
-                <height>627</height>
+                <height>446</height>
                 <onleft>1100</onleft>
                 <onright>1500</onright>
                 <texturesliderbackground border="0,14,0,14">ScrollBarV.png</texturesliderbackground>
@@ -53,10 +53,10 @@
             </control>   
             <control type="scrollbar" id="1098">
                 <description>scroll bar indicator for lists</description>
-                <left>1067</left>
-                <top>7</top>
+                <left>1062</left>
+                <top>62</top>
                 <width>24</width>
-                <height>627</height>
+                <height>446</height>
                 <onleft>1200</onleft>
                 <onright>1500</onright>
                 <texturesliderbackground border="0,14,0,14">ScrollBarV.png</texturesliderbackground>
@@ -70,10 +70,10 @@
             </control>  
             <control type="scrollbar" id="1099">
                 <description>scroll bar indicator for lists</description>
-                <left>1067</left>
-                <top>7</top>
+                <left>1062</left>
+                <top>62</top>
                 <width>24</width>
-                <height>627</height>
+                <height>446</height>
                 <onleft>1300</onleft>
                 <onright>1500</onright>
                 <texturesliderbackground border="0,14,0,14">ScrollBarV.png</texturesliderbackground>
@@ -171,22 +171,22 @@
             <control type="image">
                 <left>268</left>
                 <top>10</top>
-                <width>804</width>
+                <width>794</width>
                 <height>50</height>
                 <texture border="5">black-back2.png</texture>
             </control>
             <control type="image">
                 <left>268</left>
                 <top>10</top>
-                <width>804</width>
-                <height>70</height>
+                <width>794</width>
+                <height>50</height>
                 <aspectratio>stretch</aspectratio>
                 <texture>dialogheader.png</texture>
             </control>
             <control type="label">
                 <description>header label</description>
                 <left>300</left>
-                <top>20</top>
+                <top>22</top>
                 <width>740</width>
                 <height>30</height>
                 <font>font16caps</font>
@@ -196,14 +196,21 @@
                 <textcolor>white</textcolor>
                 <shadowcolor>black</shadowcolor>
             </control>
+	    <control type="image">
+		<left>269</left>
+		<top>510</top>
+		<width>793</width>
+		<height>2</height>
+		<texture>separator2.png</texture>
+	    </control>  	    
             <control type="image">
-                <left>270</left>
+                <left>269</left>
                 <top>60</top>
-                <width>800</width>
+                <width>793</width>
                 <height>450</height>
                 <texture border="5">button-nofocus.png</texture>
-            </control>
-            <!-- Other Content (right)-->
+            </control>   
+	    <!-- Other Content (right)-->
             <control type="group">
                 <left>272</left>
                 <top>62</top>
@@ -216,7 +223,7 @@
                     <height>446</height>
                     <visible>StringCompare(Container(1000).ListItem.Property(listTyp), 1900)</visible>  
                     <control type="image">
-                        <left>590</left>
+                        <left>580</left>
                         <top>10</top>
                         <width>200</width>
                         <height>200</height>
@@ -323,34 +330,27 @@
                         <align>left</align>
                         <label>$ADDON[service.openelec.settings 611]</label>
                     </control>
-                </control>
-                <control type="image">
-                    <left>0</left>
-                    <top>447</top>
-                    <width>797</width>
-                    <height>2</height>
-                    <texture>blue_line.png</texture>
-                </control>                          
+                </control>                        
                 <!-- simple list content -->
                 <control type="list" id="1100">
                     <left>0</left>
                     <top>0</top>
-                    <width>796</width>
+                    <width>786</width>
                     <height>446</height>
                     <onleft>1000</onleft>
                     <onright>1097</onright>
                     <scrolltime>300</scrolltime>
                     <pagecontrol>1097</pagecontrol>
                     <visible>StringCompare(Container(1000).ListItem.Property(listTyp), 1100)</visible>    
-                    <itemlayout height="40">
+                    <itemlayout height="35">
                         <control type="group">
                             <visible>!StringCompare(ListItem.Property(Typ), separator)</visible>
-                            <control type="image">
+			    <control type="image">
                                 <left>0</left>
                                 <top>2</top>
-                                <width>796</width>
-                                <height>38</height>
-                                <texture border="5">button-nofocus.png</texture>
+                                <width>786</width>
+                                <height>35</height>
+                                <texture border="5">MenuItemNF.png</texture>
                             </control>
                             <control type="label">
                                 <left>40</left>
@@ -363,7 +363,7 @@
                             </control>
                             <control type="label">
                                 <align>right</align>
-                                <left>783</left>
+                                <left>763</left>
                                 <top>7</top>
                                 <width>400</width>
                                 <height>20</height>	
@@ -375,18 +375,18 @@
                         </control>
                         <control type="group">
                             <visible>StringCompare(ListItem.Property(Typ), separator)</visible>
-                            <control type="image">
+                            <!--<control type="image">
                                 <left>0</left>
                                 <top>36</top>
                                 <width>796</width>
                                 <height>3</height>
                                 <texture border="1">separator2.png</texture>
-                            </control>
+                                </control>-->
                             <control type="label">
                                 <left>15</left>
                                 <top>5</top>
                                 <width>400</width>
-                                <height>40</height>
+                                <height>35</height>
                                 <font>font13_title</font>
                                 <textcolor>blue</textcolor>
                                 <info>ListItem.Label</info>
@@ -396,19 +396,19 @@
                         <control type="group">
                             <visible>StringCompare(ListItem.Property(Typ), bool)</visible>
                             <control type="image">
-                                <left>748</left>
-                                <top>0</top>
-                                <width>38</width>
-                                <height>38</height>
+                                <left>738</left>
+                                <top>3</top>
+                                <width>30</width>
+                                <height>30</height>
                                 <aspectratio>keep</aspectratio>
                                 <texture border="5">radiobutton-nofocus.png</texture>
                                 <visible>StringCompare(ListItem.Property(value), 0) | StringCompare(ListItem.Property(value), false) | IsEmpty(ListItem.Property(value))</visible>
                             </control>
                             <control type="image">
-                                <left>748</left>
-                                <top>0</top>
-                                <width>38</width>
-                                <height>38</height>
+                                <left>738</left>
+                                <top>3</top>
+                                <width>30</width>
+                                <height>30</height>
                                 <aspectratio>keep</aspectratio>
                                 <texture border="5">radiobutton-focus.png</texture>
                                 <visible>StringCompare(ListItem.Property(value), 1) | StringCompare(ListItem.Property(value), true)</visible>
@@ -417,33 +417,34 @@
                         <control type="group">
                             <visible>StringCompare(ListItem.Property(Typ), button)</visible>
                             <control type="image">
-                                <left>755</left>
-                                <top>4</top>
-                                <width>32</width>
-                                <height>32</height>
+                                <left>745</left>
+                                <top>7</top>
+                                <width>22</width>
+                                <height>22</height>
                                 <aspectratio>keep</aspectratio>
                                 <texture border="5">do.png</texture>
                             </control>
                         </control>
                     </itemlayout>
-                    <focusedlayout height="40">  
+                    <focusedlayout height="35">  
                         <control type="group">
                             <visible>!StringCompare(ListItem.Property(Typ), separator)</visible>
                             <control type="image">
                                 <left>0</left>
                                 <top>2</top>
-                                <width>796</width>
+                                <width>786</width>
                                 <height>38</height>
-                                <texture border="5">button-nofocus.png</texture>
+				<visible>Control.HasFocus(1100)</visible>
+                                <texture border="5">MenuItemFO.png</texture>
                             </control>
-                            <control type="image">
+                            <!--<control type="image">
                                 <left>0</left>
                                 <top>2</top>
                                 <width>796</width>
                                 <height>38</height>
                                 <visible>Control.HasFocus(1100)</visible>
                                 <texture border="5">button-focus2.png</texture>
-                            </control>
+                                </control>-->
                             <control type="label">
                                 <left>40</left>
                                 <top>7</top>
@@ -455,7 +456,7 @@
                             </control>
                             <control type="label">
                                 <align>right</align>
-                                <left>783</left>
+                                <left>763</left>
                                 <top>7</top>
                                 <width>400</width>
                                 <height>20</height>
@@ -466,18 +467,18 @@
                         </control>
                         <control type="group">
                             <visible>StringCompare(ListItem.Property(Typ), separator)</visible>
-                            <control type="image">
+                            <!--<control type="image">
                                 <left>0</left>
                                 <top>36</top>
                                 <width>796</width>
                                 <height>3</height>
                                 <texture border="1">separator2.png</texture>
-                            </control>
+                                </control>-->
                             <control type="label">
                                 <left>15</left>
                                 <top>5</top>
                                 <width>400</width>
-                                <height>40</height>
+                                <height>35</height>
                                 <font>font13_title</font>
                                 <textcolor>blue</textcolor>
                                 <info>ListItem.Label</info>
@@ -487,19 +488,19 @@
                         <control type="group">
                             <visible>StringCompare(ListItem.Property(Typ), bool)</visible>
                             <control type="image">
-                                <left>748</left>
-                                <top>0</top>
-                                <width>38</width>
-                                <height>38</height>
+                                <left>738</left>
+                                <top>3</top>
+                                <width>30</width>
+                                <height>30</height>
                                 <aspectratio>keep</aspectratio>
                                 <texture border="5">radiobutton-nofocus.png</texture>
                                 <visible>StringCompare(ListItem.Property(value), 0) | StringCompare(ListItem.Property(value),false) | IsEmpty(ListItem.Property(value))</visible>
                             </control>
                             <control type="image">
-                                <left>748</left>
-                                <top>0</top>
-                                <width>38</width>
-                                <height>38</height>
+                                <left>738</left>
+                                <top>3</top>
+                                <width>30</width>
+                                <height>30</height>
                                 <aspectratio>keep</aspectratio>
                                 <texture border="5">radiobutton-focus.png</texture>
                                 <visible>StringCompare(ListItem.Property(value), 1) | StringCompare(ListItem.Property(value),true)</visible>
@@ -508,10 +509,10 @@
                         <control type="group">
                             <visible>StringCompare(ListItem.Property(Typ), button)</visible>
                             <control type="image">
-                                <left>755</left>
-                                <top>4</top>
-                                <width>32</width>
-                                <height>32</height>
+                                <left>745</left>
+                                <top>7</top>
+                                <width>22</width>
+                                <height>22</height>
                                 <aspectratio>keep</aspectratio>
                                 <texture border="5">do.png</texture>
                             </control>
@@ -522,7 +523,7 @@
                 <control type="list" id="1200">
                     <left>0</left>
                     <top>0</top>
-                    <width>796</width>
+                    <width>790</width>
                     <height>446</height>
                     <onleft>1000</onleft>
                     <onright>1098</onright>
@@ -535,7 +536,7 @@
                         <control type="image">
                             <left>0</left>
                             <top>0</top>
-                            <width>796</width>
+                            <width>788</width>
                             <height>98</height>
                             <texture border="5">button-nofocus.png</texture>
                         </control>
@@ -626,14 +627,14 @@
                         <control type="progress">
                             <left>10</left>
                             <top>80</top>
-                            <width>778</width>
+                            <width>768</width>
                             <height>12</height>
                             <info>ListItem.Property(Strength)</info>
                             <visible>StringCompare(ListItem.Property(netType), wifi)</visible>
                         </control>
                         <!-- Signal strength value -->
                         <control type="label">
-                            <left>780</left>
+                            <left>770</left>
                             <top>66</top>
                             <width>40</width>
                             <height>40</height>
@@ -680,14 +681,14 @@
                         <control type="image">
                             <left>0</left>
                             <top>0</top>
-                            <width>796</width>
+                            <width>788</width>
                             <height>98</height>
                             <texture border="5">button-nofocus.png</texture>
                         </control>
                         <control type="image">
                             <left>0</left>
                             <top>0</top>
-                            <width>796</width>
+                            <width>788</width>
                             <height>98</height>
                             <visible>Control.HasFocus(1200)</visible>
                             <texture border="5">button-focus2.png</texture>
@@ -782,14 +783,14 @@
                         <control type="progress">
                             <left>10</left>
                             <top>80</top>
-                            <width>778</width>
+                            <width>768</width>
                             <height>12</height>
                             <info>ListItem.Property(Strength)</info>
                             <visible>StringCompare(ListItem.Property(netType), wifi)</visible>
                         </control>
                         <!-- Signal strength value -->
                         <control type="label">
-                            <left>780</left>
+                            <left>770</left>
                             <top>66</top>
                             <width>40</width>
                             <height>40</height>
@@ -835,7 +836,7 @@
                 <control type="label" id="1301">
                     <left>0</left>
                     <top>200</top>
-                    <width>796</width>
+                    <width>790</width>
                     <height>220</height>
                     <info>
                     </info>
@@ -845,7 +846,7 @@
                 <control type="list" id="1300">
                     <left>0</left>
                     <top>0</top>
-                    <width>796</width>
+                    <width>788</width>
                     <height>446</height>
                     <onleft>1000</onleft>
                     <onright>1099</onright>
@@ -858,7 +859,7 @@
                         <control type="image">
                             <left>0</left>
                             <top>0</top>
-                            <width>796</width>
+                            <width>786</width>
                             <height>68</height>
                             <texture border="5">button-nofocus.png</texture>
                         </control>
@@ -1015,7 +1016,7 @@
                         </control>
                         <!-- Paired Symbol (bottom right) -->
                         <control type="image">
-                            <left>730</left>
+                            <left>720</left>
                             <top>42</top>
                             <width>20</width>
                             <height>20</height>
@@ -1025,7 +1026,7 @@
                         </control>
                         <!-- Trusted Symbol (bottom right) -->
                         <control type="image">
-                            <left>760</left>
+                            <left>750</left>
                             <top>42</top>
                             <width>20</width>
                             <height>20</height>
@@ -1040,14 +1041,14 @@
                         <control type="image">
                             <left>0</left>
                             <top>0</top>
-                            <width>796</width>
+                            <width>788</width>
                             <height>68</height>
                             <texture border="5">button-nofocus.png</texture>
                         </control>
                         <control type="image">
                             <left>0</left>
                             <top>0</top>
-                            <width>796</width>
+                            <width>788</width>
                             <height>68</height>
                             <visible>Control.HasFocus(1300)</visible>
                             <texture border="5">button-focus2.png</texture>
@@ -1208,7 +1209,7 @@
                         </control>
                         <!-- Paired Symbol (bottom right) -->
                         <control type="image">
-                            <left>730</left>
+                            <left>720</left>
                             <top>42</top>
                             <width>20</width>
                             <height>20</height>
@@ -1218,7 +1219,7 @@
                         </control>
                         <!-- Trusted Symbol (bottom right) -->
                         <control type="image">
-                            <left>760</left>
+                            <left>750</left>
                             <top>42</top>
                             <width>20</width>
                             <height>20</height>
@@ -1232,7 +1233,7 @@
             <control type="image">
                 <left>268</left>
                 <top>510</top>
-                <width>804</width>
+                <width>794</width>
                 <height>118</height>
                 <texture border="5">black-back2.png</texture>
             </control>

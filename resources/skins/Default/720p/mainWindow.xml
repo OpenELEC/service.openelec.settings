@@ -41,7 +41,7 @@
                 <textureslidernib>ScrollBarNib.png</textureslidernib>
                 <textureslidernibfocus>ScrollBarNib.png</textureslidernibfocus>
                 <orientation>vertical</orientation>
-                <showonepage>true</showonepage>
+                <showonepage>false</showonepage>
                 <visible>StringCompare(Container(1000).ListItem.Property(listTyp), 1100)</visible>
             </control>   
             <control type="scrollbar" id="1098">
@@ -58,7 +58,7 @@
                 <textureslidernib>ScrollBarNib.png</textureslidernib>
                 <textureslidernibfocus>ScrollBarNib.png</textureslidernibfocus>
                 <orientation>vertical</orientation>
-                <showonepage>true</showonepage>
+                <showonepage>false</showonepage>
                 <visible>StringCompare(Container(1000).ListItem.Property(listTyp), 1200)</visible>
             </control>  
             <control type="scrollbar" id="1099">
@@ -75,7 +75,7 @@
                 <textureslidernib>ScrollBarNib.png</textureslidernib>
                 <textureslidernibfocus>ScrollBarNib.png</textureslidernibfocus>
                 <orientation>vertical</orientation>
-                <showonepage>true</showonepage>
+                <showonepage>false</showonepage>
                 <visible>StringCompare(Container(1000).ListItem.Property(listTyp), 1300)</visible>
             </control>                          
             <control type="image">

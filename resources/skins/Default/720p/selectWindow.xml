@@ -113,7 +113,7 @@
                 <textureslidernib>ScrollBarNib.png</textureslidernib>
                 <textureslidernibfocus>ScrollBarNib.png</textureslidernibfocus>
                 <orientation>vertical</orientation>
-                <showonepage>true</showonepage>
+                <showonepage>false</showonepage>
             </control>
         </control>
     </controls>

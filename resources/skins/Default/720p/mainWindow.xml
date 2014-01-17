@@ -147,6 +147,7 @@
                         <width>260</width>
                         <height>55</height>
                         <texture border="5">MenuItemFO.png</texture>
+                        <animation effect="fade" end="50" time="10">Unfocus</animation>
                     </control>
                     <control type="label">
                         <left>250</left>
@@ -430,7 +431,7 @@
                                 <height>20</height>
                                 <textcolor>white</textcolor>
                                 <info>ListItem.Label</info>
-                                <visible>true</visible>
+                                <visible>Control.HasFocus(1100)</visible>
                             </control>
                             <control type="label">
                                 <align>right</align>
@@ -440,8 +441,27 @@
                                 <height>20</height>
                                 <textcolor>white</textcolor>
                                 <info>ListItem.Property(value)</info>
-                                <visible>!StringCompare(ListItem.Property(Typ), bool) + !StringCompare(ListItem.Property(Typ), button)</visible>
+                                <visible>!StringCompare(ListItem.Property(Typ), bool) + !StringCompare(ListItem.Property(Typ), button) + Control.HasFocus(1100)</visible>
                             </control>
+                            <control type="label">
+                                <left>40</left>
+                                <top>7</top>
+                                <width>500</width>
+                                <height>20</height>
+                                <textcolor>FF757677</textcolor>
+                                <info>ListItem.Label</info>
+                                <visible>!Control.HasFocus(1100)</visible>
+                            </control>
+                            <control type="label">
+                                <align>right</align>
+                                <left>763</left>
+                                <top>7</top>
+                                <width>400</width>
+                                <height>20</height>
+                                <textcolor>FF757677</textcolor>
+                                <info>ListItem.Property(value)</info>
+                                <visible>!StringCompare(ListItem.Property(Typ), bool) + !StringCompare(ListItem.Property(Typ), button) + !Control.HasFocus(1100)</visible>
+                            </control> 
                         </control>
                         <control type="group">
                             <visible>StringCompare(ListItem.Property(Typ), separator)</visible>

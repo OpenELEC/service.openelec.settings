@@ -20,13 +20,6 @@
                 <height>630</height>
                 <texture border="15">ContentPanel.png</texture>
             </control>
-            <!--<control type="image">
-                <left>5</left>
-                <top>5</top>
-                <width>1090</width>
-                <height>630</height>
-                <texture border="15">ContentPanel.png</texture>
-                </control>-->	
             <control type="image">
                 <left>268</left>
                 <top>10</top>
@@ -375,13 +368,6 @@
                         </control>
                         <control type="group">
                             <visible>StringCompare(ListItem.Property(Typ), separator)</visible>
-                            <!--<control type="image">
-                                <left>0</left>
-                                <top>36</top>
-                                <width>796</width>
-                                <height>3</height>
-                                <texture border="1">separator2.png</texture>
-                                </control>-->
                             <control type="label">
                                 <left>15</left>
                                 <top>5</top>
@@ -437,14 +423,6 @@
 				<visible>Control.HasFocus(1100)</visible>
                                 <texture border="5">MenuItemFO.png</texture>
                             </control>
-                            <!--<control type="image">
-                                <left>0</left>
-                                <top>2</top>
-                                <width>796</width>
-                                <height>38</height>
-                                <visible>Control.HasFocus(1100)</visible>
-                                <texture border="5">button-focus2.png</texture>
-                                </control>-->
                             <control type="label">
                                 <left>40</left>
                                 <top>7</top>
@@ -467,13 +445,6 @@
                         </control>
                         <control type="group">
                             <visible>StringCompare(ListItem.Property(Typ), separator)</visible>
-                            <!--<control type="image">
-                                <left>0</left>
-                                <top>36</top>
-                                <width>796</width>
-                                <height>3</height>
-                                <texture border="1">separator2.png</texture>
-                                </control>-->
                             <control type="label">
                                 <left>15</left>
                                 <top>5</top>

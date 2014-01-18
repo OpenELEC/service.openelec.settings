@@ -369,6 +369,13 @@
                         </control>
                         <control type="group">
                             <visible>StringCompare(ListItem.Property(Typ), separator)</visible>
+                            <control type="image">
+                                <left>0</left>
+                                <top>36</top>
+                                <width>796</width>
+                                <height>3</height>
+                                <texture border="1">separator2.png</texture>
+                                </control>
                             <control type="label">
                                 <left>15</left>
                                 <top>5</top>
@@ -465,6 +472,13 @@
                         </control>
                         <control type="group">
                             <visible>StringCompare(ListItem.Property(Typ), separator)</visible>
+                            <control type="image">
+                                <left>0</left>
+                                <top>36</top>
+                                <width>796</width>
+                                <height>3</height>
+                                <texture border="1">separator2.png</texture>
+                                </control>
                             <control type="label">
                                 <left>15</left>
                                 <top>5</top>

@@ -501,11 +501,6 @@ class mainWindow(xbmcgui.WindowXMLDialog):
 
         try:
 
-            if hasattr(self, "focus_in_progress"):
-                return 0
-            
-            self.focus_in_progress = True
-            
             if controlID in self.guiLists:
 
                 currentEntry = \
@@ -587,12 +582,8 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                                     )], strMenuLoader)(selectedMenuItem)
                             
                     self.getControl(int(selectedMenuItem.getProperty('listTyp'))).setAnimations( \
-                        [('conditional', 'effect=fade start=0 end=100 time=200 condition=true')])
-                    
-                    xbmc.sleep(200)                   
-            
-            del self.focus_in_progress
-            
+                        [('conditional', 'effect=fade start=0 end=100 time=100 condition=true')])
+
         except Exception, e:
 
             self.oe.dbg_log('oeWindows.mainWindow::onFocus('

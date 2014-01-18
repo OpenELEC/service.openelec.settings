@@ -60,7 +60,8 @@ class mainWindow(xbmcgui.WindowXMLDialog):
         self.isChild = False
         self.oe = kwargs['oeMain']
         self.lastGuiList = -1
-
+        self.lastListType = -1
+        
         if 'isChild' in kwargs:
             self.isChild = True
 
@@ -165,13 +166,18 @@ class mainWindow(xbmcgui.WindowXMLDialog):
 
             self.getControl(1100).reset()
             
+            m_menu = []
+            
             for category in sorted(struct, key=lambda x: struct[x]['order']):
 
                 if not 'hidden' in struct[category]:
-                        
+                    
                     if fltr == []:
-                        self.addConfigItem(self.oe._(struct[category]['name'
-                                ]), {'typ': 'separator'}, 1100)
+                        m_entry = {}
+                        m_entry["name"] = self.oe._(struct[category]['name'])
+                        m_entry["properties"] = {'typ': 'separator'}
+                        m_entry["list"] = 1100
+                        m_menu.append(m_entry)                        
 
                     else:
                         if category not in fltr:
@@ -209,12 +215,16 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                                 name = setting['name']
                             else:
                                 name = self.oe._(setting['name'])
-                                
+                            
+                            m_entry = {}
+                            
                             if not 'parent' in setting:
 
-                                self.addConfigItem(name, 
-                                        dictProperties,
-                                        1100)
+                                m_entry["name"] = name
+                                m_entry["properties"] = dictProperties
+                                m_entry["list"] = 1100
+                                m_menu.append(m_entry)
+                                
                             else:
 
                                 if struct[category]['settings'
@@ -223,10 +233,16 @@ class mainWindow(xbmcgui.WindowXMLDialog):
 
                                     if not 'optional' in setting or \
                                         ('optional' in setting and optional != '0'):
-                                        self.addConfigItem(name,
-                                                dictProperties,
-                                                1100)
+                                        m_entry["name"] = name
+                                        m_entry["properties"] = dictProperties
+                                        m_entry["list"] = 1100
+                                        m_menu.append(m_entry)
 
+            for m_entry in m_menu:
+                self.addConfigItem(m_entry["name"],
+                            m_entry["properties"],
+                            m_entry["list"])
+            
         except Exception, e:
 
             self.oe.dbg_log('oeWindows.mainWindow::build_menu', 'ERROR: (' + repr(e) + ')')
@@ -485,6 +501,11 @@ class mainWindow(xbmcgui.WindowXMLDialog):
 
         try:
 
+            if hasattr(self, "focus_in_progress"):
+                return 0
+            
+            self.focus_in_progress = True
+            
             if controlID in self.guiLists:
 
                 currentEntry = \
@@ -525,6 +546,19 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                                  
                 if lastMenu != self.lastMenu:
 
+                    if self.lastListType == int(selectedMenuItem.getProperty('listTyp')):
+                        self.getControl(int(selectedMenuItem.getProperty('listTyp'))).setAnimations( \
+                            [('conditional', 'effect=fade start=100 end=0 time=100 condition=True')])
+                        
+                    self.getControl(1100).setAnimations( \
+                        [('conditional', 'effect=fade start=0 end=0 time=1 condition=True')])
+                    self.getControl(1200).setAnimations( \
+                        [('conditional', 'effect=fade start=0 end=0 time=1 condition=True')])
+                    self.getControl(1300).setAnimations( \
+                        [('conditional', 'effect=fade start=0 end=0 time=1 condition=True')])
+                    self.getControl(1900).setAnimations( \
+                        [('conditional', 'effect=fade start=0 end=0 time=1 condition=True')])
+                                        
                     self.lastModul = selectedMenuItem.getProperty('Modul')
                 
                     self.lastMenu = lastMenu
@@ -535,8 +569,6 @@ class mainWindow(xbmcgui.WindowXMLDialog):
 
                     strMenuLoader = \
                         selectedMenuItem.getProperty('menuLoader')
-
-                    #self.getControl(self.guiList).reset()
 
                     if int(selectedMenuItem.getProperty('listTyp')) \
                         == self.guiOther:
@@ -553,6 +585,14 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                                    )], strMenuLoader):
                             getattr(self.oe.dictModules[selectedMenuItem.getProperty('modul'
                                     )], strMenuLoader)(selectedMenuItem)
+                            
+                    self.getControl(int(selectedMenuItem.getProperty('listTyp'))).setAnimations( \
+                        [('conditional', 'effect=fade start=0 end=100 time=200 condition=true')])
+                    
+                    xbmc.sleep(200)                   
+            
+            del self.focus_in_progress
+            
         except Exception, e:
 
             self.oe.dbg_log('oeWindows.mainWindow::onFocus('

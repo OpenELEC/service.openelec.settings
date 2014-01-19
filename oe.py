@@ -643,8 +643,6 @@ def stop_service():
             if hasattr(dictModules[strModule], 'stop_service'):
                 dictModules[strModule].stop_service()
 
-        exit()
-
         xbmc.log('## OpenELEC Addon ## STOP SERVICE DONE !')
     except Exception, e:
 

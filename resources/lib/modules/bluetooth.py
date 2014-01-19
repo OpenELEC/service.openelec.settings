@@ -1018,9 +1018,10 @@ class bluetooth:
                     signal_receiver = None
                 
                 #Remove will cause xbmc freeze
-                #bluez bug ? 
-                #self.ObexNameOwnerWatch.cancel()
-                #self.ObexNameOwnerWatch = None
+                #bluez bug ?
+                #does this work now ? 2014-01-19 / LUFI
+                self.ObexNameOwnerWatch.cancel()
+                self.ObexNameOwnerWatch = None
                 
                 self.NameOwnerWatch.cancel()
                 self.NameOwnerWatch = None

@@ -150,7 +150,7 @@ class services:
                         }},
                     },
                 'cron': {
-                    'order': 3,
+                    'order': 4,
                     'name': 32319,
                     'not_supported': [],
                     'settings': {'cron_autostart': {
@@ -163,7 +163,7 @@ class services:
                         }},
                     },
                 'bluez': {
-                    'order': 4,
+                    'order': 5,
                     'name': 32331,
                     'not_supported': [],
                     'settings': {'enabled': {

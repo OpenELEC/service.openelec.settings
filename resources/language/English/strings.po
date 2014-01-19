@@ -332,10 +332,6 @@ msgctxt "#32010"
 msgid "Keyboard Layout"
 msgstr ""
 
-msgctxt "#32011"
-msgid "Power Saving"
-msgstr ""
-
 msgctxt "#32012"
 msgid "Sleep hard drive after (minutes)"
 msgstr ""
@@ -1004,10 +1000,6 @@ msgstr ""
 
 msgctxt "#32346"
 msgid "Bluetooth is disabled"
-msgstr ""
-
-msgctxt "#32347"
-msgid "Enable hard drive sleep when idle"
 msgstr ""
 
 msgctxt "#32358"

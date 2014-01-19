@@ -171,27 +171,6 @@ class system:
                         'order': 1,
                         }},
                     },
-                'power': {
-                    'order': 5,
-                    'name': 32011,
-                    'settings': {'enable_hdd_standby': {
-                        'name': 32347,
-                        'value': '0',
-                        'action': 'set_hdd_standby',
-                        'type': 'bool',
-                        'InfoText': 718,
-                        'order': 1,
-                        }, 'hdd_standby': {
-                        'name': 32012,
-                        'value': '0',
-                        'action': 'set_hdd_standby',
-                        'type': 'num',
-                        'parent': {'entry': 'enable_hdd_standby',
-                                   'value': ['1']},
-                        'InfoText': 719,
-                        'order': 2,
-                        }},
-                    },
                 'backup': {
                     'order': 7,
                     'name': 32371,
@@ -255,7 +234,6 @@ class system:
             self.set_hostname()
             self.set_keyboard_layout()
             self.set_lcd_driver()
-            self.set_hdd_standby()
             self.set_hw_clock()
             self.set_auto_update()
 
@@ -376,17 +354,6 @@ class system:
                 self.struct['driver']['settings']['lcd']['value'] = \
                     value
 
-            # HDD Standby
-            value = self.oe.read_setting('system', 'enable_hdd_standby')
-            if not value is None:
-                self.struct['power']['settings']['enable_hdd_standby']['value'
-                        ] = value
-
-                value = self.oe.read_setting('system', 'hdd_standby')
-                if not value is None:
-                    self.struct['power']['settings']['hdd_standby']['value'
-                            ] = value
-                 
             # AutoUpdate
             value = self.oe.read_setting('system', 'AutoUpdate')
             if not value is None:
@@ -644,98 +611,6 @@ class system:
             self.oe.set_busy(0)
 
             self.oe.dbg_log('system::set_lcd_driver', 'exit_function',
-                            0)
-        except Exception, e:
-
-            self.oe.set_busy(0)
-            self.oe.dbg_log('system::set_lcd_driver', 'ERROR: ('
-                            + repr(e) + ')')
-
-    def set_hdd_standby(self, listItem=None):
-        try:
-
-            self.oe.dbg_log('system::set_hdd_standby', 'enter_function'
-                            , 0)
-
-            self.oe.set_busy(1)
-
-            if not listItem == None:
-                self.set_value(listItem)
-
-            if self.struct['power']['settings']['hdd_standby']['value'] \
-                != None and self.struct['power']['settings'
-                    ]['hdd_standby']['value'] != '0' \
-                and self.struct['power']['settings'
-                    ]['enable_hdd_standby']['value'] == '1':
-
-                value = int(self.struct['power']['settings'
-                            ]['hdd_standby']['value']) #* 12
-
-                #find system and storage hdd
-                cmd_file = open(self.KERNEL_CMD, 'r')
-                cmd_args = cmd_file.read()
-                for param in cmd_args.split(' '):
-                    if param.startswith('boot='):
-                        sys_hdd = param.replace('boot=', '').split('=')[-1]                       
-                    if param.startswith('disk='):
-                        stor_hdd = param.replace('disk=', '').split('=')[-1]                       
-                        
-                cmd_file.close()  
-                
-                if ('/dev/') in sys_hdd:
-                    sys_hdd_dev = sys_hdd.replace('/dev/', '')
-                else:
-                    sys_hdd_dev = ""
-
-                if ('/dev/') in stor_hdd:
-                    stor_hdd_dev = stor_hdd.replace('/dev/', '')
-                else:
-                    stor_hdd_dev = ""
-
-                blkid = self.oe.execute('blkid', 1)
-                for volume in blkid.splitlines():
-                
-                    if ('LABEL="%s"' % sys_hdd) in volume or \
-                       ('LABEL=%s' % sys_hdd) in volume or \
-                       ('UUID="%s"' % sys_hdd) in volume:
-                         
-                        sys_hdd_dev = volume.split(':')[0].replace('/dev/', '')                     
-
-                    if ('LABEL="%s"' % stor_hdd) in volume or \
-                       ('LABEL=%s' % stor_hdd) in volume or \
-                       ('UUID="%s"' % stor_hdd) in volume:
-                         
-                        stor_hdd_dev = volume.split(':')[0].replace('/dev/', '')                     
-                
-                parameters = []
-                for device in glob.glob('/dev/sd?'):
-
-                    device = device.replace('/dev/', '')
-                    
-                    if not device in sys_hdd_dev and not device in stor_hdd_dev:
-                      
-                        parameters.append('-a %s' % device)
-                        
-                    else:
-                        self.oe.dbg_log('system::set_hdd_standby', 
-                                        ('Skip System Disk:%s' % device), 1)
-                                        
-
-                if len(parameters) > 0:   
-                    self.oe.execute('hd-idle -i %d %s' % (value*60, ' '.join(parameters)))
-                    self.oe.dbg_log('system::set_hdd_standby', 
-                                    ('hd-idle -i %d %s' % (value*60, ' '.join(parameters))), 1)
-                                        
-            else:
-
-                self.oe.dbg_log('system::set_hdd_standby', '0 (off)'
-                                , 1)
-
-                self.oe.execute('killall hd-idle')
-
-            self.oe.set_busy(0)
-
-            self.oe.dbg_log('system::set_hdd_standby', 'exit_function',
                             0)
         except Exception, e:
 

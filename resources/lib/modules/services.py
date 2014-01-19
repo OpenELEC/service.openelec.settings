@@ -32,7 +32,6 @@ class services:
 
     SAMBA_NMDB = None        
     SAMBA_SMDB = None
-    SAMBA_INIT = None
     D_SAMBA_SECURE = None
     D_SAMBA_USERNAME = None
     D_SAMBA_PASSWORD = None
@@ -40,15 +39,12 @@ class services:
     
     KERNEL_CMD = None
     SSH_DAEMON = None
-    SSH_INIT = None
     D_SSH_DISABLE_PW_AUTH = None
     OPT_SSH_NOPASSWD = None
     
     AVAHI_DAEMON = None
-    AVAHI_INIT = None
     
     CRON_DAEMON = None
-    CRON_INIT = None
     
     menu = {'4': {
         'name': 32001,

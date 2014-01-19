@@ -45,9 +45,7 @@ class bluetooth:
     
     ENABLED = False
     OBEX_ROOT = None
-    OBEX_INIT = None
     OBEX_DAEMON = None
-    BLUETOOTH_INIT = None
     BLUETOOTH_DAEMON = None
     D_OBEXD_ROOT = None
     
@@ -132,47 +130,6 @@ class bluetooth:
         except Exception, e:
             self.oe.dbg_log('bluetooth::exit', 'ERROR: (' + repr(e)
                             + ')', 4)
-
-    ####################################################################
-    ## Bluetooth Daemon
-    ####################################################################
-    def start_bluetoothd(self):
-        try:
-
-            self.oe.dbg_log('bluetooth::start_bluetoothd',
-                            'enter_function', 0)
-
-            self.oe.execute('sh ' + self.BLUETOOTH_INIT)
-            self.oe.execute('sh ' + self.OBEX_INIT)
-                
-            self.oe.dbg_log('bluetooth::start_bluetoothd',
-                            'exit_function', 0)
-        except Exception, e:
-            self.oe.dbg_log('bluetooth::start_bluetoothd', 'ERROR: ('
-                            + repr(e) + ')', 4)
-                        
-    def stop_bluetoothd(self):
-        try:
-
-            self.oe.dbg_log('bluetooth::stop_bluetoothd',
-                            'enter_function', 0)
-
-            if self.dbusBluezAdapter != None:
-                self.adapter_powered( \
-                  self.dbusBluezAdapter, 0)
-                self.dbusBluezAdapter = None
-
-            self.oe.execute('killall %s'
-                                % os.path.basename(self.BLUETOOTH_DAEMON))
-            
-            self.oe.execute('killall %s'
-                                % os.path.basename(self.OBEX_DAEMON))
-                
-            self.oe.dbg_log('bluetooth::stop_bluetoothd',
-                            'exit_function', 0)
-        except Exception, e:
-            self.oe.dbg_log('services::stop_bluetoothd', 'ERROR: ('
-                            + repr(e) + ')', 4)
 
     ####################################################################
     ## Bluetooth Adapter

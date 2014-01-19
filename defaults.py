@@ -52,8 +52,6 @@ bluetooth = \
     {
         "BLUETOOTH_DAEMON" : "/usr/lib/bluetooth/bluetoothd",
         "OBEX_DAEMON"      : "/usr/lib/bluetooth/obexd",
-        "BLUETOOTH_INIT"   : "/etc/init.d/54_bluez",
-        "OBEX_INIT"        : "/etc/init.d/55_obexd",       
         "ENABLED"          : lambda:(True if os.path.exists(connman["BLUETOOTH_DAEMON"]) else False),
       #DEFAULT_VALUES
         "D_OBEXD_ROOT"     : "/storage/downloads/"
@@ -70,7 +68,6 @@ services = \
         "KERNEL_CMD"            : "/proc/cmdline",
         "SAMBA_NMDB"            : "/usr/bin/nmbd",
         "SAMBA_SMDB"            : "/usr/bin/smbd",
-        "SAMBA_INIT"            : "/etc/init.d/52_samba",
       #DEFAULT_VALUES 
         "D_SAMBA_SECURE"        : "0",
         "D_SAMBA_USERNAME"      : "openelec",
@@ -79,18 +76,15 @@ services = \
     
       #SSH
         "SSH_DAEMON"            : "/usr/sbin/sshd",
-        "SSH_INIT"              : "/etc/init.d/51_sshd",
         "OPT_SSH_NOPASSWD"      : "-o 'PasswordAuthentication no'",
       #DEFAULT_VALUES
         "D_SSH_DISABLE_PW_AUTH" : "0",
     
       #AVAHI
         "AVAHI_DAEMON"          : "/usr/sbin/avahi-daemon",
-        "AVAHI_INIT"            : "/etc/init.d/53_avahi",
         
       #CRON
         "CRON_DAEMON"           : "/sbin/crond",
-        "CRON_INIT"             : "/etc/init.d/09_crond",
         
     }
     

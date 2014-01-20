@@ -1,3 +1,7 @@
+2014-01-20 v0.3.11
+  (update) more gui improvements
+  (remove) hd-idle
+
 2014-01-18 v0.3.10
   (updated) more gui improvements
 

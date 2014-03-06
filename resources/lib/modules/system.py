@@ -557,6 +557,9 @@ class system:
                 hosts.write('127.0.0.1\tlocalhost %s\n'
                             % self.struct['ident']['settings'
                             ]['hostname']['value'])
+                hosts.write('::1\tlocalhost ip6-localhost ip6-loopback %s\n'
+                            % self.struct['ident']['settings'
+                            ]['hostname']['value'])
                 hosts.close()
             else:
 

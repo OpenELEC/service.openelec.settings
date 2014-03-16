@@ -42,7 +42,6 @@ class system:
 
     ENABLED = False
     KERNEL_CMD = None
-    LCD_DRIVER_DIR = None
     UPDATE_REQUEST_URL = None
     UPDATE_DOWNLOAD_URL = None
     LOCAL_UPDATE_DIR = None
@@ -158,19 +157,6 @@ class system:
                         'order': 3,
                         }},
                     },
-                'driver': {
-                    'order': 4,
-                    'name': 32007,
-                    'settings': {'lcd': {
-                        'name': 32008,
-                        'value': 'none',
-                        'action': 'set_lcd_driver',
-                        'type': 'multivalue',
-                        'values': [],
-                        'InfoText': 717,
-                        'order': 1,
-                        }},
-                    },
                 'backup': {
                     'order': 7,
                     'name': 32371,
@@ -233,7 +219,6 @@ class system:
             self.load_values()
             self.set_hostname()
             self.set_keyboard_layout()
-            self.set_lcd_driver()
             self.set_hw_clock()
             self.set_auto_update()
 
@@ -284,7 +269,6 @@ class system:
 
             # Keyboard Layout
             (arrLayouts, arrTypes, self.arrVariants) = self.get_keyboard_layouts()
-            arrLcd = self.get_lcd_drivers()
 
             if not arrTypes is None:
 
@@ -342,16 +326,6 @@ class system:
             value = self.oe.read_setting('system', 'hostname')
             if not value is None:
                 self.struct['ident']['settings']['hostname']['value'] = \
-                    value
-
-            # LCD Driver
-            if not arrLcd is None:
-                self.struct['driver']['settings']['lcd']['values'] = \
-                    arrLcd
-
-            value = self.oe.read_setting('system', 'lcd')
-            if not value is None:
-                self.struct['driver']['settings']['lcd']['value'] = \
                     value
 
             # AutoUpdate
@@ -574,53 +548,6 @@ class system:
             self.oe.dbg_log('system::set_hostname', 'ERROR: ('
                             + repr(e) + ')')
 
-    def set_lcd_driver(self, listItem=None):
-        try:
-
-            self.oe.dbg_log('system::set_lcd_driver', 'enter_function',
-                            0)
-
-            self.oe.set_busy(1)
-
-            if not listItem == None:
-                self.set_value(listItem)
-
-            if os.path.isfile('%s/LCDd.conf' % self.oe.USER_CONFIG):
-                lcd_config_file = '%s/LCDd.conf' % self.oe.USER_CONFIG
-            else:
-                lcd_config_file = '/etc/LCDd.conf'
-
-            if not self.struct['driver']['settings']['lcd']['value'] \
-                is None and not self.struct['driver']['settings']['lcd'
-                    ]['value'] == 'none':
-
-                self.oe.dbg_log('system::set_lcd_driver',
-                                self.struct['driver']['settings']['lcd'
-                                ]['value'], 1)
-
-                parameters = ['-c ' + lcd_config_file, '-d '
-                              + self.struct['driver']['settings']['lcd'
-                              ]['value'], '-s true']
-
-                self.oe.execute('killall LCDd')
-                self.oe.execute('LCDd ' + ' '.join(parameters))
-            else:
-
-                self.oe.dbg_log('system::set_lcd_driver',
-                                'no driver selected', 1)
-                
-                self.oe.execute('killall LCDd')
-
-            self.oe.set_busy(0)
-
-            self.oe.dbg_log('system::set_lcd_driver', 'exit_function',
-                            0)
-        except Exception, e:
-
-            self.oe.set_busy(0)
-            self.oe.dbg_log('system::set_lcd_driver', 'ERROR: ('
-                            + repr(e) + ')')
-
     def manual_check_update(self, listItem=None):
         try:
 
@@ -758,31 +685,6 @@ class system:
         except Exception, e:
 
             self.oe.dbg_log('system::get_keyboard_layouts', 'ERROR: ('
-                            + repr(e) + ')')
-
-    def get_lcd_drivers(self): 
-        try:
-
-            self.oe.dbg_log('system::get_lcd_drivers', 'enter_function'
-                            , 0)
-
-            if os.path.exists(self.LCD_DRIVER_DIR):
-                arrDrivers = ['none']
-
-                for driver in glob.glob(self.LCD_DRIVER_DIR + '*'):
-                    arrDrivers.append(os.path.basename(driver).replace('.so'
-                            , ''))
-            else:
-
-                arrDrivers = None
-
-            self.oe.dbg_log('system::get_lcd_drivers', 'exit_function',
-                            0)
-
-            return arrDrivers
-        except Exception, e:
-
-            self.oe.dbg_log('system::get_lcd_drivers', 'ERROR: ('
                             + repr(e) + ')')
 
     def check_updates_v2(self, force=False):

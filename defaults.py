@@ -86,6 +86,9 @@ services = \
       #CRON
         "CRON_DAEMON"           : "/sbin/crond",
         
+      #LCD
+        "LCD_DRIVER_DIR"        : "/usr/lib/lcdproc/",        
+        
     }
     
 system = \
@@ -95,9 +98,6 @@ system = \
         
       #CLOCK
         "SET_CLOCK_CMD"       : "/sbin/hwclock --systohc --utc",
-        
-      #LCD
-        "LCD_DRIVER_DIR"      : "/usr/lib/lcdproc/",
 
       #UPDATE
         "UPDATE_REQUEST_URL"  : "http://update.openelec.tv/updates.php",

@@ -88,6 +88,7 @@ services = \
         
       #LCD
         "LCD_DRIVER_DIR"        : "/usr/lib/lcdproc/",        
+        "D_LCD_DRIVER"          : "none",
         
     }
     

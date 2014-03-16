@@ -48,6 +48,7 @@ class services:
     CRON_DAEMON = None
     
     LCD_DRIVER_DIR = None
+    D_LCD_DRIVER = None
     
     menu = {'4': {
         'name': 32001,
@@ -168,14 +169,25 @@ class services:
                 'driver': {
                     'order': 5,
                     'name': 32007,
-                    'settings': {'lcd': {
+                    'settings': {
+                      'lcd_enabled': {
+                        'name': 32391,
+                        'value': 'none',
+                        'action': 'set_lcd_driver',
+                        'type': 'bool',
+                        'InfoText': 717,
+                        'order': 1,
+                        },
+                      'lcd': {
                         'name': 32008,
                         'value': 'none',
                         'action': 'set_lcd_driver',
                         'type': 'multivalue',
+                        'parent': {'entry': 'lcd_enabled',
+                                   'value': ['1']},                        
                         'values': [],
                         'InfoText': 717,
-                        'order': 1,
+                        'order': 2,
                         }},
                     },                    
                 'bluez': {
@@ -235,8 +247,6 @@ class services:
             self.initialize_avahi(service=1)
             self.initialize_cron(service=1)
             self.init_bluetooth(service=1)
-            
-            self.set_lcd_driver()
             
             self.oe.dbg_log('services::start_service', 'exit_function',
                             0)
@@ -306,14 +316,13 @@ class services:
 
             #LCD
             arrLcd = self.get_lcd_drivers()
-            if not arrLcd is None:
-                self.struct['driver']['settings']['lcd']['values'] = \
-                    arrLcd
-            value = self.oe.read_setting('system', 'lcd')
-            if not value is None:
-                self.struct['driver']['settings']['lcd']['value'] = \
-                    value
-                
+            self.struct['driver']['settings']['lcd']['values'] = \
+                arrLcd
+            self.struct['driver']['settings']['lcd_enabled']['value'] = \
+                self.oe.get_service_state('lcdd')                                
+            self.struct['driver']['settings']['lcd']['value'] = \
+                self.oe.get_service_option('lcdd', 'LCD_DRIVER', self.D_LCD_DRIVER).replace('"', '')
+
             #SAMBA
             if os.path.isfile(self.SAMBA_NMDB) \
                 and os.path.isfile(self.SAMBA_SMDB):
@@ -642,20 +651,28 @@ class services:
 
             self.oe.set_busy(1)
 
-            state = 1
+            state = 0
             options = {}
             
             if not listItem == None:
                 self.set_value(listItem)
 
+            if self.struct['driver']['settings']['lcd_enabled']['value'] == "1":
+                state = 1
+                
             if not self.struct['driver']['settings']['lcd']['value'] \
                 is None and not self.struct['driver']['settings']['lcd'
-                    ]['value'] == 'none':
+                ]['value'] == 'none' and state == 1:
                 
                 options['LCD_DRIVER'] = '"%s"' % \
                     self.struct['driver']['settings']['lcd'
                                 ]['value']
-                
+            
+            self.oe.dbg_log('services::set_lcd_driver', repr(options),
+                            0)
+            self.oe.dbg_log('services::set_lcd_driver', repr(state),
+                            0)
+            
             self.oe.set_service('lcdd', options, state)
             
             self.oe.set_busy(0)
@@ -674,15 +691,12 @@ class services:
             self.oe.dbg_log('services::get_lcd_drivers', 'enter_function'
                             , 0)
 
-            if os.path.exists(self.LCD_DRIVER_DIR):
-                arrDrivers = ['none']
+            arrDrivers = ['none']
 
+            if os.path.exists(self.LCD_DRIVER_DIR):
                 for driver in glob.glob(self.LCD_DRIVER_DIR + '*'):
                     arrDrivers.append(os.path.basename(driver).replace('.so'
                             , ''))
-            else:
-
-                arrDrivers = None
 
             self.oe.dbg_log('services::get_lcd_drivers', 'exit_function',
                             0)

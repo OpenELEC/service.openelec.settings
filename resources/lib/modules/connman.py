@@ -681,7 +681,7 @@ class connmanVpn(object):
                         },
                     
                     
-                    'PPTP.EchoFailure': {
+                    'PPPD.EchoFailure': {
                         'order': 9,
                         'name': 32162,
                         'value': '0',
@@ -690,7 +690,7 @@ class connmanVpn(object):
                         'parent': {'entry': 'Type', 'value': ['pptp']},
                         'optional': '',
                         },
-                    'PPTP.EchoInterval': {
+                    'PPPD.EchoInterval': {
                         'order': 9,
                         'name': 32163,
                         'value': '0',
@@ -699,7 +699,7 @@ class connmanVpn(object):
                         'parent': {'entry': 'Type', 'value': ['pptp']},
                         'optional': '',
                         },
-                    'PPTP.RefuseEAP': {
+                    'PPPD.RefuseEAP': {
                         'order': 9,
                         'name': 32151,
                         'value': '0',
@@ -708,7 +708,7 @@ class connmanVpn(object):
                         'parent': {'entry': 'Type', 'value': ['pptp']},
                         'optional': '',
                         },
-                    'PPTP.RefusePAP': {
+                    'PPPD.RefusePAP': {
                         'order': 9,
                         'name': 32152,
                         'value': '0',
@@ -717,7 +717,7 @@ class connmanVpn(object):
                         'parent': {'entry': 'Type', 'value': ['pptp']},
                         'optional': '',
                         },
-                    'PPTP.RefuseCHAP': {
+                    'PPPD.RefuseCHAP': {
                         'order': 9,
                         'name': 32153,
                         'value': '0',
@@ -726,7 +726,7 @@ class connmanVpn(object):
                         'parent': {'entry': 'Type', 'value': ['pptp']},
                         'optional': '',
                         },
-                    'PPTP.RefuseMSCHAP': {
+                    'PPPD.RefuseMSCHAP': {
                         'order': 9,
                         'name': 32154,
                         'value': '0',
@@ -735,7 +735,7 @@ class connmanVpn(object):
                         'parent': {'entry': 'Type', 'value': ['pptp']},
                         'optional': '',
                         },
-                    'PPTP.RefuseMSCHAP2': {
+                    'PPPD.RefuseMSCHAP2': {
                         'order': 9,
                         'name': 32155,
                         'value': '0',
@@ -744,7 +744,7 @@ class connmanVpn(object):
                         'parent': {'entry': 'Type', 'value': ['pptp']},
                         'optional': '',
                         },
-                    'PPTP.NoBSDComp': {
+                    'PPPD.NoBSDComp': {
                         'order': 9,
                         'name': 32160,
                         'value': '0',
@@ -753,7 +753,7 @@ class connmanVpn(object):
                         'parent': {'entry': 'Type', 'value': ['pptp']},
                         'optional': '',
                         },
-                    'PPTP.NoDeflate': {
+                    'PPPD.NoDeflate': {
                         'order': 9,
                         'name': 32164,
                         'value': '0',
@@ -762,7 +762,7 @@ class connmanVpn(object):
                         'parent': {'entry': 'Type', 'value': ['pptp']},
                         'optional': '',
                         },
-                    'PPTP.RequirMPPE': {
+                    'PPPD.RequirMPPE': {
                         'order': 9,
                         'name': 32156,
                         'value': '0',
@@ -771,7 +771,7 @@ class connmanVpn(object):
                         'parent': {'entry': 'Type', 'value': ['pptp']},
                         'optional': '',
                         },
-                    'PPTP.RequirMPPE40': {
+                    'PPPD.RequirMPPE40': {
                         'order': 9,
                         'name': 32157,
                         'value': '0',
@@ -780,7 +780,7 @@ class connmanVpn(object):
                         'parent': {'entry': 'Type', 'value': ['pptp']},
                         'optional': '',
                         },
-                    'PPTP.RequirMPPE128': {
+                    'PPPD.RequirMPPE128': {
                         'order': 9,
                         'name': 32158,
                         'value': '0',
@@ -789,7 +789,7 @@ class connmanVpn(object):
                         'parent': {'entry': 'Type', 'value': ['pptp']},
                         'optional': '',
                         },
-                    'PPTP.RequirMPPEStateful': {
+                    'PPPD.RequirMPPEStateful': {
                         'order': 9,
                         'name': 32159,
                         'value': '0',
@@ -798,7 +798,7 @@ class connmanVpn(object):
                         'parent': {'entry': 'Type', 'value': ['pptp']},
                         'optional': '',
                         },
-                    'PPTP.NoVJ': {
+                    'PPPD.NoVJ': {
                         'order': 9,
                         'name': 32161,
                         'value': '0',

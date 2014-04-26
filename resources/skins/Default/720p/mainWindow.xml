@@ -134,7 +134,7 @@
                         <width>380</width>
                         <height>55</height>
                         <font>font24_title</font>
-                        <textcolor>FF757677</textcolor>
+                        <textcolor>grey3</textcolor>
                         <align>right</align>
                         <aligny>center</aligny>
                         <label>$INFO[ListItem.Label]</label>
@@ -351,7 +351,7 @@
                                 <top>7</top>
                                 <width>500</width>
                                 <height>20</height>
-                                <textcolor>FF757677</textcolor>
+                                <textcolor>grey2</textcolor>
                                 <selectedcolor>white</selectedcolor>
                                 <info>ListItem.Label</info>
                             </control>
@@ -361,7 +361,7 @@
                                 <top>7</top>
                                 <width>400</width>
                                 <height>20</height>	
-                                <textcolor>FF757677</textcolor>
+                                <textcolor>grey2</textcolor>
                                 <selectedcolor>white</selectedcolor>
                                 <info>ListItem.Property(value)</info>
                                 <visible>!StringCompare(ListItem.Property(Typ), bool) + !StringCompare(ListItem.Property(Typ), button)</visible>
@@ -455,7 +455,7 @@
                                 <top>7</top>
                                 <width>500</width>
                                 <height>20</height>
-                                <textcolor>FF757677</textcolor>
+                                <textcolor>grey2</textcolor>
                                 <info>ListItem.Label</info>
                                 <visible>!Control.HasFocus(1100)</visible>
                             </control>
@@ -465,7 +465,7 @@
                                 <top>7</top>
                                 <width>400</width>
                                 <height>20</height>
-                                <textcolor>FF757677</textcolor>
+                                <textcolor>grey2</textcolor>
                                 <info>ListItem.Property(value)</info>
                                 <visible>!StringCompare(ListItem.Property(Typ), bool) + !StringCompare(ListItem.Property(Typ), button) + !Control.HasFocus(1100)</visible>
                             </control> 

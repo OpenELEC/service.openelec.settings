@@ -60,9 +60,13 @@ msgctxt "#611"
 msgid "The OpenELEC project runs on goodwill, love, and your donations. If you would like to contribute to the project you can donate using PayPal, Flattr or Bitcoin. Making a donation is easy and takes only a couple of minutes. http://openelec.tv/donate"
 msgstr "OpenELEC projesi, iyi niyet, sevgi ve bağışlarınız ile çalışır. Projeye katkıda bulunmak istiyorsanız PayPal, Flattr veya Bitcoin kullanarak bağış yapabilirsiniz. Bağış yapmak kolaydır ve sadece birkaç dakika sürer. http://openelec.tv/donate"
 
+msgctxt "#700"
+msgid "Configure a hostname, keyboard type, perform a reset, update, or backups and restores"
+msgstr "Ana bilgisayar adı, klavye türü, sıfırlama, güncelleme veya yedekleme ve geri yüklemeyi yapılandır"
+
 msgctxt "#701"
-msgid "Configure network startup options, network mounts, NTP and VPNs"
-msgstr "Ağ başlangıç seçeneklerini yapılandır, ağ bağlamaları, NTP ve VPN'ler"
+msgid "Configure network startup options, NTP and VPNs"
+msgstr "Ağ başlangıç seçenekleri, NTP ve VPN'leri yapılandır "
 
 msgctxt "#702"
 msgid "Manage the Ethernet, Wireless and VPN connections available to the system"
@@ -107,6 +111,10 @@ msgstr "2. klavye yazılım düzenini yapılandır"
 msgctxt "#713"
 msgid "Configure the physical keyboard type"
 msgstr "Fiziksel klavye türünü yapılandır"
+
+msgctxt "#716"
+msgid "Click to manually check the OpenELEC servers for an updated release"
+msgstr "OpenELEC sunucularındaki güncel sürümü el ile kontrol etmek için tıklayın."
 
 msgctxt "#721"
 msgid "721"
@@ -162,7 +170,7 @@ msgstr "embedded SSH sunucusunu etkinleştirmek için AÇIK olarak ayarlayın. S
 
 msgctxt "#743"
 msgid "Set to ON if you have copied private SSH keys to your HTPC and would like to improve security by disabling SSH username and password authentication."
-msgstr "Özel SSH anahtarlarını HTPC'ye kopyalayıp, SSH kullanıcı adı ve parola kimlik doğrulamasını devre dışı bırakarak güvenliği artırmak istiyorsanız AÇIK olarak ayarlayın"
+msgstr "Özel SSH anahtarlarını HTPC'ye kopyalayıp, SSH kullanıcı adı ve parola kimlik doğrulamasını devre dışı bırakarak güvenliği artırmak istiyorsanız AÇIK olarak ayarlayın."
 
 msgctxt "#744"
 msgid "Set to ON to enable the Avahi (Zeroconf/Bonjour) network discovery service"
@@ -199,6 +207,10 @@ msgstr "1. klavye yazılım değişkenini yapılandır"
 msgctxt "#754"
 msgid "Configure the 2nd keyboard software Variant"
 msgstr "2. klavye yazılım değişkenini yapılandır"
+
+msgctxt "#755"
+msgid "Auto share external drives / partitions"
+msgstr "Dış sürücüleri / bölümleri otomatik paylaş"
 
 msgctxt "#32000"
 msgid "Network"
@@ -244,9 +256,9 @@ msgctxt "#32010"
 msgid "Keyboard Layout"
 msgstr "Klavye Düzeni"
 
-msgctxt "#32011"
-msgid "Power Saving"
-msgstr "Güç Tasarrufu"
+msgctxt "#32012"
+msgid "Sleep hard drive after (minutes)"
+msgstr "Sabit diskin uykudan önce bekleme süresi (dakika)"
 
 msgctxt "#32013"
 msgid "Updates"
@@ -366,7 +378,19 @@ msgstr "Saat sunucusu #3"
 
 msgctxt "#32127"
 msgid "DNS Domains"
-msgstr " DNS Etki Alanları"
+msgstr "DNS Etki Alanları"
+
+msgctxt "#32128"
+msgid "Domain #1"
+msgstr "Etki Alanı #1"
+
+msgctxt "#32129"
+msgid "Domain #2"
+msgstr "Etki Alanı #2"
+
+msgctxt "#32130"
+msgid "Domain #3"
+msgstr "Etki Alanı #3"
 
 msgctxt "#32131"
 msgid "VPN Type"
@@ -484,6 +508,18 @@ msgctxt "#32183"
 msgid "Time remaining"
 msgstr "Kalan süre"
 
+msgctxt "#32184"
+msgid "Extract file"
+msgstr "Dosyaları ayıkla"
+
+msgctxt "#32185"
+msgid "Extract speed"
+msgstr "Ayıklama hızı"
+
+msgctxt "#32186"
+msgid "Initialize Archive File"
+msgstr "Arşiv Dosyasını Başlat"
+
 msgctxt "#32187"
 msgid "Latest Version"
 msgstr "Son Sürüm"
@@ -599,6 +635,10 @@ msgstr "Günlük dosyalarını karşıya yükle"
 msgctxt "#32215"
 msgid "Invalid Email Address"
 msgstr "Geçersiz E-Posta Adresi"
+
+msgctxt "#32216"
+msgid "Auto-Share External Drives"
+msgstr "Dış Sürücüleri Otomatik Paylaş"
 
 msgctxt "#32300"
 msgid "Welcome to [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
@@ -756,30 +796,6 @@ msgctxt "#32346"
 msgid "Bluetooth is disabled"
 msgstr "Bluetooth devre dışı"
 
-msgctxt "#32349"
-msgid "Add"
-msgstr "Ekle"
-
-msgctxt "#32351"
-msgid "Type"
-msgstr "Tür"
-
-msgctxt "#32353"
-msgid "Server"
-msgstr "Sunucu"
-
-msgctxt "#32354"
-msgid "Share"
-msgstr "Paylaşım"
-
-msgctxt "#32355"
-msgid "Username"
-msgstr "Kullanıcı Adı"
-
-msgctxt "#32356"
-msgid "Password"
-msgstr "Parola"
-
 msgctxt "#32358"
 msgid "Trust and Connect"
 msgstr "Güven ve Bağlan"
@@ -814,7 +830,7 @@ msgstr "Güncelleme İndirmesi Tamamlandı"
 
 msgctxt "#32367"
 msgid "Update Extract Complete"
-msgstr "Güncelleme Çıkarması Tamamlandı"
+msgstr "Güncelleme Ayıklaması Tamamlandı"
 
 msgctxt "#32368"
 msgid "Advanced Network Settings"
@@ -827,6 +843,10 @@ msgstr "XBMC başlamadan ağ bağlantısı için bekle"
 msgctxt "#32370"
 msgid "Maximum Wait Time (Sec.)"
 msgstr "Azami Bekleme süresi (Saniye)"
+
+msgctxt "#32371"
+msgid "Backup"
+msgstr "Yedekle"
 
 msgctxt "#32372"
 msgid "Create System and XBMC Backup"
@@ -847,6 +867,10 @@ msgstr "Yedekleme hedef dizinini seçin"
 msgctxt "#32377"
 msgid "Select the backup file to restore"
 msgstr "Geri yüklemek için yedek dosyası seç"
+
+msgctxt "#32378"
+msgid "The information you entered is incomplete"
+msgstr "Girdiğiniz bilgiler eksik"
 
 msgctxt "#32379"
 msgid "There is not enough free storage space to continue!"
@@ -876,6 +900,18 @@ msgctxt "#32387"
 msgid "Keyboard Layout Variant #2"
 msgstr "Klavye Düzeni Değişkeni #2"
 
+msgctxt "#32388"
+msgid "Enable Standby"
+msgstr "Beklemeyi Etkinleştir"
+
+msgctxt "#32389"
+msgid "Disable Standby"
+msgstr "Beklemeyi Devre Dışı Bırak"
+
 msgctxt "#32390"
 msgid "Settings addon is not yet ready, please try again later."
 msgstr "Ayarlar eklentisi henüz hazır değil, lütfen daha sonra tekrar deneyin."
+
+msgctxt "#32391"
+msgid "Enable LCD Driver Support"
+msgstr "LCD Sürücü Desteğini Etkinleştir"

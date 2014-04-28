@@ -20,6 +20,10 @@ msgctxt "#603"
 msgid "Type"
 msgstr "வகை:"
 
+msgctxt "#32001"
+msgid "Services"
+msgstr "சேவைகள்"
+
 msgctxt "#32002"
 msgid "System"
 msgstr "கணினி"
@@ -44,25 +48,25 @@ msgctxt "#32142"
 msgid "Refresh"
 msgstr "புதுப்பி"
 
+msgctxt "#32191"
+msgid "Error"
+msgstr "பிழை"
+
 msgctxt "#32212"
 msgid "Cancel"
 msgstr "இரத்துக"
+
+msgctxt "#32213"
+msgid "Exit"
+msgstr "வெளியேறு"
 
 msgctxt "#32326"
 msgid "Are you sure?"
 msgstr "நீங்கள் உறுதியாக இருக்கிறீர்களா?"
 
-msgctxt "#32351"
-msgid "Type"
-msgstr "வகை:"
-
-msgctxt "#32355"
-msgid "Username"
-msgstr "பயனர்பெயர்"
-
-msgctxt "#32356"
-msgid "Password"
-msgstr "அடையாளச் சொல்"
+msgctxt "#32335"
+msgid "No"
+msgstr "இல்லை"
 
 msgctxt "#32371"
 msgid "Backup"

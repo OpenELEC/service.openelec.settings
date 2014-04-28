@@ -58,7 +58,7 @@ msgstr "Open Embedded Linux Entertainment Center (OpenELEC) е минималн�
 
 msgctxt "#610"
 msgid "[B]Support:[/B][CR]Web: http://openelec.tv[CR]Forum: http://openelec.tv/forum[CR]Wiki: http://wiki.openelec.tv[CR][CR][B]Social Media:[/B][CR]IRC: #openelec on freenode.net (web-based chat is also available from the website)[CR]Twitter: https://twitter.com/openelec[CR]Facebook: http://www.facebook.com/OpenELEC[CR]Google+: https://plus.google.com/+openelec"
-msgstr "[B]Поддръжка:[/B][CR]Уеб сайт: www.openelec.tv[CR]Форум: www.openelec.tv/forum[CR]Уики: www.wiki.openelec.tv[CR][CR][B]Социални мрежи:[/B][CR]IRC: #openelec в freenode.net (уеб-базиран чат е наличен на уеб сайта)[CR]Twitter: www.twitter.com/openelec[CR]Facebook: www.facebook.com/OpenELEC[CR]Google+: www.plus.google.com/+openelec"
+msgstr "[B]Поддръжка:[/B][CR]Уеб сайт: www.openelec.tv[CR]Форум: www.openelec.tv/forum[CR]Уики: www.wiki.openelec.tv[CR][CR][B]Социални мрежи:[/B][CR]IRC: #openelec в freenode.net (уеб базиран чат е наличен на уеб сайта)[CR]Twitter: www.twitter.com/openelec[CR]Facebook: www.facebook.com/OpenELEC[CR]Google+: www.plus.google.com/+openelec"
 
 msgctxt "#611"
 msgid "The OpenELEC project runs on goodwill, love, and your donations. If you would like to contribute to the project you can donate using PayPal, Flattr or Bitcoin. Making a donation is easy and takes only a couple of minutes. http://openelec.tv/donate"
@@ -69,8 +69,8 @@ msgid "Configure a hostname, keyboard type, perform a reset, update, or backups 
 msgstr "Задайте име на хоста, тип на клавиатурата, нулирайте, актуализирайте, направете резервно копие или възстановете"
 
 msgctxt "#701"
-msgid "Configure network startup options, network mounts, NTP and VPNs"
-msgstr "Задайте настройки за мрежата при стартиране, монтирани мрежови ресурси, NTP и VPN"
+msgid "Configure network startup options, NTP and VPNs"
+msgstr "Стартови настройки за мрежата - NTP и VPN"
 
 msgctxt "#702"
 msgid "Manage the Ethernet, Wireless and VPN connections available to the system"
@@ -87,6 +87,22 @@ msgstr "Настройване и сдвояване на Bluetooth устрой
 msgctxt "#705"
 msgid "Useful information like version and architecture details, support and social media links, and how to make a donation to the project"
 msgstr "Полезна информация като номер на версията, подробности за архитектурата, поддръжка, връзки към социални мрежи и информация за дарения"
+
+msgctxt "#706"
+msgid "706"
+msgstr "706"
+
+msgctxt "#707"
+msgid "707"
+msgstr "707"
+
+msgctxt "#708"
+msgid "708"
+msgstr "708"
+
+msgctxt "#709"
+msgid "709"
+msgstr "709"
 
 msgctxt "#710"
 msgid "Configure the Hostname of your OpenELEC system. This will be used for the HTPC \\\\hostname in Windows and SMB server name in the Mac OS Finder"
@@ -131,6 +147,10 @@ msgstr "След колко минути, липса на активност, д
 msgctxt "#720"
 msgid "Set to ON and Bluetooth devices will be disabled during power-saving modes"
 msgstr "Включете и Bluetooth устройствата ще бъдат изключвани при активиране на енергоспестяващ режим"
+
+msgctxt "#721"
+msgid "721"
+msgstr "721"
 
 msgctxt "#722"
 msgid "Create a tar archive containing all OpenELEC and XBMC configuration settings, databases and thumbnail content. Backup files will be stored in /storage/backups"
@@ -184,13 +204,13 @@ msgctxt "#734"
 msgid "Configure the 3rd time (NTP) server"
 msgstr "Задайте 3ти сървър за точно време (NTP)"
 
-msgctxt "#735"
-msgid "Configure boot-time mounting of a remote filesystem, e.g. NFS or SMB mounts on a remote NAS, without needing autostart.sh hacks."
-msgstr "Настройте монтиране на отдалечена файлова система (чрез NFS или SMB) по време на зареждането. Така ще избегнете необходимостта от ползването на autostart.sh."
-
 msgctxt "#736"
 msgid "Set to ON to delay XBMC startup until the network is available. Use this if the OS is booting into XBMC before the network is up and central MySQL databases are accessible."
 msgstr "Включете за да забавите стартирането на XBMC докато не се осъществи свързването с локалната мрежа. Ползвайте опцията ако операционната система зарежда XBMC преди да е налична мрежова връзка и централната MySQL база от данни остава недостъпна."
+
+msgctxt "#737"
+msgid "737"
+msgstr "737"
 
 msgctxt "#738"
 msgid "Set to ON to enable the embedded Samba (SMB) filesharing service"
@@ -220,6 +240,30 @@ msgctxt "#744"
 msgid "Set to ON to enable the Avahi (Zeroconf/Bonjour) network discovery service"
 msgstr "Включете за да активирате услугата Avahi (Zeroconf/Bonjour) за автоматично  откриване на устройства, част от мрежата към която сте свързани"
 
+msgctxt "#745"
+msgid "Set to ON to enable the cron daemon"
+msgstr "Включете за да активирате крон демона"
+
+msgctxt "#746"
+msgid "Set to ON to send system event logs (/var/log/messages) to a remote Syslog server"
+msgstr "Включете за изпращане на дневника със системните събития (/var/log/messages) към оотдалечения Syslog сървър"
+
+msgctxt "#747"
+msgid "Configure the IP address of the remote Syslog server"
+msgstr "Настройте IP адреса на отдалечения Syslog сървър"
+
+msgctxt "#748"
+msgid "748"
+msgstr "748"
+
+msgctxt "#749"
+msgid "749"
+msgstr "749"
+
+msgctxt "#750"
+msgid "750"
+msgstr "750"
+
 msgctxt "#751"
 msgid "With OBEX filetransfer you can send files, for example movies or pictures over bluetooth to OpenELEC."
 msgstr "Чрез OBEX можете да изпращате файлове, като филми и снимки, чрез Bluetooth към OpenELEC"
@@ -235,6 +279,10 @@ msgstr "Задайте първа софтуерна подребва на кл�
 msgctxt "#754"
 msgid "Configure the 2nd keyboard software Variant"
 msgstr "Задайте втора софтуерна подребва на клавиатурата"
+
+msgctxt "#755"
+msgid "Auto share external drives / partitions"
+msgstr "Споделяй автоматичното въшните дискове/дялове"
 
 msgctxt "#32000"
 msgid "Network"
@@ -279,10 +327,6 @@ msgstr "Клавиатура"
 msgctxt "#32010"
 msgid "Keyboard Layout"
 msgstr "Клавиатурна подредба"
-
-msgctxt "#32011"
-msgid "Power Saving"
-msgstr "Пестене на енергия"
 
 msgctxt "#32012"
 msgid "Sleep hard drive after (minutes)"
@@ -556,9 +600,57 @@ msgctxt "#32165"
 msgid "MTU"
 msgstr "MTU"
 
+msgctxt "#32166"
+msgid "NSCertType"
+msgstr "NSCertType"
+
+msgctxt "#32167"
+msgid "Proto"
+msgstr "Proto"
+
 msgctxt "#32168"
 msgid "Port"
 msgstr "Порт"
+
+msgctxt "#32169"
+msgid "AuthUserPass"
+msgstr "AuthUserPass"
+
+msgctxt "#32170"
+msgid "AskPass"
+msgstr "AskPass"
+
+msgctxt "#32171"
+msgid "AuthNoCache"
+msgstr "AuthNoCache"
+
+msgctxt "#32172"
+msgid "TLSRemote"
+msgstr "TLSRemote"
+
+msgctxt "#32173"
+msgid "TLSAuth"
+msgstr "TLSAuth"
+
+msgctxt "#32174"
+msgid "TLSAuthDir"
+msgstr "TLSAuthDir"
+
+msgctxt "#32175"
+msgid "Auth"
+msgstr "Auth"
+
+msgctxt "#32176"
+msgid "CompLZO"
+msgstr "CompLZO"
+
+msgctxt "#32177"
+msgid "RemoteCertTls"
+msgstr "RemoteCertTls"
+
+msgctxt "#32178"
+msgid "ConfigFile"
+msgstr "ConfigFile"
 
 msgctxt "#32179"
 msgid "Update Available"
@@ -580,6 +672,18 @@ msgctxt "#32183"
 msgid "Time remaining"
 msgstr "Оставащо време"
 
+msgctxt "#32184"
+msgid "Extract file"
+msgstr "Извлечи файл"
+
+msgctxt "#32185"
+msgid "Extract speed"
+msgstr "Скорост на извличане"
+
+msgctxt "#32186"
+msgid "Initialize Archive File"
+msgstr "Инициализиране на архивен файл"
+
 msgctxt "#32187"
 msgid "Latest Version"
 msgstr "Последна версия"
@@ -599,6 +703,10 @@ msgstr "Име на системата"
 msgctxt "#32191"
 msgid "Error"
 msgstr "Грешка"
+
+msgctxt "#32192"
+msgid "Unable to connect to Network"
+msgstr "Не може да се свърже с мрежата"
 
 msgctxt "#32193"
 msgid "Service"
@@ -666,11 +774,15 @@ msgstr "Скрита безжична мрежа"
 
 msgctxt "#32209"
 msgid "Proxy Server"
-msgstr "Proxy сървър"
+msgstr "Прокси сървър"
+
+msgctxt "#32210"
+msgid "Auto Proxy URL"
+msgstr "Автоматична прокси връзка"
 
 msgctxt "#32211"
 msgid "Proxy Servers"
-msgstr "Proxy сървъри"
+msgstr "Прокси сървъри"
 
 msgctxt "#32212"
 msgid "Cancel"
@@ -680,9 +792,17 @@ msgctxt "#32213"
 msgid "Exit"
 msgstr "Изход"
 
+msgctxt "#32214"
+msgid "Upload Logfiles"
+msgstr "Качи дневниците"
+
 msgctxt "#32215"
 msgid "Invalid Email Address"
 msgstr "Невалиден имейл адрес"
+
+msgctxt "#32216"
+msgid "Auto-Share External Drives"
+msgstr "Споделяй автоматичното въшните дискове"
 
 msgctxt "#32300"
 msgid "Welcome to [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
@@ -710,7 +830,7 @@ msgstr "Мрежа"
 
 msgctxt "#32306"
 msgid "In order to download backdrops, banners and thumbnails for your movies and TV shows and to stream online content from sites like YouTube, [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] needs to be connected the Internet.[CR][CR]An Internet connection is also required for [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] to automatically update itself."
-msgstr "За да сваляте картинки (като плакати, банери и миниатюри) за филми и ТВ сериали или да гледате поточно видео от сайтове като YouTube [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] изисква връзка с интернет.[CR][CR]Необходима е и за автоматичното актуализиране на [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]."
+msgstr "За сваляне на картинки (като плакати, банери и миниатюри) за филми и ТВ Сериали или за гледане на поточно видео от сайтове като YouTube [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] изисква връзка с интернет.[CR][CR]Необходима е и за автоматичното актуализиране на [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]."
 
 msgctxt "#32307"
 msgid "Select your Regional Settings:"
@@ -759,6 +879,14 @@ msgstr "Благодарим Ви"
 msgctxt "#32318"
 msgid "You [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] installation is now complete and you'll now enter XBMC when you can set up your media libraries. For help with this, there is a guide available at wiki.xbmc.org[CR][CR][COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] is developed by a dedicated team of developers who work purely in their spare time. Even as a volunteer project, we still have to pay for our internet bandwidth and development resources so if you find [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] useful, we will always appreciate a donation of any amount.[CR][CR]Finally, we hope you enjoy using [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] as much as we've enjoying building it. If you need any more help, you can find links to get help along with latest news at openelec.tv"
 msgstr "Инсталацията на [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] приключи и сега ще бъдете пренасочени към XBMC, където ще можете да настроите медийните си библиотеки. При необходимост от помощ можете да ползвате ръководството на www.wiki.xbmc.org[CR][CR][COLOR FF757677]Open[/COLOR].[COLOR FF8ABEE2]ELEC[/COLOR] се развива от малък екип разработчици, в свободното им време. Въпреки, че е проект на доброволчески начала се налага да се плаща за интернет трафика и разходи свързани с развойната дейност. Затова ако намирате [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] за полезна програма ние ще оценим и най-малкото дарение. [CR][CR]Надяваме се, че ще се насладите на [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR], поне толкова колкото ние се наслаждавахме докато го създавахме. Ако Ви е необходима помощ ще я намерите на www.openelec.tv, заедно с последните новини."
+
+msgctxt "#32319"
+msgid "Cron"
+msgstr "Крон"
+
+msgctxt "#32320"
+msgid "Enable Cron"
+msgstr "Включи крона"
 
 msgctxt "#32321"
 msgid "Virtual Private Networks"
@@ -832,6 +960,18 @@ msgctxt "#32339"
 msgid "No Bluetooth device found. Please put your Bluetooth device into discovery mode[CR]and start the scan"
 msgstr "Не са открити Bluetooth устройства. Поставете вашето Bluetooth устройство[CR]в режим който ще го направи откриваемо (направете го \"видимо\")[CR]и стартирайте ново търсене"
 
+msgctxt "#32340"
+msgid "Syslog"
+msgstr "Системен дневник"
+
+msgctxt "#32341"
+msgid "Enable Remote Syslog Server"
+msgstr "Включи отдалечения Syslog сървър"
+
+msgctxt "#32342"
+msgid "Syslog Server IP Address"
+msgstr "IP адрес на Syslog сървъра"
+
 msgctxt "#32343"
 msgid "Enter the following Key on your Device."
 msgstr "Наберете следния ключ от вашето устройство."
@@ -840,53 +980,17 @@ msgctxt "#32344"
 msgid "Enable Bluetooth"
 msgstr "Включване на Bluetooth"
 
+msgctxt "#32345"
+msgid "Bluetooth daemon is not running!"
+msgstr "Bluetooth демона не е стартиран"
+
 msgctxt "#32346"
 msgid "Bluetooth is disabled"
 msgstr "Bluetooth е изключен"
 
-msgctxt "#32347"
-msgid "Enable hard drive sleep when idle"
-msgstr "\"Приспиване\" на твърдите дискове при бездействие"
-
-msgctxt "#32348"
-msgid "Network Mounts"
-msgstr "Монтиране на мрежови ресурси"
-
-msgctxt "#32349"
-msgid "Add"
-msgstr "Добавяне"
-
-msgctxt "#32350"
-msgid "Mount"
-msgstr "Монтиране"
-
-msgctxt "#32351"
-msgid "Type"
-msgstr "Тип"
-
-msgctxt "#32352"
-msgid "Mount Point"
-msgstr "Монтиране в"
-
-msgctxt "#32353"
-msgid "Server"
-msgstr "Сървър"
-
-msgctxt "#32354"
-msgid "Share"
-msgstr "Път до споделения ресурс"
-
-msgctxt "#32355"
-msgid "Username"
-msgstr "Потребителско име"
-
-msgctxt "#32356"
-msgid "Password"
-msgstr "Парола"
-
-msgctxt "#32357"
-msgid "Mount Options"
-msgstr "Настройки за монтиране"
+msgctxt "#32358"
+msgid "Trust and Connect"
+msgstr "Довери се и се свържи"
 
 msgctxt "#32359"
 msgid "Support"
@@ -948,6 +1052,14 @@ msgctxt "#32373"
 msgid "Restore Backup"
 msgstr "Възстановяване от резервно копие"
 
+msgctxt "#32375"
+msgid "Backup Progress"
+msgstr "Прогрес за създаване на резервното копие"
+
+msgctxt "#32376"
+msgid "Select a backup destination directory"
+msgstr "Изберете дестинация за директорията на резервните копия"
+
 msgctxt "#32377"
 msgid "Select the backup file to restore"
 msgstr "Изберте от кой файл да се възстановява"
@@ -972,6 +1084,14 @@ msgctxt "#32382"
 msgid "Speed"
 msgstr "Скорост"
 
+msgctxt "#32384"
+msgid "OBEX Enabled"
+msgstr "OBEX е включен"
+
+msgctxt "#32385"
+msgid "OBEX Upload Folder"
+msgstr "OBEX папка за качване"
+
 msgctxt "#32386"
 msgid "Keyboard Layout Variant #1"
 msgstr "Подредба №1"
@@ -979,6 +1099,14 @@ msgstr "Подредба №1"
 msgctxt "#32387"
 msgid "Keyboard Layout Variant #2"
 msgstr "Подредба №2"
+
+msgctxt "#32388"
+msgid "Enable Standby"
+msgstr "Включи режима за готовност"
+
+msgctxt "#32389"
+msgid "Disable Standby"
+msgstr "Изключи режима за готовност"
 
 msgctxt "#32390"
 msgid "Settings addon is not yet ready, please try again later."

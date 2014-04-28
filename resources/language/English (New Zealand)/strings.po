@@ -9,16 +9,16 @@ msgstr ""
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: XBMC Translation Team\n"
-"Language-Team: French (http://www.transifex.com/projects/p/xbmc-addons/language/fr/)\n"
+"Language-Team: English (New Zealand) (http://www.transifex.com/projects/p/xbmc-addons/language/en_NZ/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: en_NZ\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgctxt "#600"
 msgid "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] Settings"
-msgstr "Paramètres d'[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
+msgstr "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] Settings"
 
 msgctxt "#601"
 msgid "Interface"
@@ -26,7 +26,7 @@ msgstr "Interface"
 
 msgctxt "#602"
 msgid "Address"
-msgstr "Adresse"
+msgstr "Address"
 
 msgctxt "#603"
 msgid "Type"
@@ -34,59 +34,59 @@ msgstr "Type"
 
 msgctxt "#604"
 msgid "State"
-msgstr "État"
+msgstr "State"
 
 msgctxt "#605"
 msgid "Address"
-msgstr "Adresse"
+msgstr "Address"
 
 msgctxt "#606"
 msgid "Distribution: "
-msgstr "Distribution:"
+msgstr "Distribution: "
 
 msgctxt "#607"
 msgid "Version: "
-msgstr "Version:"
+msgstr "Version: "
 
 msgctxt "#608"
 msgid "Architecture: "
-msgstr "Architecture:"
+msgstr "Architecture: "
 
 msgctxt "#609"
 msgid "Open Embedded Linux Entertainment Center (OpenELEC) is a minimal Linux distribution purpose built for XBMC media center. OpenELEC is designed to boot fast with an installation process simple enough for anyone to convert a bare HTPC into a fully configured media machine in under 15 minutes."
-msgstr "Open Embedded Linux Entertainment Center (OpenELEC) est un système Linux minimal construit pour XBMC. OpenELEC a été pensé pour démarrer rapidement avec un processus d'installation suffisament simple pour que n'importe qui puisse convertir un ordinateur en machine multimédia en moins de 15 minutes."
+msgstr "Open Embedded Linux Entertainment Center (OpenELEC) is a minimal Linux distribution purpose built for XBMC media center. OpenELEC is designed to boot fast with an installation process simple enough for anyone to convert a bare HTPC into a fully configured media machine in under 15 minutes."
 
 msgctxt "#610"
 msgid "[B]Support:[/B][CR]Web: http://openelec.tv[CR]Forum: http://openelec.tv/forum[CR]Wiki: http://wiki.openelec.tv[CR][CR][B]Social Media:[/B][CR]IRC: #openelec on freenode.net (web-based chat is also available from the website)[CR]Twitter: https://twitter.com/openelec[CR]Facebook: http://www.facebook.com/OpenELEC[CR]Google+: https://plus.google.com/+openelec"
-msgstr "[B]Support:[/B][CR]Web: http://openelec.tv[CR]Forum: http://openelec.tv/forum[CR]Wiki: http://wiki.openelec.tv[CR][CR][B]Media Sociaux:[/B][CR]IRC: #openelec sur freenode.net (client web aussi disponible sur le site)[CR]Twitter: https://twitter.com/openelec[CR]Facebook: http://www.facebook.com/OpenELEC[CR]Google+: https://plus.google.com/+openelec"
+msgstr "[B]Support:[/B][CR]Web: http://openelec.tv[CR]Forum: http://openelec.tv/forum[CR]Wiki: http://wiki.openelec.tv[CR][CR][B]Social Media:[/B][CR]IRC: #openelec on freenode.net (web-based chat is also available from the website)[CR]Twitter: https://twitter.com/openelec[CR]Facebook: http://www.facebook.com/OpenELEC[CR]Google+: https://plus.google.com/+openelec"
 
 msgctxt "#611"
 msgid "The OpenELEC project runs on goodwill, love, and your donations. If you would like to contribute to the project you can donate using PayPal, Flattr or Bitcoin. Making a donation is easy and takes only a couple of minutes. http://openelec.tv/donate"
-msgstr "Le projet OpenELEC s’appuie sur la bonne volonté, l'amour, et vos dons. Vous pouvez contribuer au projet via PayPal, Flattr ou Bitcoin. Faire un don est simple et ne prend que quelques minutes. http://openelec.tv/donate"
+msgstr "The OpenELEC project runs on goodwill, love, and your donations. If you would like to contribute to the project you can donate using PayPal, Flattr or Bitcoin. Making a donation is easy and takes only a couple of minutes. http://openelec.tv/donate"
 
 msgctxt "#700"
 msgid "Configure a hostname, keyboard type, perform a reset, update, or backups and restores"
-msgstr "Configurer un nom d’hôte, le type de clavier, réinitialiser, mettre à jour, sauvegarder et restaurer"
+msgstr "Configure a hostname, keyboard type, perform a reset, update, or backups and restores"
 
 msgctxt "#701"
 msgid "Configure network startup options, NTP and VPNs"
-msgstr "Configurer les options de démarrage réseau, NTP et VPNs"
+msgstr "Configure network startup options, NTP and VPNs"
 
 msgctxt "#702"
 msgid "Manage the Ethernet, Wireless and VPN connections available to the system"
-msgstr "Gérer les connexions Ethernet, Wi-Fi et VPN du système"
+msgstr "Manage the Ethernet, Wireless and VPN connections available to the system"
 
 msgctxt "#703"
 msgid "Configure system services like Samba, SSH, Cron, Avahi and Syslog"
-msgstr "Configurer les services du système tels que Samba, SSH, Cron, Avahi et Syslog"
+msgstr "Configure system services like Samba, SSH, Cron, Avahi and Syslog"
 
 msgctxt "#704"
 msgid "Configure and pair Bluetooth devices"
-msgstr "Configurer et associer des périphériques Bluetooth"
+msgstr "Configure and pair Bluetooth devices"
 
 msgctxt "#705"
 msgid "Useful information like version and architecture details, support and social media links, and how to make a donation to the project"
-msgstr "Informations utiles comme les détails sur la version, l'architecture, les liens pour le support, les réseaux sociaux, et les manières de faire des dons au projet"
+msgstr "Useful information like version and architecture details, support and social media links, and how to make a donation to the project"
 
 msgctxt "#706"
 msgid "706"
@@ -106,47 +106,43 @@ msgstr "709"
 
 msgctxt "#710"
 msgid "Configure the Hostname of your OpenELEC system. This will be used for the HTPC \\\\hostname in Windows and SMB server name in the Mac OS Finder"
-msgstr "Configurer le nom d'hôte de votre système OpenELEC. Celui-ci sera utilisé comme \\\\nom à partir de Windows et comme nom de serveur SMB dans le Finder Mac OS"
+msgstr "Configure the Hostname of your OpenELEC system. This will be used for the HTPC \\\\hostname in Windows and SMB server name in the Mac OS Finder"
 
 msgctxt "#711"
 msgid "Configure the 1st keyboard software layout"
-msgstr "Configurer le 1er type de clavier"
+msgstr "Configure the 1st keyboard software layout"
 
 msgctxt "#712"
 msgid "Configure the 2nd keyboard software layout"
-msgstr "Configurer le 2ème type de clavier"
+msgstr "Configure the 2nd keyboard software layout"
 
 msgctxt "#713"
 msgid "Configure the physical keyboard type"
-msgstr "Configurer le type physique de clavier"
+msgstr "Configure the physical keyboard type"
 
 msgctxt "#714"
 msgid "OpenELEC can be configured for automatic or manual updates. Automatic updates are available on stable releases and stable release candidates. Automatic update self-disables on beta and development builds"
-msgstr "OpenELEC peut être configuré pour être mis à jour manuellement ou automatiquement. Les mises à jours automatiques sont disponibles pour les versions stables et les release candidates. La mise à jour automatique est désactivée pour les versions de test et les versions de développement"
+msgstr "OpenELEC can be configured for automatic or manual updates. Automatic updates are available on stable releases and stable release candidates. Automatic update self-disables on beta and development builds"
 
 msgctxt "#715"
 msgid "Set to ON and an on-screen notification will be displayed when a new update is available"
-msgstr "Activer pour afficher une notification quand une nouvelle version est disponible"
+msgstr "Set to ON and an on-screen notification will be displayed when a new update is available"
 
 msgctxt "#716"
 msgid "Click to manually check the OpenELEC servers for an updated release"
-msgstr "Cliquer pour vérifier si une nouvelle version d'OpenELEC est disponible"
-
-msgctxt "#717"
-msgid "If you have an small LCD or VFD attached to your OpenELEC system you must configure the correct display driver"
-msgstr "Si vous avez un petit LCD ou VFD relié à votre système OpenELEC, vous devez configurer le bon pilote d'affichage"
+msgstr "Click to manually check the OpenELEC servers for an updated release"
 
 msgctxt "#718"
 msgid "Set on ON and OpenELEC will spin down attached drives (not the main system drive) when idle"
-msgstr "Activer pour qu'OpenELEC mette les disques connectés en veille (mais pas le disque système) pendant les périodes d'inactivité"
+msgstr "Set on ON and OpenELEC will spin down attached drives (not the main system drive) when idle"
 
 msgctxt "#719"
 msgid "Configure the number of minutes before hard-drive spin down occurs"
-msgstr "Configurer le nombre de minutes avant la mise en pause des disques durs"
+msgstr "Configure the number of minutes before hard-drive spin down occurs"
 
 msgctxt "#720"
 msgid "Set to ON and Bluetooth devices will be disabled during power-saving modes"
-msgstr "Activer pour déconnecter les périphériques Bluetooth en mode économie d'énergie"
+msgstr "Set to ON and Bluetooth devices will be disabled during power-saving modes"
 
 msgctxt "#721"
 msgid "721"
@@ -154,59 +150,59 @@ msgstr "721"
 
 msgctxt "#722"
 msgid "Create a tar archive containing all OpenELEC and XBMC configuration settings, databases and thumbnail content. Backup files will be stored in /storage/backups"
-msgstr "Créer une archive tar contenant les paramètres de configuration, les bases de données et les images pour OpenELEC et XBMC. Les fichiers de sauvegarde seront stockés dans /storage/backups"
+msgstr "Create a tar archive containing all OpenELEC and XBMC configuration settings, databases and thumbnail content. Backup files will be stored in /storage/backups"
 
 msgctxt "#723"
 msgid "Restore a tar archive backup previously created using the backup option above"
-msgstr "Restaurer une archive tar précédemment créée en utilisant l'option de sauvegarde"
+msgstr "Restore a tar archive backup previously created using the backup option above"
 
 msgctxt "#724"
 msgid "[COLOR FF00FF00]SOFT RESET[/COLOR]\nPermanently reset OpenELEC OS configuration to defaults (resets also XBMC to default including your library. your media - music/videos/etc are not touched)"
-msgstr "[COLOR FF00FF00]RAZ LEGER[/COLOR]⏎\nRestaure les paramètres par défaut de configuration d'OpenELEC SE (restaure aussi les paramètres par défaut d'XBMC incluant vos bibliothèques. Vos médias - musique/vidéos/etc ne sont pas touchées)"
+msgstr "[COLOR FF00FF00]SOFT RESET[/COLOR]\nPermanently reset OpenELEC OS configuration to defaults (resets also XBMC to default including your library. your media - music/videos/etc are not touched)"
 
 msgctxt "#725"
 msgid "[COLOR FFFF0000]HARD RESET[/COLOR]\nPermanently reset OpenELEC OS and XBMC configuration to defaults (everything in your storage partition will be deleted)"
-msgstr "[COLOR FFFF0000]RAZ LOURD[/COLOR]⏎\nRestauration de la configuration par défaut d'OpenELEC SE et d'XBMC (toutes les données dans votre espace de stockage seront perdues)"
+msgstr "[COLOR FFFF0000]HARD RESET[/COLOR]\nPermanently reset OpenELEC OS and XBMC configuration to defaults (everything in your storage partition will be deleted)"
 
 msgctxt "#726"
 msgid "Enable or disable support for Wireless (WLAN) networks"
-msgstr "Activer ou désactiver le support des réseaux sans fil (WLAN)"
+msgstr "Enable or disable support for Wireless (WLAN) networks"
 
 msgctxt "#727"
 msgid "Enable a 'tethered' Wireless Access Point. This requires your wireless card (and driver) to support bridging and access point mode. Not all cards are capable."
-msgstr "Activer le partage de connexion sans fil. Votre carte Wi-Fi  (et le pilote) doit supporter le mode pont et le mode point d'accès. Toutes les cartes ne le peuvent pas."
+msgstr "Enable a 'tethered' Wireless Access Point. This requires your wireless card (and driver) to support bridging and access point mode. Not all cards are capable."
 
 msgctxt "#728"
 msgid "Configure the Access Point SSID"
-msgstr "Configurer le SSID du point d'accès"
+msgstr "Configure the Access Point SSID"
 
 msgctxt "#729"
 msgid "Configure the Access Point Passphrase"
-msgstr "Configurer le mot de passe du point d'accès"
+msgstr "Configure the Access Point Passphrase"
 
 msgctxt "#730"
 msgid "Enable or disable support for Wired (Ethernet) networks"
-msgstr "Activer ou désactiver le support des réseaux filaires (Ethernet)"
+msgstr "Enable or disable support for Wired (Ethernet) networks"
 
 msgctxt "#731"
 msgid "Configure OpenVPN and PPTP VPN connections"
-msgstr "Configurer les connexions OpenVPN et PPTP VPN"
+msgstr "Configure OpenVPN and PPTP VPN connections"
 
 msgctxt "#732"
 msgid "Configure the 1st time (NTP) server"
-msgstr "Configurer le 1er serveur de temps (NTP)"
+msgstr "Configure the 1st time (NTP) server"
 
 msgctxt "#733"
 msgid "Configure the 2nd time (NTP) server"
-msgstr "Configurer le 2ème serveur de temps (NTP)"
+msgstr "Configure the 2nd time (NTP) server"
 
 msgctxt "#734"
 msgid "Configure the 3rd time (NTP) server"
-msgstr "Configurer le 3ème serveur de temps (NTP)"
+msgstr "Configure the 3rd time (NTP) server"
 
 msgctxt "#736"
 msgid "Set to ON to delay XBMC startup until the network is available. Use this if the OS is booting into XBMC before the network is up and central MySQL databases are accessible."
-msgstr "Activer pour retarder le démarrage d'XBMC jusqu’à ce que le réseau soit disponible. Utilisez cette option si le système démarre avant que le réseau ne soit activé et que la base centralisée MySQL ne soit accessible."
+msgstr "Set to ON to delay XBMC startup until the network is available. Use this if the OS is booting into XBMC before the network is up and central MySQL databases are accessible."
 
 msgctxt "#737"
 msgid "737"
@@ -214,43 +210,43 @@ msgstr "737"
 
 msgctxt "#738"
 msgid "Set to ON to enable the embedded Samba (SMB) filesharing service"
-msgstr "Activer l'accès au partage de fichiers Samba (SMB)"
+msgstr "Set to ON to enable the embedded Samba (SMB) filesharing service"
 
 msgctxt "#739"
 msgid "Set to ON to require username/password access to local Samba fileshares"
-msgstr "Activer pour que l'accès aux partages Samba requiert un identifiant et mot de passe"
+msgstr "Set to ON to require username/password access to local Samba fileshares"
 
 msgctxt "#740"
 msgid "Set the username for Samba sharing"
-msgstr "Configurer le nom d'utilisateur pour le partage Samba"
+msgstr "Set the username for Samba sharing"
 
 msgctxt "#741"
 msgid "Set the password for Samba sharing"
-msgstr "Configurer le mot de passe pour le partage Samba"
+msgstr "Set the password for Samba sharing"
 
 msgctxt "#742"
 msgid "Set to ON to enable the embedded SSH server. The SSH console can be accessed with username 'root' and password 'openelec'."
-msgstr "Activer l'accès SSH. La console SSH sera accessible avec l'identifiant 'root' et le mot de passe 'openelec'."
+msgstr "Set to ON to enable the embedded SSH server. The SSH console can be accessed with username 'root' and password 'openelec'."
 
 msgctxt "#743"
 msgid "Set to ON if you have copied private SSH keys to your HTPC and would like to improve security by disabling SSH username and password authentication."
-msgstr "Activer si vous avez copié des clés privées sur votre système pour améliorer la sécurité en désactivant l’authentification SSH par identifiant et mot de passe."
+msgstr "Set to ON if you have copied private SSH keys to your HTPC and would like to improve security by disabling SSH username and password authentication."
 
 msgctxt "#744"
 msgid "Set to ON to enable the Avahi (Zeroconf/Bonjour) network discovery service"
-msgstr "Activer le service de découverte réseau Avahi (Zeroconf/Bonjour)"
+msgstr "Set to ON to enable the Avahi (Zeroconf/Bonjour) network discovery service"
 
 msgctxt "#745"
 msgid "Set to ON to enable the cron daemon"
-msgstr "Acitver le démon Cron"
+msgstr "Set to ON to enable the cron daemon"
 
 msgctxt "#746"
 msgid "Set to ON to send system event logs (/var/log/messages) to a remote Syslog server"
-msgstr "Activer pour envoyer les logs d’événement système (/var/log/messages) à un serveur Syslog distant"
+msgstr "Set to ON to send system event logs (/var/log/messages) to a remote Syslog server"
 
 msgctxt "#747"
 msgid "Configure the IP address of the remote Syslog server"
-msgstr "Configurer l'adresse IP du serveur Syslog distant"
+msgstr "Configure the IP address of the remote Syslog server"
 
 msgctxt "#748"
 msgid "748"
@@ -264,29 +260,25 @@ msgctxt "#750"
 msgid "750"
 msgstr "750"
 
-msgctxt "#751"
-msgid "With OBEX filetransfer you can send files, for example movies or pictures over bluetooth to OpenELEC."
-msgstr "Vous pouvez envoyer des fichiers en Bluetooth à OpenELEC avec le système OBEX, comme des films ou des images."
-
 msgctxt "#752"
 msgid "Here you can set the folder location where OBEX file transfer should store incoming files"
-msgstr "Rentrez ici le répertoire où OBEX doit enregistrer les fichiers arrivants"
+msgstr "Here you can set the folder location where OBEX file transfer should store incoming files"
 
 msgctxt "#753"
 msgid "Configure the 1st keyboard software Variant"
-msgstr "Configurer la variante du 1er type de clavier"
+msgstr "Configure the 1st keyboard software Variant"
 
 msgctxt "#754"
 msgid "Configure the 2nd keyboard software Variant"
-msgstr "Configurer la variante du 2ème type de clavier"
+msgstr "Configure the 2nd keyboard software Variant"
 
 msgctxt "#755"
 msgid "Auto share external drives / partitions"
-msgstr "Partage automatique des partitions / lecteurs externes"
+msgstr "Auto share external drives / partitions"
 
 msgctxt "#32000"
 msgid "Network"
-msgstr "Réseau"
+msgstr "Network"
 
 msgctxt "#32001"
 msgid "Services"
@@ -294,7 +286,7 @@ msgstr "Services"
 
 msgctxt "#32002"
 msgid "System"
-msgstr "Système"
+msgstr "System"
 
 msgctxt "#32003"
 msgid "Interface"
@@ -302,7 +294,7 @@ msgstr "Interface"
 
 msgctxt "#32004"
 msgid "IP Address"
-msgstr "Adresse IP"
+msgstr "IP Address"
 
 msgctxt "#32005"
 msgid "Type"
@@ -310,51 +302,51 @@ msgstr "Type"
 
 msgctxt "#32006"
 msgid "State"
-msgstr "État"
+msgstr "State"
 
 msgctxt "#32007"
 msgid "Driver"
-msgstr "Pilote"
+msgstr "Driver"
 
 msgctxt "#32008"
 msgid "LCD/VFD Driver"
-msgstr "Pilote LCD/VFD"
+msgstr "LCD/VFD Driver"
 
 msgctxt "#32009"
 msgid "Keyboard"
-msgstr "Clavier"
+msgstr "Keyboard"
 
 msgctxt "#32010"
 msgid "Keyboard Layout"
-msgstr "Disposition du clavier"
+msgstr "Keyboard Layout"
 
 msgctxt "#32012"
 msgid "Sleep hard drive after (minutes)"
-msgstr "Suspendre le disque dur après (minutes)"
+msgstr "Sleep hard drive after (minutes)"
 
 msgctxt "#32013"
 msgid "Updates"
-msgstr "Mises à jour"
+msgstr "Updates"
 
 msgctxt "#32014"
 msgid "Automatic Updates"
-msgstr "Mises à jour automatiques"
+msgstr "Automatic Updates"
 
 msgctxt "#32100"
 msgid "Connections"
-msgstr "Connexions"
+msgstr "Connections"
 
 msgctxt "#32101"
 msgid "Network"
-msgstr "Réseau"
+msgstr "Network"
 
 msgctxt "#32102"
 msgid "Wireless Networks"
-msgstr "Réseaux sans fil"
+msgstr "Wireless Networks"
 
 msgctxt "#32103"
 msgid "Wired Networks"
-msgstr "Réseaux filaires"
+msgstr "Wired Networks"
 
 msgctxt "#32104"
 msgid "VPN"
@@ -366,23 +358,23 @@ msgstr "Active"
 
 msgctxt "#32106"
 msgid "Username"
-msgstr "Identifiant"
+msgstr "Username"
 
 msgctxt "#32107"
 msgid "Passphrase"
-msgstr "Mot de passe"
+msgstr "Passphrase"
 
 msgctxt "#32108"
 msgid "Enable 'tethered' Wireless Access Point"
-msgstr "Activer le partage de connexion sans fil"
+msgstr "Enable 'tethered' Wireless Access Point"
 
 msgctxt "#32109"
 msgid "Connect Automatically"
-msgstr "Connexion automatique"
+msgstr "Connect Automatically"
 
 msgctxt "#32110"
 msgid "Connection"
-msgstr "Connexion"
+msgstr "Connection"
 
 msgctxt "#32111"
 msgid "IPv4"
@@ -394,211 +386,207 @@ msgstr "IPv6"
 
 msgctxt "#32113"
 msgid "IP Address Method"
-msgstr "Méthode d'adressage"
+msgstr "IP Address Method"
 
 msgctxt "#32114"
 msgid "IP Address"
-msgstr "Adresse IP"
+msgstr "IP Address"
 
 msgctxt "#32115"
 msgid "Subnet Mask"
-msgstr "Masque de sous-réseau"
+msgstr "Subnet Mask"
 
 msgctxt "#32116"
 msgid "Default Gateway"
-msgstr "Passerelle par defaut"
+msgstr "Default Gateway"
 
 msgctxt "#32117"
 msgid "Prefix Length"
-msgstr "Longueur du préfixe"
+msgstr "Prefix Length"
 
 msgctxt "#32118"
 msgid "Privacy"
-msgstr "Confidentialité"
+msgstr "Privacy"
 
 msgctxt "#32119"
 msgid "DNS Servers"
-msgstr "Serveurs DNS"
+msgstr "DNS Servers"
 
 msgctxt "#32120"
 msgid "Nameserver #1"
-msgstr "DNS #1"
+msgstr "Nameserver #1"
 
 msgctxt "#32121"
 msgid "Nameserver #2"
-msgstr "DNS #2"
+msgstr "Nameserver #2"
 
 msgctxt "#32122"
 msgid "Nameserver #3"
-msgstr "DNS #3"
+msgstr "Nameserver #3"
 
 msgctxt "#32123"
 msgid "NTP Servers"
-msgstr "Serveurs NTP"
+msgstr "NTP Servers"
 
 msgctxt "#32124"
 msgid "Timeserver #1"
-msgstr "Serveur de temps #1"
+msgstr "Timeserver #1"
 
 msgctxt "#32125"
 msgid "Timeserver #2"
-msgstr "Serveur de temps #2"
+msgstr "Timeserver #2"
 
 msgctxt "#32126"
 msgid "Timeserver #3"
-msgstr "Serveur de temps #3"
+msgstr "Timeserver #3"
 
 msgctxt "#32127"
 msgid "DNS Domains"
-msgstr "Domaines DNS"
+msgstr "DNS Domains"
 
 msgctxt "#32128"
 msgid "Domain #1"
-msgstr "Domaine #1"
+msgstr "Domain #1"
 
 msgctxt "#32129"
 msgid "Domain #2"
-msgstr "Domaine #2"
+msgstr "Domain #2"
 
 msgctxt "#32130"
 msgid "Domain #3"
-msgstr "Domaine #3"
+msgstr "Domain #3"
 
 msgctxt "#32131"
 msgid "VPN Type"
-msgstr "Type de VPN"
+msgstr "VPN Type"
 
 msgctxt "#32132"
 msgid "Network Name"
-msgstr "Nom du réseau"
+msgstr "Network Name"
 
 msgctxt "#32133"
 msgid "VPN Server"
-msgstr "Serveur VPN"
+msgstr "VPN Server"
 
 msgctxt "#32134"
 msgid "VPN DNS Domain"
-msgstr "Domaine DNS du VPN"
+msgstr "VPN DNS Domain"
 
 msgctxt "#32135"
 msgid "VPN Cookie"
-msgstr "Cookie VPN"
+msgstr "VPN Cookie"
 
 msgctxt "#32136"
 msgid "Server Certificate"
-msgstr "Certificat serveur"
-
-msgctxt "#32137"
-msgid "Certificate Autority Certificate"
-msgstr "Certificat de l'autorité certifiante"
+msgstr "Server Certificate"
 
 msgctxt "#32138"
 msgid "Certificate"
-msgstr "Certificat"
+msgstr "Certificate"
 
 msgctxt "#32139"
 msgid "Key"
-msgstr "Clé"
+msgstr "Key"
 
 msgctxt "#32140"
 msgid "Save"
-msgstr "Enregistrer"
+msgstr "Save"
 
 msgctxt "#32141"
 msgid "Delete"
-msgstr "Supprimer"
+msgstr "Delete"
 
 msgctxt "#32142"
 msgid "Refresh"
-msgstr "Rafraîchir"
+msgstr "Refresh"
 
 msgctxt "#32143"
 msgid "Disconnect"
-msgstr "Déconnexion"
+msgstr "Disconnect"
 
 msgctxt "#32144"
 msgid "Connect"
-msgstr "Connexion"
+msgstr "Connect"
 
 msgctxt "#32145"
 msgid "Unable to connect"
-msgstr "Impossible de se connecter"
+msgstr "Unable to connect"
 
 msgctxt "#32146"
 msgid "Hidden Network Name"
-msgstr "Nom de réseau masqué"
+msgstr "Hidden Network Name"
 
 msgctxt "#32147"
 msgid "Wireless Network Passphrase"
-msgstr "Mot de passe du réseau sans fil"
+msgstr "Wireless Network Passphrase"
 
 msgctxt "#32148"
 msgid "Wireless Network Username"
-msgstr "Identifiant du réseau sans fil"
+msgstr "Wireless Network Username"
 
 msgctxt "#32149"
 msgid "Add VPN"
-msgstr "Ajouter un VPN"
+msgstr "Add VPN"
 
 msgctxt "#32150"
 msgid "Edit"
-msgstr "Éditer"
+msgstr "Edit"
 
 msgctxt "#32151"
 msgid "Refuse EAP"
-msgstr "Refuser EAP"
+msgstr "Refuse EAP"
 
 msgctxt "#32152"
 msgid "Refuse PAP"
-msgstr "Refuser PAP"
+msgstr "Refuse PAP"
 
 msgctxt "#32153"
 msgid "Refuse CHAP"
-msgstr "Refuser CHAP"
+msgstr "Refuse CHAP"
 
 msgctxt "#32154"
 msgid "Refuse MS-CHAP"
-msgstr "Refuser MS-CHAP"
+msgstr "Refuse MS-CHAP"
 
 msgctxt "#32155"
 msgid "Refuse MS-CHAP v2"
-msgstr "Refuser MS-CHAP v2"
+msgstr "Refuse MS-CHAP v2"
 
 msgctxt "#32156"
 msgid "Require MPPE"
-msgstr "MPPE requis"
+msgstr "Require MPPE"
 
 msgctxt "#32157"
 msgid "Require MPPE (40 bit)"
-msgstr "MPPE (40 bit) requis"
+msgstr "Require MPPE (40 bit)"
 
 msgctxt "#32158"
 msgid "Require MPPE (128 bit)"
-msgstr "MPPE (128 bit) requis"
+msgstr "Require MPPE (128 bit)"
 
 msgctxt "#32159"
 msgid "Require Stateful MPPE"
-msgstr "Stateful MPPE requis"
+msgstr "Require Stateful MPPE"
 
 msgctxt "#32160"
 msgid "Disable BSD Compression"
-msgstr "Désactiver la compression BSD"
+msgstr "Disable BSD Compression"
 
 msgctxt "#32161"
 msgid "Disable VJ Compression"
-msgstr "Désactiver la compression VJ"
+msgstr "Disable VJ Compression"
 
 msgctxt "#32162"
 msgid "LCP Echo Failure"
-msgstr "Échec LCP Écho"
+msgstr "LCP Echo Failure"
 
 msgctxt "#32163"
 msgid "LCP Echo Interval"
-msgstr "Intervalle LCP écho"
+msgstr "LCP Echo Interval"
 
 msgctxt "#32164"
 msgid "Disable Deflate Compression"
-msgstr "Désactiver la compression Deflate"
+msgstr "Disable Deflate Compression"
 
 msgctxt "#32165"
 msgid "MTU"
@@ -658,43 +646,43 @@ msgstr "ConfigFile"
 
 msgctxt "#32179"
 msgid "Update Available"
-msgstr "Mise à jour disponible"
+msgstr "Update Available"
 
 msgctxt "#32180"
 msgid "Would you like to update OpenELEC now?"
-msgstr "Voulez mettre OpenELEC à jour ?"
+msgstr "Would you like to update OpenELEC now?"
 
 msgctxt "#32181"
 msgid "Filename"
-msgstr "Nom de fichier"
+msgstr "Filename"
 
 msgctxt "#32182"
 msgid "Download speed"
-msgstr "Vitesse de téléchargement"
+msgstr "Download speed"
 
 msgctxt "#32183"
 msgid "Time remaining"
-msgstr "Temps restant"
+msgstr "Time remaining"
 
 msgctxt "#32184"
 msgid "Extract file"
-msgstr "Extraction du fichier"
+msgstr "Extract file"
 
 msgctxt "#32185"
 msgid "Extract speed"
-msgstr "Vitesse d'extraction"
+msgstr "Extract speed"
 
 msgctxt "#32186"
 msgid "Initialize Archive File"
-msgstr "Initialiser le fichier d'archivage"
+msgstr "Initialise Archive File"
 
 msgctxt "#32187"
 msgid "Latest Version"
-msgstr "Dernière version"
+msgstr "Latest Version"
 
 msgctxt "#32188"
 msgid "Current Version"
-msgstr "Version actuelle"
+msgstr "Current Version"
 
 msgctxt "#32189"
 msgid "Identification"
@@ -702,15 +690,15 @@ msgstr "Identification"
 
 msgctxt "#32190"
 msgid "System Name"
-msgstr "Nom du système"
+msgstr "System Name"
 
 msgctxt "#32191"
 msgid "Error"
-msgstr "Erreur"
+msgstr "Error"
 
 msgctxt "#32192"
 msgid "Unable to connect to Network"
-msgstr "Impossible de se connecter au réseau"
+msgstr "Unable to connect to Network"
 
 msgctxt "#32193"
 msgid "Service"
@@ -718,7 +706,7 @@ msgstr "Service"
 
 msgctxt "#32194"
 msgid "Restart Networking"
-msgstr "Redémarrage du réseau"
+msgstr "Restart Networking"
 
 msgctxt "#32195"
 msgid "Support"
@@ -726,11 +714,11 @@ msgstr "Support"
 
 msgctxt "#32196"
 msgid "About"
-msgstr "À propos"
+msgstr "About"
 
 msgctxt "#32197"
 msgid "Update now"
-msgstr "Mettre à jour"
+msgstr "Update now"
 
 msgctxt "#32198"
 msgid "SSID"
@@ -738,7 +726,7 @@ msgstr "SSID"
 
 msgctxt "#32199"
 msgid "If you would like to contribute to the OpenELEC project you can make a donation using [CR]PayPal, Flattr or Bitcoin. Donating is easy and takes only a few minutes."
-msgstr "SI vous souhaitez contribuer au projet OpenELEC, vous pouvez faire un don en utilisant [CR]PayPal, Flattr ou Bitcoin. Faire un don est simple et ne prend que quelques minutes."
+msgstr "If you would like to contribute to the OpenELEC project you can make a donation using [CR]PayPal, Flattr or Bitcoin. Donating is easy and takes only a few minutes."
 
 msgctxt "#32200"
 msgid "Samba"
@@ -750,23 +738,23 @@ msgstr "SSH"
 
 msgctxt "#32202"
 msgid "Use Samba Password Authentication"
-msgstr "Utiliser un mot de passe Samba"
+msgstr "Use Samba Password Authentication"
 
 msgctxt "#32203"
 msgid "Disable SSH Password"
-msgstr "Désactiver le mot de passe SSH"
+msgstr "Disable SSH Password"
 
 msgctxt "#32204"
 msgid "Enable Samba"
-msgstr "Activer Samba"
+msgstr "Enable Samba"
 
 msgctxt "#32205"
 msgid "Enable SSH"
-msgstr "Activer SSH"
+msgstr "Enable SSH"
 
 msgctxt "#32206"
 msgid "Enable Avahi (Zeroconf)"
-msgstr "Activer Avahi (Zeroconf)"
+msgstr "Enable Avahi (Zeroconf)"
 
 msgctxt "#32207"
 msgid "Avahi"
@@ -774,115 +762,111 @@ msgstr "Avahi"
 
 msgctxt "#32208"
 msgid "Hidden Wlan"
-msgstr "Wlan masqué"
+msgstr "Hidden Wlan"
 
 msgctxt "#32209"
 msgid "Proxy Server"
-msgstr "Serveur proxy"
+msgstr "Proxy Server"
 
 msgctxt "#32210"
 msgid "Auto Proxy URL"
-msgstr "Adresse du proxy automatique"
+msgstr "Auto Proxy URL"
 
 msgctxt "#32211"
 msgid "Proxy Servers"
-msgstr "Serveurs proxy"
+msgstr "Proxy Servers"
 
 msgctxt "#32212"
 msgid "Cancel"
-msgstr "Annuler"
+msgstr "Cancel"
 
 msgctxt "#32213"
 msgid "Exit"
-msgstr "Quitter"
+msgstr "Exit"
 
 msgctxt "#32214"
 msgid "Upload Logfiles"
-msgstr "Envoi des fichiers de logs"
+msgstr "Upload Logfiles"
 
 msgctxt "#32215"
 msgid "Invalid Email Address"
-msgstr "Adresse mail invalide"
+msgstr "Invalid Email Address"
 
 msgctxt "#32216"
 msgid "Auto-Share External Drives"
-msgstr "Partage automatique des lecteurs externes"
+msgstr "Auto-Share External Drives"
 
 msgctxt "#32300"
 msgid "Welcome to [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
-msgstr "Bienvenue sur [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
+msgstr "Welcome to [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
 
 msgctxt "#32301"
 msgid "Welcome"
-msgstr "Bienvenue"
+msgstr "Welcome"
 
 msgctxt "#32302"
 msgid "This wizard will guide you through the process of setting up your new [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] installation - setting your location, timezone and connecting you to the internet.[CR][CR]These settings can be changed later by navigating to Programs > [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] Settings.[CR][CR]To begin your [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] experience, select your regional settings and your keyboard layout, then click Next."
-msgstr "Cet assistant va vous guider durant l'installation de votre nouvel [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] pour configurer votre emplacement, fuseau horaire et vous permettre de vous connecter à internet.[CR][CR]Ces paramètres peuvent être changés ultérieurement en allant dans Programmes > Paramètres  [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR].[CR][CR]Pour commencer votre expérience [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR], choisissez vos paramètres régionaux, l'agencement de votre clavier et cliquez sur Suivant."
+msgstr "This wizard will guide you through the process of setting up your new [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] installation - setting your location, timezone and connecting you to the internet.[CR][CR]These settings can be changed later by navigating to Programs > [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] Settings.[CR][CR]To begin your [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] experience, select your regional settings and your keyboard layout, then click Next."
 
 msgctxt "#32303"
 msgid "Next"
-msgstr "Suivant"
+msgstr "Next"
 
 msgctxt "#32304"
 msgid "To be identified easily on the network, your new [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] machine needs a name.[CR][CR]Try to choose something meaningful - like the room it's in - so you'll know what it is when you see it on the network.[CR][CR]This name is used when configuring network services, like file sharing using samba."
-msgstr "Afin d'être facilement identifiable sur le réseau, votre nouvelle machine [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] a besoin d'un nom.[CR][CR]Essayez de choisir un nom significatif - comme le nom de la pièce - pour bien l'identifier.[CR][CR]Ce nom est utilisé pour la configuration des services réseau, comme le partage de fichiers Samba."
+msgstr "To be identified easily on the network, your new [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] machine needs a name.[CR][CR]Try to choose something meaningful - like the room it's in - so you'll know what it is when you see it on the network.[CR][CR]This name is used when configuring network services, like file sharing using samba."
 
 msgctxt "#32305"
 msgid "Networking"
-msgstr "Réseau"
+msgstr "Networking"
 
 msgctxt "#32306"
 msgid "In order to download backdrops, banners and thumbnails for your movies and TV shows and to stream online content from sites like YouTube, [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] needs to be connected the Internet.[CR][CR]An Internet connection is also required for [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] to automatically update itself."
-msgstr "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] a besoin d'être connecté à internet pour télécharger les fanarts, les bannières et les posters pour vos films et vos séries TV, ou pour accéder aux contenus en ligne tels que YouTube.[CR][CR]Une connexion à internet est également nécessaire pour les mises à jours automatiques d'[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]."
+msgstr "In order to download backdrops, banners and thumbnails for your movies and TV shows and to stream online content from sites like YouTube, [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] needs to be connected the Internet.[CR][CR]An Internet connection is also required for [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] to automatically update itself."
 
 msgctxt "#32307"
 msgid "Select your Regional Settings:"
-msgstr "Sélectionnez vos paramètres régionaux:"
+msgstr "Select your Regional Settings:"
 
 msgctxt "#32308"
 msgid "Hostname:"
-msgstr "Nom d'hôte:"
+msgstr "Hostname:"
 
 msgctxt "#32309"
 msgid "The following Networks are currently available:"
-msgstr "Les réseaux suivants sont disponibles:"
+msgstr "The following Networks are currently available:"
 
 msgctxt "#32310"
 msgid "Keyboard:"
-msgstr "Clavier:"
+msgstr "Keyboard:"
 
 msgctxt "#32311"
 msgid "Sharing and Remote Access"
-msgstr "Partage et accès distant"
+msgstr "Sharing and Remote Access"
 
 msgctxt "#32312"
 msgid "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] also supports SSH for remote access. This is for advanced users who wish to interact with [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]'s underlying operating system. The default user is [COLOR blue]root[/COLOR] and the default password is [COLOR blue]openelec.[/COLOR]"
-msgstr "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] permet l'accès distant par SSH. Cet accès est destiné aux utilisateurs avancés qui souhaitent interagir avec le système sous-jacent d'[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]. L'utilisateur par défaut est [COLOR blue]root[/COLOR] et le mot de passe par defaut est [COLOR blue]openelec.[/COLOR]"
+msgstr "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] also supports SSH for remote access. This is for advanced users who wish to interact with [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]'s underlying operating system. The default user is [COLOR blue]root[/COLOR] and the default password is [COLOR blue]openelec.[/COLOR]"
 
 msgctxt "#32313"
 msgid "In order to share your files between your computers [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] has incorporated a samba server. This samba server can be integrated into your local network by accessing it in a familiar way with Finder or Windows Explorer."
-msgstr "Pour partager les fichiers entre vos ordinateurs, [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] embarque un serveur Samba. Ce serveur Samba peut être intégré dans votre réseau local pour un accès facile à partir du Finder de MacOS ou de l'explorateur de Windows."
+msgstr "In order to share your files between your computers [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] has incorporated a samba server. This samba server can be integrated into your local network by accessing it in a familiar way with Finder or Windows Explorer."
 
 msgctxt "#32314"
 msgid "enabled"
-msgstr "activé"
+msgstr "enabled"
 
 msgctxt "#32315"
 msgid "disabled"
-msgstr "désactivé"
+msgstr "disabled"
 
 msgctxt "#32316"
 msgid "Configure Services:"
-msgstr "Configurer les services:"
+msgstr "Configure Services:"
 
 msgctxt "#32317"
 msgid "Thank you"
-msgstr "Merci"
-
-msgctxt "#32318"
-msgid "You [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] installation is now complete and you'll now enter XBMC when you can set up your media libraries. For help with this, there is a guide available at wiki.xbmc.org[CR][CR][COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] is developed by a dedicated team of developers who work purely in their spare time. Even as a volunteer project, we still have to pay for our internet bandwidth and development resources so if you find [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] useful, we will always appreciate a donation of any amount.[CR][CR]Finally, we hope you enjoy using [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] as much as we've enjoying building it. If you need any more help, you can find links to get help along with latest news at openelec.tv"
-msgstr "Votre installation d'[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] est terminée. Vous allez maintenant accéder à XBMC où vous pourrez configurer votre bibliothèque multimédia. Un guide est disponible pour vous aider sur wiki.xbmc.org.[CR][CR][COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] est développé par une équipe dévouée qui travaille exclusivement sur son temps libre. Malgré cela, nous avons besoin de payer la bande passante et les ressources pour le développement. Si vous trouvez [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] utile, n'hésitez pas un faire un don, quelque soit le montant.[CR][CR]Nous espérons que vous aimerez utiliser [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] autant que nous aimons le créer. Si vous avez besoin de plus d'aide, vous pouvez utiliser les liens où vous trouverez de l'aide ainsi que les dernières actualités sur openelec.tv"
+msgstr "Thank you"
 
 msgctxt "#32319"
 msgid "Cron"
@@ -890,43 +874,43 @@ msgstr "Cron"
 
 msgctxt "#32320"
 msgid "Enable Cron"
-msgstr "Activer Cron"
+msgstr "Enable Cron"
 
 msgctxt "#32321"
 msgid "Virtual Private Networks"
-msgstr "Réseaux Privés Virtuels"
+msgstr "Virtual Private Networks"
 
 msgctxt "#32322"
 msgid "Add new VPN configuration"
-msgstr "Ajouter une configuration VPN"
+msgstr "Add new VPN configuration"
 
 msgctxt "#32323"
 msgid "Reset to Defaults"
-msgstr "Réinitialisation"
+msgstr "Reset to Defaults"
 
 msgctxt "#32324"
 msgid "Reset System Settings to defaults"
-msgstr "Restaurer les paramètres système par défaut"
+msgstr "Reset System Settings to defaults"
 
 msgctxt "#32325"
 msgid "Reset OpenELEC to defaults"
-msgstr "Réinitialiser OpenELEC"
+msgstr "Reset OpenELEC to defaults"
 
 msgctxt "#32326"
 msgid "Are you sure?"
-msgstr "Êtes-vous sûr(e) ?"
+msgstr "Are you sure?"
 
 msgctxt "#32328"
 msgid "The system must reboot."
-msgstr "Le système doit redémarrer."
+msgstr "The system must reboot."
 
 msgctxt "#32329"
 msgid "Rebooting in %d seconds"
-msgstr "Redémarrage dans %d secondes"
+msgstr "Rebooting in %d seconds"
 
 msgctxt "#32330"
 msgid "Keyboard Type"
-msgstr "Type de clavier"
+msgstr "Keyboard Type"
 
 msgctxt "#32331"
 msgid "Bluetooth"
@@ -934,35 +918,35 @@ msgstr "Bluetooth"
 
 msgctxt "#32332"
 msgid "Address"
-msgstr "Adresse "
+msgstr "Address"
 
 msgctxt "#32333"
 msgid "Connected: "
-msgstr "Connecté:"
+msgstr "Connected: "
 
 msgctxt "#32334"
 msgid "Yes"
-msgstr "Oui"
+msgstr "Yes"
 
 msgctxt "#32335"
 msgid "No"
-msgstr "Non"
+msgstr "No"
 
 msgctxt "#32336"
 msgid "Start Discovery"
-msgstr "Démarrage de la découverte"
+msgstr "Start Discovery"
 
 msgctxt "#32337"
 msgid "Stop Discovery"
-msgstr "Arrêt de la découverte"
+msgstr "Stop Discovery"
 
 msgctxt "#32338"
 msgid "No Bluetooth adapter found."
-msgstr "Aucun adaptateur Bluetooth trouvé."
+msgstr "No Bluetooth adapter found."
 
 msgctxt "#32339"
 msgid "No Bluetooth device found. Please put your Bluetooth device into discovery mode[CR]and start the scan"
-msgstr "Aucun périphérique Bluetooth trouvé. Mettez votre périphérique Bluetooth en mode découverte[CR]et de lancez le balayage"
+msgstr "No Bluetooth device found. Please put your Bluetooth device into discovery mode[CR]and start the scan"
 
 msgctxt "#32340"
 msgid "Syslog"
@@ -970,31 +954,31 @@ msgstr "Syslog"
 
 msgctxt "#32341"
 msgid "Enable Remote Syslog Server"
-msgstr "Activer le serveur Syslog distant"
+msgstr "Enable Remote Syslog Server"
 
 msgctxt "#32342"
 msgid "Syslog Server IP Address"
-msgstr "Adresse IP du serveur Syslog"
+msgstr "Syslog Server IP Address"
 
 msgctxt "#32343"
 msgid "Enter the following Key on your Device."
-msgstr "Saisissez la clé suivante sur votre périphérique."
+msgstr "Enter the following Key on your Device."
 
 msgctxt "#32344"
 msgid "Enable Bluetooth"
-msgstr "Activer le Bluetooth"
+msgstr "Enable Bluetooth"
 
 msgctxt "#32345"
 msgid "Bluetooth daemon is not running!"
-msgstr "Le démon Bluetooth n'est pas démarré!"
+msgstr "Bluetooth daemon is not running!"
 
 msgctxt "#32346"
 msgid "Bluetooth is disabled"
-msgstr "Le Bluetooth est désactivé"
+msgstr "Bluetooth is disabled"
 
 msgctxt "#32358"
 msgid "Trust and Connect"
-msgstr "Approuver et connecter"
+msgstr "Trust and Connect"
 
 msgctxt "#32359"
 msgid "Support"
@@ -1002,15 +986,11 @@ msgstr "Support"
 
 msgctxt "#32360"
 msgid "Please enter your email address"
-msgstr "Veuillez rentrer votre adresse mail"
-
-msgctxt "#32361"
-msgid "The following Informations are Invalid:"
-msgstr "Les informations suivantes sont invalides:"
+msgstr "Please enter your email address"
 
 msgctxt "#32362"
 msgid "Check for updates now:"
-msgstr "Vérifier les mises à jours:"
+msgstr "Check for updates now:"
 
 msgctxt "#32363"
 msgid "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
@@ -1018,108 +998,104 @@ msgstr "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
 
 msgctxt "#32364"
 msgid "Update available"
-msgstr "Mise à jour disponible"
+msgstr "Update available"
 
 msgctxt "#32365"
 msgid "Show Update Notifications"
-msgstr "Afficher les notifications de mises à jour"
+msgstr "Show Update Notifications"
 
 msgctxt "#32366"
 msgid "Update Download Completed"
-msgstr "Téléchargement de la mise à jour terminé"
+msgstr "Update Download Completed"
 
 msgctxt "#32367"
 msgid "Update Extract Complete"
-msgstr "Extraction de la mise à jour terminée"
+msgstr "Update Extract Complete"
 
 msgctxt "#32368"
 msgid "Advanced Network Settings"
-msgstr "Paramètres réseau avancés"
+msgstr "Advanced Network Settings"
 
 msgctxt "#32369"
 msgid "Wait for network before starting XBMC"
-msgstr "Attendre le réseau avant de lancer XBMC"
+msgstr "Wait for network before starting XBMC"
 
 msgctxt "#32370"
 msgid "Maximum Wait Time (Sec.)"
-msgstr "Temps d'attente maximum (Secondes)"
+msgstr "Maximum Wait Time (Sec.)"
 
 msgctxt "#32371"
 msgid "Backup"
-msgstr "Sauvegarde"
+msgstr "Backup"
 
 msgctxt "#32372"
 msgid "Create System and XBMC Backup"
-msgstr "Créer une sauvegarde du système et de XBMC"
+msgstr "Create System and XBMC Backup"
 
 msgctxt "#32373"
 msgid "Restore Backup"
-msgstr "Restaurer la sauvegarde"
+msgstr "Restore Backup"
 
 msgctxt "#32375"
 msgid "Backup Progress"
-msgstr "Progression de la sauvegarde"
+msgstr "Backup Progress"
 
 msgctxt "#32376"
 msgid "Select a backup destination directory"
-msgstr "Sélectionner un répertoire de destination pour la sauvegarde"
+msgstr "Select a backup destination directory"
 
 msgctxt "#32377"
 msgid "Select the backup file to restore"
-msgstr "Sélectionner le fichier de sauvegarde à restaurer"
+msgstr "Select the backup file to restore"
 
 msgctxt "#32378"
 msgid "The information you entered is incomplete"
-msgstr "Les informations que vous avez entré sont incomplètes"
+msgstr "The information you entered is incomplete"
 
 msgctxt "#32379"
 msgid "There is not enough free storage space to continue!"
-msgstr "L'espace disque disponible est insuffisant pour continuer!"
+msgstr "There is not enough free storage space to continue!"
 
 msgctxt "#32380"
 msgid "Restoring system settings requires a reboot. Are you sure you want to restore?"
-msgstr "Restaurer les paramètres système requiert un redémarrage. Êtes-vous sûr de vouloir restaurer?"
-
-msgctxt "#32381"
-msgid "Accept incoming Bluetooth Filetransfer ?"
-msgstr "Accepter le transfert Bluetooth entrant ?"
+msgstr "Restoring system settings requires a reboot. Are you sure you want to restore?"
 
 msgctxt "#32382"
 msgid "Speed"
-msgstr "Vitesse"
+msgstr "Speed"
 
 msgctxt "#32383"
 msgid "Play Files ?"
-msgstr "Jouer les fichiers ?"
+msgstr "Play Files ?"
 
 msgctxt "#32384"
 msgid "OBEX Enabled"
-msgstr "OBEX activé"
+msgstr "OBEX Enabled"
 
 msgctxt "#32385"
 msgid "OBEX Upload Folder"
-msgstr "Répertoire d'envoi OBEX"
+msgstr "OBEX Upload Folder"
 
 msgctxt "#32386"
 msgid "Keyboard Layout Variant #1"
-msgstr "Variante N°1 du clavier"
+msgstr "Keyboard Layout Variant #1"
 
 msgctxt "#32387"
 msgid "Keyboard Layout Variant #2"
-msgstr "Variante N°2 du clavier"
+msgstr "Keyboard Layout Variant #2"
 
 msgctxt "#32388"
 msgid "Enable Standby"
-msgstr "Activer la mise en veille"
+msgstr "Enable Standby"
 
 msgctxt "#32389"
 msgid "Disable Standby"
-msgstr "Désactiver la mise en veille"
+msgstr "Disable Standby"
 
 msgctxt "#32390"
 msgid "Settings addon is not yet ready, please try again later."
-msgstr "L'extension Réglages n'est pas encore prête, merci de réessayer plus tard."
+msgstr "Settings addon is not yet ready, please try again later."
 
 msgctxt "#32391"
 msgid "Enable LCD Driver Support"
-msgstr "Activer le support du LCD"
+msgstr "Enable LCD Driver Support"

@@ -30,9 +30,8 @@
             <control type="group">
                 <left>17</left>
                 <top>16</top>
-                <width>200</width>
-                <height>174</height>
-                <fadetime>500</fadetime>
+                <width>590</width>
+                <height>150</height>
                 <control type="list" id="2000">
                     <left>0</left>
                     <top>0</top>
@@ -43,8 +42,6 @@
                     <scrolltime>300</scrolltime>
                     <visible>true</visible>
                     <itemlayout height="30">
-                        <left>0</left>
-                        <top>0</top>
                         <control type="image">
                             <left>2</left>
                             <top>2</top>
@@ -56,6 +53,7 @@
                             <left>20</left>
                             <top>4</top>
                             <width>190</width>
+                            <height>26</height>
                             <font>font12</font>
                             <textcolor>white</textcolor>
                             <label>$INFO[ListItem.Label]</label>
@@ -64,6 +62,7 @@
                             <left>540</left>
                             <top>4</top>
                             <width>400</width>
+                            <height>26</height>
                             <font>font12</font>
                             <textcolor>white</textcolor>
                             <align>right</align>
@@ -71,8 +70,6 @@
                         </control>
                     </itemlayout>
                     <focusedlayout height="30">
-                        <left>0</left>
-                        <top>0</top>
                         <control type="image">
                             <left>2</left>
                             <top>2</top>
@@ -84,6 +81,7 @@
                             <left>20</left>
                             <top>4</top>
                             <width>190</width>
+                            <height>26</height>
                             <font>font12</font>
                             <textcolor>white</textcolor>
                             <label>$INFO[ListItem.Label]</label>
@@ -92,6 +90,7 @@
                             <left>540</left>
                             <top>4</top>
                             <width>400</width>
+                            <height>26</height>
                             <font>font12</font>
                             <textcolor>white</textcolor>
                             <align>right</align>

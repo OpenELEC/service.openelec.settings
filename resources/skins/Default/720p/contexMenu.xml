@@ -43,9 +43,9 @@
                         <texture border="5">button-nofocus.png</texture>
                     </control>
                     <control type="label">
-                        <left>155</left>
+                        <left>0</left>
                         <top>0</top>
-                        <width>704</width>
+                        <width>304</width>
                         <height>38</height>
                         <align>center</align>
                         <aligny>center</aligny>
@@ -71,9 +71,9 @@
                         <texture border="5">button-focus2.png</texture>
                     </control>	
                     <control type="label">
-                        <left>155</left>
+                        <left>0</left>
                         <top>0</top>
-                        <width>704</width>
+                        <width>304</width>
                         <height>38</height>
                         <align>center</align>
                         <aligny>center</aligny>

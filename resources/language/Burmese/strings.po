@@ -16,6 +16,14 @@ msgstr ""
 "Language: my\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+msgctxt "#32000"
+msgid "Network"
+msgstr "ကွန်ရက်"
+
+msgctxt "#32101"
+msgid "Network"
+msgstr "ကွန်ရက်"
+
 msgctxt "#32106"
 msgid "Username"
 msgstr "အသုံးပြုသူအမည်"
@@ -23,6 +31,10 @@ msgstr "အသုံးပြုသူအမည်"
 msgctxt "#32191"
 msgid "Error"
 msgstr "ချို့ယွင်းချက်"
+
+msgctxt "#32212"
+msgid "Cancel"
+msgstr "ပယ်ဖျက်မည်"
 
 msgctxt "#32335"
 msgid "No"

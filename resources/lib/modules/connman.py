@@ -1611,11 +1611,11 @@ class connman:
                     if 'hidden' in self.struct[path]:
                         del self.struct[path]['hidden']
                  
-                for entry in self.struct[path]['settings']:
-                    if entry in technologie:
-                        self.struct[path]['settings'
-                                ][entry]['value'] = \
-                            unicode(technologie[entry])
+                    for entry in self.struct[path]['settings']:
+                        if entry in technologie:
+                            self.struct[path]['settings'
+                                    ][entry]['value'] = \
+                                unicode(technologie[entry])
         
             for setting in self.struct['Timeservers']['settings']:
                 if 'Timeservers' in self.clock_properties:

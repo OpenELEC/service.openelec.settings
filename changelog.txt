@@ -1,3 +1,6 @@
+2014-09-10 v0.4.3
+  (fix) showing network menu with connman-1.23
+
 2014-07-09 v0.4.2
   (fix) manual update when lang set to russian
 

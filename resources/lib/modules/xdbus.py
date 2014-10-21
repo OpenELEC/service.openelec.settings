@@ -29,6 +29,7 @@ import dbus
 import gobject
 import threading
 import dbus.service
+import dbus.mainloop.glib
 
 class xdbus:
 

@@ -28,6 +28,7 @@ import os
 import xbmc
 import time
 import dbus
+import dbus.service
 import uuid
 import xbmcgui
 import threading

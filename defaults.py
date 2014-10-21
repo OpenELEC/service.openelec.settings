@@ -52,7 +52,7 @@ bluetooth = \
     {
         "BLUETOOTH_DAEMON" : "/usr/lib/bluetooth/bluetoothd",
         "OBEX_DAEMON"      : "/usr/lib/bluetooth/obexd",
-        "ENABLED"          : lambda:(True if os.path.exists(connman["BLUETOOTH_DAEMON"]) else False),
+        "ENABLED"          : lambda:(True if os.path.exists(bluetooth["BLUETOOTH_DAEMON"]) else False),
       #DEFAULT_VALUES
         "D_OBEXD_ROOT"     : "/storage/downloads/"
     }

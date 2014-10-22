@@ -22,7 +22,7 @@
                 <top>0</top>
                 <width>340</width>
                 <height>400</height>
-                <texture border="20">DialogBack.png</texture>
+                <texture border="20">defaul/DialogBack.png</texture>
             </control>
             <control type="list" id="4323">
                 <left>18</left>
@@ -40,7 +40,7 @@
                         <top>0</top>
                         <width>304</width>
                         <height>38</height>
-                        <texture border="5">button-nofocus.png</texture>
+                        <texture border="5">default/button-nofocus.png</texture>
                     </control>
                     <control type="label">
                         <left>0</left>
@@ -61,14 +61,14 @@
                         <top>0</top>
                         <width>304</width>
                         <height>38</height>
-                        <texture border="5">button-nofocus.png</texture>
+                        <texture border="5">default/button-nofocus.png</texture>
                     </control>	
                     <control type="image">
                         <left>0</left>
                         <top>0</top>
                         <width>304</width>
                         <height>38</height>
-                        <texture border="5">button-focus2.png</texture>
+                        <texture border="5">default/button-focus2.png</texture>
                     </control>	
                     <control type="label">
                         <left>0</left>

@@ -85,6 +85,11 @@ class mainWindow(xbmcgui.WindowXMLDialog):
             self.setProperty('version', self.oe.VERSION)
             self.setProperty('build', self.oe.BUILD)
           
+            self.setProperty('DIST_MEDIA', 'default')
+            
+            if os.path.exists(self.oe.__media__ + self.oe.DISTRIBUTION):
+                self.setProperty('DIST_MEDIA', self.oe.DISTRIBUTION)
+                
             self.oe.winOeMain = self
 
             for strModule in sorted(self.oe.dictModules, key=lambda x: \
@@ -612,6 +617,17 @@ class selectWindow(xbmcgui.WindowXMLDialog):
 
     def __init__(self, *args, **kwargs):
         self.oe = kwargs['oeMain']
+    
+        self.setProperty('arch', self.oe.ARCHITECTURE)
+        self.setProperty('distri', self.oe.DISTRIBUTION)
+        self.setProperty('version', self.oe.VERSION)
+        self.setProperty('build', self.oe.BUILD)
+      
+        self.setProperty('DIST_MEDIA', 'default')
+        
+        if os.path.exists(self.oe.__media__ + self.oe.DISTRIBUTION):
+            self.setProperty('DIST_MEDIA', self.oe.DISTRIBUTION)
+              
         pass
 
     def onInit(self):
@@ -705,6 +721,16 @@ class contextWindow(xbmcgui.WindowXMLDialog):
             self.oe.dbg_log('oeWindows.contextWindow.onInit',
                             'enter_function', 0)
 
+            self.setProperty('arch', self.oe.ARCHITECTURE)
+            self.setProperty('distri', self.oe.DISTRIBUTION)
+            self.setProperty('version', self.oe.VERSION)
+            self.setProperty('build', self.oe.BUILD)
+          
+            self.setProperty('DIST_MEDIA', 'default')
+            
+            if os.path.exists(self.oe.__media__ + self.oe.DISTRIBUTION):
+                self.setProperty('DIST_MEDIA', self.oe.DISTRIBUTION)
+                
             self.result = ''
             self.count = len(self.options)
 
@@ -782,7 +808,7 @@ class wizard(xbmcgui.WindowXMLDialog):
         self.wizWinTitle = 32300
 
         self.oe = kwargs['oeMain']
-        
+              
         self.guisettings = '%s/userdata/guisettings.xml'  % self.oe.XBMC_USER_HOME
         self.languages_dir = '/usr/share/xbmc/language/'
 
@@ -805,6 +831,16 @@ class wizard(xbmcgui.WindowXMLDialog):
     def onInit(self):
         try:
 
+            self.setProperty('arch', self.oe.ARCHITECTURE)
+            self.setProperty('distri', self.oe.DISTRIBUTION)
+            self.setProperty('version', self.oe.VERSION)
+            self.setProperty('build', self.oe.BUILD)
+          
+            self.setProperty('DIST_MEDIA', 'default')
+            
+            if os.path.exists(self.oe.__media__ + self.oe.DISTRIBUTION):
+                self.setProperty('DIST_MEDIA', self.oe.DISTRIBUTION)
+                
             self.oe.dictModules['system'].do_init()
 
             self.getControl(self.wizWinTitle).setLabel(self.oe._(32300).encode('utf-8'))

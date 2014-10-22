@@ -79,11 +79,6 @@ class about:
 
             self.oe.dbg_log('about::init_controls', 'enter_function', 0)
 
-            self.oe.winOeMain.setProperty('arch', self.oe.ARCHITECTURE)
-            self.oe.winOeMain.setProperty('distri', self.oe.DISTRIBUTION)
-            self.oe.winOeMain.setProperty('version', self.oe.VERSION)
-            self.oe.winOeMain.setProperty('build', self.oe.BUILD)
-
             self.oe.dbg_log('about::init_controls', 'exit_function', 0)
         except Exception, e:
             self.oe.dbg_log('about::init_controls', 'ERROR: ('

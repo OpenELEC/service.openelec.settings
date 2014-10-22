@@ -8,7 +8,7 @@
             <top>100r</top>
             <width>1280</width>
             <height>100</height>
-            <texture>floor.png</texture>
+            <texture>default/floor.png</texture>
             <include>VisibleFadeEffect</include>
         </control>
         <control type="image">
@@ -49,7 +49,7 @@
                 <top>5</top>
                 <width>1090</width>
                 <height>630</height>
-                <texture border="15">ContentPanel.png</texture>
+                <texture border="15">default/ContentPanel.png</texture>
             </control>
             <control type="button">
                 <description>Close Window button</description>
@@ -60,8 +60,8 @@
                 <label>-</label>
                 <font>-</font>
                 <onclick>PreviousMenu</onclick>
-                <texturefocus>DialogCloseButton-focus.png</texturefocus>
-                <texturenofocus>DialogCloseButton.png</texturenofocus>
+                <texturefocus>default/DialogCloseButton-focus.png</texturefocus>
+                <texturenofocus>default/DialogCloseButton.png</texturenofocus>
                 <onleft>1</onleft>
                 <onright>1</onright>
                 <onup>1</onup>
@@ -75,14 +75,14 @@
                 <width>220</width>
                 <height>80</height>
                 <aspectratio>keep</aspectratio>
-                <texture>$INFO[Container(5533).Property(Distri)]/Logo.png</texture>
+                <texture>$INFO[Container(5533).Property(DIST_MEDIA)]/Logo.png</texture>
             </control>
             <control type="image">
                 <left>268</left>
                 <top>10</top>
                 <width>795</width>
                 <height>618</height>
-                <texture border="5">black-back2.png</texture>
+                <texture border="5">default/black-back2.png</texture>
             </control>			
             <control type="image">
                 <left>268</left>
@@ -90,7 +90,7 @@
                 <width>794</width>
                 <height>50</height>
                 <aspectratio>stretch</aspectratio>
-                <texture>dialogheader.png</texture>
+                <texture>default/dialogheader.png</texture>
             </control>
             <control type="scrollbar" id="1097">
                 <description>scroll bar indicator for lists</description>
@@ -148,7 +148,7 @@
                 <top>625</top>
                 <width>1090</width>
                 <height>64</height>
-                <texture border="15">ContentPanelMirror.png</texture>
+                <texture border="15">default/ContentPanelMirror.png</texture>
             </control>
             <!-- Main Menu (left) -->
             <control type="list" id="1000">
@@ -165,7 +165,7 @@
                         <top>0</top>
                         <width>260</width>
                         <height>55</height>
-                        <texture border="5">MenuItemNF.png</texture>
+                        <texture border="5">default/MenuItemNF.png</texture>
                     </control>
                     <control type="label">
                         <left>10</left>
@@ -185,7 +185,7 @@
                         <top>0</top>
                         <width>260</width>
                         <height>55</height>
-                        <texture border="5">MenuItemFO.png</texture>
+                        <texture border="5">default/MenuItemFO.png</texture>
                         <animation effect="fade" end="50" time="10">Unfocus</animation>
                     </control>
                     <control type="label">
@@ -226,7 +226,7 @@
                 <top>60</top>
                 <width>793</width>
                 <height>450</height>
-                <texture border="5">button-nofocus.png</texture>
+                <texture border="5">default/button-nofocus.png</texture>
             </control>   
 	    <!-- Other Content (right)-->
             <control type="group">
@@ -245,7 +245,7 @@
                         <top>10</top>
                         <width>200</width>
                         <height>200</height>
-                        <texture border="1">logo_big.png</texture>
+                        <texture border="1">default/logo_big.png</texture>
                     </control>	
                     <control type="label">
                         <left>20</left>
@@ -336,7 +336,7 @@
                         <top>100</top>
                         <width>535</width>
                         <height>2</height>
-                        <texture>blue_line.png</texture>
+                        <texture>default/blue_line.png</texture>
                     </control>	
                     <control type="textbox">
                         <left>20</left>
@@ -368,7 +368,7 @@
                                 <top>2</top>
                                 <width>786</width>
                                 <height>35</height>
-                                <texture border="5">MenuItemNF.png</texture>
+                                <texture>default/_MenuItemNF.png</texture>
                             </control>
                             <control type="label">
                                 <left>40</left>
@@ -419,7 +419,7 @@
                                 <width>30</width>
                                 <height>30</height>
                                 <aspectratio>keep</aspectratio>
-                                <texture border="5">radiobutton-nofocus.png</texture>
+                                <texture border="5">default/radiobutton-nofocus.png</texture>
                                 <visible>StringCompare(ListItem.Property(value), 0) | StringCompare(ListItem.Property(value), false) | IsEmpty(ListItem.Property(value))</visible>
                             </control>
                             <control type="image">
@@ -428,7 +428,7 @@
                                 <width>30</width>
                                 <height>30</height>
                                 <aspectratio>keep</aspectratio>
-                                <texture border="5">radiobutton-focus.png</texture>
+                                <texture border="5">default/radiobutton-focus.png</texture>
                                 <visible>StringCompare(ListItem.Property(value), 1) | StringCompare(ListItem.Property(value), true)</visible>
                             </control>
                         </control>
@@ -440,7 +440,7 @@
                                 <width>22</width>
                                 <height>22</height>
                                 <aspectratio>keep</aspectratio>
-                                <texture border="5">do.png</texture>
+                                <texture border="5">icons/do.png</texture>
                             </control>
                         </control>
                     </itemlayout>
@@ -453,7 +453,7 @@
                                 <width>786</width>
                                 <height>38</height>
 				<visible>Control.HasFocus(1100)</visible>
-                                <texture border="5">MenuItemFO.png</texture>
+                                <texture border="5">default/MenuItemFO.png</texture>
                             </control>
                             <control type="label">
                                 <left>40</left>
@@ -522,7 +522,7 @@
                                 <width>30</width>
                                 <height>30</height>
                                 <aspectratio>keep</aspectratio>
-                                <texture border="5">radiobutton-nofocus.png</texture>
+                                <texture border="5">default/radiobutton-nofocus.png</texture>
                                 <visible>StringCompare(ListItem.Property(value), 0) | StringCompare(ListItem.Property(value),false) | IsEmpty(ListItem.Property(value))</visible>
                             </control>
                             <control type="image">
@@ -531,7 +531,7 @@
                                 <width>30</width>
                                 <height>30</height>
                                 <aspectratio>keep</aspectratio>
-                                <texture border="5">radiobutton-focus.png</texture>
+                                <texture border="5">default/radiobutton-focus.png</texture>
                                 <visible>StringCompare(ListItem.Property(value), 1) | StringCompare(ListItem.Property(value),true)</visible>
                             </control>
                         </control>
@@ -543,7 +543,7 @@
                                 <width>22</width>
                                 <height>22</height>
                                 <aspectratio>keep</aspectratio>
-                                <texture border="5">do.png</texture>
+                                <texture border="5">icons/do.png</texture>
                             </control>
                         </control>						
                     </focusedlayout>                                           
@@ -567,7 +567,7 @@
                             <top>0</top>
                             <width>788</width>
                             <height>98</height>
-                            <texture border="5">button-nofocus.png</texture>
+                            <texture border="5">default/button-nofocus.png</texture>
                         </control>
                         <!-- Icon ethernet -->
                         <control type="image">
@@ -577,7 +577,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(netType), ethernet)</visible> 
-                            <texture>eth.png</texture>
+                            <texture>icons/eth.png</texture>
                         </control>
                         <!-- Icon wifi -->
                         <control type="image">
@@ -587,7 +587,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(netType), wifi)</visible> 
-                            <texture>wlan.png</texture>
+                            <texture>icons/wlan.png</texture>
                         </control>
                         <!-- Icon vpn -->
                         <control type="image">
@@ -597,7 +597,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(netType), vpn)</visible> 
-                            <texture>vpn.png</texture>
+                            <texture>icons/vpn.png</texture>
                         </control>
                         <!-- Connection Name -->
                         <control type="label">
@@ -681,7 +681,7 @@
                             <height>36</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(State), online)</visible> 
-                            <texture>connected.png</texture>
+                            <texture>icons/connected.png</texture>
                         </control>
                         <!-- Favorite Symbol (bottom right) -->
                         <control type="image">
@@ -691,7 +691,7 @@
                             <height>20</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Favorite), 1)</visible> 
-                            <texture>Favorite.png</texture>
+                            <texture>icons/Favorite.png</texture>
                         </control>
                         <!-- Secure Symbol (bottom right) -->
                         <control type="image">
@@ -701,7 +701,7 @@
                             <height>20</height>
                             <aspectratio>keep</aspectratio>
                             <visible>IntegerGreaterThan(ListItem.Property(Security), 0)</visible> 
-                            <texture>Key.png</texture>
+                            <texture>icons/Key.png</texture>
                         </control>		
                     </itemlayout>
                     <focusedlayout height="100">
@@ -712,7 +712,7 @@
                             <top>0</top>
                             <width>788</width>
                             <height>98</height>
-                            <texture border="5">button-nofocus.png</texture>
+                            <texture border="5">default/button-nofocus.png</texture>
                         </control>
                         <control type="image">
                             <left>0</left>
@@ -720,7 +720,7 @@
                             <width>788</width>
                             <height>98</height>
                             <visible>Control.HasFocus(1200)</visible>
-                            <texture border="5">button-focus2.png</texture>
+                            <texture border="5">default/button-focus2.png</texture>
                             <animation type="Visible" reversible="false">
                                 <effect type="fade" start="0" end="100" time="300" />
                             </animation>
@@ -733,7 +733,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(netType), ethernet)</visible> 
-                            <texture>eth.png</texture>
+                            <texture>icons/eth.png</texture>
                         </control>
                         <!-- Icon wifi -->
                         <control type="image">
@@ -743,7 +743,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(netType), wifi)</visible> 
-                            <texture>wlan.png</texture>
+                            <texture>icons/wlan.png</texture>
                         </control>
                         <!-- Icon vpn -->
                         <control type="image">
@@ -753,7 +753,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(netType), vpn)</visible> 
-                            <texture>vpn.png</texture>
+                            <texture>icons/vpn.png</texture>
                         </control>
                         <!-- Connection Name -->
                         <control type="label">
@@ -837,7 +837,7 @@
                             <height>36</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(State), online)</visible> 
-                            <texture>connected.png</texture>
+                            <texture>icons/connected.png</texture>
                         </control>
                         <!-- Favorite Symbol (bottom right) -->
                         <control type="image">
@@ -847,7 +847,7 @@
                             <height>20</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Favorite), 1)</visible> 
-                            <texture>Favorite.png</texture>
+                            <texture>icons/Favorite.png</texture>
                         </control>
                         <!-- Secure Symbol (bottom right) -->
                         <control type="image">
@@ -857,7 +857,7 @@
                             <height>20</height>
                             <aspectratio>keep</aspectratio>
                             <visible>IntegerGreaterThan(ListItem.Property(Security), 0)</visible> 
-                            <texture>Key.png</texture>
+                            <texture>icons/Key.png</texture>
                         </control>		
                     </focusedlayout> 
                 </control>
@@ -890,7 +890,7 @@
                             <top>0</top>
                             <width>786</width>
                             <height>68</height>
-                            <texture border="5">button-nofocus.png</texture>
+                            <texture border="5">default/button-nofocus.png</texture>
                         </control>
                         <!-- default -->
                         <control type="image">
@@ -900,7 +900,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Icon), default)</visible> 
-                            <texture>bt.png</texture>	
+                            <texture>icons/bt.png</texture>	
                         </control>
                         <!-- modem -->
                         <control type="image">
@@ -910,7 +910,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Icon), modem)</visible> 
-                            <texture>bt-modem.png</texture>
+                            <texture>icons/bt-modem.png</texture>
                         </control>
                         <!-- audio -->
                         <control type="image">
@@ -920,7 +920,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Icon), audio-card)</visible> 
-                            <texture>bt-audio-card.png</texture>
+                            <texture>icons/bt-audio-card.png</texture>
                         </control>
                         <!-- Camera Photo -->
                         <control type="image">
@@ -930,7 +930,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Icon), camera-photo)</visible> 
-                            <texture>bt-camera-photo.png</texture>
+                            <texture>icons/bt-camera-photo.png</texture>
                         </control>		
                         <!-- Icon phone -->
                         <control type="image">
@@ -940,7 +940,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Icon), phone)</visible> 
-                            <texture>bt-phone.png</texture>
+                            <texture>icons/bt-phone.png</texture>
                         </control>	
                         <!-- camera-video -->
                         <control type="image">
@@ -950,7 +950,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Icon), camera-video)</visible> 
-                            <texture>bt-camera-video.png</texture>
+                            <texture>icons/bt-camera-video.png</texture>
                         </control>
                         <!-- input-mouse -->
                         <control type="image">
@@ -960,7 +960,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Icon), input-mouse)</visible> 
-                            <texture>bt-input-mouse.png</texture>
+                            <texture>icons/bt-input-mouse.png</texture>
                         </control>								
                         <!-- input-gaming -->
                         <control type="image">
@@ -970,7 +970,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Icon), input-gaming)</visible> 
-                            <texture>bt-input-gaming.png</texture>
+                            <texture>icons/bt-input-gaming.png</texture>
                         </control>	
                         <!-- input-keyboard -->
                         <control type="image">
@@ -980,7 +980,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Icon), input-keyboard)</visible> 
-                            <texture>bt-input-keyboard.png</texture>
+                            <texture>icons/bt-input-keyboard.png</texture>
                         </control>	
                         <!-- input-tablet -->
                         <control type="image">
@@ -990,7 +990,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Icon), input-tablet)</visible> 
-                            <texture>bt-input-tablet.png</texture>
+                            <texture>icons/bt-input-tablet.png</texture>
                         </control>	
                         <!-- Printer -->
                         <control type="image">
@@ -1000,7 +1000,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Icon), printer)</visible> 
-                            <texture>bt-printer.png</texture>
+                            <texture>icons/bt-printer.png</texture>
                         </control>
                         <!-- Computer -->
                         <control type="image">
@@ -1010,7 +1010,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Icon), computer)</visible> 
-                            <texture>bt-computer.png</texture>
+                            <texture>icons/bt-computer.png</texture>
                         </control>                                                
                         <!-- Connection Name -->
                         <control type="label">
@@ -1051,7 +1051,7 @@
                             <height>20</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Paired), 1)</visible> 
-                            <texture>Favorite.png</texture>
+                            <texture>icons/Favorite.png</texture>
                         </control>
                         <!-- Trusted Symbol (bottom right) -->
                         <control type="image">
@@ -1061,7 +1061,7 @@
                             <height>20</height>
                             <aspectratio>keep</aspectratio>
                             <visible>IntegerGreaterThan(ListItem.Property(Trusted), 0)</visible> 
-                            <texture>Key.png</texture>
+                            <texture>icons/Key.png</texture>
                         </control>
                     </itemlayout>
                     <focusedlayout height="70">
@@ -1072,7 +1072,7 @@
                             <top>0</top>
                             <width>788</width>
                             <height>68</height>
-                            <texture border="5">button-nofocus.png</texture>
+                            <texture border="5">default/button-nofocus.png</texture>
                         </control>
                         <control type="image">
                             <left>0</left>
@@ -1080,7 +1080,7 @@
                             <width>788</width>
                             <height>68</height>
                             <visible>Control.HasFocus(1300)</visible>
-                            <texture border="5">button-focus2.png</texture>
+                            <texture border="5">default/button-focus2.png</texture>
                             <animation type="Visible" reversible="false">
                                 <effect type="fade" start="0" end="100" time="300" />
                             </animation>
@@ -1093,7 +1093,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Icon), default)</visible> 
-                            <texture>bt.png</texture>
+                            <texture>icons/bt.png</texture>
                         </control>
                         <!-- modem -->
                         <control type="image">
@@ -1103,7 +1103,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Icon), modem)</visible> 
-                            <texture>bt-modem.png</texture>
+                            <texture>icons/bt-modem.png</texture>
                         </control>
                         <!-- audio -->
                         <control type="image">
@@ -1113,7 +1113,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Icon), audio-card)</visible> 
-                            <texture>bt-audio-card.png</texture>
+                            <texture>icons/bt-audio-card.png</texture>
                         </control>
                         <!-- Camera Photo -->
                         <control type="image">
@@ -1123,7 +1123,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Icon), camera-photo)</visible> 
-                            <texture>bt-camera-photo.png</texture>
+                            <texture>icons/bt-camera-photo.png</texture>
                         </control>		
                         <!-- Icon phone -->
                         <control type="image">
@@ -1133,7 +1133,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Icon), phone)</visible> 
-                            <texture>bt-phone.png</texture>
+                            <texture>icons/bt-phone.png</texture>
                         </control>	
                         <!-- camera-video -->
                         <control type="image">
@@ -1143,7 +1143,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Icon), camera-video)</visible> 
-                            <texture>bt-camera-video.png</texture>
+                            <texture>icons/bt-camera-video.png</texture>
                         </control>	
                         <!-- input-mouse -->
                         <control type="image">
@@ -1153,7 +1153,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Icon), input-mouse)</visible> 
-                            <texture>bt-input-mouse.png</texture>
+                            <texture>icons/bt-input-mouse.png</texture>
                         </control>							
                         <!-- input-gaming -->
                         <control type="image">
@@ -1163,7 +1163,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Icon), input-gaming)</visible> 
-                            <texture>bt-input-gaming.png</texture>
+                            <texture>icons/bt-input-gaming.png</texture>
                         </control>	
                         <!-- input-keyboard -->
                         <control type="image">
@@ -1173,7 +1173,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Icon), input-keyboard)</visible> 
-                            <texture>bt-input-keyboard.png</texture>
+                            <texture>icons/bt-input-keyboard.png</texture>
                         </control>	
                         <!-- input-tablet -->
                         <control type="image">
@@ -1183,7 +1183,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Icon), input-tablet)</visible> 
-                            <texture>bt-input-tablet.png</texture>
+                            <texture>icons/bt-input-tablet.png</texture>
                         </control>	
                         <!-- Printer -->
                         <control type="image">
@@ -1193,7 +1193,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Icon), printer)</visible> 
-                            <texture>bt-printer.png</texture>
+                            <texture>icons/bt-printer.png</texture>
                         </control>
                         <!-- Computer -->
                         <control type="image">
@@ -1203,7 +1203,7 @@
                             <height>48</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Icon), computer)</visible> 
-                            <texture>bt-computer.png</texture>
+                            <texture>icons/bt-computer.png</texture>
                         </control>                                                
                         <!-- Connection Name -->
                         <control type="label">
@@ -1244,7 +1244,7 @@
                             <height>20</height>
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Paired), 1)</visible> 
-                            <texture>Favorite.png</texture>
+                            <texture>icons/Favorite.png</texture>
                         </control>
                         <!-- Trusted Symbol (bottom right) -->
                         <control type="image">
@@ -1254,7 +1254,7 @@
                             <height>20</height>
                             <aspectratio>keep</aspectratio>
                             <visible>IntegerGreaterThan(ListItem.Property(Trusted), 0)</visible> 
-                            <texture>Key.png</texture>
+                            <texture>icons/Key.png</texture>
                         </control>
                     </focusedlayout> 
                 </control>
@@ -1278,8 +1278,8 @@
                 <height>40</height>
                 <visible>true</visible>
                 <colordiffuse>FFFFFFFF</colordiffuse>
-                <texturefocus>button-focus.png</texturefocus>
-                <texturenofocus>button-nofocus.png</texturenofocus>
+                <texturefocus>default/button-focus.png</texturefocus>
+                <texturenofocus>default/button-nofocus.png</texturenofocus>
                 <label>
                 </label>
                 <font>font12</font>
@@ -1299,8 +1299,8 @@
                 <height>40</height>
                 <visible>true</visible>
                 <colordiffuse>FFFFFFFF</colordiffuse>
-                <texturefocus>button-focus.png</texturefocus>
-                <texturenofocus>button-nofocus.png</texturenofocus>
+                <texturefocus>default/button-focus.png</texturefocus>
+                <texturenofocus>default/button-nofocus.png</texturenofocus>
                 <label>
                 </label>
                 <font>font12</font>
@@ -1320,8 +1320,8 @@
                 <height>40</height>
                 <visible>true</visible>
                 <colordiffuse>FFFFFFFF</colordiffuse>
-                <texturefocus>button-focus.png</texturefocus>
-                <texturenofocus>button-nofocus.png</texturenofocus>
+                <texturefocus>default/button-focus.png</texturefocus>
+                <texturenofocus>default/button-nofocus.png</texturenofocus>
                 <label>
                 </label>
                 <font>font12</font>
@@ -1341,8 +1341,8 @@
                 <height>40</height>
                 <visible>true</visible>
                 <colordiffuse>FFFFFFFF</colordiffuse>
-                <texturefocus>button-focus.png</texturefocus>
-                <texturenofocus>button-nofocus.png</texturenofocus>
+                <texturefocus>default/button-focus.png</texturefocus>
+                <texturenofocus>default/button-nofocus.png</texturenofocus>
                 <label>
                 </label>
                 <font>font12</font>
@@ -1362,8 +1362,8 @@
                 <height>40</height>
                 <visible>true</visible>
                 <colordiffuse>FFFFFFFF</colordiffuse>
-                <texturefocus>button-focus.png</texturefocus>
-                <texturenofocus>button-nofocus.png</texturenofocus>
+                <texturefocus>default/button-focus.png</texturefocus>
+                <texturenofocus>default/button-nofocus.png</texturenofocus>
                 <label>
                 </label>
                 <font>font12</font>

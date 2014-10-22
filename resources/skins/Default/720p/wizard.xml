@@ -1,4 +1,4 @@
-<window id="13003">
+<window id="5535">
     <defaultcontrol always="true">1500</defaultcontrol>
     <allowoverlay>no</allowoverlay>
     <controls>
@@ -7,7 +7,7 @@
             <top>100r</top>
             <width>1280</width>
             <height>100</height>
-            <texture>floor.png</texture>
+            <texture>default/floor.png</texture>
             <animation effect="fade" time="300">Visible</animation>
             <animation effect="fade" time="300">Hidden</animation>
         </control>		
@@ -27,35 +27,35 @@
                 <top>5</top>
                 <width>1090</width>
                 <height>630</height>
-                <texture border="15">ContentPanel.png</texture>
+                <texture border="15">default/ContentPanel.png</texture>
             </control>
             <control type="image">
                 <left>265</left>
                 <top>5</top>
                 <width>830</width>
                 <height>630</height>
-                <texture border="15">ContentPanel.png</texture>
+                <texture border="15">default/ContentPanel.png</texture>
             </control>
             <control type="image">
                 <left>10</left>
                 <top>10</top>
                 <width>260</width>
                 <height>621</height>
-                <texture>wizard.png</texture>				
+                <texture>$INFO[Container(5535).Property(DIST_MEDIA)]/wizard.png</texture>				
             </control>					
             <control type="image">
                 <left>5</left>
                 <top>625</top>
                 <width>1090</width>
                 <height>64</height>
-                <texture border="15">ContentPanelMirror.png</texture>
+                <texture border="15">default/ContentPanelMirror.png</texture>
             </control>			
             <control type="image">
                 <left>268</left>
                 <top>10</top>
                 <width>804</width>
                 <height>50</height>
-                <texture border="5">black-back2.png</texture>
+                <texture border="5">default/black-back2.png</texture>
             </control>
             <control type="image">
                 <left>268</left>
@@ -63,7 +63,7 @@
                 <width>804</width>
                 <height>70</height>
                 <aspectratio>stretch</aspectratio>
-                <texture>dialogheader.png</texture>
+                <texture>default/dialogheader.png</texture>
             </control>
             <control type="label" id="32300">
                 <description>header label</description>
@@ -84,21 +84,21 @@
                 <top>60</top>
                 <width>800</width>
                 <height>450</height>
-                <texture border="5">button-nofocus.png</texture>
+                <texture border="5">default/button-nofocus.png</texture>
             </control>
             <control type="image">
                 <left>12</left>
                 <top>11</top>
                 <width>258</width>
                 <height>618</height>
-                <texture border="5">button-nofocus.png</texture>
+                <texture border="5">default/button-nofocus.png</texture>
             </control>					
             <control type="image">
                 <left>272</left>
                 <top>509</top>
                 <width>799</width>
                 <height>120</height>
-                <texture border="5">black-back2.png</texture>
+                <texture border="5">default/black-back2.png</texture>
             </control>
             <control type="group" id="1398">
                 <visible>IsEmpty(Control.GetLabel(1390))</visible>
@@ -162,7 +162,7 @@
                         </label>                                    
                         <textcolor>FF999999</textcolor>
                         <focusedcolor>white</focusedcolor>
-                        <texturefocus border="5">button-focus2.png</texturefocus>
+                        <texturefocus border="5">default/button-focus2.png</texturefocus>
                     </control>		
                     <control type="radiobutton" id="1407">
                         <left>550</left>
@@ -173,7 +173,7 @@
                         </label>                                    
                         <textcolor>FF999999</textcolor>
                         <focusedcolor>white</focusedcolor>
-                        <texturefocus border="5">button-focus2.png</texturefocus>
+                        <texturefocus border="5">default/button-focus2.png</texturefocus>
                     </control>			      	            
                     <control type="button" id="1401">
                         <left>300</left>
@@ -182,8 +182,8 @@
                         <height>40</height>
                         <visible>true</visible>
                         <colordiffuse>FFFFFFFF</colordiffuse>
-                        <texturefocus>button-focus.png</texturefocus>
-                        <texturenofocus>button-nofocus.png</texturenofocus>
+                        <texturefocus>default/button-focus.png</texturefocus>
+                        <texturenofocus>default/button-nofocus.png</texturenofocus>
                         <label>
                         </label>
                         <font>font12</font>
@@ -198,8 +198,8 @@
                         <height>40</height>
                         <visible>true</visible>
                         <colordiffuse>FFFFFFFF</colordiffuse>
-                        <texturefocus>button-focus.png</texturefocus>
-                        <texturenofocus>button-nofocus.png</texturenofocus>
+                        <texturefocus>default/button-focus.png</texturefocus>
+                        <texturenofocus>default/button-nofocus.png</texturenofocus>
                         <label>
                         </label>
                         <font>font12</font>
@@ -235,7 +235,7 @@
                         <top>330</top>
                         <width>768</width>
                         <height>170</height>
-                        <texture border="15">ContentPanel.png</texture>
+                        <texture border="15">default/ContentPanel.png</texture>
                     </control>			     			          
                     <!-- Main Menu (left) -->	    
                     <control type="list" id="1000">
@@ -270,7 +270,7 @@
                                 <top>2</top>
                                 <width>727</width>
                                 <height>48</height>
-                                <texture border="5">button-nofocus.png</texture>
+                                <texture border="5">default/button-nofocus.png</texture>
                             </control>
                             <!-- Icon ethernet -->
                             <control type="image">
@@ -280,7 +280,7 @@
                                 <height>32</height>
                                 <aspectratio>keep</aspectratio>
                                 <visible>StringCompare(ListItem.Property(netType), ethernet)</visible> 
-                                <texture>eth.png</texture>
+                                <texture>icons/eth.png</texture>
                             </control>
                             <!-- Icon wifi -->
                             <control type="image">
@@ -290,7 +290,7 @@
                                 <height>32</height>
                                 <aspectratio>keep</aspectratio>
                                 <visible>StringCompare(ListItem.Property(netType), wifi)</visible> 
-                                <texture>wlan.png</texture>
+                                <texture>icons/wlan.png</texture>
                             </control>
                             <!-- Connection Name -->
                             <control type="label">
@@ -341,7 +341,7 @@
                                 <height>20</height>
                                 <aspectratio>keep</aspectratio>
                                 <visible>IntegerGreaterThan(ListItem.Property(Security), 0)</visible> 
-                                <texture>Key.png</texture>
+                                <texture>icons/Key.png</texture>
                             </control>		
                         </itemlayout>
                         <focusedlayout height="50">
@@ -352,7 +352,7 @@
                                 <top>2</top>
                                 <width>727</width>
                                 <height>48</height>
-                                <texture border="5">button-nofocus.png</texture>
+                                <texture border="5">default/button-nofocus.png</texture>
                             </control>						
                             <control type="image">
                                 <left>0</left>
@@ -360,7 +360,7 @@
                                 <width>727</width>
                                 <height>48</height>
                                 <visible>Control.HasFocus(1200)</visible>
-                                <texture border="5">button-focus2.png</texture>
+                                <texture border="5">default/button-focus2.png</texture>
                                 <animation type="Visible" reversible="false">
                                     <effect type="fade" start="0" end="100" time="300" />
                                 </animation>			        							
@@ -373,7 +373,7 @@
                                 <height>32</height>
                                 <aspectratio>keep</aspectratio>
                                 <visible>StringCompare(ListItem.Property(netType), ethernet)</visible> 
-                                <texture>eth.png</texture>
+                                <texture>icons/eth.png</texture>
                             </control>
                             <!-- Icon wifi -->
                             <control type="image">
@@ -383,7 +383,7 @@
                                 <height>32</height>
                                 <aspectratio>keep</aspectratio>
                                 <visible>StringCompare(ListItem.Property(netType), wifi)</visible> 
-                                <texture>wlan.png</texture>
+                                <texture>icons/wlan.png</texture>
                             </control>
                             <!-- Connection Name -->
                             <control type="label">
@@ -434,7 +434,7 @@
                                 <height>20</height>
                                 <aspectratio>keep</aspectratio>
                                 <visible>IntegerGreaterThan(ListItem.Property(Security), 0)</visible> 
-                                <texture>Key.png</texture>
+                                <texture>icons/Key.png</texture>
                             </control>	
                         </focusedlayout> 
                     </control>
@@ -463,8 +463,8 @@
                 <height>40</height>
                 <visible>true</visible>
                 <colordiffuse>FFFFFFFF</colordiffuse>
-                <texturefocus>button-focus.png</texturefocus>
-                <texturenofocus>button-nofocus.png</texturenofocus>
+                <texturefocus>default/button-focus.png</texturefocus>
+                <texturenofocus>default/button-nofocus.png</texturenofocus>
                 <label>
                 </label>
                 <font>font12</font>

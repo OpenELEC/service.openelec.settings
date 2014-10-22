@@ -18,14 +18,14 @@
                 <top>5</top>
                 <width>600</width>
                 <height>174</height>
-                <texture border="15">ContentPanel.png</texture>
+                <texture border="15">default/ContentPanel.png</texture>
             </control>
             <control type="image">
                 <left>5</left>
                 <top>5</top>
                 <width>600</width>
                 <height>174</height>
-                <texture border="15">ContentPanel.png</texture>
+                <texture border="15">default/ContentPanel.png</texture>
             </control>
             <control type="group">
                 <left>17</left>
@@ -47,7 +47,7 @@
                             <top>2</top>
                             <width>555</width>
                             <height>28</height>
-                            <texture border="5">button-nofocus.png</texture>
+                            <texture border="5">default/button-nofocus.png</texture>
                         </control>
                         <control type="label">
                             <left>20</left>
@@ -75,7 +75,7 @@
                             <top>2</top>
                             <width>555</width>
                             <height>28</height>
-                            <texture border="5">button-focus2.png</texture>
+                            <texture border="5">default/button-focus2.png</texture>
                         </control>
                         <control type="label">
                             <left>20</left>

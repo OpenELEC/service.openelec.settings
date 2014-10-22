@@ -108,8 +108,6 @@ sys.setdefaultencoding(encoding)
 
 import oeWindows
 
-winOeMain = oeWindows.mainWindow('mainWindow.xml', __cwd__, 'Default', oeMain=__oe__)
-
 xbmc.log('## OpenELEC Addon ## ' + unicode(__addon__.getAddonInfo('version')))
 
 def _(code):
@@ -1029,6 +1027,8 @@ XBMC_USER_HOME = os.environ.get('XBMC_USER_HOME', '/storage/.kodi')
 CONFIG_CACHE   = os.environ.get('CONFIG_CACHE', '/storage/.cache')
 USER_CONFIG    = os.environ.get('USER_CONFIG', '/storage/.config')
 TEMP           = '%s/temp/' % XBMC_USER_HOME
+
+winOeMain = oeWindows.mainWindow('mainWindow.xml', __cwd__, 'Default', oeMain=__oe__)
 
 if os.path.exists('/etc/machine-id'):
     SYSTEMID = load_file('/etc/machine-id')

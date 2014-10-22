@@ -61,7 +61,7 @@ class mainWindow(xbmcgui.WindowXMLDialog):
         self.oe = kwargs['oeMain']
         self.lastGuiList = -1
         self.lastListType = -1
-        
+              
         if 'isChild' in kwargs:
             self.isChild = True
 
@@ -80,6 +80,11 @@ class mainWindow(xbmcgui.WindowXMLDialog):
 
             self.oe.set_busy(1)
 
+            self.setProperty('arch', self.oe.ARCHITECTURE)
+            self.setProperty('distri', self.oe.DISTRIBUTION)
+            self.setProperty('version', self.oe.VERSION)
+            self.setProperty('build', self.oe.BUILD)
+          
             self.oe.winOeMain = self
 
             for strModule in sorted(self.oe.dictModules, key=lambda x: \

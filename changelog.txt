@@ -1,3 +1,6 @@
+2014-10-22 v0.4.6
+  (fix) change language in wizard
+
 2014-10-22 v0.4.5
   (updated) language files from Transifex
 

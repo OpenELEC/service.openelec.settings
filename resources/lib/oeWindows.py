@@ -810,7 +810,7 @@ class wizard(xbmcgui.WindowXMLDialog):
         self.oe = kwargs['oeMain']
               
         self.guisettings = '%s/userdata/guisettings.xml'  % self.oe.XBMC_USER_HOME
-        self.languages_dir = '/usr/share/xbmc/language/'
+        self.languages_dir = '/usr/share/kodi/language/'
 
         self.buttons = {
             1: {'id': 1500, 'modul': '', 'action': ''},

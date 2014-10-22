@@ -75,7 +75,7 @@
                 <width>220</width>
                 <height>80</height>
                 <aspectratio>keep</aspectratio>
-                <texture>OpenELEC_Logo.png</texture>
+                <texture>$INFO[Container(5533).Property(Distri)]/Logo.png</texture>
             </control>
             <control type="image">
                 <left>268</left>

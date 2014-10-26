@@ -80,7 +80,9 @@ $(BUILDDIR)/$(ADDON_NAME)/resources/skins/Default/media/icons:
 $(BUILDDIR)/$(ADDON_NAME)/resources/language:
 	mkdir -p $(BUILDDIR)/$(ADDON_NAME)/resources/language
 	cp -R language/* $(BUILDDIR)/$(ADDON_NAME)/resources/language
-	sed -e "s,@DISTRONAME@,$(DISTRONAME),g" -i $(BUILDDIR)/$(ADDON_NAME)/resources/language/*/*.po
+	sed -e "s,@DISTRONAME@,$(DISTRONAME),g" \
+	    -e "s,@ROOT_PASSWORD@,$(ROOT_PASSWORD),g" \
+	    -i $(BUILDDIR)/$(ADDON_NAME)/resources/language/*/*.po
 
 $(BUILDDIR)/$(ADDON_NAME)-$(ADDON_VERSION).zip: $(BUILDDIR)/$(ADDON_NAME)
 	cd $(BUILDDIR); zip -r $(ADDON_NAME)-$(ADDON_VERSION).zip $(ADDON_NAME)

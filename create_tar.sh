@@ -1,3 +1,3 @@
 #!/bin/sh
 
-git archive --format=zip tags/$1 -o service.openelec.settings-$1.zip
+git archive --format=tar.gz --prefix=OpenELEC-settings-$1/ tags/$1 -o OpenELEC-settings-$1.tar.gz

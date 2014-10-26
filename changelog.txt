@@ -1,5 +1,7 @@
-2014-10-22 v0.4.6
+2014-10-22 v0.5.0
   (fix) change language in wizard
+  (change) rework buildsystem
+  (change) initial rebranding support
 
 2014-10-22 v0.4.5
   (updated) language files from Transifex

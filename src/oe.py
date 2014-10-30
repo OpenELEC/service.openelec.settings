@@ -1012,16 +1012,54 @@ def fixed_writexml(
     else:
         writer.write('/>%s' % newl)
 
+def parse_os_release():
+    os_release_fields = re.compile(r'(?!#)(?P<key>.+)=(?P<quote>[\'\"]?)(?P<value>.+)(?P=quote)$')
+    os_release_unescape = re.compile(r'\\(?P<escaped>[\'\"\\])')
+    try:
+        with open('/etc/os-release') as f:
+            info = {}
+            for line in f:
+                m = re.match(os_release_fields, line)
+                if m is not None:
+                    key = m.group('key')
+                    value = re.sub(os_release_unescape, r'\g<escaped>', m.group('value'))
+                    info[key] = value
+            return info
+    except OSError:
+        return None
 
+def get_os_release():
+    distribution = version = architecture = build = ''
+    os_release_info = parse_os_release()
+    if os_release_info is not None:
+        if 'NAME' in os_release_info:
+            distribution = os_release_info['NAME']
+        if 'VERSION_ID' in os_release_info:
+            version = os_release_info['VERSION_ID']
+        if 'VERSION' in os_release_info:
+            version = os_release_info['VERSION']
+        if 'OPENELEC_ARCH' in os_release_info:
+            architecture = os_release_info['OPENELEC_ARCH']
+        if 'OPENELEC_BUILD' in os_release_info:
+            build = os_release_info['OPENELEC_BUILD']
+        return (
+            distribution,
+            version,
+            architecture,
+            build,
+            )
+            
 minidom.Element.writexml = fixed_writexml
 
 ############################################################################################
 # Base Environment
 ############################################################################################
-DISTRIBUTION   = load_file('/etc/distribution')
-ARCHITECTURE   = load_file('/etc/arch')
-VERSION        = load_file('/etc/version')    
-BUILD          = load_file('/etc/build')
+os_release_data = get_os_release()
+DISTRIBUTION = os_release_data[0]
+VERSION = os_release_data[1]
+ARCHITECTURE = os_release_data[2]
+BUILD = os_release_data[3]
+
 DOWNLOAD_DIR   = "/storage/downloads"
 XBMC_USER_HOME = os.environ.get('XBMC_USER_HOME', '/storage/.kodi')
 CONFIG_CACHE   = os.environ.get('CONFIG_CACHE', '/storage/.cache')

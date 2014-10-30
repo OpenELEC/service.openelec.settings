@@ -41,8 +41,8 @@
                 <top>10</top>
                 <width>260</width>
                 <height>621</height>
-                <texture>$INFO[Container(5535).Property(DIST_MEDIA)]/wizard.png</texture>				
-            </control>					
+                <texture>default/wizard.png</texture>
+            </control>
             <control type="image">
                 <left>5</left>
                 <top>625</top>

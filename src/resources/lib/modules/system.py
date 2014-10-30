@@ -329,7 +329,7 @@ class system:
                     value
             else:
                 self.struct['ident']['settings']['hostname']['value'] = \
-                    self.oe.download_file('/etc/distribution')
+                    self.oe.DISTRIBUTION
                     
             # AutoUpdate
             value = self.oe.read_setting('system', 'AutoUpdate')

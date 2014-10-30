@@ -55,6 +55,7 @@ class system:
     RESTORE_DIR = None
     GET_CPU_FLAG = None
     SET_CLOCK_CMD = None
+    HOSTNAME = None
     
     menu = {'1': {
         'name': 32002,
@@ -77,7 +78,7 @@ class system:
                     'settings': {'hostname': {
                         'order': 1,
                         'name': 32190,
-                        'value': 'OpenELEC',
+                        'value': self.HOSTNAME,
                         'action': 'set_hostname',
                         'type': 'text',
                         'validate': '^([a-zA-Z0-9](?:[a-zA-Z0-9-\.]*[a-zA-Z0-9]))$',

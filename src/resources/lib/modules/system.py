@@ -77,7 +77,7 @@ class system:
                     'settings': {'hostname': {
                         'order': 1,
                         'name': 32190,
-                        'value': 'OpenELEC',
+                        'value': '',
                         'action': 'set_hostname',
                         'type': 'text',
                         'validate': '^([a-zA-Z0-9](?:[a-zA-Z0-9-\.]*[a-zA-Z0-9]))$',
@@ -327,7 +327,10 @@ class system:
             if not value is None:
                 self.struct['ident']['settings']['hostname']['value'] = \
                     value
-
+            else:
+                self.struct['ident']['settings']['hostname']['value'] = \
+                    self.oe.download_file('/etc/distribution')
+                    
             # AutoUpdate
             value = self.oe.read_setting('system', 'AutoUpdate')
             if not value is None:

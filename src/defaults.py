@@ -119,9 +119,6 @@ system = \
         "BACKUP_DIRS"         : [XBMC_USER_HOME, USER_CONFIG, CONFIG_CACHE],
         "BACKUP_DESTINATION"  : "/storage/backup/",
         "RESTORE_DIR"         : "/storage/.restore/",
-        
-      #NAME
-        "HOSTNAME"            : "@HOSTNAME@",
     }
     
 about = \

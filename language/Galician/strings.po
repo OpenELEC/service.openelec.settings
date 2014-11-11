@@ -1,5 +1,5 @@
 # Kodi Media Center language file
-# Addon Name: OpenELEC Configuration
+# Addon Name: @DISTRONAME@ Configuration
 # Addon id: service.openelec.settings
 # Addon Provider: OpenELEC
 msgid ""
@@ -15,10 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: gl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-msgctxt "#600"
-msgid "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] Settings"
-msgstr "Configuración do [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
 
 msgctxt "#601"
 msgid "Interface"
@@ -92,10 +88,6 @@ msgctxt "#709"
 msgid "709"
 msgstr "709"
 
-msgctxt "#710"
-msgid "Configure the Hostname of your OpenELEC system. This will be used for the HTPC \\\\hostname in Windows and SMB server name in the Mac OS Finder"
-msgstr "Configure o nome de host do seu sistema OpenELEC. Empregarase en Windows e como nome no servidor SMB non Finder de Mac OS"
-
 msgctxt "#711"
 msgid "Configure the 1st keyboard software layout"
 msgstr "Configurar o software da 1ª disposición do teclado"
@@ -107,14 +99,6 @@ msgstr "Configurar o software da 2ª disposición do teclado"
 msgctxt "#713"
 msgid "Configure the physical keyboard type"
 msgstr "Configurar o tipo físico do teclado"
-
-msgctxt "#716"
-msgid "Click to manually check the OpenELEC servers for an updated release"
-msgstr "Clic para verificar manualmente se existen actualizacións novas nos servidores do OpenELEC"
-
-msgctxt "#717"
-msgid "If you have an small LCD or VFD attached to your OpenELEC system you must configure the correct display driver"
-msgstr "Se ten un pequeno LCD ou VFD conectado ao seu sistema OpenELEC ten que configurar o controlador correcto"
 
 msgctxt "#719"
 msgid "Configure the number of minutes before hard-drive spin down occurs"
@@ -179,10 +163,6 @@ msgstr "749"
 msgctxt "#750"
 msgid "750"
 msgstr "750"
-
-msgctxt "#751"
-msgid "With OBEX filetransfer you can send files, for example movies or pictures over bluetooth to OpenELEC."
-msgstr "Con OBEX pode enviar ficheiros, por exemplo filmes ou imaxes, mediante bluetooth ao OpenELEC."
 
 msgctxt "#752"
 msgid "Here you can set the folder location where OBEX file transfer should store incoming files"
@@ -548,10 +528,6 @@ msgctxt "#32179"
 msgid "Update Available"
 msgstr "Actualización Dispoñible"
 
-msgctxt "#32180"
-msgid "Would you like to update OpenELEC now?"
-msgstr "Quere actualizar OpenELEC agora?"
-
 msgctxt "#32181"
 msgid "Filename"
 msgstr "Nome do ficheiro"
@@ -688,10 +664,6 @@ msgctxt "#32216"
 msgid "Auto-Share External Drives"
 msgstr "Compartir auto. Discos Externos"
 
-msgctxt "#32300"
-msgid "Welcome to [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
-msgstr "Benvido a [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
-
 msgctxt "#32301"
 msgid "Welcome"
 msgstr "Benvido"
@@ -763,10 +735,6 @@ msgstr "Restabelecer aos Predefinidos"
 msgctxt "#32324"
 msgid "Reset System Settings to defaults"
 msgstr "Restabelecer á Configuración Predefinida"
-
-msgctxt "#32325"
-msgid "Reset OpenELEC to defaults"
-msgstr "Estabelecer OpenELECT aos valores predefinidos"
 
 msgctxt "#32326"
 msgid "Are you sure?"
@@ -867,10 +835,6 @@ msgstr "A seguinte información non é válida:"
 msgctxt "#32362"
 msgid "Check for updates now:"
 msgstr "Comprobar actualizacións agora:"
-
-msgctxt "#32363"
-msgid "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
-msgstr "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
 
 msgctxt "#32364"
 msgid "Update available"

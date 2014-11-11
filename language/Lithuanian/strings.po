@@ -1,5 +1,5 @@
 # Kodi Media Center language file
-# Addon Name: OpenELEC Configuration
+# Addon Name: @DISTRONAME@ Configuration
 # Addon id: service.openelec.settings
 # Addon Provider: OpenELEC
 msgid ""
@@ -17,8 +17,8 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 msgctxt "#600"
-msgid "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] Settings"
-msgstr "[COLOR FF757677]Atidaryti[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] nustatymus"
+msgid "@DISTRONAME@ Settings"
+msgstr "@DISTRONAME@ nustatymai"
 
 msgctxt "#601"
 msgid "Interface"
@@ -104,10 +104,6 @@ msgctxt "#709"
 msgid "709"
 msgstr "709"
 
-msgctxt "#710"
-msgid "Configure the Hostname of your OpenELEC system. This will be used for the HTPC \\\\hostname in Windows and SMB server name in the Mac OS Finder"
-msgstr "Konfigūruoti OpenELEC sistemos pagrindinio kompiuterio vardą. Jis bus naudojamas kaip HTPC \\\\'pagrindinio kompiuterio vardas' Windows bei SMB serverio varde Mac OS Finder failų tvarkyklėje"
-
 msgctxt "#711"
 msgid "Configure the 1st keyboard software layout"
 msgstr "Konfigūruoti 1-os klaviatūros programinės įrangos išdėstymą"
@@ -120,25 +116,13 @@ msgctxt "#713"
 msgid "Configure the physical keyboard type"
 msgstr "Konfigūruoti fizinės klaviatūros tipą"
 
-msgctxt "#714"
-msgid "OpenELEC can be configured for automatic or manual updates. Automatic updates are available on stable releases and stable release candidates. Automatic update self-disables on beta and development builds"
-msgstr "OpenELEC gali būti nustatytas atnaujinimui automatiniu arba rankiniu būdu. Automatiniai atnaujinimai pateikiami stabilioms ir stabilioms kandidatinėms versijoms. Automatinis atnaujinimas atsijungia beta ir kūrėjų versijoms"
-
 msgctxt "#715"
 msgid "Set to ON and an on-screen notification will be displayed when a new update is available"
 msgstr "Įjunkite ir ekrane bus rodomas pranešimas, kai bus prieinamas naujas atnaujinimas"
 
 msgctxt "#716"
-msgid "Click to manually check the OpenELEC servers for an updated release"
-msgstr "Paspauskite, norėdami rankiniu būdu patikrinti ar yra atnaujinimas OpenELEC serveriuose"
-
-msgctxt "#717"
-msgid "If you have an small LCD or VFD attached to your OpenELEC system you must configure the correct display driver"
-msgstr "Jei turite prijungtą mažą LCD arba VFD prie jūsų OpenELEC sistemos, jūs turite sukonfigūruoti teisingas vaizdo tvarkykles"
-
-msgctxt "#718"
-msgid "Set on ON and OpenELEC will spin down attached drives (not the main system drive) when idle"
-msgstr "Nustatykite ĮJUNGTA ir OpenELEC sustabdys prijungtus diskus (ne pagrindinį sistemos diską), kai nenaudojami"
+msgid "Click to manually check the @DISTRONAME@ servers for an updated release"
+msgstr "Paspauskite, jei norite patikrinti ar yra atnaujintas leidimas @DISTRONAME@ serveriuose"
 
 msgctxt "#719"
 msgid "Configure the number of minutes before hard-drive spin down occurs"
@@ -152,21 +136,9 @@ msgctxt "#721"
 msgid "721"
 msgstr "721"
 
-msgctxt "#722"
-msgid "Create a tar archive containing all OpenELEC and Kodi configuration settings, databases and thumbnail content. Backup files will be stored in /storage/backups"
-msgstr "Sukurti *.tar archyvą su visais OpenELEC ir Kodi konfigūracijos nustatymais, duomenų bazėmis ir miniatiūrų turiniu. Atsarginės kopijos failai bus išsaugoti /storage/backups aplanke"
-
 msgctxt "#723"
 msgid "Restore a tar archive backup previously created using the backup option above"
 msgstr "Atstatyti *.tar archyvo atsarginę kopiją, sukurtą naudojant aukščiau esančią atsarginės kopijos parinktį"
-
-msgctxt "#724"
-msgid "[COLOR FF00FF00]SOFT RESET[/COLOR]\nPermanently reset OpenELEC OS configuration to defaults (resets also Kodi to default including your library. your media - music/videos/etc are not touched)"
-msgstr "[COLOR FF00FF00]PROGRAMINIS ATSTATYMAS[/COLOR]\nNegrįžtamai atstato OpenELEC OS numatytąsias konfigūracijos reikšmes (taip pat atstato Kodi į pradinę būseną, įskaitant ir jūsų biblioteką. Jūsų media įrašai - muzika/vaizdo įrašai/ir kiti nebus paliesti)"
-
-msgctxt "#725"
-msgid "[COLOR FFFF0000]HARD RESET[/COLOR]\nPermanently reset OpenELEC OS and Kodi configuration to defaults (everything in your storage partition will be deleted)"
-msgstr "[COLOR FFFF0000]APARATINIS ATSTATYMAS[/COLOR]\nNegrįžtamai atstato OpenELEC OS ir Kodi numatytąsias konfigūracijos reikšmes (viskas jūsų saugyklos skirsnyje bus ištrinta)"
 
 msgctxt "#726"
 msgid "Enable or disable support for Wireless (WLAN) networks"
@@ -228,10 +200,6 @@ msgctxt "#741"
 msgid "Set the password for Samba sharing"
 msgstr "Nustatykite slaptažodį Samba bendrinimui"
 
-msgctxt "#742"
-msgid "Set to ON to enable the embedded SSH server. The SSH console can be accessed with username 'root' and password 'openelec'."
-msgstr "Nustatykite ĮJUNGTA, jei norite įjungti integruotą SSH serverį. SSH konsolė gali būti pasiekta su vartotojo vardu 'root' ir slaptažodžiu 'openelec'."
-
 msgctxt "#743"
 msgid "Set to ON if you have copied private SSH keys to your HTPC and would like to improve security by disabling SSH username and password authentication."
 msgstr "Nustatykite ĮJUNGTA, jei nukopijavote SSH raktus į jūsų HTPC ir norite pagerinti saugumą išjungiant SSH vartotojo vardo ir slaptažodžio autentikaciją."
@@ -263,10 +231,6 @@ msgstr "749"
 msgctxt "#750"
 msgid "750"
 msgstr "750"
-
-msgctxt "#751"
-msgid "With OBEX filetransfer you can send files, for example movies or pictures over bluetooth to OpenELEC."
-msgstr "Su OBEX failų perkėlimu galite siųsti failus, pavyzdžiui, filmus ar nuotraukas į OpenELEC, naudojant bluetooth."
 
 msgctxt "#752"
 msgid "Here you can set the folder location where OBEX file transfer should store incoming files"
@@ -661,8 +625,8 @@ msgid "Update Available"
 msgstr "Prieinamas atnaujinimas"
 
 msgctxt "#32180"
-msgid "Would you like to update OpenELEC now?"
-msgstr "Ar norite atnaujinti OpenELEC dabar?"
+msgid "Would you like to update @DISTRONAME@ now?"
+msgstr "Ar norite atnaujinti @DISTRONAME@ dabar?"
 
 msgctxt "#32181"
 msgid "Filename"
@@ -809,32 +773,20 @@ msgid "Auto-Share External Drives"
 msgstr "Automatiškai bendrinti išorinius diskus"
 
 msgctxt "#32300"
-msgid "Welcome to [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
-msgstr "Jus sveikina [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
+msgid "Welcome to @DISTRONAME@"
+msgstr "Jus sveikina @DISTRONAME@"
 
 msgctxt "#32301"
 msgid "Welcome"
 msgstr "Sveiki"
 
-msgctxt "#32302"
-msgid "This wizard will guide you through the process of setting up your new [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] installation - setting your location, timezone and connecting you to the internet.[CR][CR]These settings can be changed later by navigating to Programs > [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] Settings.[CR][CR]To begin your [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] experience, select your regional settings and your keyboard layout, then click Next."
-msgstr "Šis vedlys padės jums nustatyti jūsų naują [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] diegimą - nustatant vietą, laiko juostą ir prisijungimą prie interneto.[CR][CR]Šie nustatymai vėliau gali būti pakeisti nuėjus į Programos > [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] nustatymai.[CR][CR]Norėdami pradėti naudotis [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR], pasirinkite regioninius nustatymus bei klaviatiūros išdėstymą ir spauskite \"Toliau\"."
-
 msgctxt "#32303"
 msgid "Next"
 msgstr "Kitas"
 
-msgctxt "#32304"
-msgid "To be identified easily on the network, your new [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] machine needs a name.[CR][CR]Try to choose something meaningful - like the room it's in - so you'll know what it is when you see it on the network.[CR][CR]This name is used when configuring network services, like file sharing using samba."
-msgstr "Kad būtų lengvai identifikuojama tinkle, [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] sistemai reikia vardo.[CR][CR]Pasistenkite pasirinkti ką nors prasmingo - kaip kambarį, kuriame ji yra - kad žinotumėte kas tai yra, kai pamatysite ją tinkle.[CR][CR]Šis vardas naudojamas nustatant tinklo paslaugas, tokias kaip bendrinimas naudojant samba."
-
 msgctxt "#32305"
 msgid "Networking"
 msgstr "Tinklas"
-
-msgctxt "#32306"
-msgid "In order to download backdrops, banners and thumbnails for your movies and TV shows and to stream online content from sites like YouTube, [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] needs to be connected the Internet.[CR][CR]An Internet connection is also required for [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] to automatically update itself."
-msgstr "Norint atsisiųsti fonus, banerius ir miniatiūras filmams ir TV laidoms bei transliuoti internetinį turinį iš tinklapių, tokių kaip YouTube, [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] reikia būti prisijungus prie interneto.[CR][CR]Interneto prisijungimas taip pat reikalingas tam, kad [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] galėtų save atnaujinti."
 
 msgctxt "#32307"
 msgid "Select your Regional Settings:"
@@ -856,14 +808,6 @@ msgctxt "#32311"
 msgid "Sharing and Remote Access"
 msgstr "Bendrinimas ir nuotolinė prieiga"
 
-msgctxt "#32312"
-msgid "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] also supports SSH for remote access. This is for advanced users who wish to interact with [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]'s underlying operating system. The default user is [COLOR blue]root[/COLOR] and the default password is [COLOR blue]openelec.[/COLOR]"
-msgstr "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] taip pat palaiko SSH nuotolinei prieigai. Tai skirta pažengusiems vartotojams, kurie nori sąveikauti su [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] operacine sistema. Numatytasis vartotojas yra [COLOR blue]root[/COLOR] ir numatytasis slaptažodis yra [COLOR blue]openelec.[/COLOR]"
-
-msgctxt "#32313"
-msgid "In order to share your files between your computers [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] has incorporated a samba server. This samba server can be integrated into your local network by accessing it in a familiar way with Finder or Windows Explorer."
-msgstr "Kad būtų galima bendrinti failus tarp kompiuterių, [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] turi integruotą samba serverį. Šis samba serveris gali būti integruotas į jūsų vietinį tinklą, pasiekiant jį įprastu būdu per Finder ar Windows Explorer."
-
 msgctxt "#32314"
 msgid "enabled"
 msgstr "įjungta"
@@ -879,10 +823,6 @@ msgstr "Konfigūruoti paslaugas:"
 msgctxt "#32317"
 msgid "Thank you"
 msgstr "Ačiū"
-
-msgctxt "#32318"
-msgid "You [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] installation is now complete and you'll now enter Kodi when you can set up your media libraries. For help with this, there is a guide available at wiki.xbmc.org[CR][CR][COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] is developed by a dedicated team of developers who work purely in their spare time. Even as a volunteer project, we still have to pay for our internet bandwidth and development resources so if you find [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] useful, we will always appreciate a donation of any amount.[CR][CR]Finally, we hope you enjoy using [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] as much as we've enjoying building it. If you need any more help, you can find links to get help along with latest news at openelec.tv"
-msgstr "Jūsų [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] įdiegimas baigtas ir dabar bus atidarytas Kodi, kur galėsite nustatyti savo media bibliotekas. Jei tam atlikti reikalinga pagalba, wiki.xbmc.org galite rasti gidą.[CR][CR][COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] yra sukurtas paišventuios kūrėjų komandos, kurie dirba tik savo laisvalaikiu. Net kaip savanoriškas projektas, mes vis tiek turime mokėti už interneto srautą ir kūrimo išteklius, tad jei manote, kad [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] yra naudingas, mes būsime dėkingi už bet kokio dydžio auką.[CR][CR]Pagaliau, mes tikimės, kad jūs mėgaujaties naudodamiesi [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] taip pat kaip ir mes jį kurdami. Jei jums reikia bet kokios papildomos pagalbos, jūs galite rasti pagalbos nuorodas kartu su paskutinėmis naujienomis openelec.tv puslapyje."
 
 msgctxt "#32319"
 msgid "Cron"
@@ -909,8 +849,8 @@ msgid "Reset System Settings to defaults"
 msgstr "Atstatyti sistemos nustatymų numatytąsias reikšmes"
 
 msgctxt "#32325"
-msgid "Reset OpenELEC to defaults"
-msgstr "Atstatyti OpenELEC numatytąsias reikšmes"
+msgid "Reset @DISTRONAME@ to defaults"
+msgstr "Atstatyti @DISTRONAME@ numatytąsias reikšmes"
 
 msgctxt "#32326"
 msgid "Are you sure?"
@@ -1013,8 +953,8 @@ msgid "Check for updates now:"
 msgstr "Patikrinti dabar ar yra atnaujinimų:"
 
 msgctxt "#32363"
-msgid "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
-msgstr "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
+msgid "@DISTRONAME@"
+msgstr "@DISTRONAME@"
 
 msgctxt "#32364"
 msgid "Update available"

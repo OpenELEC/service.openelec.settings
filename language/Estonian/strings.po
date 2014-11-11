@@ -1,5 +1,5 @@
 # Kodi Media Center language file
-# Addon Name: OpenELEC Configuration
+# Addon Name: @DISTRONAME@ Configuration
 # Addon id: service.openelec.settings
 # Addon Provider: OpenELEC
 msgid ""
@@ -15,10 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: et\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-msgctxt "#600"
-msgid "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] Settings"
-msgstr "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] Seadistus"
 
 msgctxt "#601"
 msgid "Interface"
@@ -92,10 +88,6 @@ msgctxt "#709"
 msgid "709"
 msgstr "709"
 
-msgctxt "#710"
-msgid "Configure the Hostname of your OpenELEC system. This will be used for the HTPC \\\\hostname in Windows and SMB server name in the Mac OS Finder"
-msgstr "Seadista OpenELEC süsteemile hostinimi. Seda saab hiljem kasutada kujul \\\\hostinimi Windowsis ja SMB serveri nimeks Mac OS Finder puhul"
-
 msgctxt "#711"
 msgid "Configure the 1st keyboard software layout"
 msgstr "Sea klaviatuuripaigutus nr. 1"
@@ -108,25 +100,9 @@ msgctxt "#713"
 msgid "Configure the physical keyboard type"
 msgstr "Sea füüsilise klaviatuuri tüüp"
 
-msgctxt "#714"
-msgid "OpenELEC can be configured for automatic or manual updates. Automatic updates are available on stable releases and stable release candidates. Automatic update self-disables on beta and development builds"
-msgstr "OpenELEC on võimalik seadistada end uuendama automaatselt või käsitsi. Automaatsed uuendused on saadaval stabiilsetele ja stabiilsete kandidaatide väljalasetele. Automaatne uuenduse keelab beeta ja arendusversioonide paigalduse"
-
 msgctxt "#715"
 msgid "Set to ON and an on-screen notification will be displayed when a new update is available"
 msgstr "Kui valik on aktiivne, siis tuleb ekraanile teade, kui uuendus on saadaval"
-
-msgctxt "#716"
-msgid "Click to manually check the OpenELEC servers for an updated release"
-msgstr "Klõpsa OpenELEC serveritest uuendatud väljalaske käsitsi kontrolliks"
-
-msgctxt "#717"
-msgid "If you have an small LCD or VFD attached to your OpenELEC system you must configure the correct display driver"
-msgstr "Juhul kui OpenELEC süsteemile on lisatud pisike LCD või VFD, siis peab siit õige ekraani tüüreli seadma"
-
-msgctxt "#718"
-msgid "Set on ON and OpenELEC will spin down attached drives (not the main system drive) when idle"
-msgstr "Kui valik on aktiivne, siis peatab OpenELEC kõvaketaste (ainult juurdelisatud) pöörlemise ooterežiimis"
 
 msgctxt "#719"
 msgid "Configure the number of minutes before hard-drive spin down occurs"
@@ -139,10 +115,6 @@ msgstr "Kui valik on aktiivne, keelatakse Bluetooth seadmed energiasäästureži
 msgctxt "#721"
 msgid "721"
 msgstr "721"
-
-msgctxt "#722"
-msgid "Create a tar archive containing all OpenELEC and Kodi configuration settings, databases and thumbnail content. Backup files will be stored in /storage/backups"
-msgstr "Loo tar arhiiv, kus on kõik OpenELEC ja Kodi konfiguraratsioonisätted, andmebaasid ja pisipildid. Varundusfailid paigutatakse kataloogi /storage/backups"
 
 msgctxt "#723"
 msgid "Restore a tar archive backup previously created using the backup option above"
@@ -207,10 +179,6 @@ msgstr "Kasutajanimi Samba failijaotuse ligipääsuks"
 msgctxt "#741"
 msgid "Set the password for Samba sharing"
 msgstr "Parool Samba failijaotuse ligipääsuks"
-
-msgctxt "#742"
-msgid "Set to ON to enable the embedded SSH server. The SSH console can be accessed with username 'root' and password 'openelec'."
-msgstr "Kui valik on aktiivne, siis lubatakse sisseehitatud SSH server. SSH konsooli kasutajanimi on 'root' ja parool 'openelec'."
 
 msgctxt "#743"
 msgid "Set to ON if you have copied private SSH keys to your HTPC and would like to improve security by disabling SSH username and password authentication."
@@ -596,10 +564,6 @@ msgctxt "#32179"
 msgid "Update Available"
 msgstr "Uuendus saadaval"
 
-msgctxt "#32180"
-msgid "Would you like to update OpenELEC now?"
-msgstr "Soovid kohe OpenELEC uuendada?"
-
 msgctxt "#32181"
 msgid "Filename"
 msgstr "Failinimi"
@@ -740,10 +704,6 @@ msgctxt "#32215"
 msgid "Invalid Email Address"
 msgstr "Vigane e-posti aadress"
 
-msgctxt "#32300"
-msgid "Welcome to [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
-msgstr "Tervitab [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
-
 msgctxt "#32301"
 msgid "Welcome"
 msgstr "Tere tulemast"
@@ -751,10 +711,6 @@ msgstr "Tere tulemast"
 msgctxt "#32303"
 msgid "Next"
 msgstr "Järgmine"
-
-msgctxt "#32304"
-msgid "To be identified easily on the network, your new [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] machine needs a name.[CR][CR]Try to choose something meaningful - like the room it's in - so you'll know what it is when you see it on the network.[CR][CR]This name is used when configuring network services, like file sharing using samba."
-msgstr "Kergemaks identifitseerimiseks võrgus vajaks [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] masin omale nime.[CR][CR]Püüa leida midagi mõttekat - nagu tuba, milles ta asub - nii et saaksid aru, millega tegu, kui näed teda oma koduvõrgus.[CR][CR]Seda nime kasutatakse võrguteenuste seadistustes, näiteks Samba puhul failijagamine."
 
 msgctxt "#32305"
 msgid "Networking"
@@ -779,10 +735,6 @@ msgstr "Klaviatuur:"
 msgctxt "#32311"
 msgid "Sharing and Remote Access"
 msgstr "Failijagamine ja kaugligipääs"
-
-msgctxt "#32312"
-msgid "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] also supports SSH for remote access. This is for advanced users who wish to interact with [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]'s underlying operating system. The default user is [COLOR blue]root[/COLOR] and the default password is [COLOR blue]openelec.[/COLOR]"
-msgstr "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]  toetab kaughalduseks ka SSH teenust. See on edasijõudnud kasutajatele, kes soovivad ja suudavad [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]'i aluseks oleva operatsioonisüsteemiga ringi käia. Vaikimisi on kasutajanimeks [COLOR blue]root[/COLOR] ja vaikimisi parooliks [COLOR blue]openelec.[/COLOR]"
 
 msgctxt "#32314"
 msgid "enabled"
@@ -819,10 +771,6 @@ msgstr "Taasta algseadistused"
 msgctxt "#32324"
 msgid "Reset System Settings to defaults"
 msgstr "Süsteemiseadistuste vaikeväärtuste taastamine"
-
-msgctxt "#32325"
-msgid "Reset OpenELEC to defaults"
-msgstr "OpenELEC vaikeväärtuste taastamine"
 
 msgctxt "#32326"
 msgid "Are you sure?"

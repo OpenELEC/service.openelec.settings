@@ -1,5 +1,5 @@
 # Kodi Media Center language file
-# Addon Name: OpenELEC Configuration
+# Addon Name: @DISTRONAME@ Configuration
 # Addon id: service.openelec.settings
 # Addon Provider: OpenELEC
 msgid ""
@@ -15,10 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: da\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-msgctxt "#600"
-msgid "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] Settings"
-msgstr "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] Indstillinger"
 
 msgctxt "#601"
 msgid "Interface"
@@ -96,10 +92,6 @@ msgctxt "#709"
 msgid "709"
 msgstr "709"
 
-msgctxt "#710"
-msgid "Configure the Hostname of your OpenELEC system. This will be used for the HTPC \\\\hostname in Windows and SMB server name in the Mac OS Finder"
-msgstr "Angiv værtsnavn på dit OpenELEC system. Dette vil blive brugt til HTPC \\\\værtsnavn i Windows og SMB-server navn i Mac OS Finder"
-
 msgctxt "#711"
 msgid "Configure the 1st keyboard software layout"
 msgstr "Konfigurer det første tastaturprogramlayout"
@@ -112,25 +104,9 @@ msgctxt "#713"
 msgid "Configure the physical keyboard type"
 msgstr "Konfigurer den fysiske tastaturtype"
 
-msgctxt "#714"
-msgid "OpenELEC can be configured for automatic or manual updates. Automatic updates are available on stable releases and stable release candidates. Automatic update self-disables on beta and development builds"
-msgstr "OpenELEC kan konfigureres til automatisk eller manuel opdatering. Automatiske opdateringer er tilgængelige på stabile udgivelser og stabile udgivelseskandidater. Automatiske opdateringer selvdeaktiveres på beta- og udviklingsversioner"
-
 msgctxt "#715"
 msgid "Set to ON and an on-screen notification will be displayed when a new update is available"
 msgstr "Indstil til ON og der vises en meddelelse på skærmen, når en ny opdatering er tilgængelig"
-
-msgctxt "#716"
-msgid "Click to manually check the OpenELEC servers for an updated release"
-msgstr "Klik for manuelt at tjekke OpenELEC serverne for en opdateret udgave."
-
-msgctxt "#717"
-msgid "If you have an small LCD or VFD attached to your OpenELEC system you must configure the correct display driver"
-msgstr "Hvis du har en lille LCD eller VFD knyttet til dit OpenELEC-system, skal du konfigurere den korrekte skærmdriver"
-
-msgctxt "#718"
-msgid "Set on ON and OpenELEC will spin down attached drives (not the main system drive) when idle"
-msgstr "Set på ON og OpenELEC vil spinde tilsluttede drev ned (ikke hovedsystemdrevet), når de ikke bruges"
 
 msgctxt "#719"
 msgid "Configure the number of minutes before hard-drive spin down occurs"
@@ -143,10 +119,6 @@ msgstr "Set til ON og Bluetooth-enheder deaktiveres under strømbesparende tilst
 msgctxt "#721"
 msgid "721"
 msgstr "721"
-
-msgctxt "#722"
-msgid "Create a tar archive containing all OpenELEC and Kodi configuration settings, databases and thumbnail content. Backup files will be stored in /storage/backups"
-msgstr "Opret et tar-arkiv med alle konfigurationsindstillinger, databaser og miniaturebilleder til OpenELEC og Kodi. Sikkerhedskopifiler vil blive gemt i /storage/backup"
 
 msgctxt "#723"
 msgid "Restore a tar archive backup previously created using the backup option above"
@@ -472,10 +444,6 @@ msgctxt "#32179"
 msgid "Update Available"
 msgstr "Opdatering tilgængelig"
 
-msgctxt "#32180"
-msgid "Would you like to update OpenELEC now?"
-msgstr "Vil du opdatere OpenElec nu?"
-
 msgctxt "#32181"
 msgid "Filename"
 msgstr "Filnavn"
@@ -511,6 +479,10 @@ msgstr "System Navn"
 msgctxt "#32191"
 msgid "Error"
 msgstr "Fejl"
+
+msgctxt "#32193"
+msgid "Service"
+msgstr "Tjeneste"
 
 msgctxt "#32195"
 msgid "Support"
@@ -588,10 +560,6 @@ msgctxt "#32215"
 msgid "Invalid Email Address"
 msgstr "Ugyldig e-mailadresse"
 
-msgctxt "#32300"
-msgid "Welcome to [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
-msgstr "Velkommen til [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
-
 msgctxt "#32301"
 msgid "Welcome"
 msgstr "Velkommen"
@@ -612,10 +580,6 @@ msgctxt "#32310"
 msgid "Keyboard:"
 msgstr "Tastatur:"
 
-msgctxt "#32312"
-msgid "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] also supports SSH for remote access. This is for advanced users who wish to interact with [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]'s underlying operating system. The default user is [COLOR blue]root[/COLOR] and the default password is [COLOR blue]openelec.[/COLOR]"
-msgstr "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] understøtter også SSH til fjernadgang. Dette er for avancerede brugere, der ønsker at interagere med [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] underliggende operativsystem. Standard brugernavn er [COLOR blue]root[/COLOR] og standard password er [COLOR blue]openelec.[/COLOR]"
-
 msgctxt "#32314"
 msgid "enabled"
 msgstr "aktiveret"
@@ -635,6 +599,10 @@ msgstr "Cron"
 msgctxt "#32320"
 msgid "Enable Cron"
 msgstr "Aktiver Cron"
+
+msgctxt "#32321"
+msgid "Virtual Private Networks"
+msgstr "VPN"
 
 msgctxt "#32322"
 msgid "Add new VPN configuration"
@@ -695,10 +663,6 @@ msgstr "Følgende informationer er ugyldige:"
 msgctxt "#32362"
 msgid "Check for updates now:"
 msgstr "Kontroller for opdateringer nu:"
-
-msgctxt "#32363"
-msgid "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
-msgstr "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
 
 msgctxt "#32364"
 msgid "Update available"

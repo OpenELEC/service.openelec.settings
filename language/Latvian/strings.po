@@ -1,5 +1,5 @@
 # Kodi Media Center language file
-# Addon Name: OpenELEC Configuration
+# Addon Name: @DISTRONAME@ Configuration
 # Addon id: service.openelec.settings
 # Addon Provider: OpenELEC
 msgid ""
@@ -16,9 +16,21 @@ msgstr ""
 "Language: lv\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
 
+msgctxt "#602"
+msgid "Address"
+msgstr "Adrese"
+
+msgctxt "#603"
+msgid "Type"
+msgstr "Veids"
+
 msgctxt "#604"
 msgid "State"
 msgstr "Pavalsts"
+
+msgctxt "#605"
+msgid "Address"
+msgstr "Adrese"
 
 msgctxt "#32000"
 msgid "Network"
@@ -27,6 +39,14 @@ msgstr "Tīkls"
 msgctxt "#32001"
 msgid "Services"
 msgstr "Servisi"
+
+msgctxt "#32002"
+msgid "System"
+msgstr "Sistēma"
+
+msgctxt "#32005"
+msgid "Type"
+msgstr "Veids"
 
 msgctxt "#32006"
 msgid "State"
@@ -68,6 +88,14 @@ msgctxt "#32142"
 msgid "Refresh"
 msgstr "Atsvaidzināt"
 
+msgctxt "#32145"
+msgid "Unable to connect"
+msgstr "Nevar pieslēgties"
+
+msgctxt "#32150"
+msgid "Edit"
+msgstr "Labot"
+
 msgctxt "#32168"
 msgid "Port"
 msgstr "Ports"
@@ -76,17 +104,37 @@ msgctxt "#32191"
 msgid "Error"
 msgstr "Kļūda"
 
+msgctxt "#32193"
+msgid "Service"
+msgstr "Pakalpojums"
+
 msgctxt "#32212"
 msgid "Cancel"
 msgstr "Atcelt"
+
+msgctxt "#32213"
+msgid "Exit"
+msgstr "Iziet"
 
 msgctxt "#32303"
 msgid "Next"
 msgstr "Nākamais"
 
+msgctxt "#32315"
+msgid "disabled"
+msgstr "izslēgts"
+
 msgctxt "#32321"
 msgid "Virtual Private Networks"
 msgstr "Virtuālie privātie tīkli"
+
+msgctxt "#32326"
+msgid "Are you sure?"
+msgstr "Vai esat pārliecināts?"
+
+msgctxt "#32332"
+msgid "Address"
+msgstr "Adrese"
 
 msgctxt "#32334"
 msgid "Yes"
@@ -95,6 +143,10 @@ msgstr "Jā"
 msgctxt "#32335"
 msgid "No"
 msgstr "Nē"
+
+msgctxt "#32364"
+msgid "Update available"
+msgstr "Pieejams atjauninājums"
 
 msgctxt "#32382"
 msgid "Speed"

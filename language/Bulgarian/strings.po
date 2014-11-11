@@ -1,5 +1,5 @@
 # Kodi Media Center language file
-# Addon Name: OpenELEC Configuration
+# Addon Name: @DISTRONAME@ Configuration
 # Addon id: service.openelec.settings
 # Addon Provider: OpenELEC
 msgid ""
@@ -17,8 +17,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgctxt "#600"
-msgid "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] Settings"
-msgstr "Настройки на [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
+msgid "@DISTRONAME@ Settings"
+msgstr "Настройки на @DISTRONAME@"
 
 msgctxt "#601"
 msgid "Interface"
@@ -105,40 +105,40 @@ msgid "709"
 msgstr "709"
 
 msgctxt "#710"
-msgid "Configure the Hostname of your OpenELEC system. This will be used for the HTPC \\\\hostname in Windows and SMB server name in the Mac OS Finder"
-msgstr "Задайте име на хоста за Вашата OpenELEC система. Името ще се ползва в Windows и SMB мрежи (\\\\име–на–хоста), както и в Mac OS Finder"
+msgid "Configure the Hostname of your @DISTRONAME@ system. This will be used for the HTPC \\\\hostname in Windows and SMB server name in the Mac OS Finder"
+msgstr "Задайте име на хоста за Вашата @DISTRONAME@ система. Името ще се ползва в Windows и SMB мрежи  (\\\\име–на–хоста), както и в Mac OS Finder"
 
 msgctxt "#711"
 msgid "Configure the 1st keyboard software layout"
-msgstr "Задайте първа клавишна подредбва на софтуерната клавиатурата"
+msgstr "Задайте първа клавишна подредба на софтуерната клавиатурата"
 
 msgctxt "#712"
 msgid "Configure the 2nd keyboard software layout"
-msgstr "Задайте втора клавишна подредбва на софтуерната клавиатурата"
+msgstr "Задайте втора клавишна подредба на софтуерната клавиатурата"
 
 msgctxt "#713"
 msgid "Configure the physical keyboard type"
 msgstr "Изберете типа на хардуерната клавиатура"
 
 msgctxt "#714"
-msgid "OpenELEC can be configured for automatic or manual updates. Automatic updates are available on stable releases and stable release candidates. Automatic update self-disables on beta and development builds"
-msgstr "OpenELEC може да се актуализира автоматично или ръчно. Автоматично актуализиране се извършва само до стабилни версии или такива на които им предстои издаване. Автоматичното актуализиране е изключено в бета и развойните компилации."
+msgid "@DISTRONAME@ can be configured for automatic or manual updates. Automatic updates are available on stable releases and stable release candidates. Automatic update self-disables on beta and development builds"
+msgstr "@DISTRONAME@ може да се актуализира автоматично или ръчно. Автоматично актуализиране се извършва само до стабилни версии или такива на които им предстои издаване. Автоматичното актуализиране е изключено в бета и развойните компилации."
 
 msgctxt "#715"
 msgid "Set to ON and an on-screen notification will be displayed when a new update is available"
 msgstr "Включите ли опцията ще бъдете известявани при наличие на нова актуализация"
 
 msgctxt "#716"
-msgid "Click to manually check the OpenELEC servers for an updated release"
-msgstr "Кликнете ако желаете да проверите за нова версия на OpenELEC"
+msgid "Click to manually check the @DISTRONAME@ servers for an updated release"
+msgstr "Кликнете ако желаете те да проверите за нова версия на @DISTRONAME@"
 
 msgctxt "#717"
-msgid "If you have an small LCD or VFD attached to your OpenELEC system you must configure the correct display driver"
-msgstr "Ако сте свързали малък LCD или VFD дисплей към системата OpenELEC трябва да изберете подходящ драйвър"
+msgid "If you have an small LCD or VFD attached to your @DISTRONAME@ system you must configure the correct display driver"
+msgstr "Ако сте свързали малък LCD или VFD дисплей към @DISTRONAME@ трябва да изберете подходящия драйвър"
 
 msgctxt "#718"
-msgid "Set on ON and OpenELEC will spin down attached drives (not the main system drive) when idle"
-msgstr "Включите ли опцията OpenELEC ще спира въртенето на дисковите плочи в прикрепените твърди дискове (но не и в диска върху който сте инсталирали OpenELEC)"
+msgid "Set on ON and @DISTRONAME@ will spin down attached drives (not the main system drive) when idle"
+msgstr "Включите ли опцията @DISTRONAME@ ще спира въртенето на дисковите плочи в прикрепените твърди дискове (но не и в диска върху който сте инсталирали @DISTRONAME@) при липса на активност"
 
 msgctxt "#719"
 msgid "Configure the number of minutes before hard-drive spin down occurs"
@@ -153,20 +153,20 @@ msgid "721"
 msgstr "721"
 
 msgctxt "#722"
-msgid "Create a tar archive containing all OpenELEC and Kodi configuration settings, databases and thumbnail content. Backup files will be stored in /storage/backups"
-msgstr "Създава . tar архив съдържащ всички настройки на OpenELEC и Kodi, бази от данни, миниатюри и съдържание. Резервните копия се съхраняват в /storage/backups"
+msgid "Create a tar archive containing all @DISTRONAME@ and Kodi configuration settings, databases and thumbnail content. Backup files will be stored in /storage/backups"
+msgstr "Създава .tar архив съдържащ всички настройки на @DISTRONAME@ и Kodi, бази от данни и миниатюри. Резервните копия се съхраняват в /storage/backups"
 
 msgctxt "#723"
 msgid "Restore a tar archive backup previously created using the backup option above"
 msgstr "Възстановява резервни копия от .tar архиви, създадени с горната функция"
 
 msgctxt "#724"
-msgid "[COLOR FF00FF00]SOFT RESET[/COLOR]\nPermanently reset OpenELEC OS configuration to defaults (resets also Kodi to default including your library. your media - music/videos/etc are not touched)"
-msgstr "[COLOR FF00FF00]SOFT RESET[/COLOR]\nНулира настройките на OpenELEC OS и Kodi към стандартните стойности (включително и библиотеката, но файловете Ви, като музика и видео, ще останат непокътнати)"
+msgid "[COLOR FF00FF00]SOFT RESET[/COLOR]\nPermanently reset @DISTRONAME@ configuration to defaults (resets also Kodi to default including your library. your media - music/videos/etc are not touched)"
+msgstr "[COLOR FF00FF00]SOFT RESET[/COLOR]\nНулира настройките на @DISTRONAME@ и Kodi към стандартните стойности (включително и библиотеката, но файловете Ви, като музика, видео и др. ще останат непокътнати)"
 
 msgctxt "#725"
-msgid "[COLOR FFFF0000]HARD RESET[/COLOR]\nPermanently reset OpenELEC OS and Kodi configuration to defaults (everything in your storage partition will be deleted)"
-msgstr "[COLOR FFFF0000]HARD RESET[/COLOR]\nНулира OpenELEC OS и Kodi (файлове Ви ще Бъдат Изтрити)"
+msgid "[COLOR FFFF0000]HARD RESET[/COLOR]\nPermanently reset @DISTRONAME@ and Kodi configuration to defaults (everything in your storage partition will be deleted)"
+msgstr "[COLOR FFFF0000]HARD RESET[/COLOR]\nНулира настройките на @DISTRONAME@ и Kodi към стандартните стойности (файлове Ви ще Бъдат Изтрити)"
 
 msgctxt "#726"
 msgid "Enable or disable support for Wireless (WLAN) networks"
@@ -174,7 +174,7 @@ msgstr "Включване или изключване поддръжката з
 
 msgctxt "#727"
 msgid "Enable a 'tethered' Wireless Access Point. This requires your wireless card (and driver) to support bridging and access point mode. Not all cards are capable."
-msgstr "Включване на \"'tethered\" безжична точка за достъп. Позволява споделяне на интернет от устройството към други устройва посредством създаване на нова безжична мрежа. Необходимо е картата за безжична връзка и(и драйвъра) да поддържат функцията - не всички карти са съвместими."
+msgstr "Включване на \"'tethered\" безжична точка за достъп. Позволява споделяне на интернет от устройството към други устройва посредством създаване на нова безжична мрежа. Необходимо е картата за безжична връзка (и драйвъра) да поддържат функцията - не всички карти са съвместими."
 
 msgctxt "#728"
 msgid "Configure the Access Point SSID"
@@ -229,8 +229,8 @@ msgid "Set the password for Samba sharing"
 msgstr "Задайте парола за Samba споделянето"
 
 msgctxt "#742"
-msgid "Set to ON to enable the embedded SSH server. The SSH console can be accessed with username 'root' and password 'openelec'."
-msgstr "Включете за да активирате вграденият SSH сървър. За достъп чрез SSH конзолата можете да ползвате потребител \"root\" и парола \"openelec\", освен ако не сте сменили стандартните стойности."
+msgid "Set to ON to enable the embedded SSH server. The SSH console can be accessed with username 'root' and password '@ROOT_PASSWORD@'."
+msgstr "Включете за да активирате вграденият SSH сървър. За достъп чрез SSH конзолата можете да ползвате потребител \"root\" и парола \"@ROOT_PASSWORD@\"."
 
 msgctxt "#743"
 msgid "Set to ON if you have copied private SSH keys to your HTPC and would like to improve security by disabling SSH username and password authentication."
@@ -265,8 +265,8 @@ msgid "750"
 msgstr "750"
 
 msgctxt "#751"
-msgid "With OBEX filetransfer you can send files, for example movies or pictures over bluetooth to OpenELEC."
-msgstr "Чрез OBEX можете да изпращате файлове, като филми и снимки, чрез Bluetooth към OpenELEC"
+msgid "With OBEX filetransfer you can send files, for example movies or pictures over bluetooth to @DISTRONAME@."
+msgstr "Чрез OBEX можете да изпращате файлове, като филми и снимки, през Bluetooth към @DISTRONAME@."
 
 msgctxt "#752"
 msgid "Here you can set the folder location where OBEX file transfer should store incoming files"
@@ -274,15 +274,15 @@ msgstr "От тук можете да определите къде да се с
 
 msgctxt "#753"
 msgid "Configure the 1st keyboard software Variant"
-msgstr "Задайте първа софтуерна подребва на клавиатурата"
+msgstr "Задайте първа софтуерна подредба на клавиатурата"
 
 msgctxt "#754"
 msgid "Configure the 2nd keyboard software Variant"
-msgstr "Задайте втора софтуерна подребва на клавиатурата"
+msgstr "Задайте втора софтуерна подредба на клавиатурата"
 
 msgctxt "#755"
 msgid "Auto share external drives / partitions"
-msgstr "Споделяй автоматичното въшните дискове/дялове"
+msgstr "Споделяй автоматичното външните дискове/дялове"
 
 msgctxt "#32000"
 msgid "Network"
@@ -657,8 +657,8 @@ msgid "Update Available"
 msgstr "Налична е актуализация"
 
 msgctxt "#32180"
-msgid "Would you like to update OpenELEC now?"
-msgstr "Да се актуализира ли OpenELEC сега?"
+msgid "Would you like to update @DISTRONAME@ now?"
+msgstr "Would you like to update @DISTRONAME@ now?"
 
 msgctxt "#32181"
 msgid "Filename"
@@ -802,35 +802,35 @@ msgstr "Невалиден имейл адрес"
 
 msgctxt "#32216"
 msgid "Auto-Share External Drives"
-msgstr "Споделяй автоматичното въшните дискове"
+msgstr "Споделяй автоматичното външните дискове"
 
 msgctxt "#32300"
-msgid "Welcome to [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
-msgstr "Добре дошли в [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
+msgid "Welcome to @DISTRONAME@"
+msgstr "Добре дошли в @DISTRONAME@"
 
 msgctxt "#32301"
 msgid "Welcome"
 msgstr "Добре дошли!"
 
 msgctxt "#32302"
-msgid "This wizard will guide you through the process of setting up your new [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] installation - setting your location, timezone and connecting you to the internet.[CR][CR]These settings can be changed later by navigating to Programs > [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] Settings.[CR][CR]To begin your [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] experience, select your regional settings and your keyboard layout, then click Next."
-msgstr "Помощникът ще Ви насочва в процеса по настройване на [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] - задаване на местоположение, часовия пояс и свързване с интернет.[CR][CR]Направеният сега избор можете да промените по-късно от Система > [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] настройки.[CR][CR]Първо направете регионалните настройки, изберете клавиатурна подредба и натиснете \"Следващ\"."
+msgid "This wizard will guide you through the process of setting up your new @DISTRONAME@ installation - setting your location, timezone and connecting you to the internet.[CR][CR]These settings can be changed later by navigating to Programs > @DISTRONAME@ Settings.[CR][CR]To begin your @DISTRONAME@ experience, select your regional settings and your keyboard layout, then click Next."
+msgstr "Помощникът ще Ви насочва в процеса по настройване на @DISTRONAME@ - задаване на местоположение, часови пояс и свързване с интернет.[CR][CR]Направеният сега избор можете да промените по-късно от Програми > @DISTRONAME@ настройки.[CR][CR]Първо направете регионалните настройки, изберете клавиатурна подредба и натиснете \"Следващ\"."
 
 msgctxt "#32303"
 msgid "Next"
 msgstr "Следващ"
 
 msgctxt "#32304"
-msgid "To be identified easily on the network, your new [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] machine needs a name.[CR][CR]Try to choose something meaningful - like the room it's in - so you'll know what it is when you see it on the network.[CR][CR]This name is used when configuring network services, like file sharing using samba."
-msgstr "За да разпознавате по-лесно, в мрежата, инсталацията на [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] въведете име.[CR][CR]Изберете смислено име (например името на стаята в която се намира).[CR][CR]Името ще се ползва при настройването на мрежови услуги като споделяне на файлове."
+msgid "To be identified easily on the network, your new @DISTRONAME@ machine needs a name.[CR][CR]Try to choose something meaningful - like the room it's in - so you'll know what it is when you see it on the network.[CR][CR]This name is used when configuring network services, like file sharing using samba."
+msgstr "За да разпознавате по-лесно, в мрежата, инсталацията на @DISTRONAME@въведете име.[CR][CR]Изберете смислено име (например име на стаята в която се намира устройството).[CR][CR]Името ще се ползва при настройването на мрежови услуги като споделяне на файлове."
 
 msgctxt "#32305"
 msgid "Networking"
 msgstr "Мрежа"
 
 msgctxt "#32306"
-msgid "In order to download backdrops, banners and thumbnails for your movies and TV shows and to stream online content from sites like YouTube, [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] needs to be connected the Internet.[CR][CR]An Internet connection is also required for [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] to automatically update itself."
-msgstr "За сваляне на картинки (като плакати, банери и миниатюри) за филми и ТВ Сериали или за гледане на поточно видео от сайтове като YouTube [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] изисква връзка с интернет.[CR][CR]Необходима е и за автоматичното актуализиране на [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]."
+msgid "In order to download backdrops, banners and thumbnails for your movies and TV shows and to stream online content from sites like YouTube, @DISTRONAME@ needs to be connected the Internet.[CR][CR]An Internet connection is also required for @DISTRONAME@ to automatically update itself."
+msgstr "За да сваляте картинки (като плакати, банери и миниатюри) за филми и ТВ Сериали или да гледате поточно видео от сайтове като YouTube, @DISTRONAME@ изисква връзка с интернет.[CR][CR]Необходима е и за автоматичното актуализиране на @DISTRONAME@."
 
 msgctxt "#32307"
 msgid "Select your Regional Settings:"
@@ -853,12 +853,12 @@ msgid "Sharing and Remote Access"
 msgstr "Споделяне и отдалечен достъп"
 
 msgctxt "#32312"
-msgid "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] also supports SSH for remote access. This is for advanced users who wish to interact with [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]'s underlying operating system. The default user is [COLOR blue]root[/COLOR] and the default password is [COLOR blue]openelec.[/COLOR]"
-msgstr "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] поддържа протокола SSH за отдалечен достъп. Опцията е предназначена за напреднали потребители, които желаят да имат достъп до файловете на [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]. Стандартния потребител е [COLOR blue]root[/COLOR], а паролата е [COLOR blue]openelec.[/COLOR]"
+msgid "@DISTRONAME@ also supports SSH for remote access. This is for advanced users who wish to interact with @DISTRONAME@'s underlying operating system. The default user is [COLOR blue]root[/COLOR] and the default password is [COLOR blue]@ROOT_PASSWORD@[/COLOR]."
+msgstr "@DISTRONAME@ поддържа протокола SSH за отдалечен достъп. Опцията е предназначена за напреднали потребители, които желаят да имат достъп до файловете на операционната система (@DISTRONAME@). Стандартния потребител е [COLOR blue]root[/COLOR], а паролата е [COLOR blue]@ROOT_PASSWORD@[/COLOR]."
 
 msgctxt "#32313"
-msgid "In order to share your files between your computers [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] has incorporated a samba server. This samba server can be integrated into your local network by accessing it in a familiar way with Finder or Windows Explorer."
-msgstr "За да споделяте файлове между компютрите си [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] включва Samba сървър. Интегрира се в локалната Ви мрежа и чрез нея дава достъп, до файловете на OpenELEC посредством Finder (ако ползвате MacOS) или File Explorer (ако ползвате Windows)."
+msgid "In order to share your files between your computers @DISTRONAME@ has incorporated a samba server. This samba server can be integrated into your local network by accessing it in a familiar way with Finder or Windows Explorer."
+msgstr "За да споделяне на файлове между компютри @DISTRONAME@ включва Samba сървър. Интегрира се в локалната Ви мрежа и чрез нея дава достъп, до файловете посредством Finder (ако ползвате MacOS) или File Explorer (ако ползвате Windows)."
 
 msgctxt "#32314"
 msgid "enabled"
@@ -877,8 +877,8 @@ msgid "Thank you"
 msgstr "Благодарим Ви"
 
 msgctxt "#32318"
-msgid "You [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] installation is now complete and you'll now enter Kodi when you can set up your media libraries. For help with this, there is a guide available at wiki.xbmc.org[CR][CR][COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] is developed by a dedicated team of developers who work purely in their spare time. Even as a volunteer project, we still have to pay for our internet bandwidth and development resources so if you find [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] useful, we will always appreciate a donation of any amount.[CR][CR]Finally, we hope you enjoy using [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] as much as we've enjoying building it. If you need any more help, you can find links to get help along with latest news at openelec.tv"
-msgstr "Инсталацията на [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] приключи и сега ще бъдете пренасочени към Kodi, където ще можете да настроите медийните си библиотеки. При необходимост от помощ можете да ползвате ръководството на www.wiki.xbmc.org[CR][CR][COLOR FF757677]Open[/COLOR].[COLOR FF8ABEE2]ELEC[/COLOR] се развива от малък екип разработчици, в свободното им време. Въпреки, че е проект на доброволчески начала се налага да се плаща за интернет трафика и разходи свързани с развойната дейност. Затова ако намирате [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] за полезна програма ние ще оценим и най-малкото дарение. [CR][CR]Надяваме се, че ще се насладите на [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR], поне толкова колкото ние се наслаждавахме докато го създавахме. Ако Ви е необходима помощ ще я намерите на www.openelec.tv, заедно с последните новини."
+msgid "Your @DISTRONAME@ installation is now complete and you'll now enter Kodi when you can set up your media libraries. For help with this, there is a guide available at wiki.kodi.tv[CR][CR]@DISTRONAME@ is developed by a dedicated team of developers who work purely in their spare time. Even as a volunteer project, we still have to pay for our internet bandwidth and development resources so if you find @DISTRONAME@ useful, we will always appreciate a donation of any amount.[CR][CR]Finally, we hope you enjoy using @DISTRONAME@ as much as we've enjoying building it. If you need any more help, you can find links to get help along with latest news at our website"
+msgstr "Инсталацията на @DISTRONAME@ приключи и сега ще бъдете пренасочени към Kodi, където ще можете да настроите медийните си библиотеки. При необходимост от помощ можете да ползвате ръководството на www.wiki.kodi.tv[CR][CR]@DISTRONAME@ се развива от малък екип разработчици, в свободното им време. Въпреки, че е проект на доброволчески начала се налага да се плаща за интернет трафика и разходи свързани с развойната дейност. Затова ако намирате @DISTRONAME@ за полезна програма ние ще оценим и най-малкото дарение.[CR][CR]Надяваме се, че ще се насладите на @DISTRONAME@, поне толкова колкото ние се наслаждавахме докато го създавахме. Ако Ви е необходима помощ ще я намерите (и новини) на нашия уеб сайт"
 
 msgctxt "#32319"
 msgid "Cron"
@@ -905,8 +905,8 @@ msgid "Reset System Settings to defaults"
 msgstr "Нулиране на системата"
 
 msgctxt "#32325"
-msgid "Reset OpenELEC to defaults"
-msgstr "Нулиране на OpenELEC"
+msgid "Reset @DISTRONAME@ to defaults"
+msgstr "Нулиране на @DISTRONAME@"
 
 msgctxt "#32326"
 msgid "Are you sure?"
@@ -1008,10 +1008,6 @@ msgctxt "#32362"
 msgid "Check for updates now:"
 msgstr "Провери за актуализации"
 
-msgctxt "#32363"
-msgid "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
-msgstr "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
-
 msgctxt "#32364"
 msgid "Update available"
 msgstr "Налична е актуализация"
@@ -1062,7 +1058,7 @@ msgstr "Изберете дестинация за директорията на
 
 msgctxt "#32377"
 msgid "Select the backup file to restore"
-msgstr "Изберте от кой файл да се възстановява"
+msgstr "Изберете от кой файл да се възстановява"
 
 msgctxt "#32378"
 msgid "The information you entered is incomplete"

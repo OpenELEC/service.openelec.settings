@@ -1,5 +1,5 @@
 # Kodi Media Center language file
-# Addon Name: OpenELEC Configuration
+# Addon Name: @DISTRONAME@ Configuration
 # Addon id: service.openelec.settings
 # Addon Provider: OpenELEC
 msgid ""
@@ -15,10 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sk\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-
-msgctxt "#600"
-msgid "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] Settings"
-msgstr "Nastavenia [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
 
 msgctxt "#601"
 msgid "Interface"
@@ -100,10 +96,6 @@ msgctxt "#709"
 msgid "709"
 msgstr "709"
 
-msgctxt "#710"
-msgid "Configure the Hostname of your OpenELEC system. This will be used for the HTPC \\\\hostname in Windows and SMB server name in the Mac OS Finder"
-msgstr "Nastavenie Mena počítača Váško OpenELEC systému. Meno bude použité pri prístupe z Windowsu na \\\\meno alebo server SMB v prípade Mac OS Finder"
-
 msgctxt "#711"
 msgid "Configure the 1st keyboard software layout"
 msgstr "Nastaviť rozloženie prvej softvérovej klávesnice"
@@ -116,25 +108,9 @@ msgctxt "#713"
 msgid "Configure the physical keyboard type"
 msgstr "Nastaviť typ fyzickej klávesnice"
 
-msgctxt "#714"
-msgid "OpenELEC can be configured for automatic or manual updates. Automatic updates are available on stable releases and stable release candidates. Automatic update self-disables on beta and development builds"
-msgstr "OpenELEC je možné nastaviť na automatické alebo manuálne aktualizácie. Automatické aktualizácie predstavujú stabilné vydania a stabilné release candidates vydania. Automatické aktualizácia sa netýkajú beta verzií a vývojových verzií"
-
 msgctxt "#715"
 msgid "Set to ON and an on-screen notification will be displayed when a new update is available"
 msgstr "Nastavte na ON pre upozornenie na nové aktualizácie"
-
-msgctxt "#716"
-msgid "Click to manually check the OpenELEC servers for an updated release"
-msgstr "Kliknite pre manuálne overenie dostupnosti novej aktualizácie na serveroch OpenELEC"
-
-msgctxt "#717"
-msgid "If you have an small LCD or VFD attached to your OpenELEC system you must configure the correct display driver"
-msgstr "Ak máte malý LCD alebo VFD displej pripojený k systému OpenELEC, musíte nastaviť správny ovládač displeja"
-
-msgctxt "#718"
-msgid "Set on ON and OpenELEC will spin down attached drives (not the main system drive) when idle"
-msgstr "Nastavte na ON pre uspanie pripojených diskových jednotiek v prípade nečinnosti (netýka sa hlavného systémového disku)"
 
 msgctxt "#719"
 msgid "Configure the number of minutes before hard-drive spin down occurs"
@@ -147,10 +123,6 @@ msgstr "Nastavte na ON pre vypnutie zariadení Bluetooth v móde šetrenia energ
 msgctxt "#721"
 msgid "721"
 msgstr "721"
-
-msgctxt "#722"
-msgid "Create a tar archive containing all OpenELEC and Kodi configuration settings, databases and thumbnail content. Backup files will be stored in /storage/backups"
-msgstr "Vytvorí archív tar, ktorý obsahuje nastavenia OpenELEC a Kodi, zálohu databázy a náhľadových obrázkov. Zálohy budú uložené v adresári /storage/backups"
 
 msgctxt "#723"
 msgid "Restore a tar archive backup previously created using the backup option above"
@@ -552,10 +524,6 @@ msgctxt "#32179"
 msgid "Update Available"
 msgstr "Aktualizácia k dispozícii"
 
-msgctxt "#32180"
-msgid "Would you like to update OpenELEC now?"
-msgstr "Chcete spustiť aktualizáciu teraz?"
-
 msgctxt "#32181"
 msgid "Filename"
 msgstr "Meno súboru"
@@ -688,10 +656,6 @@ msgctxt "#32215"
 msgid "Invalid Email Address"
 msgstr "Neplatná emailová adresa"
 
-msgctxt "#32300"
-msgid "Welcome to [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
-msgstr "Vitajte v [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
-
 msgctxt "#32301"
 msgid "Welcome"
 msgstr "Vitajte"
@@ -763,10 +727,6 @@ msgstr "Resetovať nastavenia"
 msgctxt "#32324"
 msgid "Reset System Settings to defaults"
 msgstr "Resetovať systémové nastavenia do základných hodnôt"
-
-msgctxt "#32325"
-msgid "Reset OpenELEC to defaults"
-msgstr "Resetovať OpenELEC nastavenia"
 
 msgctxt "#32326"
 msgid "Are you sure?"
@@ -859,10 +819,6 @@ msgstr "Nasledovné informácie nie sú zadané správne:"
 msgctxt "#32362"
 msgid "Check for updates now:"
 msgstr "Skontrolovať aktualizácie:"
-
-msgctxt "#32363"
-msgid "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
-msgstr "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
 
 msgctxt "#32364"
 msgid "Update available"

@@ -1,5 +1,5 @@
 # Kodi Media Center language file
-# Addon Name: OpenELEC Configuration
+# Addon Name: @DISTRONAME@ Configuration
 # Addon id: service.openelec.settings
 # Addon Provider: OpenELEC
 msgid ""
@@ -15,10 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-msgctxt "#600"
-msgid "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] Settings"
-msgstr "Configuració [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
 
 msgctxt "#601"
 msgid "Interface"
@@ -100,10 +96,6 @@ msgctxt "#709"
 msgid "709"
 msgstr "709"
 
-msgctxt "#710"
-msgid "Configure the Hostname of your OpenELEC system. This will be used for the HTPC \\\\hostname in Windows and SMB server name in the Mac OS Finder"
-msgstr "Configura el nom d'amfitrió del seu sistema OpenELEC. Això serà utilitzat per al HTPC \\\\hostname de Windows i SMB en el Finder de Mac OS"
-
 msgctxt "#711"
 msgid "Configure the 1st keyboard software layout"
 msgstr "Configura la 1era distribució del teclat"
@@ -116,25 +108,9 @@ msgctxt "#713"
 msgid "Configure the physical keyboard type"
 msgstr "Configura el tipus de teclat físic"
 
-msgctxt "#714"
-msgid "OpenELEC can be configured for automatic or manual updates. Automatic updates are available on stable releases and stable release candidates. Automatic update self-disables on beta and development builds"
-msgstr "OpenELEC pot configurar les actualitzacions automàtiques o manuals. Les actualitzacions automàtiques estan disponibles en versions estables o candidates estables.Les Actualitzacions automàtiques s'auto-desactiven en sistemes beta i els de desenvolupament."
-
 msgctxt "#715"
 msgid "Set to ON and an on-screen notification will be displayed when a new update is available"
 msgstr "Col·locar a ON i notificarà en pantalla quan hi hagi una nova actualització disponible."
-
-msgctxt "#716"
-msgid "Click to manually check the OpenELEC servers for an updated release"
-msgstr "Feu clic per comprovar manualment si hi ha una actualització del sistema OpenELEC."
-
-msgctxt "#717"
-msgid "If you have an small LCD or VFD attached to your OpenELEC system you must configure the correct display driver"
-msgstr "Si té una petita pantalla LCD o VFD connectada al seu sistema OpenELEC ha de configurar el controlador de pantalla correcte"
-
-msgctxt "#718"
-msgid "Set on ON and OpenELEC will spin down attached drives (not the main system drive) when idle"
-msgstr "Col·locar en ON i OpenELEC desconnectarà les unitats connectades (no a la unitat principal del sistema) quan estigui en repòs."
 
 msgctxt "#719"
 msgid "Configure the number of minutes before hard-drive spin down occurs"
@@ -148,21 +124,9 @@ msgctxt "#721"
 msgid "721"
 msgstr "721"
 
-msgctxt "#722"
-msgid "Create a tar archive containing all OpenELEC and Kodi configuration settings, databases and thumbnail content. Backup files will be stored in /storage/backups"
-msgstr "Crea un fitxer tar que conté tots els valors de configuració Kodi i OpenELEC, bases de dades i miniatures. El fitxers de la còpia de seguretat s'emmagatzemaran a /storage/backups"
-
 msgctxt "#723"
 msgid "Restore a tar archive backup previously created using the backup option above"
 msgstr "Restaura des de una còpia de seguretat creada prèviament mitjançant l'opció de còpia de seguretat superior"
-
-msgctxt "#724"
-msgid "[COLOR FF00FF00]SOFT RESET[/COLOR]\nPermanently reset OpenELEC OS configuration to defaults (resets also Kodi to default including your library. your media - music/videos/etc are not touched)"
-msgstr "[COLOR FF00FF00]SOFT RESET[/COLOR]\nRestableix permanentment els valors per defecte de la configuració del SO OpenELEC  (restableix també els valors per defecte del Kodi, incloent la biblioteca. Els seus fitxers multimèdia - música/vídeos/etc no es toquen)"
-
-msgctxt "#725"
-msgid "[COLOR FFFF0000]HARD RESET[/COLOR]\nPermanently reset OpenELEC OS and Kodi configuration to defaults (everything in your storage partition will be deleted)"
-msgstr "[COLOR FFFF0000]HARD RESET[/COLOR]\nRestableix permanentment els valors per defecte de la configuració del SO OpenELEC i del Kodi (tot el que tinguis en la partició d'emmagatzematge serà eliminat)"
 
 msgctxt "#726"
 msgid "Enable or disable support for Wireless (WLAN) networks"
@@ -224,10 +188,6 @@ msgctxt "#741"
 msgid "Set the password for Samba sharing"
 msgstr "Defineix la contrasenya per compartir amb Samba"
 
-msgctxt "#742"
-msgid "Set to ON to enable the embedded SSH server. The SSH console can be accessed with username 'root' and password 'openelec'."
-msgstr "Col·locar a ON per activar el servidor SSH integrat. La consola SSH es pot accedir amb el nom d'usuari 'root' i contrasenya 'OpenELEC'."
-
 msgctxt "#743"
 msgid "Set to ON if you have copied private SSH keys to your HTPC and would like to improve security by disabling SSH username and password authentication."
 msgstr "Col·locar a ON si ha copiat les claus privades SSH al teu HTPC i desitja millorar la seguretat mitjançant la desactivació d'autenticació del nom d'usuari i contrasenya SSH."
@@ -259,10 +219,6 @@ msgstr "749"
 msgctxt "#750"
 msgid "750"
 msgstr "750"
-
-msgctxt "#751"
-msgid "With OBEX filetransfer you can send files, for example movies or pictures over bluetooth to OpenELEC."
-msgstr "Amb la transferència de fitxers OBEX por enviar fitxers, per exemple pel·lícules i fotos mitjançant Bluetooth cap a OpenELEC."
 
 msgctxt "#752"
 msgid "Here you can set the folder location where OBEX file transfer should store incoming files"
@@ -656,10 +612,6 @@ msgctxt "#32179"
 msgid "Update Available"
 msgstr "Actualització Disponible"
 
-msgctxt "#32180"
-msgid "Would you like to update OpenELEC now?"
-msgstr "Vols actualitzar OpenELEC ara?"
-
 msgctxt "#32181"
 msgid "Filename"
 msgstr "Nom de fitxer"
@@ -804,33 +756,17 @@ msgctxt "#32216"
 msgid "Auto-Share External Drives"
 msgstr "Comparteix automàticament unitats externes"
 
-msgctxt "#32300"
-msgid "Welcome to [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
-msgstr "Benvingut a [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
-
 msgctxt "#32301"
 msgid "Welcome"
 msgstr "Benvingut"
-
-msgctxt "#32302"
-msgid "This wizard will guide you through the process of setting up your new [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] installation - setting your location, timezone and connecting you to the internet.[CR][CR]These settings can be changed later by navigating to Programs > [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] Settings.[CR][CR]To begin your [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] experience, select your regional settings and your keyboard layout, then click Next."
-msgstr "Aquest assistent us guiarà a través del procés de configurar la seva nova instal·lació de  [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] - cestablir la seva ubicació, zona horària i la connexió a Internet.[CR][CR]Aquesta configuració es pot canviar més endavant, navegant a Programes > [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] Settings.[CR][CR]Per començar la seva experiència [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR], selecciona la seva configuració regional i la distribució del teclat i feu clic a Següent."
 
 msgctxt "#32303"
 msgid "Next"
 msgstr "Següent"
 
-msgctxt "#32304"
-msgid "To be identified easily on the network, your new [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] machine needs a name.[CR][CR]Try to choose something meaningful - like the room it's in - so you'll know what it is when you see it on the network.[CR][CR]This name is used when configuring network services, like file sharing using samba."
-msgstr "Per ser identificat fàcilment, la teva màquina [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] necessita un nom.[CR][CR]Intenta triar alguna cosa significativa - com l'habitació on està - per tal que sàpiga que és quan la vegi en la xarxa.[CR][CR]Aquest nom s'utilitza per configurar els serveis de xarxa, com l'intercanvi d'arxius mitjançant Samba."
-
 msgctxt "#32305"
 msgid "Networking"
 msgstr "Creació de xarxes"
-
-msgctxt "#32306"
-msgid "In order to download backdrops, banners and thumbnails for your movies and TV shows and to stream online content from sites like YouTube, [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] needs to be connected the Internet.[CR][CR]An Internet connection is also required for [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] to automatically update itself."
-msgstr "Per descarregar fons, banners i imatges en miniatura de les seves pel·lícules, sèries de televisió i transmetre contingut en línia de llocs com YouTube, [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] necessita estar connectar a Internet.[CR][CR]També es necessita una connexió a Internet perquè [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] s'actualitzi automàticament."
 
 msgctxt "#32307"
 msgid "Select your Regional Settings:"
@@ -852,14 +788,6 @@ msgctxt "#32311"
 msgid "Sharing and Remote Access"
 msgstr "Compartir i accés remot"
 
-msgctxt "#32312"
-msgid "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] also supports SSH for remote access. This is for advanced users who wish to interact with [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]'s underlying operating system. The default user is [COLOR blue]root[/COLOR] and the default password is [COLOR blue]openelec.[/COLOR]"
-msgstr "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] també suporta SSH per accés remot. Això es una opció per usuaris avançats que vulguin interactuar amb el sistema operatiu subjacent a [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]. L'usuari per defecte és [COLOR blue]root[/COLOR] i la contrasenya és [COLOR blue]openelec.[/COLOR]"
-
-msgctxt "#32313"
-msgid "In order to share your files between your computers [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] has incorporated a samba server. This samba server can be integrated into your local network by accessing it in a familiar way with Finder or Windows Explorer."
-msgstr "Per compartir els fitxers entre els seus ordinadors [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] ha incorporat un servidor samba. Aquest servidor samba pot ser integrat amb la teva xarxa local accedir-hi d'una manera familiar amb el Finder o el Explorador de Windows."
-
 msgctxt "#32314"
 msgid "enabled"
 msgstr "Habilitat"
@@ -875,10 +803,6 @@ msgstr "Configura els Serveis:"
 msgctxt "#32317"
 msgid "Thank you"
 msgstr "Gràcies"
-
-msgctxt "#32318"
-msgid "You [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] installation is now complete and you'll now enter Kodi when you can set up your media libraries. For help with this, there is a guide available at wiki.xbmc.org[CR][CR][COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] is developed by a dedicated team of developers who work purely in their spare time. Even as a volunteer project, we still have to pay for our internet bandwidth and development resources so if you find [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] useful, we will always appreciate a donation of any amount.[CR][CR]Finally, we hope you enjoy using [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] as much as we've enjoying building it. If you need any more help, you can find links to get help along with latest news at openelec.tv"
-msgstr "La seva instal·lació d'[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] ha finalitzat i ara entrarà a Kodi per tal que pugi configurar les seves biblioteques multimèdia. Per obtenir ajuda, hi ha una guia disponible a wiki.xbmc.org[CR][CR][COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] és desenvolupat per un dedicat equip de desenvolupadors que treballen exclusivament en el seu temps lliure. Tot i que un projecte de voluntariat, encara hem de pagar pel nostre ample de banda d'Internet i els recursos de desenvolupament, pel que si vostè troba [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] útil, sempre s'apreciarà una donació de qualsevol quantitat.[CR][CR]Finalment, esperem que gaudeixi amb [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] tant com nosaltres hem gaudint en la seva construcció. Si necessiteu més ajuda, pots trobar enllaços per obtenir ajuda al llarg de les últimes notícies en openelec.tv"
 
 msgctxt "#32319"
 msgid "Cron"
@@ -903,10 +827,6 @@ msgstr "Restaura els valors per defecte"
 msgctxt "#32324"
 msgid "Reset System Settings to defaults"
 msgstr "Restaura el valors per defecte de la configuració del sistema"
-
-msgctxt "#32325"
-msgid "Reset OpenELEC to defaults"
-msgstr "Restaura els valors per defecte de l'OpenELEC"
 
 msgctxt "#32326"
 msgid "Are you sure?"
@@ -1007,10 +927,6 @@ msgstr "Les següents informacions son invalides:"
 msgctxt "#32362"
 msgid "Check for updates now:"
 msgstr "Comprova si hi ha actualitzacions ara:"
-
-msgctxt "#32363"
-msgid "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
-msgstr "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
 
 msgctxt "#32364"
 msgid "Update available"

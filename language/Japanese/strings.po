@@ -1,5 +1,5 @@
 # Kodi Media Center language file
-# Addon Name: OpenELEC Configuration
+# Addon Name: @DISTRONAME@ Configuration
 # Addon id: service.openelec.settings
 # Addon Provider: OpenELEC
 msgid ""
@@ -15,10 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-
-msgctxt "#600"
-msgid "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] Settings"
-msgstr "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] 設定"
 
 msgctxt "#601"
 msgid "Interface"
@@ -363,10 +359,6 @@ msgstr "ポート"
 msgctxt "#32179"
 msgid "Update Available"
 msgstr "アップデート可能"
-
-msgctxt "#32180"
-msgid "Would you like to update OpenELEC now?"
-msgstr "今すぐOpenElecをアップデートしますか？"
 
 msgctxt "#32181"
 msgid "Filename"

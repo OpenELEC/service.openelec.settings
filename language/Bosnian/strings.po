@@ -1,5 +1,5 @@
 # Kodi Media Center language file
-# Addon Name: OpenELEC Configuration
+# Addon Name: @DISTRONAME@ Configuration
 # Addon id: service.openelec.settings
 # Addon Provider: OpenELEC
 msgid ""
@@ -16,6 +16,10 @@ msgstr ""
 "Language: bs\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
+msgctxt "#602"
+msgid "Address"
+msgstr "Adresa"
+
 msgctxt "#603"
 msgid "Type"
 msgstr "Tip"
@@ -23,6 +27,10 @@ msgstr "Tip"
 msgctxt "#604"
 msgid "State"
 msgstr "Pokrajina"
+
+msgctxt "#605"
+msgid "Address"
+msgstr "Adresa"
 
 msgctxt "#32000"
 msgid "Network"
@@ -95,6 +103,10 @@ msgstr "Sljedeće"
 msgctxt "#32326"
 msgid "Are you sure?"
 msgstr "Da li ste sigurni?"
+
+msgctxt "#32332"
+msgid "Address"
+msgstr "Adresa"
 
 msgctxt "#32334"
 msgid "Yes"

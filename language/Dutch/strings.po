@@ -1,5 +1,5 @@
 # Kodi Media Center language file
-# Addon Name: OpenELEC Configuration
+# Addon Name: @DISTRONAME@ Configuration
 # Addon id: service.openelec.settings
 # Addon Provider: OpenELEC
 msgid ""
@@ -17,8 +17,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgctxt "#600"
-msgid "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] Settings"
-msgstr "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] Instellingen"
+msgid "@DISTRONAME@ Settings"
+msgstr "@DISTRONAAM@ Configuratie"
 
 msgctxt "#601"
 msgid "Interface"
@@ -105,8 +105,8 @@ msgid "709"
 msgstr "709"
 
 msgctxt "#710"
-msgid "Configure the Hostname of your OpenELEC system. This will be used for the HTPC \\\\hostname in Windows and SMB server name in the Mac OS Finder"
-msgstr "Configureer de hostnaam van uw OpenELEC systeem. Dit zal gebruikt worden voor de HTPC \\\\hostnaam binnen Windows en SMB servernaam in de Mac OS Finder"
+msgid "Configure the Hostname of your @DISTRONAME@ system. This will be used for the HTPC \\\\hostname in Windows and SMB server name in the Mac OS Finder"
+msgstr "Configureer de hostnaam van uw @DISTRONAAM@ systeem. Dit zal gebruikt worden voor de HTPC \\\\hostnaam binnen Windows en SMB servernaam in de Mac OS Finder"
 
 msgctxt "#711"
 msgid "Configure the 1st keyboard software layout"
@@ -121,24 +121,24 @@ msgid "Configure the physical keyboard type"
 msgstr "Configureer het fysieke toetsenbordtype"
 
 msgctxt "#714"
-msgid "OpenELEC can be configured for automatic or manual updates. Automatic updates are available on stable releases and stable release candidates. Automatic update self-disables on beta and development builds"
-msgstr "OpenELEC kan geconfigureerd worden voor automatische of handmatige updates. Automatische updates zijn beschikbaar voor stabiele uitgaves en stabiele release candidates. Op betaversies en ontwikkelbuilds zijn automatische updates vanzelf uitgeschakeld"
+msgid "@DISTRONAME@ can be configured for automatic or manual updates. Automatic updates are available on stable releases and stable release candidates. Automatic update self-disables on beta and development builds"
+msgstr "@DISTRONAAM@ kan geconfigureerd worden voor automatische of handmatige updates. Automatische updates zijn beschikbaar voor stabiele uitgaves en stabiele release candidates. Op betaversies en ontwikkelbuilds zijn automatische updates vanzelf uitgeschakeld"
 
 msgctxt "#715"
 msgid "Set to ON and an on-screen notification will be displayed when a new update is available"
 msgstr "Zet op AAN en een melding zal verschijnen wanneer een nieuwe update beschikbaar is"
 
 msgctxt "#716"
-msgid "Click to manually check the OpenELEC servers for an updated release"
-msgstr "Klik om handmatig op de OpenELEC servers te controleren voor een bijgewerkte uitgave."
+msgid "Click to manually check the @DISTRONAME@ servers for an updated release"
+msgstr "Klik om handmatig op de @DISTRONAAM@ servers te controleren voor een bijgewerkte uitgave."
 
 msgctxt "#717"
-msgid "If you have an small LCD or VFD attached to your OpenELEC system you must configure the correct display driver"
-msgstr "Indien u een smalle LCD of VFD op uw OpenELEC systeem heeft aangesloten, dan moet u de juiste display driver configureren"
+msgid "If you have an small LCD or VFD attached to your @DISTRONAME@ system you must configure the correct display driver"
+msgstr "Indien u een smalle LCD of VFD op uw @DISTRONAAM@ systeem heeft aangesloten, dan moet u de juiste display driver configureren"
 
 msgctxt "#718"
-msgid "Set on ON and OpenELEC will spin down attached drives (not the main system drive) when idle"
-msgstr "Zet op AAN en OpenELEC zal aangekoppelde hardeschijven (niet de systeemschijf) in slaapmodus zetten"
+msgid "Set on ON and @DISTRONAME@ will spin down attached drives (not the main system drive) when idle"
+msgstr "Zet op AAN en @DISTRONAAM@ zal aangekoppelde hardeschijven (niet de systeemschijf) in slaapmodus zetten"
 
 msgctxt "#719"
 msgid "Configure the number of minutes before hard-drive spin down occurs"
@@ -153,20 +153,20 @@ msgid "721"
 msgstr "721"
 
 msgctxt "#722"
-msgid "Create a tar archive containing all OpenELEC and Kodi configuration settings, databases and thumbnail content. Backup files will be stored in /storage/backups"
-msgstr "Maak een .tar archiefbestand met alle OpenELEC en Kodi configuratie-instellingen, databases en thumbnails. Backupbestanden zullen worden opgeslagen in /storage/backups"
+msgid "Create a tar archive containing all @DISTRONAME@ and Kodi configuration settings, databases and thumbnail content. Backup files will be stored in /storage/backups"
+msgstr "Maak een .tar archiefbestand met alle @DISTRONAAM@ en Kodi configuratie-instellingen, databases en miniatuur inhoud. Backupbestanden zullen worden opgeslagen in /storage/backups"
 
 msgctxt "#723"
 msgid "Restore a tar archive backup previously created using the backup option above"
 msgstr "Terugzetten van een tar archiefbestand gemaakt met de backup-optie hierboven"
 
 msgctxt "#724"
-msgid "[COLOR FF00FF00]SOFT RESET[/COLOR]\nPermanently reset OpenELEC OS configuration to defaults (resets also Kodi to default including your library. your media - music/videos/etc are not touched)"
-msgstr "[COLOR FF00FF00]ZACHTE RESET[/COLOR]\nZet de OpenELEC OS-configuratie terug naar de startwaarden (Ook Kodi-instellingen worden gereset, inclusief je bibliotheek. Je mediabestanden - muziek/video's - worden niet verwijderd)"
+msgid "[COLOR FF00FF00]SOFT RESET[/COLOR]\nPermanently reset @DISTRONAME@ configuration to defaults (resets also Kodi to default including your library. your media - music/videos/etc are not touched)"
+msgstr "[COLOR FF00FF00]ZACHTE RESET[/COLOR]\nHerstel permanent @DISTRONAAM@ configuratie naar standaardwaarden (Herstelt ook Kodi naar het begin inclusief jouw bibliotheek. jouw media - muziek/video`s/etc. worden niet verwijderd)"
 
 msgctxt "#725"
-msgid "[COLOR FFFF0000]HARD RESET[/COLOR]\nPermanently reset OpenELEC OS and Kodi configuration to defaults (everything in your storage partition will be deleted)"
-msgstr "[COLOR FFFF0000]HARDE RESET[/COLOR]\nReset permanent de OpenELEC OS en Kodi-configuraties naar beginwaarden (alles op je opslagpartitie wordt ook verwijderd!)"
+msgid "[COLOR FFFF0000]HARD RESET[/COLOR]\nPermanently reset @DISTRONAME@ and Kodi configuration to defaults (everything in your storage partition will be deleted)"
+msgstr "[COLOR FFFF0000]HARDE RESET[/COLOR]\nReset permantent @DISTRONAAM@ en Kodi configuratie naar het begin (alles op jouw opslag partitie wordt eveneens verwijderd)"
 
 msgctxt "#726"
 msgid "Enable or disable support for Wireless (WLAN) networks"
@@ -229,8 +229,8 @@ msgid "Set the password for Samba sharing"
 msgstr "Stel het wachtwoord for Samba sharing in"
 
 msgctxt "#742"
-msgid "Set to ON to enable the embedded SSH server. The SSH console can be accessed with username 'root' and password 'openelec'."
-msgstr "Zet op AAN om de ingebouwde SSH-server in te schakelen. De SSH-console is te benaderen via gebruikersnaam 'root' en wachtwoord 'openelec'."
+msgid "Set to ON to enable the embedded SSH server. The SSH console can be accessed with username 'root' and password '@ROOT_PASSWORD@'."
+msgstr "Zet op AAN om de ingebouwde SSH-server in te schakelen. De SSH-console is te benaderen via gebruikersnaam 'root' en wachtwoord '@DISTRONAAM@'."
 
 msgctxt "#743"
 msgid "Set to ON if you have copied private SSH keys to your HTPC and would like to improve security by disabling SSH username and password authentication."
@@ -265,8 +265,8 @@ msgid "750"
 msgstr "750"
 
 msgctxt "#751"
-msgid "With OBEX filetransfer you can send files, for example movies or pictures over bluetooth to OpenELEC."
-msgstr "Met OBEX bestandsoverdracht kun je bestanden oversturen, bijvoorbeeld films of foto's over bluetooth naar OpenELEC."
+msgid "With OBEX filetransfer you can send files, for example movies or pictures over bluetooth to @DISTRONAME@."
+msgstr "Met OBEX bestandsoverdracht kun je bestanden oversturen, bijvoorbeeld films of foto's over bluetooth naar @DISTRONAAM@."
 
 msgctxt "#752"
 msgid "Here you can set the folder location where OBEX file transfer should store incoming files"
@@ -661,8 +661,8 @@ msgid "Update Available"
 msgstr "Update beschikbaar"
 
 msgctxt "#32180"
-msgid "Would you like to update OpenELEC now?"
-msgstr "Wilt u OpenELEC nu updaten?"
+msgid "Would you like to update @DISTRONAME@ now?"
+msgstr "Wilt u @DISTRONAAM@ nu updaten?"
 
 msgctxt "#32181"
 msgid "Filename"
@@ -809,32 +809,32 @@ msgid "Auto-Share External Drives"
 msgstr "Automatisch-delen externe schijven"
 
 msgctxt "#32300"
-msgid "Welcome to [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
-msgstr "Welkom bij [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
+msgid "Welcome to @DISTRONAME@"
+msgstr "Welkom bij @DISTRONAAM@!"
 
 msgctxt "#32301"
 msgid "Welcome"
 msgstr "Welkom"
 
 msgctxt "#32302"
-msgid "This wizard will guide you through the process of setting up your new [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] installation - setting your location, timezone and connecting you to the internet.[CR][CR]These settings can be changed later by navigating to Programs > [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] Settings.[CR][CR]To begin your [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] experience, select your regional settings and your keyboard layout, then click Next."
-msgstr "Deze wizard helpt u tijdens het opzetten van uw nieuwe [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] installatie - instellen van uw locatie, tijdzone en het verbinden met het internet.[CR][CR]Deze instellingen kunnen later gewijzigd worden door te navigeren naar Programma's > [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] Instellingen.[CR][CR]Om uw [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] experience te beginnen, kies uw regionale instellingen en toetsenbordlayout, en kies dan Volgende."
+msgid "This wizard will guide you through the process of setting up your new @DISTRONAME@ installation - setting your location, timezone and connecting you to the internet.[CR][CR]These settings can be changed later by navigating to Programs > @DISTRONAME@ Settings.[CR][CR]To begin your @DISTRONAME@ experience, select your regional settings and your keyboard layout, then click Next."
+msgstr "Deze wizard helpt u tijdens het opzetten van uw nieuwe @DISTRONAAM@ installatie - instellen van uw locatie, tijdzone en het verbinden met het internet.[CR][CR]Deze instellingen kunnen later gewijzigd worden door te navigeren naar Programma's > @DISTRONAAM@ Instellingen.[CR][CR]Om uw@DISTRONAAM@  experience te beginnen, kies uw regionale instellingen en toetsenbordlayout, en kies dan Volgende."
 
 msgctxt "#32303"
 msgid "Next"
 msgstr "Volgende"
 
 msgctxt "#32304"
-msgid "To be identified easily on the network, your new [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] machine needs a name.[CR][CR]Try to choose something meaningful - like the room it's in - so you'll know what it is when you see it on the network.[CR][CR]This name is used when configuring network services, like file sharing using samba."
-msgstr "Om makkelijk op het netwerk herkend te worden, heeft uw nieuwe [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] machine een naam nodig.[CR][CR]Probeer iets herkenbaars te kiezen - zoals de kamer waar het in staat - zodat u weet wat het is als u op uw netwerk kijkt.[CR][CR]Deze naam wordt gebruikt bij het configureren van netwerkservices, zoals het delen van bestanden met gebruik van Samba."
+msgid "To be identified easily on the network, your new @DISTRONAME@ machine needs a name.[CR][CR]Try to choose something meaningful - like the room it's in - so you'll know what it is when you see it on the network.[CR][CR]This name is used when configuring network services, like file sharing using samba."
+msgstr "Om makkelijk op het netwerk herkend te worden, heeft uw nieuwe @DISTRONAAM@ machine een naam nodig.[CR][CR]Probeer iets herkenbaars te kiezen - zoals de kamer waar het in staat - zodat u weet wat het is als u op uw netwerk kijkt.[CR][CR]Deze naam wordt gebruikt bij het configureren van netwerkservices, zoals het delen van bestanden met gebruik van Samba."
 
 msgctxt "#32305"
 msgid "Networking"
 msgstr "Netwerken"
 
 msgctxt "#32306"
-msgid "In order to download backdrops, banners and thumbnails for your movies and TV shows and to stream online content from sites like YouTube, [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] needs to be connected the Internet.[CR][CR]An Internet connection is also required for [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] to automatically update itself."
-msgstr "Om achtergronden en banners en thumbnails voor uw films en tvshows, alsook het streamen van online content van websites zoals YouTube te downloaden, is een [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] verbinding met het Internet vereist.[CR][CR]Een internetverbinding is ook nodig voor [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] om zichzelf automatisch te updaten."
+msgid "In order to download backdrops, banners and thumbnails for your movies and TV shows and to stream online content from sites like YouTube, @DISTRONAME@ needs to be connected the Internet.[CR][CR]An Internet connection is also required for @DISTRONAME@ to automatically update itself."
+msgstr "Om achtergronden en banners en thumbnails voor uw films en tvshows, alsook het streamen van online content van websites zoals YouTube te downloaden, is een @DISTRONAAM@ verbinding met het Internet vereist.[CR][CR]Een internetverbinding is ook nodig voor@DISTRONAAM@ om zichzelf automatisch te updaten."
 
 msgctxt "#32307"
 msgid "Select your Regional Settings:"
@@ -857,12 +857,12 @@ msgid "Sharing and Remote Access"
 msgstr "Bestandsdeling en externe toegang "
 
 msgctxt "#32312"
-msgid "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] also supports SSH for remote access. This is for advanced users who wish to interact with [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]'s underlying operating system. The default user is [COLOR blue]root[/COLOR] and the default password is [COLOR blue]openelec.[/COLOR]"
-msgstr "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] ondersteunt ook SSH voor externe toegang. Dit is voor gevorderde gebruikers die met het onderliggende systeem van [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] willen werken. De standaardgebruiker is [COLOR blue]root[/COLOR] en het standaardwachtwoord is [COLOR blue]openelec.[/COLOR]"
+msgid "@DISTRONAME@ also supports SSH for remote access. This is for advanced users who wish to interact with @DISTRONAME@'s underlying operating system. The default user is [COLOR blue]root[/COLOR] and the default password is [COLOR blue]@ROOT_PASSWORD@[/COLOR]."
+msgstr "@DISTRONAAM@ ondersteunt ook SSH voor externe toegang. Dit is voor gevorderde gebruikers die met het onderliggende systeem van @DISTRONAAM@ willen werken. De standaardgebruiker is [COLOR blue]root[/COLOR] en het standaardwachtwoord is [COLOR blue]@ROOT_WACHTWOORD@[/COLOR]"
 
 msgctxt "#32313"
-msgid "In order to share your files between your computers [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] has incorporated a samba server. This samba server can be integrated into your local network by accessing it in a familiar way with Finder or Windows Explorer."
-msgstr "Om uw bestanden tussen uw computers te delen, heeft [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] een ingebouwde Samba server. Deze Samba server kan in uw lokale netwerk geïntegreerd  worden op de gebruikelijke manier met Mac Finder of Windows Explorer."
+msgid "In order to share your files between your computers @DISTRONAME@ has incorporated a samba server. This samba server can be integrated into your local network by accessing it in a familiar way with Finder or Windows Explorer."
+msgstr "Om uw bestanden tussen uw computers te delen, heeft @DISTRONAAM@ een ingebouwde Samba server. Deze Samba server kan in uw lokale netwerk geïntegreerd  worden op de gebruikelijke manier met Mac Finder of Windows Explorer."
 
 msgctxt "#32314"
 msgid "enabled"
@@ -881,8 +881,8 @@ msgid "Thank you"
 msgstr "Dankuwel"
 
 msgctxt "#32318"
-msgid "You [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] installation is now complete and you'll now enter Kodi when you can set up your media libraries. For help with this, there is a guide available at wiki.xbmc.org[CR][CR][COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] is developed by a dedicated team of developers who work purely in their spare time. Even as a volunteer project, we still have to pay for our internet bandwidth and development resources so if you find [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] useful, we will always appreciate a donation of any amount.[CR][CR]Finally, we hope you enjoy using [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] as much as we've enjoying building it. If you need any more help, you can find links to get help along with latest news at openelec.tv"
-msgstr "Uw [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] installatie is nu voltooid, en u kunt Kodi opstarten zodra u uw mediabibliotheken kunt opzeten. Voor verdere help hiermee is er een hulpgids aanwezig op wiki.xbmc.org[CR][CR][COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] is ontwikkeld door een toegewijd team van ontwikkelaars, die puur in hun vrije tijd werken. Zelfs bij een vrijwilligersproject moeten we nog altijd onze internet bandbreedte en ontwikkelbronnen bekostigen, dus als u [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] nuttig vindt, zullen we altijd uw donatie van welk bedrag dan ook op prijs stellen.[CR][CR]Ten slotte, we hopen dat u van [COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR] net zo zult genieten als dat wij het fijn vonden het te bouwen. Indien u nog meer hulp nodig heeft, dan kunt u links daarvoor vinden alsook het laatste nieuws op http://openelec.tv"
+msgid "Your @DISTRONAME@ installation is now complete and you'll now enter Kodi when you can set up your media libraries. For help with this, there is a guide available at wiki.kodi.tv[CR][CR]@DISTRONAME@ is developed by a dedicated team of developers who work purely in their spare time. Even as a volunteer project, we still have to pay for our internet bandwidth and development resources so if you find @DISTRONAME@ useful, we will always appreciate a donation of any amount.[CR][CR]Finally, we hope you enjoy using @DISTRONAME@ as much as we've enjoying building it. If you need any more help, you can find links to get help along with latest news at our website"
+msgstr "Uw @DISTRONAAM@ installatie is nu voltooid, en u kunt Kodi opstarten zodra u uw mediabibliotheken kunt opzetten. Voor verdere hulp hiermee is er een hulpgids aanwezig op wiki.kodi.tv[CR][CR]@DISTRONAAM@ is ontwikkeld door een toegewijd team van ontwikkelaars, die puur in hun vrije tijd werken. Zelfs bij een vrijwilligersproject moeten we nog altijd onze internet bandbreedte en ontwikkelbronnen bekostigen, dus als u @DISTRONAAM@ nuttig vindt, zullen we altijd uw donatie van welk bedrag dan ook op prijs stellen.[CR][CR]Ten slotte, we hopen dat u van @DISTRONAAM@ net zo zult genieten als dat wij het fijn vonden het te bouwen. Indien u nog meer hulp nodig heeft, dan kunt u links daarvoor vinden alsook het laatste nieuws op onze website"
 
 msgctxt "#32319"
 msgid "Cron"
@@ -909,8 +909,8 @@ msgid "Reset System Settings to defaults"
 msgstr "Terugzetten systeeminstellingen naar standaardwaarden"
 
 msgctxt "#32325"
-msgid "Reset OpenELEC to defaults"
-msgstr "Terugzetten OpenELEC naar standaardwaarden"
+msgid "Reset @DISTRONAME@ to defaults"
+msgstr "Herstel @DISTRONAAM@ naar standaardwaarden"
 
 msgctxt "#32326"
 msgid "Are you sure?"
@@ -1013,8 +1013,8 @@ msgid "Check for updates now:"
 msgstr "Controleer nu op updates:"
 
 msgctxt "#32363"
-msgid "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
-msgstr "[COLOR FF757677]Open[/COLOR][COLOR FF8ABEE2]ELEC[/COLOR]"
+msgid "@DISTRONAME@"
+msgstr "@DISTRONAAM@"
 
 msgctxt "#32364"
 msgid "Update available"

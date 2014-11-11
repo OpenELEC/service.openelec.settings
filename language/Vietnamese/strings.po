@@ -1,5 +1,5 @@
 # Kodi Media Center language file
-# Addon Name: OpenELEC Configuration
+# Addon Name: @DISTRONAME@ Configuration
 # Addon id: service.openelec.settings
 # Addon Provider: OpenELEC
 msgid ""
@@ -83,6 +83,10 @@ msgstr "Port"
 msgctxt "#32191"
 msgid "Error"
 msgstr "Lỗi"
+
+msgctxt "#32193"
+msgid "Service"
+msgstr "Dịch Vụ"
 
 msgctxt "#32200"
 msgid "Samba"

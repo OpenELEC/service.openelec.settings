@@ -1,5 +1,5 @@
 # Kodi Media Center language file
-# Addon Name: OpenELEC Configuration
+# Addon Name: @DISTRONAME@ Configuration
 # Addon id: service.openelec.settings
 # Addon Provider: OpenELEC
 msgid ""
@@ -68,6 +68,10 @@ msgctxt "#32106"
 msgid "Username"
 msgstr "Notandanafn"
 
+msgctxt "#32110"
+msgid "Connection"
+msgstr "Tenging"
+
 msgctxt "#32140"
 msgid "Save"
 msgstr "Vista"
@@ -96,6 +100,10 @@ msgctxt "#32191"
 msgid "Error"
 msgstr "Villa"
 
+msgctxt "#32193"
+msgid "Service"
+msgstr "Þjónusta"
+
 msgctxt "#32212"
 msgid "Cancel"
 msgstr "Hætta við"
@@ -107,6 +115,10 @@ msgstr "Hætta"
 msgctxt "#32303"
 msgid "Next"
 msgstr "Næst"
+
+msgctxt "#32315"
+msgid "disabled"
+msgstr "óvirkt"
 
 msgctxt "#32326"
 msgid "Are you sure?"

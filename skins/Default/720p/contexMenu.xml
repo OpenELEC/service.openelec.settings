@@ -22,7 +22,7 @@
                 <top>0</top>
                 <width>340</width>
                 <height>400</height>
-                <texture border="20">default/DialogBack.png</texture>
+                <texture border="20">DialogBack.png</texture>
             </control>
             <control type="list" id="4323">
                 <left>18</left>

@@ -589,16 +589,6 @@
                             <visible>StringCompare(ListItem.Property(netType), wifi)</visible> 
                             <texture>icons/wlan.png</texture>
                         </control>
-                        <!-- Icon vpn -->
-                        <control type="image">
-                            <left>10</left>
-                            <top>20</top>
-                            <width>48</width>
-                            <height>48</height>
-                            <aspectratio>keep</aspectratio>
-                            <visible>StringCompare(ListItem.Property(netType), vpn)</visible> 
-                            <texture>icons/vpn.png</texture>
-                        </control>
                         <!-- Connection Name -->
                         <control type="label">
                             <left>70</left>
@@ -744,16 +734,6 @@
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(netType), wifi)</visible> 
                             <texture>icons/wlan.png</texture>
-                        </control>
-                        <!-- Icon vpn -->
-                        <control type="image">
-                            <left>10</left>
-                            <top>20</top>
-                            <width>48</width>
-                            <height>48</height>
-                            <aspectratio>keep</aspectratio>
-                            <visible>StringCompare(ListItem.Property(netType), vpn)</visible> 
-                            <texture>icons/vpn.png</texture>
                         </control>
                         <!-- Connection Name -->
                         <control type="label">

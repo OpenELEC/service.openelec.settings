@@ -42,8 +42,6 @@ USER_CONFIG = os.environ.get('USER_CONFIG', '/storage/.config')
 connman = {
     'CONNMAN_DAEMON': '/usr/sbin/connmand',
     'WAIT_CONF_FILE': '%s/openelec/network_wait' % CONFIG_CACHE,
-    'VPN_PLUGINS_DIR': '/usr/lib/connman/plugins-vpn',
-    'VPN_CONF_DIR': '%s/vpn-config/' % USER_CONFIG,
     'ENABLED': lambda : (True if os.path.exists(connman['CONNMAN_DAEMON']) else False),
     }
 

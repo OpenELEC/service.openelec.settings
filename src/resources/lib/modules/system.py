@@ -50,7 +50,7 @@ class system:
     OPENELEC_RESET_FILE = None
     KEYBOARD_INFO = None
     UDEV_KEYBOARD_INFO = None
-    RPI_KEYBOARD_INFO = None
+    NOX_KEYBOARD_INFO = None
     BACKUP_DIRS = None
     BACKUP_DESTINATION = None
     RESTORE_DIR = None
@@ -210,7 +210,7 @@ class system:
                 }
 
             self.keyboard_layouts = False
-            self.rpi_keyboard_layouts = False
+            self.nox_keyboard_layouts = False
             self.last_update_check = 0
             self.arrVariants = {}
             self.oe.dbg_log('system::__init__', 'exit_function', 0)
@@ -289,12 +289,14 @@ class system:
                     self.struct['keyboard']['settings']['KeyboardVariant2']['value'] = value
                 if not arrTypes == None:
                     self.keyboard_layouts = True
-                else:
-                    self.rpi_keyboard_layouts = True
 
-            if self.oe.ARCHITECTURE == 'RPi.arm':
+            if not os.path.exists('/usr/bin/setxkbmap'):
                 self.struct['keyboard']['settings']['KeyboardLayout2']['hidden'] = 'true'
                 self.struct['keyboard']['settings']['KeyboardType']['hidden'] = 'true'
+                self.struct['keyboard']['settings']['KeyboardVariant1']['hidden'] = 'true'
+                self.struct['keyboard']['settings']['KeyboardVariant2']['hidden'] = 'true'
+            else:
+                self.nox_keyboard_layouts = True
 
             # Hostname
 
@@ -383,10 +385,10 @@ class system:
                     '-option "grp:alt_shift_toggle"',
                     ]
                 self.oe.execute('setxkbmap ' + ' '.join(parameters))
-            elif self.rpi_keyboard_layouts == True:
+            elif self.nox_keyboard_layouts == True:
                 self.oe.dbg_log('system::set_keyboard_layout', unicode(self.struct['keyboard']['settings']['KeyboardLayout1']['value']), 1)
                 parameter = self.struct['keyboard']['settings']['KeyboardLayout1']['value']
-                command = 'loadkmap < `ls -1 %s/*/%s.bmap`' % (self.RPI_KEYBOARD_INFO, parameter)
+                command = 'loadkmap < `ls -1 %s/*/%s.bmap`' % (self.NOX_KEYBOARD_INFO, parameter)
                 self.oe.dbg_log('system::set_keyboard_layout', command, 1)
                 self.oe.execute(command)
             self.oe.set_busy(0)
@@ -501,8 +503,8 @@ class system:
                                         arrTypes.append(value + ':' + subnode_2.firstChild.nodeValue)
                 arrLayouts.sort()
                 arrTypes.sort()
-            elif os.path.exists(self.RPI_KEYBOARD_INFO):
-                for layout in glob.glob(self.RPI_KEYBOARD_INFO + '/*/*.bmap'):
+            elif os.path.exists(self.NOX_KEYBOARD_INFO):
+                for layout in glob.glob(self.NOX_KEYBOARD_INFO + '/*/*.bmap'):
                     if os.path.isfile(layout):
                         arrLayouts.append(layout.split('/')[-1].split('.')[0])
                 arrLayouts.sort()

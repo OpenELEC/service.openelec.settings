@@ -92,7 +92,7 @@ system = {
     'OPENELEC_RESET_FILE': '%s/reset_oe' % CONFIG_CACHE,
     'KEYBOARD_INFO': '/usr/share/X11/xkb/rules/base.xml',
     'UDEV_KEYBOARD_INFO': '%s/xkb/layout' % CONFIG_CACHE,
-    'RPI_KEYBOARD_INFO': '/usr/lib/keymaps',
+    'NOX_KEYBOARD_INFO': '/usr/lib/keymaps',
     'BACKUP_DIRS': [
         XBMC_USER_HOME,
         USER_CONFIG,

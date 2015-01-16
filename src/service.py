@@ -114,8 +114,7 @@ oe.start_service()
 monitor = service_thread(oe.__oe__)
 monitor.start()
 
-while not xbmc.abortRequested:
-    xbmc.sleep(100)
+xbmcm.waitForAbort()
 
 if hasattr(oe, 'winOeMain'):
     if oe.winOeMain.visible == True:

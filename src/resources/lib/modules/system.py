@@ -295,7 +295,6 @@ class system:
                 self.struct['keyboard']['settings']['KeyboardType']['hidden'] = 'true'
                 self.struct['keyboard']['settings']['KeyboardVariant1']['hidden'] = 'true'
                 self.struct['keyboard']['settings']['KeyboardVariant2']['hidden'] = 'true'
-            else:
                 self.nox_keyboard_layouts = True
 
             # Hostname

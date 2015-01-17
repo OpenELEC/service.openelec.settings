@@ -611,8 +611,6 @@ class wizard(xbmcgui.WindowXMLDialog):
             self.set_wizard_text(self.oe._(32302).encode('utf-8'))
             self.set_wizard_button_title(self.oe._(32307).encode('utf-8'))
             self.set_wizard_button_1(self.get_current_language(), self, 'select_language')
-            if self.oe.dictModules['system'].keyboard_layouts == True:
-                self.set_wizard_button_2(self.oe._(32310).encode('utf-8') + self.get_keyboard_layout(), self, 'select_keyboard')
             self.showButton(1, 32303)
             self.setFocusId(self.buttons[1]['id'])
         except Exception, e:
@@ -830,29 +828,4 @@ class wizard(xbmcgui.WindowXMLDialog):
             os.system('killall xbmc.bin')
         except Exception, e:
             self.oe.dbg_log('oeWindows.wizard::set_new_language(' + unicode(language) + ')', 'ERROR: (' + repr(e) + ')')
-
-    def get_keyboard_layout(self):
-        try:
-            current_layout = self.oe.dictModules['system'].struct['keyboard']['settings']['KeyboardLayout1']['value']
-            return current_layout
-        except Exception, e:
-            self.oe.dbg_log('oeWindows.wizard::get_keyboard_layout()', 'ERROR: (' + repr(e) + ')')
-
-    def select_keyboard(self):
-        try:
-            self.oe.set_busy(1)
-            select_window = selectWindow('selectWindow.xml', self.oe.__cwd__, 'Default', oeMain=self.oe)
-            select_window.defaultValue = self.oe.dictModules['system'].struct['keyboard']['settings']['KeyboardLayout1']['value']
-            select_window.availValues = ','.join(self.oe.dictModules['system'].struct['keyboard']['settings']['KeyboardLayout1']['values'])
-            self.oe.set_busy(0)
-            select_window.doModal()
-            if select_window.defaultValue != select_window.result:
-                self.oe.dictModules['system'].struct['keyboard']['settings']['KeyboardLayout1']['value'] = select_window.result
-                self.oe.write_setting('system', 'KeyboardLayout1', select_window.result)
-                self.oe.dictModules['system'].set_keyboard_layout()
-                self.set_wizard_button_2(self.oe._(32310).encode('utf-8') + self.get_keyboard_layout(), self, 'select_keyboard')
-            del select_window
-        except Exception, e:
-            self.oe.dbg_log('oeWindows.wizard::set_new_keyboard()', 'ERROR: (' + repr(e) + ')')
-
 

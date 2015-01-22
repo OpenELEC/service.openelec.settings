@@ -587,7 +587,7 @@ class connman:
                             'action': 'set_timeservers',
                             'type': 'text',
                             'dbus': 'String',
-                            'validate': '^([a-zA-Z0-9](?:[a-zA-Z0-9-\.]*[a-zA-Z0-9]))$',
+                            'validate': '^([a-zA-Z0-9](?:[a-zA-Z0-9-\.]*[a-zA-Z0-9]))$|^$',
                             'InfoText': 732,
                             },
                         '1': {
@@ -597,7 +597,7 @@ class connman:
                             'action': 'set_timeservers',
                             'type': 'text',
                             'dbus': 'String',
-                            'validate': '^([a-zA-Z0-9](?:[a-zA-Z0-9-\.]*[a-zA-Z0-9]))$',
+                            'validate': '^([a-zA-Z0-9](?:[a-zA-Z0-9-\.]*[a-zA-Z0-9]))$|^$',
                             'InfoText': 733,
                             },
                         '2': {
@@ -607,7 +607,7 @@ class connman:
                             'action': 'set_timeservers',
                             'type': 'text',
                             'dbus': 'String',
-                            'validate': '^([a-zA-Z0-9](?:[a-zA-Z0-9-\.]*[a-zA-Z0-9]))$',
+                            'validate': '^([a-zA-Z0-9](?:[a-zA-Z0-9-\.]*[a-zA-Z0-9]))$|^$',
                             'InfoText': 734,
                             },
                         },

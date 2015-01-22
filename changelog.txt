@@ -1,3 +1,6 @@
+2015-01-23 v0.5.8
+  (fix) allow clearing timeservers
+
 2014-12-19 v0.5.7
   (updated) language files from Transifex
 

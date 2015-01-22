@@ -175,11 +175,12 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                             if 'validate' in setting:
                                 dictProperties['validate'] = setting['validate']
                             if 'values' in setting:
-                                dictProperties['values'] = ','.join(setting['values'])
+                                dictProperties['values'] = '|'.join(setting['values'])
                             if isinstance(setting['name'], basestring):
                                 name = setting['name']
                             else:
                                 name = self.oe._(setting['name'])
+                                dictProperties['menuname'] = self.oe._(setting['name'])
                             m_entry = {}
                             if not 'parent' in setting:
                                 m_entry['name'] = name
@@ -274,12 +275,32 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                 strTyp = selectedItem.getProperty('typ')
                 strValue = selectedItem.getProperty('value')
                 if strTyp == 'multivalue':
-                    select_window = selectWindow('selectWindow.xml', self.oe.__cwd__, 'Default', oeMain=self.oe)
-                    select_window.defaultValue = strValue
-                    select_window.availValues = selectedItem.getProperty('values')
-                    select_window.doModal()
-                    selectedItem.setProperty('value', select_window.result)
-                    del select_window
+                    items1 = []
+                    items2 = []
+                    for item in selectedItem.getProperty('values').split('|'):
+                        if item != ':':
+                            boo = item.split(':')
+                            if len(boo) > 1:
+                                i1 = boo[0]
+                                i2 = boo[1]
+                            else:
+                                i1 = item
+                                i2 = item
+                        else:
+                            i1 = ''
+                            i2 = ''
+                        if i2 == strValue:
+                            items1.insert(0, i1)
+                            items2.insert(0, i2)
+                        else:
+                            # move current on top of the list
+                            items1.append(i1)
+                            items2.append(i2)
+                    select_window = xbmcgui.Dialog()
+                    title = selectedItem.getProperty('menuname').encode('utf-8')
+                    result = select_window.select(title, items1)
+                    if result >= 0:
+                        selectedItem.setProperty('value', items2[result])
                 elif strTyp == 'text':
                     xbmcKeyboard = xbmc.Keyboard(strValue)
                     result_is_valid = False
@@ -398,53 +419,6 @@ class mainWindow(xbmcgui.WindowXMLDialog):
     def emptyButtonLabels(self):
         for btn in self.buttons:
             self.getControl(self.buttons[btn]['id']).setVisible(False)
-
-
-class selectWindow(xbmcgui.WindowXMLDialog):
-
-    listId = 2000
-    defaultValue = None
-    availValues = []
-
-    def __init__(self, *args, **kwargs):
-        self.oe = kwargs['oeMain']
-        self.setProperty('arch', self.oe.ARCHITECTURE)
-        self.setProperty('distri', self.oe.DISTRIBUTION)
-        self.setProperty('version', self.oe.VERSION)
-        self.setProperty('build', self.oe.BUILD)
-        self.setProperty('DIST_MEDIA', 'default')
-        if os.path.exists(self.oe.__media__ + self.oe.DISTRIBUTION):
-            self.setProperty('DIST_MEDIA', self.oe.DISTRIBUTION)
-        pass
-
-    def onInit(self):
-        self.getControl(self.listId).reset()
-        for strValue in self.availValues.split(','):
-            if strValue != '':
-                strValueS = strValue.split(':')
-                if len(strValueS) > 1:
-                    listItem = xbmcgui.ListItem(label=strValueS[0].strip(), label2=strValueS[1].strip())
-                else:
-                    listItem = xbmcgui.ListItem(label=strValue, label2=strValue)
-                self.getControl(self.listId).addItem(listItem)
-        for x in range(0, self.getControl(self.listId).size()):
-            if self.getControl(self.listId).getListItem(x).getLabel() == self.defaultValue:
-                self.getControl(self.listId).selectItem(x)
-        self.result = self.defaultValue
-        self.setFocusId(self.listId)
-
-    def onAction(self, action):
-        actionId = int(action.getId())
-        if actionId in self.oe.CANCEL:
-            self.close()
-
-    def onClick(self, controlID):
-        selectedItem = self.getControl(self.listId).getSelectedItem()
-        self.result = selectedItem.getLabel()
-        self.close()
-
-    def onFocus(self, controlID):
-        pass
 
 
 class pinkeyWindow(xbmcgui.WindowXMLDialog):
@@ -611,8 +585,6 @@ class wizard(xbmcgui.WindowXMLDialog):
             self.set_wizard_text(self.oe._(32302).encode('utf-8'))
             self.set_wizard_button_title(self.oe._(32307).encode('utf-8'))
             self.set_wizard_button_1(self.get_current_language(), self, 'select_language')
-            if self.oe.dictModules['system'].keyboard_layouts == True:
-                self.set_wizard_button_2(self.oe._(32310).encode('utf-8') + self.get_keyboard_layout(), self, 'select_keyboard')
             self.showButton(1, 32303)
             self.setFocusId(self.buttons[1]['id'])
         except Exception, e:
@@ -785,14 +757,17 @@ class wizard(xbmcgui.WindowXMLDialog):
             currentLanguage = self.get_current_language()
             for filename in os.listdir(self.languages_dir):
                 languages.append(filename)
-            select_window = selectWindow('selectWindow.xml', self.oe.__cwd__, 'Default', oeMain=self.oe)
-            select_window.defaultValue = self.get_current_language()
-            select_window.availValues = ','.join(languages)
-            select_window.doModal()
-            if currentLanguage != select_window.result:
-                self.oe.language = select_window.result
-                self.close()
-                self.oe.set_language(select_window.result)
+            newLanguage = ''
+            select_window = xbmcgui.Dialog()
+            title = self.oe._(32011).encode('utf-8')
+            result = select_window.select(title, languages)
+            if result >= 0:
+                newLanguage = languages[result]
+            if newLanguage != '':
+                if currentLanguage != newLanguage:
+                    self.oe.language = newLanguage
+                    self.close()
+                    self.oe.set_language(newLanguage)
             del select_window
             self.oe.dbg_log('oeWindows::select_language', 'exit_function', 0)
         except Exception, e:
@@ -830,29 +805,4 @@ class wizard(xbmcgui.WindowXMLDialog):
             os.system('killall xbmc.bin')
         except Exception, e:
             self.oe.dbg_log('oeWindows.wizard::set_new_language(' + unicode(language) + ')', 'ERROR: (' + repr(e) + ')')
-
-    def get_keyboard_layout(self):
-        try:
-            current_layout = self.oe.dictModules['system'].struct['keyboard']['settings']['KeyboardLayout1']['value']
-            return current_layout
-        except Exception, e:
-            self.oe.dbg_log('oeWindows.wizard::get_keyboard_layout()', 'ERROR: (' + repr(e) + ')')
-
-    def select_keyboard(self):
-        try:
-            self.oe.set_busy(1)
-            select_window = selectWindow('selectWindow.xml', self.oe.__cwd__, 'Default', oeMain=self.oe)
-            select_window.defaultValue = self.oe.dictModules['system'].struct['keyboard']['settings']['KeyboardLayout1']['value']
-            select_window.availValues = ','.join(self.oe.dictModules['system'].struct['keyboard']['settings']['KeyboardLayout1']['values'])
-            self.oe.set_busy(0)
-            select_window.doModal()
-            if select_window.defaultValue != select_window.result:
-                self.oe.dictModules['system'].struct['keyboard']['settings']['KeyboardLayout1']['value'] = select_window.result
-                self.oe.write_setting('system', 'KeyboardLayout1', select_window.result)
-                self.oe.dictModules['system'].set_keyboard_layout()
-                self.set_wizard_button_2(self.oe._(32310).encode('utf-8') + self.get_keyboard_layout(), self, 'select_keyboard')
-            del select_window
-        except Exception, e:
-            self.oe.dbg_log('oeWindows.wizard::set_new_keyboard()', 'ERROR: (' + repr(e) + ')')
-
 

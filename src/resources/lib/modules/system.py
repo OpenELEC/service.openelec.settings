@@ -347,7 +347,6 @@ class system:
     def set_keyboard_layout(self, listItem=None):
         try:
             self.oe.dbg_log('system::set_keyboard_layout', 'enter_function', 0)
-            self.oe.set_busy(1)
             if not listItem == None:
                 if listItem.getProperty('entry') == 'KeyboardLayout1':
                     if self.struct['keyboard']['settings']['KeyboardLayout1']['value'] != listItem.getProperty('value'):
@@ -390,10 +389,8 @@ class system:
                 command = 'loadkmap < `ls -1 %s/*/%s.bmap`' % (self.NOX_KEYBOARD_INFO, parameter)
                 self.oe.dbg_log('system::set_keyboard_layout', command, 1)
                 self.oe.execute(command)
-            self.oe.set_busy(0)
             self.oe.dbg_log('system::set_keyboard_layout', 'exit_function', 0)
         except Exception, e:
-            self.oe.set_busy(0)
             self.oe.dbg_log('system::set_keyboard_layout', 'ERROR: (' + repr(e) + ')')
 
     def set_hostname(self, listItem=None):
@@ -472,7 +469,7 @@ class system:
                                         value = subnode_2.firstChild.nodeValue
                                 if subnode_2.nodeName == 'description':
                                     if hasattr(subnode_2.firstChild, 'nodeValue'):
-                                        arrLayouts.append(value + ':' + subnode_2.firstChild.nodeValue)
+                                        arrLayouts.append(subnode_2.firstChild.nodeValue + ':' + value)
                         if subnode_1.nodeName == 'variantList':
                             arrVariants[value] = [':']
                             for subnode_vl in subnode_1.childNodes:
@@ -486,8 +483,7 @@ class system:
                                                 if subnode_ci.nodeName == 'description':
                                                     if hasattr(subnode_ci.firstChild, 'nodeValue'):
                                                         try:
-                                                            arrVariants[value].append(vvalue + ':' + subnode_ci.firstChild.nodeValue.replace(','
-                                                                    , ''))
+                                                            arrVariants[value].append(subnode_ci.firstChild.nodeValue + ':' + vvalue)
                                                         except:
                                                             pass
                 for xml_layout in xml_conf.getElementsByTagName('model'):
@@ -499,7 +495,7 @@ class system:
                                         value = subnode_2.firstChild.nodeValue
                                 if subnode_2.nodeName == 'description':
                                     if hasattr(subnode_2.firstChild, 'nodeValue'):
-                                        arrTypes.append(value + ':' + subnode_2.firstChild.nodeValue)
+                                        arrTypes.append(subnode_2.firstChild.nodeValue + ':' + value)
                 arrLayouts.sort()
                 arrTypes.sort()
             elif os.path.exists(self.NOX_KEYBOARD_INFO):
@@ -684,13 +680,20 @@ class system:
             self.oe.dbg_log('system::do_restore', 'enter_function', 0)
             copy_success = 0
             backup_files = []
-            for backup_file in sorted(glob.glob(self.BACKUP_DESTINATION + '*.tar'), key=os.path.basename):
-                backup_files.append(backup_file.split('/')[-1] + ':')
-            select_window = oeWindows.selectWindow('selectWindow.xml', self.oe.__cwd__, 'Default', oeMain=self.oe)
-            select_window.availValues = ','.join(backup_files)
-            select_window.doModal()
-            restore_file = select_window.result
-            del select_window
+            for backup_file in sorted(glob.glob(self.BACKUP_DESTINATION + '*.tar'), key=os.path.basename, reverse=True):
+                backup_files.append(backup_file.split('/')[-1])
+            restore_file = ''
+            if len(backup_files) > 0:
+                select_window = xbmcgui.Dialog()
+                title = self.oe._(32373).encode('utf-8')
+                result = select_window.select(title, backup_files)
+                if result >= 0:
+                    restore_file = backup_files[result]
+                del select_window
+            else:
+                ok_window = xbmcgui.Dialog()
+                answer = ok_window.ok('Restore', 'No backups available')
+                del ok_window
             if restore_file != '':
                 if not os.path.exists(self.RESTORE_DIR):
                     os.makedirs(self.RESTORE_DIR)

@@ -881,12 +881,16 @@ class connman:
                             'action': 'refresh_network',
                             }
                         break
-            context_menu = oeWindows.contextWindow('contexMenu.xml', self.oe.__cwd__, 'Default', oeMain=self.oe)  #
-            context_menu.options = values
-            context_menu.doModal()
-            if context_menu.result != '':
-                getattr(self, context_menu.result)(listItem)
-            del context_menu
+            items = []
+            actions = []
+            for key in values.keys():
+                items.append(values[key]['text'])
+                actions.append(values[key]['action'])
+            select_window = xbmcgui.Dialog()
+            title = self.oe._(32012).encode('utf-8')
+            result = select_window.select(title, items)
+            if result >= 0:
+                getattr(self, actions[result])(listItem)
             self.oe.dbg_log('connman::open_context_menu', 'exit_function', 0)
         except Exception, e:
             self.oe.dbg_log('connman::open_context_menu', 'ERROR: (' + repr(e) + ')', 4)

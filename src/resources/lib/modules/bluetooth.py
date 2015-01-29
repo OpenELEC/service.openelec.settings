@@ -553,12 +553,16 @@ class bluetooth:
                 'text': self.oe._(32142),
                 'action': 'menu_connections',
                 }
-            context_menu = oeWindows.contextWindow('contexMenu.xml', self.oe.__cwd__, 'Default', oeMain=self.oe)  #
-            context_menu.options = values
-            context_menu.doModal()
-            if context_menu.result != '':
-                getattr(self, context_menu.result)(listItem)
-            del context_menu
+            items = []
+            actions = []
+            for key in values.keys():
+                items.append(values[key]['text'])
+                actions.append(values[key]['action'])
+            select_window = xbmcgui.Dialog()
+            title = self.oe._(32012).encode('utf-8')
+            result = select_window.select(title, items)
+            if result >= 0:
+                getattr(self, actions[result])(listItem)
             self.oe.dbg_log('bluetooth::show_options', 'exit_function', 0)
         except Exception, e:
             self.oe.dbg_log('bluetooth::show_options', 'ERROR: (' + repr(e) + ')', 4)

@@ -725,7 +725,7 @@ msgstr ""
 #empty string with id 32345
 
 msgctxt "#32346"
-msgid "Bluetooth is disabled"
+msgid "Bluetooth service is disabled"
 msgstr ""
 
 #empty strings from id 32347 to 32357

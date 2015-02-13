@@ -54,7 +54,6 @@ class bluetooth:
             oeMain.dbg_log('bluetooth::__init__', 'enter_function', 0)
             self.oe = oeMain
             self.visible = False
-            self.disabled = False
             self.listItems = {}
             self.update_menu = False
             self.dbusBluezAdapter = None
@@ -392,7 +391,7 @@ class bluetooth:
             if not self.oe.winOeMain.visible:
                 return 0
             self.oe.dbg_log('bluetooth::menu_connections', 'enter_function', 0)
-            if self.disabled:
+            if not 'org.bluez' in self.oe.dbusSystemBus.list_names():
                 self.oe.winOeMain.getControl(1301).setLabel(self.oe._(32346))
                 self.clear_list()
                 self.oe.winOeMain.getControl(int(self.oe.listObject['btlist'])).reset()

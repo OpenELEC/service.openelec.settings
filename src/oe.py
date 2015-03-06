@@ -113,25 +113,6 @@ def dbg_log(source, text, level=4):
     xbmc.log(traceback.format_exc())
 
 
-def set_language(language):
-    global WinOeSelect, winOeMain, __addon__, __cwd__, __oe__, _
-    __addon__ = None
-    __cwd__ = None
-    __oe__ = None
-    _ = None
-    winOeMain = None
-    xbmc.executebuiltin('xbmc.SetGUILanguage(' + language + ')')
-    time.sleep(1)
-    __addon__ = xbmcaddon.Addon(id=__scriptid__)
-    __cwd__ = __addon__.getAddonInfo('path')
-    __oe__ = sys.modules[globals()['__name__']]
-    _ = __addon__.getLocalizedString
-    winOeMain = oeWindows.wizard('wizard.xml', __cwd__, 'Default', oeMain=__oe__)
-    winOeMain.doModal()
-    winOeMain = None
-    del winOeMain
-
-
 def notify(title, message, icon='icon'):
     try:
         dbg_log('oe::notify', 'enter_function', 0)

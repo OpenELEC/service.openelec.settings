@@ -658,6 +658,18 @@ class system:
                 self.oe.set_busy(0)
             except:
                 self.oe.set_busy(0)
+
+            # free space check
+            try:
+                folder_stat = os.statvfs("/storage")
+                free_space = folder_stat.f_bsize * folder_stat.f_bavail
+                if self.total_backup_size > free_space:
+                    txt = self.oe.split_dialog_text(self.oe._(32379).encode('utf-8'))
+                    xbmcDialog = xbmcgui.Dialog()
+                    answer = xbmcDialog.ok('Backup', txt[0], txt[1], txt[2])
+                    return 0
+            except:
+                pass
             xbmcDialog = xbmcgui.Dialog()
             self.backup_dlg = xbmcgui.DialogProgress()
             self.backup_dlg.create('OpenELEC', self.oe._(32375).encode('utf-8'), ' ', ' ')

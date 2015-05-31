@@ -297,7 +297,7 @@ class mainWindow(xbmcgui.WindowXMLDialog):
                             items1.append(i1)
                             items2.append(i2)
                     select_window = xbmcgui.Dialog()
-                    title = selectedItem.getProperty('menuname').encode('utf-8')
+                    title = selectedItem.getProperty('menuname')
                     result = select_window.select(title, items1)
                     if result >= 0:
                         selectedItem.setProperty('value', items2[result])

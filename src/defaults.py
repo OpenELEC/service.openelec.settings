@@ -95,6 +95,7 @@ system = {
         XBMC_USER_HOME,
         USER_CONFIG,
         CONFIG_CACHE,
+        '/storage/.ssh',
         ],
     'BACKUP_DESTINATION': '/storage/backup/',
     'RESTORE_DIR': '/storage/.restore/',

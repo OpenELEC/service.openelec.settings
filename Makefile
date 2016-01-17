@@ -25,7 +25,7 @@
 ################################################################################
 
 ADDON_NAME=service.openelec.settings
-ADDON_VERSION=0.6.8
+ADDON_VERSION=0.6.9
 DISTRONAME:=OpenELEC
 
 BUILDDIR=build

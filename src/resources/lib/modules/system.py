@@ -651,7 +651,6 @@ class system:
             self.oe.dbg_log('system::do_backup', 'enter_function', 0)
             self.total_backup_size = 1
             self.done_backup_size = 1
-			
             try:
                 self.oe.set_busy(1)
                 for directory in self.BACKUP_DIRS:
@@ -660,41 +659,30 @@ class system:
             except:
                 self.oe.set_busy(0)
 
+            # free space check
+            try:
+                folder_stat = os.statvfs("/storage")
+                free_space = folder_stat.f_bsize * folder_stat.f_bavail
+                if self.total_backup_size > free_space:
+                    txt = self.oe.split_dialog_text(self.oe._(32379).encode('utf-8'))
+                    xbmcDialog = xbmcgui.Dialog()
+                    answer = xbmcDialog.ok('Backup', txt[0], txt[1], txt[2])
+                    return 0
+            except:
+                pass
             xbmcDialog = xbmcgui.Dialog()
-            bckDir = xbmcDialog.browse( 0, 
-										self.oe._(32392).encode('utf-8'), 
-										'files', 
-										'', 
-										False, 
-										False, 
-										self.BACKUP_DESTINATION )
-
-            if bckDir and os.path.exists(bckDir): 
-                # free space check
-                try:
-                    folder_stat = os.statvfs("/storage")
-                    free_space = folder_stat.f_bsize * folder_stat.f_bavail
-                    if self.total_backup_size > free_space:
-                        txt = self.oe.split_dialog_text(self.oe._(32379).encode('utf-8'))
-                        xbmcDialog = xbmcgui.Dialog()
-                        answer = xbmcDialog.ok('Backup', txt[0], txt[1], txt[2])
-                        return 0
-                except:
-                    pass
-                    
-                self.backup_dlg = xbmcgui.DialogProgress()
-                self.backup_dlg.create('OpenELEC', self.oe._(32375).encode('utf-8'), ' ', ' ')
-                if not os.path.exists(self.BACKUP_DESTINATION):
-                    os.makedirs(self.BACKUP_DESTINATION)
-                self.backup_file = self.oe.timestamp() + '.tar'
-                tar = tarfile.open(bckDir + self.backup_file, 'w')
-                for directory in self.BACKUP_DIRS:
-                    self.tar_add_folder(tar, directory)
-                tar.close()
-                self.backup_dlg.close()
-                del self.backup_dlg
+            self.backup_dlg = xbmcgui.DialogProgress()
+            self.backup_dlg.create('OpenELEC', self.oe._(32375).encode('utf-8'), ' ', ' ')
+            if not os.path.exists(self.BACKUP_DESTINATION):
+                os.makedirs(self.BACKUP_DESTINATION)
+            self.backup_file = self.oe.timestamp() + '.tar'
+            tar = tarfile.open(self.BACKUP_DESTINATION + self.backup_file, 'w')
+            for directory in self.BACKUP_DIRS:
+                self.tar_add_folder(tar, directory)
+            tar.close()
+            self.backup_dlg.close()
+            del self.backup_dlg
             self.oe.dbg_log('system::do_backup', 'exit_function', 0)
-			
         except Exception, e:
             self.backup_dlg.close()
             self.oe.dbg_log('system::do_backup', 'ERROR: (' + repr(e) + ')')
@@ -703,16 +691,22 @@ class system:
         try:
             self.oe.dbg_log('system::do_restore', 'enter_function', 0)
             copy_success = 0
-            xbmcDialog = xbmcgui.Dialog()
-            restore_file = xbmcDialog.browse( 1, 
-											  self.oe._(32393).encode('utf-8'), 
-											  'files', 
-											  '??????????????.tar', 
-											  False, 
-											  False, 
-											  self.BACKUP_DESTINATION )
-						
-            if restore_file != self.BACKUP_DESTINATION:
+            backup_files = []
+            for backup_file in sorted(glob.glob(self.BACKUP_DESTINATION + '*.tar'), key=os.path.basename, reverse=True):
+                backup_files.append(backup_file.split('/')[-1])
+            restore_file = ''
+            if len(backup_files) > 0:
+                select_window = xbmcgui.Dialog()
+                title = self.oe._(32373).encode('utf-8')
+                result = select_window.select(title, backup_files)
+                if result >= 0:
+                    restore_file = backup_files[result]
+                del select_window
+            else:
+                ok_window = xbmcgui.Dialog()
+                answer = ok_window.ok('Restore', 'No backups available')
+                del ok_window
+            if restore_file != '':
                 if not os.path.exists(self.RESTORE_DIR):
                     os.makedirs(self.RESTORE_DIR)
                 else:
@@ -855,11 +849,7 @@ class updateThread(threading.Thread):
             while self.stopped == False:
                 if not xbmc.Player(xbmc.PLAYER_CORE_AUTO).isPlaying():
                     self.oe.dictModules['system'].check_updates_v2()
-				if hasattr(self.oe.dictModules['system'], 'update_in_progress'):
-					self.wait_evt.wait(21600)
-				else:
-					self.oe.notify(self.oe._(32363).encode('utf-8'), self.oe._(32364).encode('utf-8'))
-					self.wait_evt.wait(3600)
+                self.wait_evt.wait(21600)
                 self.wait_evt.clear()
             self.oe.dbg_log('system::updateThread', 'Stopped', 1)
             self.oe.dbg_log('system::updateThread::run', 'exit_function', 0)

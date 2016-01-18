@@ -711,7 +711,9 @@ class system:
                                               False, 
                                               False, 
                                               self.BACKUP_DESTINATION )
-
+            
+            restore_file = restore_file.split('/')[-1]
+            
             if restore_file != self.BACKUP_DESTINATION:
                 if not os.path.exists(self.RESTORE_DIR):
                     os.makedirs(self.RESTORE_DIR)

@@ -1,4 +1,7 @@
-2016-01-17 v0.6.9
+2016-01-18 v0.6.10
+  (fix) restore function
+
+2016-01-17 v0.6.0
   (updated) language files from Transifex
 
 2015-06-12 v0.6.8

@@ -585,6 +585,11 @@ class system:
                             self.oe.winOeMain.close()
                             time.sleep(1)
                             xbmc.executebuiltin('Reboot')
+                    else:
+                        delattr(self, 'update_in_progress')                            
+                else:
+                    delattr(self, 'update_in_progress')
+
             self.oe.dbg_log('system::do_autoupdate', 'exit_function', 0)
         except Exception, e:
             self.oe.dbg_log('system::do_autoupdate', 'ERROR: (' + repr(e) + ')')

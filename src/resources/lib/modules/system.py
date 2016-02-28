@@ -709,7 +709,7 @@ class system:
             self.oe.dbg_log('system::do_restore', 'enter_function', 0)
             copy_success = 0
             xbmcDialog = xbmcgui.Dialog()
-            restore_file = xbmcDialog.browse( 1, 
+            restore_file_path = xbmcDialog.browse( 1, 
                                               self.oe._(32393).encode('utf-8'), 
                                               'files', 
                                               '??????????????.tar', 
@@ -717,40 +717,39 @@ class system:
                                               False, 
                                               self.BACKUP_DESTINATION )
             
-            restore_file = restore_file.split('/')[-1]
+            restore_file_name = restore_file_path.split('/')[-1]
             
-            if restore_file != self.BACKUP_DESTINATION:
-                if not os.path.exists(self.RESTORE_DIR):
-                    os.makedirs(self.RESTORE_DIR)
+            if not os.path.exists(self.RESTORE_DIR):
+                os.makedirs(self.RESTORE_DIR)
+            else:
+                self.oe.execute('rm -rf %s' % self.RESTORE_DIR)
+                os.makedirs(self.RESTORE_DIR)
+            folder_stat = os.statvfs(self.RESTORE_DIR)
+            file_size = os.path.getsize(restore_file_path)
+            free_space = folder_stat.f_bsize * folder_stat.f_bavail
+            if free_space > file_size * 2:
+                if os.path.exists(self.RESTORE_DIR + restore_file_name):
+                    os.remove(self.RESTORE_DIR + restore_file_name)
+                if self.oe.copy_file(restore_file_path, self.RESTORE_DIR + restore_file_name) != None:
+                    copy_success = 1
                 else:
                     self.oe.execute('rm -rf %s' % self.RESTORE_DIR)
-                    os.makedirs(self.RESTORE_DIR)
-                folder_stat = os.statvfs(self.RESTORE_DIR)
-                file_size = os.path.getsize(self.BACKUP_DESTINATION + restore_file)
-                free_space = folder_stat.f_bsize * folder_stat.f_bavail
-                if free_space > file_size * 2:
-                    if os.path.exists(self.RESTORE_DIR + restore_file):
-                        os.remove(self.RESTORE_DIR + self.restore_file)
-                    if self.oe.copy_file(self.BACKUP_DESTINATION + restore_file, self.RESTORE_DIR + restore_file) != None:
-                        copy_success = 1
-                    else:
-                        self.oe.execute('rm -rf %s' % self.RESTORE_DIR)
+            else:
+                txt = self.oe.split_dialog_text(self.oe._(32379).encode('utf-8'))
+                xbmcDialog = xbmcgui.Dialog()
+                answer = xbmcDialog.ok('Restore', txt[0], txt[1], txt[2])
+            if copy_success == 1:
+                txt = self.oe.split_dialog_text(self.oe._(32380).encode('utf-8'))
+                xbmcDialog = xbmcgui.Dialog()
+                answer = xbmcDialog.yesno('Restore', txt[0], txt[1], txt[2])
+                if answer == 1:
+                    if self.oe.reboot_counter(10, self.oe._(32371)) == 1:
+                        self.oe.winOeMain.close()
+                        time.sleep(1)
+                        xbmc.executebuiltin('Reboot')
                 else:
-                    txt = self.oe.split_dialog_text(self.oe._(32379).encode('utf-8'))
-                    xbmcDialog = xbmcgui.Dialog()
-                    answer = xbmcDialog.ok('Restore', txt[0], txt[1], txt[2])
-                if copy_success == 1:
-                    txt = self.oe.split_dialog_text(self.oe._(32380).encode('utf-8'))
-                    xbmcDialog = xbmcgui.Dialog()
-                    answer = xbmcDialog.yesno('Restore', txt[0], txt[1], txt[2])
-                    if answer == 1:
-                        if self.oe.reboot_counter(10, self.oe._(32371)) == 1:
-                            self.oe.winOeMain.close()
-                            time.sleep(1)
-                            xbmc.executebuiltin('Reboot')
-                    else:
-                        self.oe.dbg_log('system::do_restore', 'User Abort!', 0)
-                        self.oe.execute('rm -rf %s' % self.RESTORE_DIR)
+                    self.oe.dbg_log('system::do_restore', 'User Abort!', 0)
+                    self.oe.execute('rm -rf %s' % self.RESTORE_DIR)
             self.oe.dbg_log('system::do_restore', 'exit_function', 0)
         except Exception, e:
             self.oe.dbg_log('system::do_restore', 'ERROR: (' + repr(e) + ')')

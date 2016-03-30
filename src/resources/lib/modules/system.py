@@ -571,22 +571,12 @@ class system:
                     self.update_file = self.update_file.split('/')[-1]
                     if self.struct['update']['settings']['UpdateNotify']['value'] == '1':
                         self.oe.notify(self.oe._(32363), self.oe._(32366))
-                    if not os.path.exists(self.oe.TEMP + 'oe_update/'):
-                        os.makedirs(self.oe.TEMP + 'oe_update/')
-                    extract_files = ['target/', 'target/']
-                    if self.oe.extract_file(downloaded, extract_files, self.oe.TEMP + 'oe_update/', silent) == 1:
-                        if self.struct['update']['settings']['UpdateNotify']['value'] == '1':
-                            self.oe.notify(self.oe._(32363), self.oe._(32367))
-                        os.remove(downloaded)
-                        for update_file in glob.glob(self.oe.TEMP + 'oe_update/*'):
-                            os.rename(update_file, self.LOCAL_UPDATE_DIR + update_file.rsplit('/')[-1])
-                        subprocess.call('sync', shell=True, stdin=None, stdout=None, stderr=None)
-                        if silent == False:
-                            self.oe.winOeMain.close()
-                            time.sleep(1)
-                            xbmc.executebuiltin('Reboot')
-                    else:
-                        delattr(self, 'update_in_progress')                            
+                    os.rename(self.oe.TEMP + self.update_file, self.LOCAL_UPDATE_DIR + self.update_file)
+                    subprocess.call('sync', shell=True, stdin=None, stdout=None, stderr=None)
+                    if silent == False:
+                        self.oe.winOeMain.close()
+                        time.sleep(1)
+                        xbmc.executebuiltin('Reboot')
                 else:
                     delattr(self, 'update_in_progress')
 

@@ -1021,7 +1021,7 @@
                             <height>20</height>
                             <font>font12</font>
                             <textcolor>blue</textcolor>
-                            <label>$INFO[ListItem.Property(ConnectedState)]</label>
+                            <label>$ADDON[service.openelec.settings 32333][COLOR=white]$INFO[ListItem.Property(ConnectedState)][/COLOR]</label>
                         </control>
                         <!-- Paired Symbol (bottom right) -->
                         <control type="image">
@@ -1214,7 +1214,7 @@
                             <height>20</height>
                             <font>font12</font>
                             <textcolor>blue</textcolor>
-                            <label>$INFO[ListItem.Property(ConnectedState)]</label>
+                            <label>$ADDON[service.openelec.settings 32333][COLOR=white]$INFO[ListItem.Property(ConnectedState)][/COLOR]</label>
                         </control>
                         <!-- Paired Symbol (bottom right) -->
                         <control type="image">

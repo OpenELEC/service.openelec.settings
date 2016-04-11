@@ -484,9 +484,9 @@ class bluetooth:
                         value = self.dbusDevices[dbusDevice][name]
                         if name == 'Connected':
                             if value:
-                                dictProperties['ConnectedState'] = self.oe._(32333) + '[COLOR white]' + self.oe._(32334) + '[/COLOR]'
+                                dictProperties['ConnectedState'] = self.oe._(32334)
                             else:
-                                dictProperties['ConnectedState'] = self.oe._(32333) + '[COLOR white]' + self.oe._(32335) + '[/COLOR]'
+                                dictProperties['ConnectedState'] = self.oe._(32335)
                         if properties[prop]['type'] == 1:
                             value = unicode(int(value))
                         if properties[prop]['type'] == 2:

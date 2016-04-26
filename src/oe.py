@@ -478,9 +478,9 @@ def stop_service():
 def openWizard():
     global winOeMain, __cwd__, __oe__
     try:
-        winOeMain = oeWindows.wizard('wizard.xml', __cwd__, 'Default', oeMain=__oe__)
+        winOeMain = oeWindows.wizard('service-OpenELEC-Settings-wizard.xml', __cwd__, 'Default', oeMain=__oe__)
         winOeMain.doModal()
-        winOeMain = oeWindows.mainWindow('mainWindow.xml', __cwd__, 'Default', oeMain=__oe__)  # None
+        winOeMain = oeWindows.mainWindow('service-OpenELEC-Settings-mainWindow.xml', __cwd__, 'Default', oeMain=__oe__)  # None
     except Exception, e:
         xbmc.executebuiltin('Dialog.Close(busydialog)')
         dbg_log('oe::openWizard', 'ERROR: (' + repr(e) + ')')
@@ -489,7 +489,7 @@ def openWizard():
 def openConfigurationWindow():
     global winOeMain, __cwd__, __oe__, dictModules
     try:
-        winOeMain = oeWindows.mainWindow('mainWindow.xml', __cwd__, 'Default', oeMain=__oe__)
+        winOeMain = oeWindows.mainWindow('service-OpenELEC-Settings-mainWindow.xml', __cwd__, 'Default', oeMain=__oe__)
         winOeMain.doModal()
         for strModule in dictModules:
             dictModules[strModule].exit()
@@ -793,7 +793,7 @@ XBMC_USER_HOME = os.environ.get('XBMC_USER_HOME', '/storage/.kodi')
 CONFIG_CACHE = os.environ.get('CONFIG_CACHE', '/storage/.cache')
 USER_CONFIG = os.environ.get('USER_CONFIG', '/storage/.config')
 TEMP = '%s/temp/' % XBMC_USER_HOME
-winOeMain = oeWindows.mainWindow('mainWindow.xml', __cwd__, 'Default', oeMain=__oe__)
+winOeMain = oeWindows.mainWindow('service-OpenELEC-Settings-mainWindow.xml', __cwd__, 'Default', oeMain=__oe__)
 if os.path.exists('/etc/machine-id'):
     SYSTEMID = load_file('/etc/machine-id')
 else:

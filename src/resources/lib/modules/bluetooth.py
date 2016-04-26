@@ -484,9 +484,9 @@ class bluetooth:
                         value = self.dbusDevices[dbusDevice][name]
                         if name == 'Connected':
                             if value:
-                                dictProperties['ConnectedState'] = self.oe._(32333) + '[COLOR white]' + self.oe._(32334) + '[/COLOR]'
+                                dictProperties['ConnectedState'] = self.oe._(32334)
                             else:
-                                dictProperties['ConnectedState'] = self.oe._(32333) + '[COLOR white]' + self.oe._(32335) + '[/COLOR]'
+                                dictProperties['ConnectedState'] = self.oe._(32335)
                         if properties[prop]['type'] == 1:
                             value = unicode(int(value))
                         if properties[prop]['type'] == 2:
@@ -569,7 +569,7 @@ class bluetooth:
     def open_pinkey_window(self, runtime=60, title=32343):
         try:
             self.oe.dbg_log('bluetooth::open_pinkey_window', 'enter_function', 0)
-            self.pinkey_window = oeWindows.pinkeyWindow('getPasskey.xml', self.oe.__cwd__, 'Default')
+            self.pinkey_window = oeWindows.pinkeyWindow('service-OpenELEC-Settings-getPasskey.xml', self.oe.__cwd__, 'Default')
             self.pinkey_window.show()
             self.pinkey_window.set_title(self.oe._(title))
             self.pinkey_timer = pinkeyTimer(self, runtime)

@@ -235,7 +235,9 @@ class bluetooth:
         try:
             self.oe.dbg_log('bluetooth::enable_device_standby', 'exit_function', 0)
             devices = self.oe.read_setting('bluetooth', 'standby')
-            if devices == None:
+            if not devices == None:
+                devices = devices.split(',')
+            else:
                 devices = []
             if not listItem.getProperty('entry') in devices:
                 devices.append(listItem.getProperty('entry'))
@@ -250,8 +252,10 @@ class bluetooth:
             devices = self.oe.read_setting('bluetooth', 'standby')
             if not devices == None:
                 devices = devices.split(',')
-                if listItem.getProperty('entry') in devices:
-                    devices.remove(listItem.getProperty('entry'))
+            else:
+                devices = []
+            if listItem.getProperty('entry') in devices:
+                devices.remove(listItem.getProperty('entry'))
             self.oe.write_setting('bluetooth', 'standby', ','.join(devices))
             self.oe.dbg_log('bluetooth::disable_device_standby', 'exit_function', 0)
         except Exception, e:

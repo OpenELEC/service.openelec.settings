@@ -117,8 +117,8 @@ class bluetooth:
                 if self.dbusBluezAdapter != None:
                     self.dbusBluezAdapter = dbus.Interface(self.oe.dbusSystemBus.get_object('org.bluez', path), 'org.bluez.Adapter1')
                     break
-            dbusBluezManager = None
             dbusManagedObjects = None
+            dbusBluezManager = None
             if self.dbusBluezAdapter != None:
                 self.adapter_powered(self.dbusBluezAdapter, 1)
             self.oe.dbg_log('bluetooth::init_adapter', 'exit_function', 0)
@@ -136,6 +136,7 @@ class bluetooth:
                                                    'org.freedesktop.DBus.Properties')
                 adapter_interface.Set('org.bluez.Adapter1', 'Alias', dbus.String(os.environ.get('HOSTNAME', 'openelec')))
                 adapter_interface.Set('org.bluez.Adapter1', 'Powered', dbus.Boolean(state))
+                adapter_interface = None
             self.oe.dbg_log('bluetooth::adapter_powered', 'exit_function', 0)
         except Exception, e:
             self.oe.dbg_log('bluetooth::adapter_powered', 'ERROR: (' + repr(e) + ')', 4)
@@ -148,6 +149,7 @@ class bluetooth:
             adapter_interface = dbus.Interface(self.oe.dbusSystemBus.get_object('org.bluez', adapter.object_path),
                                                'org.freedesktop.DBus.Properties')
             return adapter_interface.Get('org.bluez.Adapter1', name)
+            adapter_interface = None
             self.oe.dbg_log('bluetooth::adapter_info', 'exit_function', 0)
         except Exception, e:
             self.oe.dbg_log('bluetooth::adapter_info', 'ERROR: (' + repr(e) + ')', 4)
@@ -268,6 +270,7 @@ class bluetooth:
             self.oe.set_busy(1)
             device = dbus.Interface(self.oe.dbusSystemBus.get_object('org.bluez', path), 'org.bluez.Device1')
             device.Pair(reply_handler=self.pair_reply_handler, error_handler=self.dbus_error_handler)
+            device = None
             self.oe.dbg_log('bluetooth::pair_device', 'exit_function', 0)
         except Exception, e:
             self.oe.set_busy(0)
@@ -294,7 +297,8 @@ class bluetooth:
             self.oe.dbg_log('bluetooth::trust_device::path', repr(path), 0)
             self.oe.set_busy(1)
             prop = dbus.Interface(self.oe.dbusSystemBus.get_object('org.bluez', path), 'org.freedesktop.DBus.Properties')
-            prop.Set('org.bluez.Device1', 'Trusted', True)
+            prop.Set('org.bluez.Device1', 'Trusted', dbus.Boolean(1))
+            prop = None
             self.oe.set_busy(0)
             self.oe.dbg_log('bluetooth::trust_device', 'exit_function', 0)
         except Exception, e:
@@ -308,6 +312,7 @@ class bluetooth:
             self.oe.set_busy(1)
             device = dbus.Interface(self.oe.dbusSystemBus.get_object('org.bluez', path), 'org.bluez.Device1')
             device.Connect(reply_handler=self.connect_reply_handler, error_handler=self.dbus_error_handler)
+            device = None
             self.oe.dbg_log('bluetooth::connect_device', 'exit_function', 0)
         except Exception, e:
             self.oe.set_busy(0)
@@ -332,6 +337,7 @@ class bluetooth:
                 return
             device = dbus.Interface(self.oe.dbusSystemBus.get_object('org.bluez', listItem.getProperty('entry')), 'org.bluez.Device1')
             device.Disconnect(reply_handler=self.disconnect_reply_handler, error_handler=self.dbus_error_handler)
+            device = None
             self.oe.dbg_log('bluetooth::disconnect_device', 'exit_function', 0)
         except Exception, e:
             self.oe.dbg_log('bluetooth::disconnect_device', 'ERROR: (' + repr(e) + ')', 4)
@@ -634,6 +640,7 @@ class bluetooth:
                 self.oe = oeMain
                 self.signal_receivers = []
                 self.NameOwnerWatch = None
+                self.ObexNameOwnerWatch = None
                 self.btAgentPath = '/OpenELEC/bt_agent'
                 self.obAgentPath = '/OpenELEC/ob_agent'
                 self.parent = parent
@@ -966,7 +973,7 @@ class bluetoothAgent(dbus.service.Object):
             pincode = xbmcKeyboard.getText()
             self.oe.dbg_log('bluetooth::btAgent::RequestPinCode', 'return->' + pincode, 0)
             self.oe.dbg_log('bluetooth::btAgent::RequestPinCode', 'exit_function', 0)
-            return pincode
+            return dbus.String(pincode)
         except Exception, e:
             self.oe.dbg_log('bluetooth::btAgent::RequestPinCode', 'ERROR: (' + repr(e) + ')', 4)
 
@@ -1089,6 +1096,8 @@ class obexAgent(dbus.service.Object):
             answer = xbmcDialog.yesno('OpenELEC Bluetooth', self.oe._(32381), properties['Name'])
             self.oe.dbg_log('bluetooth::obexAgent::AuthorizePush::answer=', repr(answer), 0)
             if answer != 1:
+                properties = None
+                transfer = None
                 raise dbus.DBusException('org.bluez.obex.Error.Rejected: Not Authorized')
                 return
             self.parent.download_path = path
@@ -1099,6 +1108,8 @@ class obexAgent(dbus.service.Object):
             else:
                 self.parent.download_type = None
             return properties['Name']
+            properties = None
+            transfer = None
             self.oe.dbg_log('bluetooth::obexAgent::AuthorizePush', 'exit_function', 0)
         except Exception, e:
             self.oe.dbg_log('bluetooth::obexAgent::AuthorizePush', 'ERROR: (' + repr(e) + ')', 4)

@@ -333,7 +333,7 @@ class system:
             self.oe.winOeMain.build_menu(self.struct)
             self.oe.dbg_log('system::load_menu', 'exit_function', 0)
         except Exception, e:
-            self.oe.dbg_log('system::loadSysMenu', 'ERROR: (' + repr(e) + ')')
+            self.oe.dbg_log('system::load_menu', 'ERROR: (' + repr(e) + ')')
 
     def set_value(self, listItem):
         try:
@@ -636,7 +636,7 @@ class system:
                     return 1
                 else:
                     return 0
-            self.oe.dbg_log('system::reset_oeask_sure_reset', 'exit_function', 0)
+            self.oe.dbg_log('system::ask_sure_reset', 'exit_function', 0)
         except Exception, e:
             self.oe.set_busy(0)
             self.oe.dbg_log('system::ask_sure_reset', 'ERROR: (' + repr(e) + ')', 4)

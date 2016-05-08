@@ -591,7 +591,7 @@ class bluetooth:
                 del self.pinkey_window
             self.oe.dbg_log('bluetooth::close_pinkey_window', 'exit_function', 0)
         except Exception, e:
-            self.oe.dbg_log('bluetooth::open_pinkey_window', 'ERROR: (' + repr(e) + ')', 4)
+            self.oe.dbg_log('bluetooth::close_pinkey_window', 'ERROR: (' + repr(e) + ')', 4)
 
     def standby_devices(self):
         try:
@@ -916,7 +916,6 @@ class bluetoothAgent(dbus.service.Object):
             xbmc.executebuiltin('Dialog.Close(busydialog)')
             self.oe.dbg_log('bluetooth::btAgent::AuthorizeService::device=', repr(device), 0)
             self.oe.dbg_log('bluetooth::btAgent::AuthorizeService::uuid=', repr(uuid), 0)
-            self.oe.dbg_log('bluetooth::btAgent::AuthorizeService', 'enter_function', 0)
             xbmcDialog = xbmcgui.Dialog()
             answer = xbmcDialog.yesno('OpenELEC Bluetooth', 'AuthorizeService')
             if answer == 1:
@@ -988,7 +987,7 @@ class bluetoothAgent(dbus.service.Object):
             self.parent.open_pinkey_window(runtime=20)
             self.parent.pinkey_window.device = device
             self.parent.pinkey_window.set_label2(pincode)
-            self.oe.dbg_log('bluetooth::btAgent::DisplayPinCode', 'enter_function', 0)
+            self.oe.dbg_log('bluetooth::btAgent::DisplayPinCode', 'exit_function', 0)
         except Exception, e:
             self.oe.dbg_log('bluetooth::btAgent::DisplayPinCode', 'ERROR: (' + repr(e) + ')', 4)
 
@@ -996,7 +995,7 @@ class bluetoothAgent(dbus.service.Object):
     def RequestConfirmation(self, device, passkey):
         try:
             self.oe.dbg_log('bluetooth::btAgent::RequestConfirmation', 'enter_function', 0)
-            self.oe.dbg_log('bluetooth::btAgent::RequestConfirmation::device=', device, 0)
+            self.oe.dbg_log('bluetooth::btAgent::RequestConfirmation::device=', repr(device), 0)
             self.oe.dbg_log('bluetooth::btAgent::RequestConfirmation::passkey=', repr(passkey), 0)
             xbmcDialog = xbmcgui.Dialog()
             answer = xbmcDialog.yesno('OpenELEC Bluetooth', 'RequestConfirmation', unicode(passkey))
@@ -1012,7 +1011,7 @@ class bluetoothAgent(dbus.service.Object):
     def RequestAuthorization(self, device):
         try:
             self.oe.dbg_log('bluetooth::btAgent::RequestAuthorization', 'enter_function', 0)
-            self.oe.dbg_log('bluetooth::btAgent::RequestAuthorization::device=', device, 0)
+            self.oe.dbg_log('bluetooth::btAgent::RequestAuthorization::device=', repr(device), 0)
             xbmcDialog = xbmcgui.Dialog()
             answer = xbmcDialog.yesno('OpenELEC Bluetooth', 'RequestAuthorization')
             if hasattr(self.parent, 'pinkey_window'):
@@ -1030,7 +1029,7 @@ class bluetoothAgent(dbus.service.Object):
     def Cancel(self):
         try:
             self.oe.dbg_log('bluetooth::btAgent::Cancel', 'enter_function', 0)
-            self.oe.dbg_log('bluetooth::btAgent::Cancel', 'enter_function', 0)
+            self.oe.dbg_log('bluetooth::btAgent::Cancel', 'exit_function', 0)
         except Exception, e:
             self.oe.dbg_log('bluetooth::btAgent::Cancel', 'ERROR: (' + repr(e) + ')', 4)
 
@@ -1044,7 +1043,7 @@ class obexAgent(dbus.service.Object):
     @dbus.service.method('org.bluez.obex.Agent1', in_signature='o', out_signature='s')
     def AuthorizePush(self, path):
         try:
-            self.oe.dbg_log('bluetooth::obexAgent::Cancel', 'enter_function', 0)
+            self.oe.dbg_log('bluetooth::obexAgent::AuthorizePush', 'enter_function', 0)
             transfer = dbus.Interface(self.oe.dbusSystemBus.get_object('org.bluez.obex', path), 'org.freedesktop.DBus.Properties')
             properties = transfer.GetAll('org.bluez.obex.Transfer1')
             xbmcDialog = xbmcgui.Dialog()
@@ -1059,8 +1058,8 @@ class obexAgent(dbus.service.Object):
                 self.parent.download_type = properties['Type']
             else:
                 self.parent.download_type = None
-            self.oe.dbg_log('bluetooth::obexAgent::Cancel', 'enter_function', 0)
             return properties['Name']
+            self.oe.dbg_log('bluetooth::obexAgent::AuthorizePush', 'exit_function', 0)
         except Exception, e:
             self.oe.dbg_log('bluetooth::obexAgent::AuthorizePush', 'ERROR: (' + repr(e) + ')', 4)
 

@@ -261,10 +261,10 @@ class services:
 
     def stop_service(self):
         try:
-            self.oe.dbg_log('service::stop_service', 'enter_function', 0)
-            self.oe.dbg_log('service::stop_service', 'exit_function', 0)
+            self.oe.dbg_log('services::stop_service', 'enter_function', 0)
+            self.oe.dbg_log('services::stop_service', 'exit_function', 0)
         except Exception, e:
-            self.oe.dbg_log('service::stop_service', 'ERROR: (' + repr(e) + ')')
+            self.oe.dbg_log('services::stop_service', 'ERROR: (' + repr(e) + ')')
 
     def do_init(self):
         try:
@@ -278,9 +278,9 @@ class services:
         try:
             self.oe.dbg_log('services::set_value', 'enter_function', 0)
             self.struct[listItem.getProperty('category')]['settings'][listItem.getProperty('entry')]['value'] = listItem.getProperty('value')
-            self.oe.dbg_log('system::set_value', 'exit_function', 0)
+            self.oe.dbg_log('services::set_value', 'exit_function', 0)
         except Exception, e:
-            self.oe.dbg_log('system::set_value', 'ERROR: (' + repr(e) + ')')
+            self.oe.dbg_log('services::set_value', 'ERROR: (' + repr(e) + ')')
 
     def load_menu(self, focusItem):
         try:

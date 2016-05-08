@@ -657,7 +657,7 @@ class system:
 
             xbmcDialog = xbmcgui.Dialog()
             bckDir = xbmcDialog.browse( 0, 
-                                        self.oe._(32392).encode('utf-8'), 
+                                        self.oe._(32371).encode('utf-8'),
                                         'files', 
                                         '', 
                                         False, 
@@ -700,7 +700,7 @@ class system:
             copy_success = 0
             xbmcDialog = xbmcgui.Dialog()
             restore_file_path = xbmcDialog.browse( 1, 
-                                              self.oe._(32393).encode('utf-8'), 
+                                              self.oe._(32373).encode('utf-8'),
                                               'files', 
                                               '??????????????.tar', 
                                               False, 

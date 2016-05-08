@@ -211,6 +211,9 @@ def get_service_state(service):
 def set_service(service, options, state):
     try:
         dbg_log('oe::set_service', 'enter_function', 0)
+        dbg_log('oe::set_service::service', repr(service), 0)
+        dbg_log('oe::set_service::options', repr(options), 0)
+        dbg_log('oe::set_service::state', repr(state), 0)
         config = {}
         changed = False
 

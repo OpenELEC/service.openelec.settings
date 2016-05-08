@@ -444,6 +444,10 @@ msgstr ""
 
 #empty string with id 32145
 
+msgctxt "#32145"
+msgid "Pair"
+msgstr ""
+
 msgctxt "#32146"
 msgid "Hidden Network Name"
 msgstr ""

@@ -849,7 +849,7 @@ class updateThread(threading.Thread):
         try:
             self.oe.dbg_log('system::updateThread::run', 'enter_function', 0)
             while self.stopped == False:
-                if not xbmc.Player(xbmc.PLAYER_CORE_AUTO).isPlaying():
+                if not xbmc.Player().isPlaying():
                     self.oe.dictModules['system'].check_updates_v2()
                 if not hasattr(self.oe.dictModules['system'], 'update_in_progress'):
                     self.wait_evt.wait(21600)

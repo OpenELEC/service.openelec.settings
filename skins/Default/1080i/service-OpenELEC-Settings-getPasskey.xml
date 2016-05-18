@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <window id="5533">
     <defaultcontrol always="true">2000</defaultcontrol>
     <allowoverlay>no</allowoverlay>
@@ -31,7 +32,7 @@
                     <height>30</height>
                     <font>font12</font>
                     <textcolor>white</textcolor>
-                    <label></label>
+                    <label />
                     <align>center</align>
                     <visible>true</visible>
                 </control>
@@ -42,7 +43,7 @@
                     <height>30</height>
                     <font>font23_title</font>
                     <textcolor>blue</textcolor>
-                    <label></label>
+                    <label />
                     <align>center</align>
                     <visible>true</visible>
                 </control>
@@ -53,7 +54,7 @@
                     <height>30</height>
                     <font>font23_title</font>
                     <textcolor>blue</textcolor>
-                    <label></label>
+                    <label />
                     <align>center</align>
                     <visible>true</visible>
                 </control>
@@ -64,7 +65,7 @@
                     <height>30</height>
                     <font>font23_title</font>
                     <textcolor>blue</textcolor>
-                    <label></label>
+                    <label />
                     <align>center</align>
                     <visible>true</visible>
                 </control>
@@ -76,5 +77,5 @@
                 </control>
             </control>
         </control>
-	</controls>
+    </controls>
 </window>

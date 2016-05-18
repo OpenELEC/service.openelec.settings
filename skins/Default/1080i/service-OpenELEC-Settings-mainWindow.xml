@@ -703,17 +703,6 @@
                     <scrolltime>300</scrolltime>
                     <visible>StringCompare(Container(1000).ListItem.Property(listTyp), 1300)</visible>    
                     <itemlayout height="100">
-                        <control type="image">
-                            <width>1256</width>
-                            <height>100</height>
-                            <texture border="2">default/separator.png</texture>
-                        </control>                      
-                        <control type="image">
-                            <width>1256</width>
-                            <height>100</height>
-                            <texture colordiffuse="FF12B2E7">default/focus.png</texture>
-                            <visible>Control.HasFocus(1300)</visible>                            
-                        </control>  
                         <!-- default -->
                         <control type="image">
                             <left>40</left>
@@ -838,7 +827,7 @@
                         <control type="label">
                             <left>140</left>
                             <top>10</top>
-                            <width>390</width>
+                            <width>490</width>
                             <height>30</height>
                             <font>font24_title</font>
                             <textcolor>white</textcolor>
@@ -847,9 +836,9 @@
                         </control>
                         <!-- Connection Address -->
                         <control type="label">
-                            <left>500</left>
+                            <left>650</left>
                             <top>49</top>
-                            <width>290</width>
+                            <width>340</width>
                             <height>20</height>
                             <font>font12</font>
                             <textcolor>blue</textcolor>
@@ -857,9 +846,9 @@
                         </control>
                         <!-- Connected State -->
                         <control type="label">
-                            <left>500</left>
+                            <left>650</left>
                             <top>20</top>
-                            <width>200</width>
+                            <width>340</width>
                             <height>20</height>
                             <font>font12</font>
                             <textcolor>blue</textcolor>
@@ -1022,7 +1011,7 @@
                         <control type="label">
                             <left>140</left>
                             <top>10</top>
-                            <width>390</width>
+                            <width>490</width>
                             <height>30</height>
                             <font>font24_title</font>
                             <textcolor>white</textcolor>
@@ -1031,9 +1020,9 @@
                         </control>
                         <!-- Connection Address -->
                         <control type="label">
-                            <left>500</left>
+                            <left>650</left>
                             <top>49</top>
-                            <width>290</width>
+                            <width>340</width>
                             <height>20</height>
                             <font>font12</font>
                             <textcolor>blue</textcolor>
@@ -1041,9 +1030,9 @@
                         </control>
                         <!-- Connected State -->
                         <control type="label">
-                            <left>500</left>
+                            <left>650</left>
                             <top>20</top>
-                            <width>200</width>
+                            <width>340</width>
                             <height>20</height>
                             <font>font12</font>
                             <textcolor>blue</textcolor>

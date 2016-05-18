@@ -102,7 +102,7 @@
                 <description>LOGO</description>
                 <left>20</left>
                 <top>750</top>
-                <width>380</width>
+                <width>360</width>
                 <height>160</height>
                 <aspectratio>keep</aspectratio>
                 <texture>$INFO[Window.Property(DIST_MEDIA)]/Logo.png</texture>
@@ -120,7 +120,7 @@
                     <height>3</height>
                     <visible>StringCompare(Container(1000).ListItem.Property(listTyp), 1900)</visible>  
                     <control type="image">
-                        <left>1000</left>
+                        <left>980</left>
                         <top>20</top>
                         <width>300</width>
                         <height>300</height>

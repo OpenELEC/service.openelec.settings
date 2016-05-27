@@ -506,7 +506,7 @@ class system:
                 arrTypes = None
             else:
                 self.oe.dbg_log('system::get_keyboard_layouts', 'exit_function (no keyboard layouts found)', 0)
-                return (None, None)
+                return (None, None, None)
             self.oe.dbg_log('system::get_keyboard_layouts', 'exit_function', 0)
             return (
                 arrLayouts,

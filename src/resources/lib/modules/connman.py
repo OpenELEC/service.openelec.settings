@@ -911,9 +911,10 @@ class connman:
                 self.set_value(kwargs['listItem'])
             self.oe.dbg_log('connman::set_timeservers', 'enter_function', 0)
             self.clock = dbus.Interface(self.oe.dbusSystemBus.get_object('net.connman', '/'), 'net.connman.Clock')
-            timeservers = []
+            timeservers = dbus.Array([], signature=dbus.Signature('s'), variant_level=1)
             for setting in sorted(self.struct['Timeservers']['settings']):
-                timeservers.append(self.struct['Timeservers']['settings'][setting]['value'])
+                if self.struct['Timeservers']['settings'][setting]['value'] != '':
+                    timeservers.append(self.struct['Timeservers']['settings'][setting]['value'])
             self.clock.SetProperty(dbus.String('Timeservers'), timeservers)
             self.oe.dbg_log('connman::set_timeservers', 'exit_function', 0)
             self.oe.set_busy(0)

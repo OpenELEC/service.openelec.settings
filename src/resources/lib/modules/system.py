@@ -36,6 +36,7 @@ import tarfile
 import oeWindows
 import threading
 import subprocess
+import shutil
 from xml.dom import minidom
 
 
@@ -571,7 +572,7 @@ class system:
                     self.update_file = self.update_file.split('/')[-1]
                     if self.struct['update']['settings']['UpdateNotify']['value'] == '1':
                         self.oe.notify(self.oe._(32363), self.oe._(32366))
-                    os.rename(self.oe.TEMP + self.update_file, self.LOCAL_UPDATE_DIR + self.update_file)
+                    shutil.move(self.oe.TEMP + self.update_file, self.LOCAL_UPDATE_DIR + self.update_file)
                     subprocess.call('sync', shell=True, stdin=None, stdout=None, stderr=None)
                     if silent == False:
                         self.oe.winOeMain.close()

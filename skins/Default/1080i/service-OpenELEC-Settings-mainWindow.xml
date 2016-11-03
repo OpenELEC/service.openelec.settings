@@ -894,7 +894,6 @@
                             <top>25</top>
                             <width>48</width>
                             <height>48</height>
-                            >
                             <aspectratio>keep</aspectratio>
                             <visible>StringCompare(ListItem.Property(Icon), default)</visible>
                             <texture>icons/bt.png</texture>

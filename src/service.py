@@ -100,8 +100,8 @@ class cxbmcm(xbmc.Monitor):
 
     def onScreensaverActivated(self):
         oe.__oe__.dbg_log('c_xbmcm::onScreensaverActivated', 'enter_function', 0)
-        if 'bluetooth' in oe.__oe__.dictModules:
-            oe.__oe__.dictModules['bluetooth'].standby_devices()
+        if oe.__oe__.read_setting('bluetooth', 'standby'):
+            threading.Thread(target=oe.__oe__.standby_devices).start()
         oe.__oe__.dbg_log('c_xbmcm::onScreensaverActivated', 'exit_function', 0)
 
     def onAbortRequested(self):

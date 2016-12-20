@@ -624,11 +624,13 @@ class bluetooth:
                 if not devices == None:
                     devices = devices.split(',')
                     if len(devices) > 0:
+                        self.oe.input_request = True
                         lstItem = xbmcgui.ListItem()
                         for device in devices:
                             lstItem.setProperty('entry', device)
                             self.disconnect_device(lstItem)
                         lstItem = None
+                        self.oe.input_request = False
             self.oe.dbg_log('bluetooth::standby_devices', 'exit_function', 0)
         except Exception, e:
             self.oe.dbg_log('bluetooth::standby_devices', 'ERROR: (' + repr(e) + ')', 4)

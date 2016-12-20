@@ -503,6 +503,13 @@ def openConfigurationWindow():
         xbmc.executebuiltin('Dialog.Close(busydialog)')
         dbg_log('oe::openConfigurationWindow', 'ERROR: (' + repr(e) + ')')
 
+def standby_devices():
+    global dictModules
+    try:
+        if 'bluetooth' in dictModules:
+            dictModules['bluetooth'].standby_devices()
+    except Exception, e:
+        dbg_log('oe::standby_devices', 'ERROR: (' + repr(e) + ')')
 
 def load_config():
     try:

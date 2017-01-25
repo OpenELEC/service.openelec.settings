@@ -54,6 +54,7 @@
                         <top>10</top>
                         <width>240</width>
                         <height>55</height>
+                        <aligny>center</aligny>
                         <font>font24_title</font>
                         <textcolor>white</textcolor>
                         <label>$INFO[ListItem.Label]</label>
@@ -71,6 +72,7 @@
                         <top>10</top>
                         <width>240</width>
                         <height>55</height>
+                        <aligny>center</aligny>
                         <font>font24_title</font>
                         <textcolor>white</textcolor>
                         <label>$INFO[ListItem.Label]</label>

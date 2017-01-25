@@ -806,7 +806,12 @@ class connman:
                         if properties[prop]['type'] == 2:
                             result = unicode(result)
                         if properties[prop]['type'] == 3:
-                            result = unicode(len(result))
+                            if any(x in result for x in ['psk','ieee8021x','wep']):
+                                result = unicode('1')
+                            elif 'none' in result:
+                                result = unicode('0')
+                            else:
+                                result = unicode('-1')
                         if rebuildList == 1:
                             dictProperties[value] = result
                         else:

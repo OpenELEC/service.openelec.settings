@@ -533,11 +533,21 @@
                         <control type="image">
                             <left>1140</left>
                             <top>55</top>
-                            <width>20</width>
+                            <width>32</width>
                             <height>20</height>
                             <aspectratio>keep</aspectratio>
-                            <visible>IntegerGreaterThan(ListItem.Property(Security), 0)</visible>
+                            <visible>Integer.IsEqual(ListItem.Property(Security), 1)</visible>
                             <texture>icons/Key.png</texture>
+                        </control>
+                        <!-- Insecure Symbol (bottom right) -->
+                        <control type="image">
+                            <left>1140</left>
+                            <top>55</top>
+                            <width>32</width>
+                            <height>20</height>
+                            <aspectratio>keep</aspectratio>
+                            <visible>Integer.IsEqual(ListItem.Property(Security), 0)</visible>
+                            <texture>icons/Unlock.png</texture>
                         </control>
                     </itemlayout>
                     <focusedlayout height="100">
@@ -675,11 +685,21 @@
                         <control type="image">
                             <left>1140</left>
                             <top>55</top>
-                            <width>20</width>
+                            <width>32</width>
                             <height>20</height>
                             <aspectratio>keep</aspectratio>
-                            <visible>IntegerGreaterThan(ListItem.Property(Security), 0)</visible>
+                            <visible>Integer.IsEqual(ListItem.Property(Security), 1)</visible>
                             <texture>icons/Key.png</texture>
+                        </control>
+                        <!-- Insecure Symbol (bottom right) -->
+                        <control type="image">
+                            <left>1140</left>
+                            <top>55</top>
+                            <width>32</width>
+                            <height>20</height>
+                            <aspectratio>keep</aspectratio>
+                            <visible>Integer.IsEqual(ListItem.Property(Security), 0)</visible>
+                            <texture>icons/Unlock.png</texture>
                         </control>
                     </focusedlayout>
                 </control>

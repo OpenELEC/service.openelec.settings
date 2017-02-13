@@ -567,6 +567,11 @@ class bluetooth:
                     'text': self.oe._(32144),
                     'action': 'init_device',
                     }
+            elif listItem.getProperty('Trusted') == '1':
+                values[2] = {
+                    'text': self.oe._(32144),
+                    'action': 'trust_connect_device',
+                    }
             values[5] = {
                 'text': self.oe._(32141),
                 'action': 'remove_device',

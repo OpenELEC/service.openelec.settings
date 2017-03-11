@@ -1,6 +1,6 @@
 ################################################################################
 #      This file is part of OpenELEC - http://www.openelec.tv
-#      Copyright (C) 2009-2013 Stephan Raue (stephan@openelec.tv)
+#      Copyright (C) 2009-2017 Stephan Raue (stephan@openelec.tv)
 #      Copyright (C) 2013 Lutz Fiebach (lufie@openelec.tv)
 #
 #  This program is dual-licensed; you can redistribute it and/or modify
@@ -25,7 +25,7 @@
 ################################################################################
 
 ADDON_NAME=service.openelec.settings
-ADDON_VERSION=0.8.0
+ADDON_VERSION=0.8.1
 DISTRONAME:=OpenELEC
 
 BUILDDIR=build

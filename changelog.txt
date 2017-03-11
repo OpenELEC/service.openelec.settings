@@ -1,3 +1,32 @@
+2017-03-11 v0.8.1
+   (updated) license headers
+   (fix) bluetooth: add missing 'Connect' option when device is Trusted
+   (fix) fix menu labels vertical alignment
+   (fix) connman: fix lock/unlock icon
+   (fix) connections: fix layout as some icons were off screen
+   (fix) bluetooth standby when screensaver is activated
+   (updated) infobools
+   (fix) syntax in window xml
+   (fix) system update - fix cross-device linking
+   (fix) save button in network config
+   (fix) Only use non-empty values for Timeservers
+   (fix) get_keyboard_layouts should return three values
+   (fix) Rework bluetooth pairing
+   (fix) Use dbus types and reset dbus variables after use
+   (fix) bluetooth standby devices array
+   (fix) Change reset dialog title
+   (fix) Use existing language ids
+   (add) Add more debug logging
+   (fix) Fix log messages source, text and level
+   (fix) Always log non-debug messages
+   (updated) clean up formatting using eclipse xml plugin
+   (fix) logo positions and alignment
+   (fix) bluetooth menu layout and alignment
+   (fix) updating by dropping an old kodi convention
+   (updated) Update strings.po
+   (updated) updater: don't extract the file, let the update mechanism do the work
+   (updated) change smbd and nmbd location
+
 2016-04-30 v0.8.0
    (updated) update to new theme (kodi estuary)
 
